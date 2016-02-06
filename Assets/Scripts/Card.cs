@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Card : MonoBehaviour {
+public class Card {
 
-    string title;
+	public int cardNumber;
+
+	string title;
     string terrain;
     string desc1;
     string desc2;
