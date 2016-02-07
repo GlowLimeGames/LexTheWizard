@@ -13,7 +13,7 @@ public class EnemyBehavior : MonoBehaviour {
 		}
 		x = selectCard(currentCards);
 	}
-	
+	//TEST
 	//Unused for now
 	void Update () {
 	
