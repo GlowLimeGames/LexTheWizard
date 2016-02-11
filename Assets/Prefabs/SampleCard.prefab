@@ -146,6 +146,7 @@ GameObject:
   - 224: {fileID: 22473732}
   - 222: {fileID: 22211658}
   - 114: {fileID: 11410622}
+  - 114: {fileID: 11471670}
   m_Layer: 0
   m_Name: SampleCard
   m_TagString: Untagged
@@ -368,6 +369,23 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11471670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611ef8ec172c10749a38baa036897f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardPopup: {fileID: 0}
+  titleText: {fileID: 0}
+  goldText: {fileID: 0}
+  salvageText: {fileID: 0}
+  description1: {fileID: 0}
+  description2: {fileID: 0}
 --- !u!114 &11477486
 MonoBehaviour:
   m_ObjectHideFlags: 1
