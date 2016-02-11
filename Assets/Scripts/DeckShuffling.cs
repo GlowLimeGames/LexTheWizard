@@ -7,7 +7,7 @@ public class DeckShuffling : MonoBehaviour {
 	public int [] shuffledDeck;
 	public int randomNum;
 
-	void Start () {
+	public void Shuffle () {
 		initialDeck = new int[52];
 		shuffledDeck = new int[52];
 		
