@@ -22,8 +22,9 @@ public class UIManager : MonoBehaviour {
 
     void SetStats()
     {
-        pointsText.text += player.points.ToString();
-        goldText.text += player.gold.ToString();
-        salvageText.text += player.salvage.ToString();
+        int[] playerStats = player.GetStats();
+        pointsText.text += playerStats[0].ToString();
+        goldText.text += playerStats[1].ToString();
+        salvageText.text += playerStats[2].ToString();
     }
 }

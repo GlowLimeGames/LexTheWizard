@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿/*
+ * using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -37,8 +38,6 @@ public class Card : MonoBehaviour {
         this.gold = gold;
         this.salvage = salvage;
         this.art = art;
-
-        ShowDetails();
     }
 
     // For testing cards without art
@@ -50,18 +49,9 @@ public class Card : MonoBehaviour {
         this.desc2 = desc2;
         this.gold = gold;
         this.salvage = salvage;
-
-        ShowDetails();
     }
 
-    /*
-    public void Init(string title, string terrain, int gold, int salvage, Sprite art, string desc1, string desc2)
-    {
-        
-    }
-    */
-
-    void ShowDetails()
+    public void ShowDetails()
     {
         titleText.text = title + " " + terrain;
         goldText.text = gold.ToString();
@@ -80,3 +70,4 @@ public class Card : MonoBehaviour {
         cardRend.enabled = false;
     }
 }
+*/

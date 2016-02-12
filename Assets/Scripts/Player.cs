@@ -3,18 +3,25 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public int points;
-    public int gold;
-    public int salvage;
-
     public static Player player;
+    Tuning tuning;
 
-    void Awake()
+    int points;
+    int gold;
+    int salvage;
+
+    void Start()
     {
+        tuning = Tuning.tuning;
         player = this;
-        player.points = points;
-        player.gold = gold;
-        player.salvage = salvage;
+        player.points = tuning.startingPoints;
+        player.gold = tuning.startingGold;
+        player.salvage = tuning.startingSalvage;
+    }
+
+    public int[] GetStats()
+    {
+        return new int[] { points, gold, salvage };
     }
 
 }
