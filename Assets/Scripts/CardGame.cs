@@ -15,14 +15,13 @@ public class CardGame : MonoBehaviour {
 	void Start () {
         tuning = Tuning.tuning;
         numOfStartingCards = tuning.numOfStartingCards;
-        cardScale = new Vector3(0.625f, 0.5769231f);
+        cardScale = new Vector3(0.25f, 0.25f);
         DealCards(numOfStartingCards);
 	}
 
     // This is called when the card game starts
     void DealCards(int numOfCards)
     {
-        Debug.Log("About to deal cards");
         for (int i = 0; i < numOfCards; i++)
         {
             Transform currentTransform = handTargets[i];
@@ -30,6 +29,7 @@ public class CardGame : MonoBehaviour {
             // Instantiate prefab with the current transform
             GameObject cardPrefab = (GameObject) Instantiate(cardTemplate, currentTransform.position, currentTransform.rotation);
             cardPrefab.transform.localScale = cardScale;
+			cardPrefab.transform.parent = cardCanvas.transform;
             CardObject cardObject = cardPrefab.AddComponent<CardObject>();
 
             // Get cardInfo from next item in the deck
@@ -37,8 +37,6 @@ public class CardGame : MonoBehaviour {
 
             // Assign the cardInfo to this card
             cardObject.CreateCard(cardInfo);
-
-            Debug.Log("Card should have been created");
         }
     }
 }

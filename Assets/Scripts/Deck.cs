@@ -22,19 +22,19 @@ public class Deck : MonoBehaviour {
         cards.Add(new CardInfo("Title 2", "Swamp", 5, 15, "This is description 1 for Card 2.", "This is description 2 for Card 2."));
         cards.Add(new CardInfo("Title 3", "Swamp", 1, 2, "This is the description 1 for Card 3.", "This is the description 2 for Card 3."));
         cards.Add(new CardInfo("Title 4", "Swamp", 2, 3, "This is description 1 for Card 4.", "This is description 2 for Card 4."));
-        cards.Add(new CardInfo("TItle 5", "Swamp", 6, 4, "This is the description 1 for Card 5.", "This is the description 2 for Card 5."));
+        cards.Add(new CardInfo("Title 5", "Swamp", 6, 4, "This is the description 1 for Card 5.", "This is the description 2 for Card 5."));
 
         // Shuffle cards
         cards = deckShuffling.Shuffle(cards);
-
-        Debug.Log("Number of cards in deck: " + cards.Count.ToString());
     }
 
     public CardInfo DrawCard()
     {
         if (cards.Count > 0)
         {
-            return cards[0];
+			CardInfo nextCard = cards[0];
+			cards.Remove(cards[0]);
+			return nextCard;
         }
         return null;
     }

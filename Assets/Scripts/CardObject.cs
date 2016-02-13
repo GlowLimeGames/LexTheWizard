@@ -13,6 +13,7 @@ public class CardObject : MonoBehaviour {
     float scaleFactor;
 
     Vector3 scaleVector;
+	Vector3 forward;
     Image image;
     CardInfo myInfo;
 
@@ -23,6 +24,7 @@ public class CardObject : MonoBehaviour {
         tuning = Tuning.tuning;
         scaleFactor = tuning.scaleFactor;
         scaleVector = new Vector3(scaleFactor, scaleFactor);
+		forward = new Vector3 (0f, 0f, -1f);
     }
 
     public void CreateCard(CardInfo cardInfo)
@@ -46,18 +48,23 @@ public class CardObject : MonoBehaviour {
         salvageText.text = cardInfo.salvage.ToString();
         description1.text = cardInfo.desc1;
         description2.text = cardInfo.desc2;
-        
-        Debug.Log("A card has been created");
     }
 
-    void OnMouseDown()
-    {
-        transform.localScale += scaleVector;
-    }
+	void OnMouseDown() {
+		// Grow
+		transform.localScale += scaleVector;
 
-    void OnMouseUp()
-    {
-        transform.localScale -= scaleVector;
-    }
+		// Push to front
+		transform.SetAsLastSibling();
+		//transform.position += forward;
+	}
+
+	void OnMouseUp() {
+		// Shrink
+		transform.localScale -= scaleVector;
+
+		// Revert position
+		//transform.position -= forward;
+	}
 }
 
