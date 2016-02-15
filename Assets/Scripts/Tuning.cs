@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/*
+ * Attached to Tuning game object
+ * 
+ * Should be called first
+ * 
+ * Contains variables for all other scripts to reference
+ * These variables are assigned in the Inspector
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class Tuning : MonoBehaviour {
@@ -18,5 +27,4 @@ public class Tuning : MonoBehaviour {
     {
         tuning = this;
     }
-
 }

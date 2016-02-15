@@ -1,40 +1,54 @@
-﻿using UnityEngine;
+﻿/*
+ * Attached to an Instantiated Card Prefab from CardGame.cs
+ * 
+ * Controls UI components displayed on the card (text, image)
+ * This information is determined by CardInfo
+ * 
+ * Describes user interaction, such as changing scale on MouseDown and MouseUp
+ */
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class CardObject : MonoBehaviour {
 
+	// UI Components
     Text titleText;
     Text goldText;
     Text salvageText;
     Text description1;
     Text description2;
+	Image image;
 
+	// Variables to control card scale
     float scaleFactor;
-
     Vector3 scaleVector;
-	Vector3 forward;
-    Image image;
-    CardInfo myInfo;
+    
+	// Reference to this object's CardInfo
+    //CardInfo myInfo;
 
+	// Reference to Tuning object
     Tuning tuning;
 
     void Start()
     {
         tuning = Tuning.tuning;
-        scaleFactor = tuning.scaleFactor;
-        scaleVector = new Vector3(scaleFactor, scaleFactor);
-		forward = new Vector3 (0f, 0f, -1f);
+        scaleFactor = tuning.scaleFactor; // Get scale factor from tuning object
+        scaleVector = new Vector3(scaleFactor, scaleFactor); // Great scale vector using scale factor
     }
 
+	// This function is called from CardGame
+	// A CardObject is created from the variables in CardInfo
     public void CreateCard(CardInfo cardInfo)
     {
-        myInfo = cardInfo;
+        //myInfo = cardInfo;
 
+		// Set up reference to Image component in Children
         image = GetComponentInChildren<Image>();
+		// Assign a sprite to that image
         image.sprite = cardInfo.art;
 
-        // Set up references to Text components
+        // Set up references to Text components in Children
         Text[] text = GetComponentsInChildren<Text>();
         titleText = text[0];
         goldText = text[1];
@@ -53,18 +67,13 @@ public class CardObject : MonoBehaviour {
 	void OnMouseDown() {
 		// Grow
 		transform.localScale += scaleVector;
-
 		// Push to front
 		transform.SetAsLastSibling();
-		//transform.position += forward;
 	}
 
 	void OnMouseUp() {
 		// Shrink
 		transform.localScale -= scaleVector;
-
-		// Revert position
-		//transform.position -= forward;
 	}
 }
 

@@ -1,13 +1,22 @@
-﻿using UnityEngine;
+﻿/*
+ * Attached to Stats Canvas
+ * 
+ * Displays number of points, gold, and salvage on the screen
+ * Gets this info from Player
+ */
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class UIManager : MonoBehaviour {
 
+	// Reference to Text components on Stats Canvas
     public Text pointsText;
     public Text goldText;
     public Text salvageText;
 
+	// Reference to player
     Player player;
 
 	void Start () {
@@ -18,6 +27,7 @@ public class UIManager : MonoBehaviour {
         salvageText.text = "Salvage: ";
 	}
 
+	// This is called from Player
     public void SetStats()
     {
         int[] playerStats = player.GetStats();
