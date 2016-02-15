@@ -1,4 +1,14 @@
-﻿using UnityEngine;
+﻿/*
+ * Attached to Deck GameObject
+ * Contains CardInfo as a nested class
+ * 
+ * Currently makes a test deck with 5 sample cards that are hard-coded
+ * 
+ * Has DrawCard function which is called from CardGame
+ * 
+ */
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,9 +25,10 @@ public class Deck : MonoBehaviour {
         MakeTestDeck();
     }
 
+	// Temporary function
     void MakeTestDeck()
     {
-        // Add cards
+        // Add sample cards
         cards.Add(new CardInfo("Title 1", "Swamp", 10, 20, "This is description 1 for Card 1.", "This is description 2 for Card 1."));
         cards.Add(new CardInfo("Title 2", "Swamp", 5, 15, "This is description 1 for Card 2.", "This is description 2 for Card 2."));
         cards.Add(new CardInfo("Title 3", "Swamp", 1, 2, "This is the description 1 for Card 3.", "This is the description 2 for Card 3."));
@@ -28,11 +39,15 @@ public class Deck : MonoBehaviour {
         cards = deckShuffling.Shuffle(cards);
     }
 
+	// This function is called from CardGame
     public CardInfo DrawCard()
     {
+		// If there are cards left in the deck
         if (cards.Count > 0)
         {
+			// Read the card from the top of the deck
 			CardInfo nextCard = cards[0];
+			// Remove the card from deck
 			cards.Remove(cards[0]);
 			return nextCard;
         }
@@ -40,6 +55,8 @@ public class Deck : MonoBehaviour {
     }
 }
 
+// Doesn't inherit from MonoBehavior so we can call "new" in Deck class
+// This means CardInfo is not actually attached to an object
 public class CardInfo
 {
     public string title;
