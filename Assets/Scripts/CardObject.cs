@@ -30,12 +30,16 @@ public class CardObject : MonoBehaviour {
 	// Reference to Tuning object
     Tuning tuning;
 
+	// text asset variable to assign the text file to
+	public TextAsset testFile;
+
     void Start()
     {
         tuning = Tuning.tuning;
         scaleFactor = tuning.scaleFactor; // Get scale factor from tuning object
         scaleVector = new Vector3(scaleFactor, scaleFactor); // Great scale vector using scale factor
-    }
+	}
+
 
 	// This function is called from CardGame
 	// A CardObject is created from the variables in CardInfo
@@ -74,6 +78,30 @@ public class CardObject : MonoBehaviour {
 	void OnMouseUp() {
 		// Shrink
 		transform.localScale -= scaleVector;
+	}
+
+	//Function to read lines from a text file asset
+	 void readTextFile()
+	{
+		//splits each line into a spot in an array
+		string[] linesInFile = testFile.text.Split ('\n');
+		//prints each line to the console
+		//foreach (string line in linesInFile) {
+		//	print (line);
+		//}
+	}
+	//function to read a particular line from a file by searching for it with substring lineStart
+	void readLineFromFile(string lineStart)
+	{
+		//splits each line into a spot in an array
+		string[] linesInFile = testFile.text.Split ('\n');
+		foreach (string line in linesInFile) {
+			//searches each index for substring lineStart
+			if (line.Contains (lineStart))
+			{
+				print (line);
+			}
+		}
 	}
 }
 
