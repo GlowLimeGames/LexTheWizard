@@ -43,6 +43,10 @@ public class CardObject : MonoBehaviour {
 	// Reference to Tuning object
     Tuning tuning;
 
+	//Usability variables: Indices correspond to enums for time and terrain. 0 means not usable 1 means usable.
+	int[] terrainUse = new int[4];
+	int[] timeUse = new int[4];
+
     void Start()
     {
         tuning = Tuning.tuning;
