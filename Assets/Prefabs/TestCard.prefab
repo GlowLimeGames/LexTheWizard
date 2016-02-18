@@ -10,7 +10,6 @@ GameObject:
   - 224: {fileID: 22454382}
   - 222: {fileID: 22244638}
   - 114: {fileID: 11437276}
-  - 114: {fileID: 11423418}
   - 61: {fileID: 6127650}
   m_Layer: 5
   m_Name: TestCard
@@ -192,17 +191,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Description 2
---- !u!114 &11423418
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d250fed126391489c5281690ce8c8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11437276
 MonoBehaviour:
   m_ObjectHideFlags: 1

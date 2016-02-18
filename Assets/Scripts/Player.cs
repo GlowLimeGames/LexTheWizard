@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
 	public static Player player; // Static instance of this class
 	public UIManager UImanager;
+    List<CardObject> cards = new List<CardObject>();
     Tuning tuning;
 
 	// Stat variables
@@ -31,5 +33,15 @@ public class Player : MonoBehaviour {
     public int[] GetStats()
     {
         return new int[] { points, gold, salvage };
+    }
+
+    public List<CardObject> GetCards()
+    {
+        return cards;
+    }
+
+    public void AddCardToHand(CardObject cardObject)
+    {
+        cards.Add(cardObject);
     }
 }

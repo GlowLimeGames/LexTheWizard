@@ -16,9 +16,11 @@ public class GameController : MonoBehaviour {
 		//currTerrain
 	}
 
+    /*
 	void Update () {
 
 	}
+    */
 
 	public void Turn() {
 		//CardInfo card = Deck.DrawCard ();
