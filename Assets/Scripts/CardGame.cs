@@ -13,8 +13,8 @@ using System.Collections.Generic;
 
 public class CardGame : MonoBehaviour {
 
-    public Player player;
-    public EnemyBehavior enemy;
+    public CardPlayer player;
+    public CardPlayer enemy;
 
     public Deck playerDeck; // Reference to Deck from Player Deck GameObject
     public Deck enemyDeck; // Reference to Deck from Enemy Deck GameObject
@@ -27,8 +27,8 @@ public class CardGame : MonoBehaviour {
     public GameObject cardTemplate; // Reference to card prefab
     public GameObject cardCanvas; // Reference to canvas containing cards
 
-    List<CardObject> playerCards;
-    List<CardObject> enemyCards;
+    List<CardObject> playerCards; // Reference to cards from Player's CardPlayer
+    List<CardObject> enemyCards; // Reference to cards from Enemy's CardPlayer
 
     Tuning tuning; // Reference to tuning object
     int numOfStartingCards;
@@ -42,15 +42,15 @@ public class CardGame : MonoBehaviour {
         playerCards = player.GetCards();
         enemyCards = enemy.GetCards();
 
-        DealCards(numOfStartingCards, playerDeck, playerHandTargets, playerCards);
-        DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemyCards);
+        DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
+        DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
 
         showEnemyCard();
 	}
 
     // This is called when the card game starts
 	// Deals the number of starting cards to the player
-    void DealCards(int numOfCards, Deck deck, Transform[] handTargets, List<CardObject> currentCards)
+    void DealCards(int numOfCards, Deck deck, Transform[] handTargets, CardPlayer cardPlayer)
     {
         for (int i = 0; i < numOfCards; i++)
         {
@@ -69,15 +69,19 @@ public class CardGame : MonoBehaviour {
             CardInfo cardInfo = deck.DrawCard();
             // Assign the CardInfo to this CardObject
             cardObject.CreateCard(cardInfo);
-
-            currentCards.Add(cardObject);
+            // Give the CardObject reference to its CardPlayer
+            cardObject.SetOwner(cardPlayer);
+            // Add the CardObject to CardPlayer's hand
+            cardPlayer.AddCardToHand(cardObject);
         }
     }
 
     // Temporary function
-    // Displays first enemy card on the board
+    // Makes enemy play first card and displays it on the board
     void showEnemyCard()
     {
-        enemyCards[0].transform.position = enemyBoardTargets[0].position;
+        CardObject card = enemyCards[0];
+        card.transform.position = enemyBoardTargets[0].position;
+        enemy.PlayCard(card);
     }
 }

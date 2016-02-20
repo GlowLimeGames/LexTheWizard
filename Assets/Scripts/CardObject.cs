@@ -24,6 +24,8 @@ public class CardObject : MonoBehaviour {
     Text description2;
 	Image image;
 
+    CardPlayer owner; // Who has this card in their hand, if anyone
+
     // Variables to control card scale
     float scaleFactor;
     Vector3 scaleVector;
@@ -50,7 +52,6 @@ public class CardObject : MonoBehaviour {
         scaleFactor = tuning.scaleFactor; // Get scale factor from tuning object
         scaleVector = new Vector3(scaleFactor, scaleFactor); // Great scale vector using scale factor
 	}
-
 
     // This function is called from CardGame
     // A CardObject is created from the variables in CardInfo
@@ -79,14 +80,19 @@ public class CardObject : MonoBehaviour {
         description2.text = cardInfo.desc2;
     }
 
-    void PlayCard()
+    // This is called from CardGame when cards are dealt
+    public void SetOwner(CardPlayer cardPlayer)
     {
-        Debug.Log(titleText.text + " has been played.");
+        owner = cardPlayer;
+    }
+
+    public CardInfo GetCardInfo()
+    {
+        return myCardInfo;
     }
 
     void OnMouseDown() {
-        // Grow
-        transform.localScale += scaleVector;
+        Grow();
         // Push to front
         transform.SetAsLastSibling();
 
@@ -97,14 +103,23 @@ public class CardObject : MonoBehaviour {
     }
 
     void OnMouseUp() {
-        // Shrink
-        transform.localScale -= scaleVector;
+        Shrink();
 
         if (!played)
         { // If card hasn't been played yet
-            PlayCard();
+            owner.PlayCard(this);
             played = true;
         }
+    }
+
+    void Grow()
+    {
+        transform.localScale += scaleVector;
+    }
+
+    void Shrink()
+    {
+        transform.localScale -= scaleVector;
     }
 
     void OnMouseDrag()
@@ -119,17 +134,29 @@ public class CardObject : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Board")
+        string colTag = coll.gameObject.tag;
+        switch (colTag)
         {
-            touchingBoard = true;
-        }
+            case "Board":
+                touchingBoard = true;
+                break;
+            case "Discard":
+                Shrink();
+                break;
+        }  
     }
 
     void OnCollisionExit2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Board")
+        string colTag = coll.gameObject.tag;
+        switch(colTag)
         {
-            touchingBoard = false;
+            case "Board":
+                touchingBoard = false;
+                break;
+            case "Discard":
+                Grow();
+                break;
         }
     }
 
