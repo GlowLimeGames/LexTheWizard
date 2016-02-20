@@ -3,8 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyBehavior : MonoBehaviour {
+
+    CardPlayer cardPlayer;
+
 	//Placeholder for the enemy's hand
-	List<CardObject> cards = new List<CardObject>();
+	List<CardObject> hand = new List<CardObject>();
+
+    void Awake()
+    {
+        cardPlayer = GetComponent<CardPlayer>();
+        cardPlayer.SetName("Enemy");
+        hand = cardPlayer.GetCards();
+    }
 
 	//TEST
 	//Unused for now
@@ -33,14 +43,4 @@ public class EnemyBehavior : MonoBehaviour {
 
 	//TODO write enemy preferences & behaviors
 	//TODO write planning algorithm for 2 card combos
-
-    public List<CardObject> GetCards()
-    {
-        return cards;
-    }
-
-    public void AddCardToHand(CardObject cardObject)
-    {
-        cards.Add(cardObject);
-    }
 }
