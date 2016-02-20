@@ -19,6 +19,7 @@ public class CardObject : MonoBehaviour {
     // UI Components
     Text titleText;
     Text goldText;
+    Text pointsText;
     Text salvageText;
     Text description1;
     Text description2;
@@ -68,13 +69,15 @@ public class CardObject : MonoBehaviour {
         Text[] text = GetComponentsInChildren<Text>();
         titleText = text[0];
         goldText = text[1];
-        salvageText = text[2];
-        description1 = text[3];
-        description2 = text[4];
+        pointsText = text[2];
+        salvageText = text[3];
+        description1 = text[4];
+        description2 = text[5];
 
         // Assign strings to Text components
         titleText.text = cardInfo.title + " " + cardInfo.terrain;
         goldText.text = cardInfo.gold.ToString();
+        pointsText.text = cardInfo.points.ToString();
         salvageText.text = cardInfo.salvage.ToString();
         description1.text = cardInfo.desc1;
         description2.text = cardInfo.desc2;
