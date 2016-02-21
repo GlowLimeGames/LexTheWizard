@@ -10,22 +10,48 @@ public class GameController : MonoBehaviour {
 	// variable to track current terrain
 	public string currTerrain;
 
+	// variables to track family members status
+	public bool isFatherAlive;
+	public bool isSisterAlive;
+	public bool isGrandmaAlive;
+
+	// win conditions varibles
+	int winPoints;
+	int winGold;
+	int winSalvage;
+
 	void Start () {
 		days = 0;
 		currDayTime = DayTime.Dawn;
 		//currTerrain
+
+		winPoints = 30;
+		winGold = 25;
+		winSalvage = 40;
+
+		isFatherAlive = true;
+		isSisterAlive = true;
+		isGrandmaAlive = true;
 	}
 
-    /*
+/*
 	void Update () {
 
 	}
-    */
+*/
+
+	/*
+	 * Turn mechanics
+	 */
 
 	public void Turn() {
 		//CardInfo card = Deck.DrawCard ();
 		//...
 	}
+
+	/*
+	 * Phases of day mechanics
+	 */
 
 	// sets time to dawn and updates days passed
 	public void SetDawn() {
@@ -55,4 +81,38 @@ public class GameController : MonoBehaviour {
 		Dusk,
 		Night
 	};
+
+	/*
+	 * Win mechanics
+	 */
+
+	// raise winning condition for points
+	public void raisePoints (int amount) {
+		winPoints += amount;
+	}
+
+	// raise winning condition for gold
+	public void raiseGold (int amount) {
+		winGold += amount;
+	}
+
+	// raise winning condition for salvage
+	public void raiseSalvage (int amount) {
+		winSalvage += amount;
+	}
+
+	// check for winning conditions
+	public bool Win () {
+		// gets player's stats
+		int[] stats = Player.player.GetStats();
+
+		if (stats [0] >= winPoints || stats [1] >= winGold || stats [2] >= winSalvage) {
+			return true;
+		} 
+		else {
+			return false;
+		}
+		// need to add swamp king condition if it goes to final game
+	}
+
 }
