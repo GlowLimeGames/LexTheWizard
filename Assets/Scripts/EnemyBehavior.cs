@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,24 +16,26 @@ public class EnemyBehavior : MonoBehaviour {
         hand = cardPlayer.GetCards();
     }
 
-	//TEST
-	//Unused for now
-    /*
-	void Update () {
-
+	//Method to test playability of card in current state
+	private bool playable(CardObject card){
+		if((card.GetCardInfo().terrain == GameManager.currTerrain)&&(card.GetCardInfo().daytime == currDayTime)){
+			return true;
+		}
+		return false;
 	}
-    */
+
+
+	//TODO talk with design team to determine how a real player might value their cards
+	//TODO Change the behavior of enemy selction depending on what kind of enemy it is.
 
 	//Simple method for selcting card. Will increase complecity as design team completes more work
-	//TODO Change the behavior of enemy selction depending on what it is.
-	Card selectCard(Card[] hand){
-		//Currently an int but will change to a Card when code is more complete
-		Card highestCard = new Card();
+	CardObject selectCard(){
+		//Temp var to store highest valued playable card.
+		CardObject highestCard = null;
 		//Searches hand for desired card to play. Current criteria is for initial prototype only.
-		for(int i = 0; i < hand.Length; i++){
-			//When code is more complete; Change this to check card's value variable
-			//TODO talk with design team to determine how a real player might value their cards
-			if (highestCard.getAIVal() < hand[i].getAIVal()) {
+		for(int i = 0; i < hand.Count; i++){
+			//Checks playability and relative value of card
+			if (playable(hand[i])&&(highestCard.GetCardInfo().aiValue < hand[i].GetCardInfo().aiValue)) {
 				//Sets temp variable to highest valued card;
 				highestCard = hand [i];
 			}
