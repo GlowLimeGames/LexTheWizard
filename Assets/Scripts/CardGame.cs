@@ -9,30 +9,48 @@
  */
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CardGame : MonoBehaviour {
 
-    public Deck deck; // Reference to Deck from deck GameObject
-    public Transform[] handTargets; // Array for transforms for each card in the user's hand
+    public CardPlayer player;
+    public CardPlayer enemy;
+
+    public Deck playerDeck; // Reference to Deck from Player Deck GameObject
+    public Deck enemyDeck; // Reference to Deck from Enemy Deck GameObject
+
+    public Transform[] playerHandTargets; // Array of transforms for each card in the player's hand
+    public Transform[] enemyHandTargets; // Array of transforms for each card in enemy's hand
+
+    public Transform[] enemyBoardTargets; // Where the enemy will place cards on the board
+
     public GameObject cardTemplate; // Reference to card prefab
     public GameObject cardCanvas; // Reference to canvas containing cards
 
-    int numOfStartingCards;
-    Vector3 cardScale;
+    List<CardObject> playerCards; // Reference to cards from Player's CardPlayer
+    List<CardObject> enemyCards; // Reference to cards from Enemy's CardPlayer
 
     Tuning tuning; // Reference to tuning object
+    int numOfStartingCards;
+    Vector3 cardScale;
 
 	void Start () {
         tuning = Tuning.tuning;
         numOfStartingCards = tuning.numOfStartingCards;
+        cardScale = tuning.cardScale;
 
-        cardScale = new Vector3(0.25f, 0.25f);
-        DealCards(numOfStartingCards);
+        playerCards = player.GetCards();
+        enemyCards = enemy.GetCards();
+
+        DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
+        DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
+
+        showEnemyCard();
 	}
 
     // This is called when the card game starts
 	// Deals the number of starting cards to the player
-    void DealCards(int numOfCards)
+    void DealCards(int numOfCards, Deck deck, Transform[] handTargets, CardPlayer cardPlayer)
     {
         for (int i = 0; i < numOfCards; i++)
         {
@@ -43,7 +61,7 @@ public class CardGame : MonoBehaviour {
             // Sets scale
 			cardPrefab.transform.localScale = cardScale;
 			// Makes cardPrefab the child of the cardCanvas
-			cardPrefab.transform.parent = cardCanvas.transform;
+			cardPrefab.transform.SetParent(cardCanvas.transform, false);
 			// Attaches a CardObject component
             CardObject cardObject = cardPrefab.AddComponent<CardObject>();
 
@@ -51,6 +69,19 @@ public class CardGame : MonoBehaviour {
             CardInfo cardInfo = deck.DrawCard();
             // Assign the CardInfo to this CardObject
             cardObject.CreateCard(cardInfo);
+            // Give the CardObject reference to its CardPlayer
+            cardObject.SetOwner(cardPlayer);
+            // Add the CardObject to CardPlayer's hand
+            cardPlayer.AddCardToHand(cardObject);
         }
+    }
+
+    // Temporary function
+    // Makes enemy play first card and displays it on the board
+    void showEnemyCard()
+    {
+        CardObject card = enemyCards[0];
+        card.transform.position = enemyBoardTargets[0].position;
+        enemy.PlayCard(card);
     }
 }

@@ -22,6 +22,7 @@ public class Tuning : MonoBehaviour {
     // Card Game variables
     public int numOfStartingCards;
     public float scaleFactor;
+    public Vector3 cardScale;
 
     void Awake()
     {

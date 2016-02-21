@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
@@ -12,24 +13,29 @@ public class Player : MonoBehaviour {
     int gold;
     int salvage;
 
+    CardPlayer cardPlayer;
+
 	void Awake() {
 		player = this;
 	}
 
 	void Start() {
-		tuning = Tuning.tuning;
 		// Assigns starting stats from tuning object
+        player.tuning = Tuning.tuning;
 		player.points = tuning.startingPoints;
 		player.gold = tuning.startingGold;
 		player.salvage = tuning.startingSalvage;
 
 		// Calls UIManager to display the stats
 		UImanager.SetStats ();
+
+        player.cardPlayer = GetComponent<CardPlayer>();
+        cardPlayer.SetName("Lex");
 	}
 
 	// This allows other objects to get stats from Player without reassigning them
     public int[] GetStats()
     {
-        return new int[] { points, gold, salvage };
+        return new int[3] { points, gold, salvage };
     }
 }
