@@ -28,9 +28,11 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+    /*
 	void Update () {
 
 	}
+    */
 
 	public void Turn() {
 		//CardInfo card = Deck.DrawCard ();

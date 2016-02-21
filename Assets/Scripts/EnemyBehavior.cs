@@ -1,20 +1,28 @@
-﻿public class EnemyBehavior : MonoBehaviour {
-	//Placeholder for the enemy's hand
-	Card[] currentCards = new Card[5];
-	int x = 0;
+﻿﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-	void Start () {
-		//Fills the above array for testing purposes. Delete this and draw from deck when that is complete
-		for(int i = 0; i < currentCards.Length; i++){
-			currentCards [i] = new Card();
-		}
-		x = selectCard(currentCards);
-	}
+public class EnemyBehavior : MonoBehaviour {
+
+    CardPlayer cardPlayer;
+
+	//Placeholder for the enemy's hand
+	List<CardObject> hand = new List<CardObject>();
+
+    void Awake()
+    {
+        cardPlayer = GetComponent<CardPlayer>();
+        cardPlayer.SetName("Enemy");
+        hand = cardPlayer.GetCards();
+    }
+
 	//TEST
 	//Unused for now
+    /*
 	void Update () {
 
 	}
+    */
 
 	//Simple method for selcting card. Will increase complecity as design team completes more work
 	//TODO Change the behavior of enemy selction depending on what it is.
@@ -35,5 +43,4 @@
 
 	//TODO write enemy preferences & behaviors(post alpha)
 	//TODO write planning algorithm for 2 card combos
-
 }

@@ -16,15 +16,18 @@ public class CardObject : MonoBehaviour {
     // text asset variable to assign the text file to
     public TextAsset testFile;
 
-	// UI Components
+    // UI Components
     Text titleText;
     Text goldText;
+    Text pointsText;
     Text salvageText;
     Text description1;
     Text description2;
 	Image image;
 
-	// Variables to control card scale
+    CardPlayer owner; // Who has this card in their hand, if anyone
+
+    // Variables to control card scale
     float scaleFactor;
     Vector3 scaleVector;
 
@@ -36,11 +39,11 @@ public class CardObject : MonoBehaviour {
 
     // Variable for handling collisions
     bool touchingBoard;
-    
-	// Reference to this object's CardInfo
-    //CardInfo myInfo;
+    bool played; // Whether the card has been played
 
-	// Reference to Tuning object
+    CardInfo myCardInfo;
+
+    // Reference to Tuning object
     Tuning tuning;
 
 	//Usability variables: Indices correspond to enums for time and terrain. 0 means not usable 1 means usable.
@@ -55,57 +58,76 @@ public class CardObject : MonoBehaviour {
         scaleVector = new Vector3(scaleFactor, scaleFactor); // Great scale vector using scale factor
 	}
 
-
-	// This function is called from CardGame
-	// A CardObject is created from the variables in CardInfo
+    // This function is called from CardGame
+    // A CardObject is created from the variables in CardInfo
     public void CreateCard(CardInfo cardInfo)
     {
-        //myInfo = cardInfo;
+        myCardInfo = cardInfo;
 
-		// Set up reference to Image component in Children
+        // Set up reference to Image component in Children
         image = GetComponentInChildren<Image>();
-		// Assign a sprite to that image
+        // Assign a sprite to that image
         image.sprite = cardInfo.art;
 
         // Set up references to Text components in Children
         Text[] text = GetComponentsInChildren<Text>();
         titleText = text[0];
         goldText = text[1];
-        salvageText = text[2];
-        description1 = text[3];
-        description2 = text[4];
+        pointsText = text[2];
+        salvageText = text[3];
+        description1 = text[4];
+        description2 = text[5];
 
         // Assign strings to Text components
         titleText.text = cardInfo.title + " " + cardInfo.terrain;
         goldText.text = cardInfo.gold.ToString();
+        pointsText.text = cardInfo.points.ToString();
         salvageText.text = cardInfo.salvage.ToString();
         description1.text = cardInfo.desc1;
         description2.text = cardInfo.desc2;
     }
 
-    void PlayCard()
+    // This is called from CardGame when cards are dealt
+    public void SetOwner(CardPlayer cardPlayer)
     {
-        Debug.Log("This card has been played");
+        owner = cardPlayer;
     }
 
-	void OnMouseDown() {
-		// Grow
-		transform.localScale += scaleVector;
-		// Push to front
-		transform.SetAsLastSibling();
+    public CardInfo GetCardInfo()
+    {
+        return myCardInfo;
+    }
+
+    void OnMouseDown() {
+        Grow();
+        // Push to front
+        transform.SetAsLastSibling();
 
         // Assign screenPoint and offset in case user will drag the mouse
         screenPoint = mainCam.WorldToScreenPoint(gameObject.transform.position);
         //mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         offset = gameObject.transform.position - mainCam.ScreenToWorldPoint(getMousePosition());
-	}
+    }
 
-	void OnMouseUp() {
-		// Shrink
-		transform.localScale -= scaleVector;
+    void OnMouseUp() {
+        Shrink();
 
-        PlayCard();
-	}
+        if (!played)
+        { // If card hasn't been played yet
+            owner.PlayCard(this);
+            played = true;
+        }
+    }
+
+    void Grow()
+    {
+        transform.localScale += scaleVector;
+    }
+
+    void Shrink()
+    {
+        transform.localScale -= scaleVector;
+    }
 
     void OnMouseDrag()
     {
@@ -119,42 +141,54 @@ public class CardObject : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Board")
+        string colTag = coll.gameObject.tag;
+        switch (colTag)
         {
-            touchingBoard = true;
-        }
+            case "Board":
+                touchingBoard = true;
+                break;
+            case "Discard":
+                Shrink();
+                break;
+        }  
     }
 
     void OnCollisionExit2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Board")
+        string colTag = coll.gameObject.tag;
+        switch(colTag)
         {
-            touchingBoard = false;
+            case "Board":
+                touchingBoard = false;
+                break;
+            case "Discard":
+                Grow();
+                break;
         }
     }
 
-	//Function to read lines from a text file asset
-	 void readTextFile()
-	{
-		//splits each line into a spot in an array
-		string[] linesInFile = testFile.text.Split ('\n');
-		//prints each line to the console
-		//foreach (string line in linesInFile) {
-		//	print (line);
-		//}
-	}
-	//function to read a particular line from a file by searching for it with substring lineStart
-	void readLineFromFile(string lineStart)
-	{
-		//splits each line into a spot in an array
-		string[] linesInFile = testFile.text.Split ('\n');
-		foreach (string line in linesInFile) {
-			//searches each index for substring lineStart
-			if (line.Contains (lineStart))
-			{
-				print (line);
-			}
-		}
-	}
+    //Function to read lines from a text file asset
+    void readTextFile()
+    {
+        //splits each line into a spot in an array
+        string[] linesInFile = testFile.text.Split ('\n');
+        //prints each line to the console
+        //foreach (string line in linesInFile) {
+        //	print (line);
+        //}
+    }
+    //function to read a particular line from a file by searching for it with substring lineStart
+    void readLineFromFile(string lineStart)
+    {
+        //splits each line into a spot in an array
+        string[] linesInFile = testFile.text.Split ('\n');
+        foreach (string line in linesInFile) {
+            //searches each index for substring lineStart
+            if (line.Contains (lineStart))
+            {
+                print (line);
+            }
+        }
+    }
 }
 
