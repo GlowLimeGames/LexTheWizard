@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour {
 	private CardGame cardGame;
 	private Deck playerDeck;
 	private Deck enemyDeck;
+
 	private CardPlayer enemy;
 	private CardPlayer player;
 
@@ -27,7 +28,9 @@ public class GameController : MonoBehaviour {
 		days = 0;
 		currDayTime = DayTime.Dawn;
 
+
 		cardGame = GetComponent<CardGame>();
+		enemy = cardGame.GetComponent<EnemyBehavior>();
 		playerDeck = cardGame.playerDeck;
 		enemyDeck = cardGame.enemyDeck;
 
@@ -39,12 +42,6 @@ public class GameController : MonoBehaviour {
 			previousTerrain [i] = null;
 		}
 	}
-
-    /*
-	void Update () {
-
-	}
-    */
 
 	public void Turn() {
 		//CardInfo card = Deck.DrawCard ();
@@ -69,28 +66,34 @@ public class GameController : MonoBehaviour {
 		//Dawn/Action 1
 		case 1:			
 			//TODO Update art to Dawn
-			if(enemy.canPlay()){
-				enemy.PlayCard(enemy.selectCard());
+			playedCard = enemy.selectCard ();
+			if (playedCard != null) {
+				enemy.PlayCard (playedCard);
 			}
 
 			phase = (phase + 1) % 6;
+			SetAfternoon ();
 			break;
 
 		//Afternoon/Action 2
 		case 2:			
 			//Update art to Afternoon
-			if(enemy.canPlay()){
-				enemy.PlayCard(enemy.selectCard());
+			playedCard = enemy.selectCard ();
+			if (playedCard != null) {
+				enemy.PlayCard (playedCard);
 			}
 			phase = (phase + 1) % 6;
+			SetDusk ();
 			break;
 		//Dusk/Action 3
 		case 3:			
 			//Update art to Dusk
-			if(enemy.canPlay()){
-				enemy.PlayCard(enemy.selectCard());
+			playedCard = enemy.selectCard ();
+			if (playedCard != null) {
+				enemy.PlayCard (playedCard);
 			}
 			phase = (phase + 1) % 6;
+			SetNight ();
 			break;
 
 		//2nd draw phase
@@ -105,11 +108,13 @@ public class GameController : MonoBehaviour {
 		case 5:			
 			//Update art to Night
 			//Check if current state has shelter when enemy plays cards at night
-			if(enemy.canPlay()){
-				enemy.PlayCard(enemy.selectCard());
+			playedCard = enemy.selectCard ();
+			if(playedCard != null){
+				enemy.PlayCard(playedCard);
 			}
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
+			SetDawn ();
 			break;
 		}
 
