@@ -9,6 +9,7 @@ TagManager:
   - Sell
   - Salvage
   - Card
+  - Enemy
   layers:
   - Default
   - TransparentFX

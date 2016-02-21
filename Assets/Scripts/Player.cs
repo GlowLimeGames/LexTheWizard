@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
     int gold;
     int salvage;
 
+	string[] inventory = new string[5];
     CardPlayer cardPlayer;
 
 	void Awake() {
@@ -25,13 +26,17 @@ public class Player : MonoBehaviour {
 		player.points = tuning.startingPoints;
 		player.gold = tuning.startingGold;
 		player.salvage = tuning.startingSalvage;
-
+		for (int i = 0; i < inventory.Length; i++){
+			player.inventory [i] = "";
+		}
 		// Calls UIManager to display the stats
 		UImanager.SetStats ();
 
         player.cardPlayer = GetComponent<CardPlayer>();
         cardPlayer.SetName("Lex");
 	}
+
+	//TODO add bool functions for item checks.
 
 	// This allows other objects to get stats from Player without reassigning them
     public int[] GetStats()
