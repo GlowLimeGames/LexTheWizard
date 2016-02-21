@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
 	private Deck playerDeck;
 	private Deck enemyDeck;
 
-	private CardPlayer enemy;
+	private GameObject enemy;
 	private CardPlayer player;
 
 	private gameState currState;
@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour {
 
 
 		cardGame = GetComponent<CardGame>();
-		enemy = cardGame.GetComponent<EnemyBehavior>();
+		enemy = GameObject.FindWithTag("Enemy");
 		playerDeck = cardGame.playerDeck;
 		enemyDeck = cardGame.enemyDeck;
 
@@ -78,7 +78,7 @@ public class GameController : MonoBehaviour {
 		//Afternoon/Action 2
 		case 2:			
 			//Update art to Afternoon
-			playedCard = enemy.selectCard ();
+			playedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
 			if (playedCard != null) {
 				enemy.PlayCard (playedCard);
 			}
@@ -109,11 +109,12 @@ public class GameController : MonoBehaviour {
 			//Update art to Night
 			//Check if current state has shelter when enemy plays cards at night
 			playedCard = enemy.selectCard ();
-			if(playedCard != null){
-				enemy.PlayCard(playedCard);
+			if (playedCard != null) {
+				enemy.PlayCard (playedCard);
 			}
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
+			days++;
 			SetDawn ();
 			break;
 		}
