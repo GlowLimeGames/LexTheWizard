@@ -6,12 +6,9 @@ public class GameController : MonoBehaviour {
 	// variable to track days passed
 	public int days;
 	// variable to track current time of the day
-	public DayTime currDayTime;
+	public string currDayTime;
 	// variable to track current terrain
 	public string currTerrain;
-
-	//TODO Family status vars
-	//TODO Win conditions. Check on return home.
 
 	private CardGame cardGame;
 	private Deck playerDeck;
@@ -24,10 +21,30 @@ public class GameController : MonoBehaviour {
 	private gameState[] previousTerrain = new gameState[6];
 	private int phase;
 
+	// variables to track family members status
+	public bool isFatherAlive;
+	public bool isSisterAlive;
+	public bool isGrandmaAlive;
+
+	//TODO associate with unwritten move home. For alpha win if points is good.
+	// win conditions varibles
+	int winPoints;
+	int winGold;
+	int winSalvage;
+
 	void Start () {
 		days = 0;
-		currDayTime = DayTime.Dawn;
+		SetDawn ();
 
+		//currTerrain
+
+		winPoints = 30;
+		winGold = 25;
+		winSalvage = 40;
+
+		isFatherAlive = true;
+		isSisterAlive = true;
+		isGrandmaAlive = true;
 
 		cardGame = GetComponent<CardGame>();
 		enemy = GameObject.FindWithTag("Enemy");
@@ -43,21 +60,23 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	/*
+	 * Turn mechanics
+	 */
 	public void Turn() {
-		//CardInfo card = Deck.DrawCard ();
-		//...
+		//TODO write playCard() to play the card in question
 
-		//Temp var to reduce the number of calls  made to certain methods
-		CardObject playedCard = null;
-
-		//WE SHOULD TRACK PHASES AND THIS IS WHERE WE CHECK CASES TO PERFORM THE CHANGES
-		//TURN PROGRESSION:
+		//Temp var to reduce the number of calls and create cards
+		CardObject usedCard = null;
 
 		switch(phase){
 		//1st Draw (Player and AI both draw)
-		case 0:			
-			player.AddCardToHand (playerDeck.DrawCard ());
-			enemy.AddCardToHand (enemyDeck.DrawCard ());
+		case 0:		
+			//here usedCard is just a CardObject to facilitate drawing	
+			usedCard.CreateCard(playerDeck.DrawCard());
+			player.AddCardToHand(usedCard);
+			usedCard.CreateCard(playerDeck.DrawCard());
+			enemy.GetComponent<CardPlayer>().AddCardToHand (usedCard);
 			//Cycles 0 to 5 to represent the phases.
 			phase = (phase + 1) % 6;
 			Turn ();
@@ -66,9 +85,9 @@ public class GameController : MonoBehaviour {
 		//Dawn/Action 1
 		case 1:			
 			//TODO Update art to Dawn
-			playedCard = enemy.selectCard ();
-			if (playedCard != null) {
-				enemy.PlayCard (playedCard);
+			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
+			if (usedCard != null) {
+				enemy.GetComponent<CardPlayer>().PlayCard (usedCard);
 			}
 
 			phase = (phase + 1) % 6;
@@ -78,9 +97,9 @@ public class GameController : MonoBehaviour {
 		//Afternoon/Action 2
 		case 2:			
 			//Update art to Afternoon
-			playedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
-			if (playedCard != null) {
-				enemy.PlayCard (playedCard);
+			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard();
+			if (usedCard != null) {
+				enemy.GetComponent<CardPlayer>().PlayCard (usedCard);
 			}
 			phase = (phase + 1) % 6;
 			SetDusk ();
@@ -88,9 +107,9 @@ public class GameController : MonoBehaviour {
 		//Dusk/Action 3
 		case 3:			
 			//Update art to Dusk
-			playedCard = enemy.selectCard ();
-			if (playedCard != null) {
-				enemy.PlayCard (playedCard);
+			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
+			if (usedCard != null) {
+				enemy.GetComponent<CardPlayer>().PlayCard (usedCard);
 			}
 			phase = (phase + 1) % 6;
 			SetNight ();
@@ -98,8 +117,10 @@ public class GameController : MonoBehaviour {
 
 		//2nd draw phase
 		case 4:			
-			player.AddCardToHand (playerDeck.DrawCard ());
-			enemy.AddCardToHand (enemyDeck.DrawCard ());
+			usedCard.CreateCard(playerDeck.DrawCard());
+			player.AddCardToHand(usedCard);
+			usedCard.CreateCard(playerDeck.DrawCard());
+			enemy.GetComponent<CardPlayer>().AddCardToHand (usedCard);
 			phase = (phase + 1) % 6;
 			Turn ();
 			break;
@@ -108,48 +129,84 @@ public class GameController : MonoBehaviour {
 		case 5:			
 			//Update art to Night
 			//Check if current state has shelter when enemy plays cards at night
-			playedCard = enemy.selectCard ();
-			if (playedCard != null) {
-				enemy.PlayCard (playedCard);
+			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
+			if (usedCard != null) {
+				enemy.GetComponent<CardPlayer>().PlayCard (usedCard);
 			}
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
-			days++;
 			SetDawn ();
 			break;
 		}
-
-		//The player's move between terrain action updates the state.
 	}
+
+	/*
+	 * Phases of day mechanics
+	 */
 
 	// sets time to dawn and updates days passed
 	public void SetDawn() {
-		currDayTime = DayTime.Dawn;
+		currDayTime = "Dawn";
 		days++;
 	}
 
 	// sets time to afternoon
 	public void SetAfternoon() {
-		currDayTime = DayTime.Afternoon;
+		currDayTime = "Afternoon";
 	}
 
 	// sets time to dusk
 	public void SetDusk() {
-		currDayTime = DayTime.Dusk;
+		currDayTime = "Dusk";
 	}
 
 	// sets time to night
 	public void SetNight() {
-		currDayTime = DayTime.Dawn;
+		currDayTime = "Night";
 	}
 
-	// the possible phases of the day
+	/*// the possible phases of the day
 	public enum DayTime {
 		Dawn,
 		Afternoon,
 		Dusk,
 		Night
-	};
+	};*/
+
+	/*
+	 * Win mechanics
+	 */
+
+	// raise winning condition for points
+	public void raisePoints (int amount) {
+		winPoints += amount;
+	}
+
+	// raise winning condition for gold
+	public void raiseGold (int amount) {
+		winGold += amount;
+	}
+
+	// raise winning condition for salvage
+	public void raiseSalvage (int amount) {
+		winSalvage += amount;
+	}
+
+	// check for winning conditions
+	public bool Win () {
+		// gets player's stats
+		int[] stats = Player.player.GetStats();
+
+		if (stats [0] >= winPoints || stats [1] >= winGold || stats [2] >= winSalvage) {
+			return true;
+		} 
+		else {
+			return false;
+		}
+		// need to add swamp king condition if it goes to final game
+	}
+
+
 
 	//NOTE: May move below and associated code to more appropriate class.
 	//Tracks the previous terrain type and whether Lex used a shelter there.
@@ -175,4 +232,5 @@ public class GameController : MonoBehaviour {
 		}
 
 	}
+
 }

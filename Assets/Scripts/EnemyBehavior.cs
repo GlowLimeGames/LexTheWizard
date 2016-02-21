@@ -30,7 +30,7 @@ public class EnemyBehavior : MonoBehaviour {
 	//TODO Change the behavior of enemy selction depending on what kind of enemy it is.
 
 	//Simple method for selcting card. Will increase complecity as design team completes more work
-	CardObject selectCard(){
+	public CardObject selectCard(){
 		//Temp var to store highest valued playable card.
 		CardObject highestCard = null;
 		//Searches hand for desired card to play. Current criteria is for initial prototype only.
