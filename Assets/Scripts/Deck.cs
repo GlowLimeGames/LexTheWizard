@@ -29,11 +29,11 @@ public class Deck : MonoBehaviour {
     void MakeTestDeck()
     {
         // Add sample cards
-        cards.Add(new CardInfo("Title 1", "Swamp", "Discovery", 2, 10, 20, 1, "This is description 1 for Card 1.", "This is description 2 for Card 1."));
-        cards.Add(new CardInfo("Title 2", "Swamp", "Event", 1, 5, 15, 2, "This is description 1 for Card 2.", "This is description 2 for Card 2."));
-        cards.Add(new CardInfo("Title 3", "Swamp", "Event", 3, 1, 2, 1, "This is the description 1 for Card 3.", "This is the description 2 for Card 3."));
-        cards.Add(new CardInfo("Title 4", "Swamp", "Discovery", 1, 2, 3, 1, "This is description 1 for Card 4.", "This is description 2 for Card 4."));
-        cards.Add(new CardInfo("Title 5", "Swamp", "Discovery", 4, 6, 4, 3, "This is the description 1 for Card 5.", "This is the description 2 for Card 5."));
+        cards.Add(new CardInfo("Title 1", "Swamp", "Night", "Discovery", 2, 10, 20, 1, "This is description 1 for Card 1.", "This is description 2 for Card 1.",0));
+        cards.Add(new CardInfo("Title 2", "Swamp", "Dawn", "Event", 1, 5, 15, 2, "This is description 1 for Card 2.", "This is description 2 for Card 2.",0));
+        cards.Add(new CardInfo("Title 3", "Swamp", "Dusk", "Event", 3, 1, 2, 1, "This is the description 1 for Card 3.", "This is the description 2 for Card 3.",0));
+        cards.Add(new CardInfo("Title 4", "Swamp", "Morning", "Discovery", 1, 2, 3, 1, "This is description 1 for Card 4.", "This is description 2 for Card 4.",0));
+        cards.Add(new CardInfo("Title 5", "Swamp", "Afternoon", "Discovery", 4, 6, 4, 3, "This is the description 1 for Card 5.", "This is the description 2 for Card 5.",0));
 
         // Shuffle cards
         cards = deckShuffling.Shuffle(cards);
@@ -61,7 +61,8 @@ public class CardInfo
 {
     public string title;
     public string terrain;
-    public string cardType;
+	public string daytime;
+	public string cardType;
     public string desc1;
     public string desc2;
 
@@ -69,13 +70,15 @@ public class CardInfo
     public int gold;
     public int salvage;
     public int homeValue;
+	public int aiValue;
 
     public Sprite art;
 
-    public CardInfo(string title, string terrain, string cardType, int points, int gold, int salvage, int homeValue, Sprite art, string desc1, string desc2)
+	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, Sprite art, string desc1, string desc2)
     {
         this.title = title;
         this.terrain = terrain;
+		this.daytime = daytime;
         this.cardType = cardType;
         this.desc1 = desc1;
         this.desc2 = desc2;
@@ -87,10 +90,11 @@ public class CardInfo
     }
 
     // For testing cards without art
-    public CardInfo(string title, string terrain, string cardType, int points, int gold, int salvage, int homeValue, string desc1, string desc2)
+	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, string desc1, string desc2, int aiValue)
     {
         this.title = title;
         this.terrain = terrain;
+		this.daytime = daytime;
         this.cardType = cardType;
         this.desc1 = desc1;
         this.desc2 = desc2;
@@ -99,5 +103,6 @@ public class CardInfo
         this.salvage = salvage;
         this.homeValue = homeValue;
         this.art = null;
+		this.aiValue = aiValue;
     }
 }
