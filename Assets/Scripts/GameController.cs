@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour {
 		enemyDeck = cardGame.enemyDeck;
 
 		//Initializes array of traversable terrain as the only current terrain
+        currState = new gameState();
 		currState.setTerrain (currTerrain);
 		phase = 0;
 		previousTerrain [0] = currState;
