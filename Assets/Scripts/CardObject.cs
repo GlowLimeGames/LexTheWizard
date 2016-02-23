@@ -66,8 +66,9 @@ public class CardObject : MonoBehaviour {
 
         // Set up reference to Image component in Children
         image = GetComponentInChildren<Image>();
-        // Assign a sprite to that image
-        image.sprite = cardInfo.art;
+        
+		// Assign a sprite to that image
+	    image.sprite = cardInfo.art;
 
         // Set up references to Text components in Children
         Text[] text = GetComponentsInChildren<Text>();

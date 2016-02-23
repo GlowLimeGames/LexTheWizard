@@ -8,33 +8,98 @@ using System.Collections.Generic;
 
 public static class CardUtil {
 	const string _cardArtFilePathInResources = "Cards/";
-	const int _numberOfCardInfoParameters = 11;
-	const int _headerOffset = 1;
-	/*
-	 * Columns correspond to info:
-	
-			string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, Sprite art, string desc1, string desc2
-	*/
 
-	public static CardInfo[] ReadCardInfoFromFile (TextAsset textAsCSV) {
+	const string _defaultPlayerDeck = "Decks/PlayerTestDeck";
+	const string _defaultAIDeck = "Decks/AITestDeck";
+
+	const int _numberOfPlayerCardInfoParameters = 11;
+	const int _numberOfAICardInfoParameters = 6;
+	const int _headerOffset = 1;
+
+	static CardInfo[] _playerDeck;
+
+	public static CardInfo[] PlayerDeck {
+		get {
+			if (_playerDeck == null) {
+				
+				_playerDeck = CardUtil.ReadPlayerCardInfoFromFile(_defaultPlayerDeck);
+				return _playerDeck;
+
+			} else {
+				
+				return _playerDeck;
+
+			}
+		}
+	}
+
+	static CardInfo[] _aiDeck;
+
+	public static CardInfo[] AIDeck {
+		get {
+
+			if (_aiDeck == null) {
+
+				_aiDeck = CardUtil.ReadAICardInfoFromFile(_defaultAIDeck);
+				return _aiDeck;
+
+			} else {
+				
+				return _aiDeck;
+
+			}
+		}
+	}
+
+	// Overloaded method to load the CSV file from Resources
+	public static CardInfo[] ReadPlayerCardInfoFromFile (string filePathInResources) {
+		return ReadPlayerCardInfoFromFile (
+			Resources.Load<TextAsset>(filePathInResources)
+		);
+	}
+
+	// Overloaded method to load the CSV file from Resources
+	public static CardInfo[] ReadAICardInfoFromFile (string filePathInResources) {
+		return ReadAICardInfoFromFile (
+			Resources.Load<TextAsset>(filePathInResources)
+		);
+	}
+
+	public static CardInfo[] ReadPlayerCardInfoFromFile (TextAsset textAsCSV) {
 
 		string[] textByLine = textAsCSV.text.Split('\n');
 
 		CardInfo[] allCards = new CardInfo[textByLine.Length - _headerOffset];
 
-		for (int i = _headerOffset; i < allCards.Length; i++) {
+		for (int i = _headerOffset; i < allCards.Length + _headerOffset; i++) {
 
-			allCards[i] = ParseCardInfoFromCSVLine(textByLine[i]);
+			allCards[i - _headerOffset] = ParsePlayerCardInfoFromCSVLine(textByLine[i]);
 
 		}
 
 		return allCards;
 	}
 
-	public static CardInfo ParseCardInfoFromCSVLine (string lineFromCSV) {
+	public static CardInfo[] ReadAICardInfoFromFile (TextAsset textAsCSV) {
 
-		string[] parameters = lineFromCSV.Split(',');
-		if (parameters.Length == _numberOfCardInfoParameters) {
+		string[] textByLine = textAsCSV.text.Split('\n');
+
+		CardInfo[] allCards = new CardInfo[textByLine.Length - _headerOffset];
+
+		for (int i = _headerOffset; i < allCards.Length + _headerOffset; i++) {
+
+			allCards[i - _headerOffset] = ParseAICardInfoFromCSVLine(textByLine[i]);
+
+		}
+			
+		return allCards;
+	}
+
+	public static CardInfo ParsePlayerCardInfoFromCSVLine (string lineFromCSV) {
+
+		string[] parameters = splitStringWithEscapeQuoteMarks(lineFromCSV, ',');
+
+		if (parameters.Length == _numberOfPlayerCardInfoParameters) {
 			
 			return new CardInfo (
 				parameters[0],
@@ -59,12 +124,32 @@ public static class CardUtil {
 
 	}
 
-	public static Sprite LoadCardSprite (string cardSpriteNameInResources) {
-		return Resources.Load<Sprite>(_cardArtFilePathInResources + cardSpriteNameInResources);
+	public static CardInfo ParseAICardInfoFromCSVLine (string lineFromCSV) {
+
+		string[] parameters = splitStringWithEscapeQuoteMarks(lineFromCSV, ',');
+
+		if (parameters.Length == _numberOfAICardInfoParameters) {
+
+			return new CardInfo (
+				parameters[0],
+				parameters[1],
+				parameters[2],
+				parameters[3],
+				parameters[4],
+				int.Parse(parameters[5])
+			);
+
+		} else {
+
+			Debug.LogError("Incorrect number of parameters to generate card info: " + parameters.Length);
+			return null;
+
+		}
+
 	}
 
-	public static void TestModifiedSplit () {
-		Debug.Log(splitStringWithEscapeQuoteMarks("this,is,\"a,test\"", ','));
+	public static Sprite LoadCardSprite (string cardSpriteNameInResources) {
+		return Resources.Load<Sprite>(_cardArtFilePathInResources + cardSpriteNameInResources);
 	}
 
 	static string [] splitStringWithEscapeQuoteMarks (string lineFromCSV, char splitChar) {
@@ -77,20 +162,36 @@ public static class CardUtil {
 		for (int i = 0; i < lineFromCSV.Length; i++) {
 			if (lineFromCSV[i] == splitChar && !insideQuoteMarks) {
 				paramemters.Add( 
-					lineFromCSV.Substring(lastIndexAdded, i - lastIndexAdded - 1)
+					removeQuoteMarks (
+						lineFromCSV.Substring(lastIndexAdded, i - lastIndexAdded)
+					)
 				);
 
-				lastIndexAdded = i-1;
+				lastIndexAdded = i + 1;
 			} else if (isQuoteMark(lineFromCSV[i])) {
 				insideQuoteMarks = !insideQuoteMarks;
 			}
 		}
+
+		// Adds the final string to the array of strings
+		paramemters.Add(
+			removeQuoteMarks (
+				lineFromCSV.Substring (
+					lastIndexAdded, 
+					lineFromCSV.Length - lastIndexAdded
+				)
+			)
+		);
 
 		return paramemters.ToArray();
 	}
 
 	static bool isQuoteMark (char testForQuoteMark) {
 		return testForQuoteMark == '"' || testForQuoteMark == '\'';
+	}
+
+	static string removeQuoteMarks (string stringWithQuoteMarks) {
+		return stringWithQuoteMarks.Trim('\"');
 	}
 
 }
