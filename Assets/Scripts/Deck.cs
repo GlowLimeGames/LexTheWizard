@@ -14,6 +14,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Deck : MonoBehaviour {
+
+	// Enum determines whether this is a player of an AI deck
 	public DeckType DeckType;
 
     public List<CardInfo> cards;
@@ -38,7 +40,8 @@ public class Deck : MonoBehaviour {
 	// Temporary function
     void MakeTestDeck()
     {
-		
+
+		// Generates the appropriate type of deck
 		if (DeckType == DeckType.Player) {
 		
 			cards = new List<CardInfo>(CardUtil.PlayerDeck);
@@ -90,6 +93,7 @@ public class CardInfo
 
     public Sprite art;
 
+	// Constructor for a player card
 	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, Sprite art, string desc1, string desc2)
     {
         this.title = title;
@@ -123,7 +127,7 @@ public class CardInfo
 		this.aiValue = aiValue;
     }
 
-
+	// Constructor for an AI Card
 	public CardInfo (string title, string terrain, string cardType, string description, string effect, int aiValue) {
 		this.deckType = DeckType.AI;
 

@@ -7,15 +7,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 public static class CardUtil {
+	
 	const string _cardArtFilePathInResources = "Cards/";
 
+	// Specifies where the CSV files are saved (do not include file extension)
 	const string _defaultPlayerDeck = "Decks/PlayerTestDeck";
 	const string _defaultAIDeck = "Decks/AITestDeck";
 
+	// Corresponds to columns in CSV's
 	const int _numberOfPlayerCardInfoParameters = 11;
 	const int _numberOfAICardInfoParameters = 6;
-	const int _headerOffset = 1;
 
+	const int _csvHeaderOffset = 1;
+
+	// Player Deck:
 	static CardInfo[] _playerDeck;
 
 	public static CardInfo[] PlayerDeck {
@@ -33,6 +38,7 @@ public static class CardUtil {
 		}
 	}
 
+	// AI Deck:
 	static CardInfo[] _aiDeck;
 
 	public static CardInfo[] AIDeck {
@@ -64,16 +70,16 @@ public static class CardUtil {
 			Resources.Load<TextAsset>(filePathInResources)
 		);
 	}
-
+		
 	public static CardInfo[] ReadPlayerCardInfoFromFile (TextAsset textAsCSV) {
 
 		string[] textByLine = textAsCSV.text.Split('\n');
 
-		CardInfo[] allCards = new CardInfo[textByLine.Length - _headerOffset];
+		CardInfo[] allCards = new CardInfo[textByLine.Length - _csvHeaderOffset];
 
-		for (int i = _headerOffset; i < allCards.Length + _headerOffset; i++) {
+		for (int i = _csvHeaderOffset; i < allCards.Length + _csvHeaderOffset; i++) {
 
-			allCards[i - _headerOffset] = ParsePlayerCardInfoFromCSVLine(textByLine[i]);
+			allCards[i - _csvHeaderOffset] = ParsePlayerCardInfoFromCSVLine(textByLine[i]);
 
 		}
 
@@ -84,11 +90,11 @@ public static class CardUtil {
 
 		string[] textByLine = textAsCSV.text.Split('\n');
 
-		CardInfo[] allCards = new CardInfo[textByLine.Length - _headerOffset];
+		CardInfo[] allCards = new CardInfo[textByLine.Length - _csvHeaderOffset];
 
-		for (int i = _headerOffset; i < allCards.Length + _headerOffset; i++) {
+		for (int i = _csvHeaderOffset; i < allCards.Length + _csvHeaderOffset; i++) {
 
-			allCards[i - _headerOffset] = ParseAICardInfoFromCSVLine(textByLine[i]);
+			allCards[i - _csvHeaderOffset] = ParseAICardInfoFromCSVLine(textByLine[i]);
 
 		}
 			
@@ -152,6 +158,7 @@ public static class CardUtil {
 		return Resources.Load<Sprite>(_cardArtFilePathInResources + cardSpriteNameInResources);
 	}
 
+	// Google Drive generated CSV files use quote marks to surround cells that contain commas within them
 	static string [] splitStringWithEscapeQuoteMarks (string lineFromCSV, char splitChar) {
 
 		List<string> paramemters = new List<string>();
@@ -162,7 +169,7 @@ public static class CardUtil {
 		for (int i = 0; i < lineFromCSV.Length; i++) {
 			if (lineFromCSV[i] == splitChar && !insideQuoteMarks) {
 				paramemters.Add( 
-					removeQuoteMarks (
+					removeQuoteMarksFromEnds (
 						lineFromCSV.Substring(lastIndexAdded, i - lastIndexAdded)
 					)
 				);
@@ -175,7 +182,7 @@ public static class CardUtil {
 
 		// Adds the final string to the array of strings
 		paramemters.Add(
-			removeQuoteMarks (
+			removeQuoteMarksFromEnds (
 				lineFromCSV.Substring (
 					lastIndexAdded, 
 					lineFromCSV.Length - lastIndexAdded
@@ -186,11 +193,13 @@ public static class CardUtil {
 		return paramemters.ToArray();
 	}
 
+	// Tests for quote mark
 	static bool isQuoteMark (char testForQuoteMark) {
 		return testForQuoteMark == '"' || testForQuoteMark == '\'';
 	}
 
-	static string removeQuoteMarks (string stringWithQuoteMarks) {
+	// Removes quote marks from either end of a string
+	static string removeQuoteMarksFromEnds (string stringWithQuoteMarks) {
 		return stringWithQuoteMarks.Trim('\"');
 	}
 
