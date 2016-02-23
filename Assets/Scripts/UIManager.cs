@@ -22,17 +22,19 @@ public class UIManager : MonoBehaviour {
 	void Start () {
         player = Player.player;
 
+        /*
         pointsText.text = "Points: ";
         goldText.text = "Gold: ";
         salvageText.text = "Salvage: ";
+        */
 	}
 
 	// This is called from Player
     public void SetStats()
     {
         int[] playerStats = player.GetStats();
-        pointsText.text += playerStats[0].ToString();
-        goldText.text += playerStats[1].ToString();
-        salvageText.text += playerStats[2].ToString();
+        pointsText.text = "Points: " + playerStats[0].ToString();
+        goldText.text = "Gold: " + playerStats[1].ToString();
+        salvageText.text = "Salvage: " + playerStats[2].ToString();
     }
 }
