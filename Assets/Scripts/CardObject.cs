@@ -18,12 +18,15 @@ public class CardObject : MonoBehaviour {
 
     // UI Components
     Text titleText;
+    Text terrainText;
+    Text cardTypeText;
     Text goldText;
     Text pointsText;
     Text salvageText;
-    Text description1;
-    Text description2;
-	Image image;
+    Text description;
+	Image art;
+	Image backgroundImage;
+    //SpriteRenderer rend;
 
     CardPlayer owner; // Who has this card in their hand, if anyone
 
@@ -39,7 +42,9 @@ public class CardObject : MonoBehaviour {
 
     // Variable for handling collisions
     bool touchingBoard;
+    bool inHand;
     bool played; // Whether the card has been played
+    bool hasShrunk;
 
     CardInfo myCardInfo;
 
@@ -56,6 +61,7 @@ public class CardObject : MonoBehaviour {
         mainCam = Camera.main;
         scaleFactor = tuning.scaleFactor; // Get scale factor from tuning object
         scaleVector = new Vector3(scaleFactor, scaleFactor); // Great scale vector using scale factor
+        //rend = GetComponent<SpriteRenderer>();
 	}
 
     // This function is called from CardGame
@@ -63,29 +69,39 @@ public class CardObject : MonoBehaviour {
     public void CreateCard(CardInfo cardInfo)
     {
         myCardInfo = cardInfo;
-
+		Image[] images = GetComponentsInChildren<Image> ();
         // Set up reference to Image component in Children
-        image = GetComponentInChildren<Image>();
-        // Assign a sprite to that image
-        image.sprite = cardInfo.art;
+        art = images[1];
+		// Assign a sprite to that image
+	    art.sprite = cardInfo.art;
 
         // Set up references to Text components in Children
         Text[] text = GetComponentsInChildren<Text>();
         titleText = text[0];
-        goldText = text[1];
-        pointsText = text[2];
-        salvageText = text[3];
-        description1 = text[4];
-        description2 = text[5];
+        terrainText = text[1];
+        cardTypeText = text[2];
+        goldText = text[3];
+        pointsText = text[4];
+        salvageText = text[5];
+        description = text[6];
 
         // Assign strings to Text components
-        titleText.text = cardInfo.title + " " + cardInfo.terrain;
+        titleText.text = cardInfo.title;
+        terrainText.text = cardInfo.terrain;
+        cardTypeText.text = cardInfo.cardType;
         goldText.text = cardInfo.gold.ToString();
         pointsText.text = cardInfo.points.ToString();
         salvageText.text = cardInfo.salvage.ToString();
-        description1.text = cardInfo.desc1;
-        description2.text = cardInfo.desc2;
+        description.text = cardInfo.desc;
+
+		Land terrain = GameController.gamecontroller.GetTerrainByName (cardInfo.terrain);
+		backgroundImage = images [0];
+		SetBackgroundImage (terrain.cardArt);
     }
+
+	public void SetBackgroundImage(Sprite sprite) {
+		backgroundImage.sprite = sprite;
+	}
 
     // This is called from CardGame when cards are dealt
     public void SetOwner(CardPlayer cardPlayer)
@@ -102,6 +118,8 @@ public class CardObject : MonoBehaviour {
         Grow();
         // Push to front
         transform.SetAsLastSibling();
+        //rend.sortingOrder = 1;
+
 
         // Assign screenPoint and offset in case user will drag the mouse
         screenPoint = mainCam.WorldToScreenPoint(gameObject.transform.position);
@@ -111,24 +129,40 @@ public class CardObject : MonoBehaviour {
 
     void OnMouseUp() {
         Shrink();
-
-        if (!played)
-        { // If card hasn't been played yet
-            owner.PlayCard(this);
+        //rend.sortingOrder = 0;
+        if (!inHand && !played)
+        { // If card hasn't been played yet and is on the board
+			checkOwner();
+			owner.PlayCard(this);
             played = true;
         }
     }
 
-    void Grow()
+    public void Grow()
     {
-        transform.localScale += scaleVector;
+        transform.localScale = tuning.cardScale + scaleVector;
+        hasShrunk = false;
     }
 
-    void Shrink()
+    public void Shrink()
     {
-        transform.localScale -= scaleVector;
+        transform.localScale = tuning.cardScale;
+        hasShrunk = true;
     }
 
+	void checkOwner () {
+		if (owner == null) {
+			if (myCardInfo.deckType == DeckType.AI) {
+
+				owner = CardGame.Instance.enemy;
+
+			} else if (myCardInfo.deckType == DeckType.Player) {
+
+				owner = CardGame.Instance.player;
+
+			}
+		}
+	}
     void OnMouseDrag()
     {
         transform.position = mainCam.ScreenToWorldPoint(getMousePosition()) + offset;
@@ -139,18 +173,35 @@ public class CardObject : MonoBehaviour {
         return new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    /*void OnCollisionEnter2D(Collision2D coll)
     {
         string colTag = coll.gameObject.tag;
         switch (colTag)
         {
-            case "Board":
-                touchingBoard = true;
+            case "Hand":
+                inHand = true;
                 break;
             case "Discard":
                 Shrink();
                 break;
         }  
+    }*/
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        string colTag = coll.gameObject.tag;
+        switch (colTag)
+        {
+            case "Hand":
+                inHand = true;
+                break;
+            case "Discard":
+                if (!hasShrunk)
+                {
+                    //Shrink();
+                }
+                break;
+        }
     }
 
     void OnCollisionExit2D(Collision2D coll)
@@ -158,11 +209,11 @@ public class CardObject : MonoBehaviour {
         string colTag = coll.gameObject.tag;
         switch(colTag)
         {
-            case "Board":
-                touchingBoard = false;
+            case "Hand":
+                inHand = false;
                 break;
             case "Discard":
-                Grow();
+                //Grow();
                 break;
         }
     }

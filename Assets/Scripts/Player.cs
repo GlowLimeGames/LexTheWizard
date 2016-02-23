@@ -43,4 +43,13 @@ public class Player : MonoBehaviour {
     {
         return new int[3] { points, gold, salvage };
     }
+
+    public void ChangeStats(int pointsChange, int goldChange, int salvageChange)
+    {
+        points += pointsChange;
+        gold += goldChange;
+        salvage += salvageChange;
+
+        UImanager.SetStats();
+    }
 }

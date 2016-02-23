@@ -15,6 +15,9 @@ using System.Collections.Generic;
 
 public class Deck : MonoBehaviour {
 
+	// Enum determines whether this is a player of an AI deck
+	public DeckType DeckType;
+
     public List<CardInfo> cards;
     DeckShuffling deckShuffling;
 
@@ -25,15 +28,30 @@ public class Deck : MonoBehaviour {
         MakeTestDeck();
     }
 
+	void addStaticCardsToDeck () {
+        // Add sample cards
+		Sprite placeholder = Resources.Load<Sprite>("Cards/Placeholder");
+		cards.Add(new CardInfo("Title 1", "Swamp", "Night", "Discovery", 2, 10, 20, 1, placeholder, "This is description 1 for Card 1."));
+		cards.Add(new CardInfo("Title 2", "Swamp", "Dawn", "Event", 1, 5, 15, 2, placeholder, "This is description 1 for Card 2."));
+		cards.Add(new CardInfo("Title 3", "Swamp", "Dusk", "Event", 3, 1, 2, 1, placeholder, "This is the description 1 for Card 3."));
+		cards.Add(new CardInfo("Title 4", "Swamp", "Morning", "Discovery", 1, 2, 3, 1, placeholder, "This is description 1 for Card 4."));
+		cards.Add(new CardInfo("Title 5", "Swamp", "Afternoon", "Discovery", 4, 6, 4, 3, placeholder, "This is the description 1 for Card 5."));
+	}
+
 	// Temporary function
     void MakeTestDeck()
     {
-        // Add sample cards
-        cards.Add(new CardInfo("Title 1", "Swamp", "Night", "Discovery", 2, 10, 20, 1, "This is description 1 for Card 1.", "This is description 2 for Card 1.",0));
-        cards.Add(new CardInfo("Title 2", "Swamp", "Dawn", "Event", 1, 5, 15, 2, "This is description 1 for Card 2.", "This is description 2 for Card 2.",0));
-        cards.Add(new CardInfo("Title 3", "Swamp", "Dusk", "Event", 3, 1, 2, 1, "This is the description 1 for Card 3.", "This is the description 2 for Card 3.",0));
-        cards.Add(new CardInfo("Title 4", "Swamp", "Morning", "Discovery", 1, 2, 3, 1, "This is description 1 for Card 4.", "This is description 2 for Card 4.",0));
-        cards.Add(new CardInfo("Title 5", "Swamp", "Afternoon", "Discovery", 4, 6, 4, 3, "This is the description 1 for Card 5.", "This is the description 2 for Card 5.",0));
+
+		// Generates the appropriate type of deck
+		if (DeckType == DeckType.Player) {
+		
+			cards = new List<CardInfo>(CardUtil.PlayerDeck);
+
+		} else if (DeckType == DeckType.AI) {
+
+			cards = new List<CardInfo>(CardUtil.AIDeck);
+
+		}
 
         // Shuffle cards
         cards = deckShuffling.Shuffle(cards);
@@ -59,12 +77,13 @@ public class Deck : MonoBehaviour {
 // This means CardInfo is not actually attached to an object
 public class CardInfo
 {
+	public DeckType deckType;
+
     public string title;
     public string terrain;
 	public string daytime;
 	public string cardType;
-    public string desc1;
-    public string desc2;
+    public string desc;
 
     public int points;
     public int gold;
@@ -74,30 +93,30 @@ public class CardInfo
 
     public Sprite art;
 
-	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, Sprite art, string desc1, string desc2)
+	// Constructor for a player card
+	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, Sprite art, string desc)
     {
         this.title = title;
         this.terrain = terrain;
 		this.daytime = daytime;
         this.cardType = cardType;
-        this.desc1 = desc1;
-        this.desc2 = desc2;
+        this.desc = desc;
         this.points = points;
         this.gold = gold;
         this.salvage = salvage;
         this.homeValue = homeValue;
         this.art = art;
+		deckType = DeckType.Player;
     }
 
     // For testing cards without art
-	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, string desc1, string desc2, int aiValue)
+	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, string desc, int aiValue)
     {
         this.title = title;
         this.terrain = terrain;
 		this.daytime = daytime;
         this.cardType = cardType;
-        this.desc1 = desc1;
-        this.desc2 = desc2;
+        this.desc = desc;
         this.points = points;
         this.gold = gold;
         this.salvage = salvage;
@@ -105,4 +124,53 @@ public class CardInfo
         this.art = null;
 		this.aiValue = aiValue;
     }
+
+	// Constructor for an AI Card
+	public CardInfo (string title, string terrain, string cardType, string description, int aiValue) {
+		this.deckType = DeckType.AI;
+
+		this.title = title;
+		this.terrain = terrain;
+		this.cardType = cardType;
+		this.desc = description;
+		this.aiValue = aiValue;
+	}
+
+	public override string ToString ()
+	{
+		if (deckType == DeckType.Player) {
+			
+			return string.Format (
+				"[Player CardInfo], Title: {0}, Terrain: {1}, Time of Day: {2}, Card Type: {3}," +
+				" Points: {4}, Salvage: {5}, Home Value: {6}, Sprite: {7}, Description: {8}",
+				title,
+				terrain,
+				daytime,
+				cardType,
+				points,
+				gold,
+				salvage,
+				homeValue,
+				art.name,
+				desc
+			);
+
+		} else if (deckType == DeckType.AI) {
+
+			return string.Format (
+				"[AI CardInfo], Title: {0}, Type {1}, Terrain: {2}, Description: {3}, AI Value: {4}",
+				title,
+				cardType,
+				terrain,
+				desc,
+				aiValue
+			);
+
+		} else {
+
+			return base.ToString();
+
+		}
+
+	}
 }
