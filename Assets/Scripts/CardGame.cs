@@ -67,13 +67,14 @@ public class CardGame : MonoBehaviour {
 			cardPrefab.transform.localScale = cardScale;
 			// Makes cardPrefab the child of the cardCanvas
 			cardPrefab.transform.SetParent(cardCanvas.transform, false);
-            cardPrefab.GetComponent<SpriteRenderer>().sprite = cardTemplateSprite;
+            //cardPrefab.GetComponent<SpriteRenderer>().sprite = cardTemplateSprite;
 			// Attaches a CardObject component
             CardObject cardObject = cardPrefab.AddComponent<CardObject>();
             // Get cardInfo from next item in the deck
             CardInfo cardInfo = deck.DrawCard();
             // Assign the CardInfo to this CardObject
             cardObject.CreateCard(cardInfo);
+			//cardObject.SetBackgroundImage(cardTemplateSprite);
             // Give the CardObject reference to its CardPlayer
 			cardObject.SetOwner(cardPlayer);
             // Add the CardObject to CardPlayer's hand
