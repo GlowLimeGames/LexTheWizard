@@ -33,6 +33,7 @@ public class CardPlayer : MonoBehaviour {
         return cards;
     }
 
+
     public void AddCardToHand(CardObject cardObject)
     {
         cards.Add(cardObject);

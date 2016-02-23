@@ -71,8 +71,9 @@ public class CardObject : MonoBehaviour {
 
         // Set up reference to Image component in Children
         image = GetComponentInChildren<Image>();
-        // Assign a sprite to that image
-        image.sprite = cardInfo.art;
+        
+		// Assign a sprite to that image
+	    image.sprite = cardInfo.art;
 
         // Set up references to Text components in Children
         Text[] text = GetComponentsInChildren<Text>();
@@ -123,7 +124,8 @@ public class CardObject : MonoBehaviour {
         rend.sortingOrder = 0;
         if (!inHand && !played)
         { // If card hasn't been played yet and is on the board
-            owner.PlayCard(this);
+			checkOwner();
+			owner.PlayCard(this);
             played = true;
         }
     }
@@ -140,6 +142,19 @@ public class CardObject : MonoBehaviour {
         hasShrunk = true;
     }
 
+	void checkOwner () {
+		if (owner == null) {
+			if (myCardInfo.deckType == DeckType.AI) {
+
+				owner = CardGame.Instance.enemy;
+
+			} else if (myCardInfo.deckType == DeckType.Player) {
+
+				owner = CardGame.Instance.player;
+
+			}
+		}
+	}
     void OnMouseDrag()
     {
         transform.position = mainCam.ScreenToWorldPoint(getMousePosition()) + offset;

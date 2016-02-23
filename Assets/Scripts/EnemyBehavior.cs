@@ -13,7 +13,7 @@ public class EnemyBehavior : MonoBehaviour {
     {
         cardPlayer = GetComponent<CardPlayer>();
         cardPlayer.SetName("Enemy");
-        hand = cardPlayer.GetCards();
+		hand = cardPlayer.GetCards();
     }
 
 	//Method to test playability of card in current state

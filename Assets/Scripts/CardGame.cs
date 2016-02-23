@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CardGame : MonoBehaviour {
+	public static CardGame Instance;
 
     public CardPlayer player;
     public CardPlayer enemy;
@@ -37,6 +38,8 @@ public class CardGame : MonoBehaviour {
     Vector3 cardScale;
 
 	void Start () {
+		Instance = this;
+
         tuning = Tuning.tuning;
         numOfStartingCards = tuning.numOfStartingCards;
         cardScale = tuning.cardScale;
@@ -72,7 +75,7 @@ public class CardGame : MonoBehaviour {
             // Assign the CardInfo to this CardObject
             cardObject.CreateCard(cardInfo);
             // Give the CardObject reference to its CardPlayer
-            cardObject.SetOwner(cardPlayer);
+			cardObject.SetOwner(cardPlayer);
             // Add the CardObject to CardPlayer's hand
             cardPlayer.AddCardToHand(cardObject);
         }
