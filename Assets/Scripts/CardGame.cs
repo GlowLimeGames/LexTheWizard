@@ -8,10 +8,12 @@
  * Will eventually handle end of turns, signal opponent to play a card, etc.
  */
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class CardGame : MonoBehaviour {
+	public static CardGame Instance;
 
     public CardPlayer player;
     public CardPlayer enemy;
@@ -25,6 +27,7 @@ public class CardGame : MonoBehaviour {
     public Transform[] enemyBoardTargets; // Where the enemy will place cards on the board
 
     public GameObject cardTemplate; // Reference to card prefab
+    public Sprite cardTemplateSprite;
     public GameObject cardCanvas; // Reference to canvas containing cards
 
     List<CardObject> playerCards; // Reference to cards from Player's CardPlayer
@@ -35,6 +38,8 @@ public class CardGame : MonoBehaviour {
     Vector3 cardScale;
 
 	void Start () {
+		Instance = this;
+
         tuning = Tuning.tuning;
         numOfStartingCards = tuning.numOfStartingCards;
         cardScale = tuning.cardScale;
@@ -62,15 +67,15 @@ public class CardGame : MonoBehaviour {
 			cardPrefab.transform.localScale = cardScale;
 			// Makes cardPrefab the child of the cardCanvas
 			cardPrefab.transform.SetParent(cardCanvas.transform, false);
+            cardPrefab.GetComponent<SpriteRenderer>().sprite = cardTemplateSprite;
 			// Attaches a CardObject component
             CardObject cardObject = cardPrefab.AddComponent<CardObject>();
-
             // Get cardInfo from next item in the deck
             CardInfo cardInfo = deck.DrawCard();
             // Assign the CardInfo to this CardObject
             cardObject.CreateCard(cardInfo);
             // Give the CardObject reference to its CardPlayer
-            cardObject.SetOwner(cardPlayer);
+			cardObject.SetOwner(cardPlayer);
             // Add the CardObject to CardPlayer's hand
             cardPlayer.AddCardToHand(cardObject);
         }

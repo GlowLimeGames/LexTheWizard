@@ -117,8 +117,7 @@ public static class CardUtil {
 				int.Parse(parameters[6]),
 				int.Parse(parameters[7]),
 				LoadCardSprite(parameters[8]),
-				parameters[9],
-				parameters[10]
+				parameters[9]
 			);
 
 		} else {
@@ -141,7 +140,6 @@ public static class CardUtil {
 				parameters[1],
 				parameters[2],
 				parameters[3],
-				parameters[4],
 				int.Parse(parameters[5])
 			);
 

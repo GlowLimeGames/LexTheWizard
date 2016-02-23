@@ -8,11 +8,23 @@ using System.Collections.Generic;
 
 public class DiscardPile : MonoBehaviour {
 
+    public string discardType;
+
     CardObject selectedCard;
 
     void Discard(CardObject cardObject)
     {
-        Destroy(cardObject);
+        if (discardType == "Sell")
+        {
+            int goldChange = cardObject.GetCardInfo().gold;
+            Player.player.ChangeStats(0, goldChange, 0);
+        }
+        else if (discardType == "Salvage")
+        {
+            int salvageChange = cardObject.GetCardInfo().salvage;
+            Player.player.ChangeStats(0, 0, salvageChange);
+        }
+        cardObject.gameObject.SetActive(false);
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -24,7 +36,37 @@ public class DiscardPile : MonoBehaviour {
         }
     }
 
-    void OnCollisionStay2D(Collision2D coll)
+    /*void OnCollisionStay2D(Collision2D coll)
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (selectedCard != null)
+            {
+                Discard(selectedCard);
+            }
+        }
+    }*/
+
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        GameObject colObject = coll.gameObject;
+        if (colObject.tag == "Card")
+        {
+            selectedCard = null;
+        }
+    }
+
+    /*void OnMouseEnter()
+    {
+        Debug.Log("mouse has entered");
+        Debug.Log(discardType);
+        if (selectedCard != null)
+        {
+            selectedCard.Shrink();
+        }
+    }*/
+
+    void OnMouseOver()
     {
         if (Input.GetMouseButtonUp(0))
         {
@@ -35,12 +77,13 @@ public class DiscardPile : MonoBehaviour {
         }
     }
 
-    void OnCollisionExit2D(Collision2D coll)
+    /*void OnMouseExit()
     {
-        GameObject colObject = coll.gameObject;
-        if (colObject.tag == "Card")
+        Debug.Log("mouse has exited");
+        if (selectedCard != null)
         {
-            selectedCard = null;
+            selectedCard.Grow();
         }
     }
+     */
 }

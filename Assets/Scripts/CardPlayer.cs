@@ -17,6 +17,12 @@ public class CardPlayer : MonoBehaviour {
 
     public void PlayCard(CardObject cardObject)
     {
+        // Temporary, don't want to hard code this
+        if (cardPlayerName == "Lex")
+        {
+            int pointsChange = cardObject.GetCardInfo().points;
+            Player.player.ChangeStats(pointsChange, 0, 0);
+        }
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);
         RemoveCardFromHand(cardObject);
