@@ -27,7 +27,7 @@ public class CardGame : MonoBehaviour {
     public Transform[] enemyBoardTargets; // Where the enemy will place cards on the board
 
     public GameObject cardTemplate; // Reference to card prefab
-    public Sprite cardTemplateSprite;
+    //public Sprite cardTemplateSprite;
     public GameObject cardCanvas; // Reference to canvas containing cards
 
     List<CardObject> playerCards; // Reference to cards from Player's CardPlayer

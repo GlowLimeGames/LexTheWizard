@@ -94,7 +94,7 @@ public class CardObject : MonoBehaviour {
         salvageText.text = cardInfo.salvage.ToString();
         description.text = cardInfo.desc;
 
-		Land terrain = GameController.gamecontroller.GetTerrainByName (cardInfo.terrain);
+		Land terrain = GameController.gameController.GetTerrainByName (cardInfo.terrain);
 		backgroundImage = images [0];
 		SetBackgroundImage (terrain.cardArt);
     }
@@ -107,6 +107,7 @@ public class CardObject : MonoBehaviour {
     public void SetOwner(CardPlayer cardPlayer)
     {
         owner = cardPlayer;
+		inHand = true;
     }
 
     public CardInfo GetCardInfo()
@@ -119,7 +120,6 @@ public class CardObject : MonoBehaviour {
         // Push to front
         transform.SetAsLastSibling();
         //rend.sortingOrder = 1;
-
 
         // Assign screenPoint and offset in case user will drag the mouse
         screenPoint = mainCam.WorldToScreenPoint(gameObject.transform.position);
@@ -146,8 +146,8 @@ public class CardObject : MonoBehaviour {
 
     public void Shrink()
     {
-        transform.localScale = tuning.cardScale;
-        hasShrunk = true;
+		transform.localScale = tuning.cardScale;
+		hasShrunk = true;
     }
 
 	void checkOwner () {
@@ -173,7 +173,7 @@ public class CardObject : MonoBehaviour {
         return new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
     }
 
-    /*void OnCollisionEnter2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
         string colTag = coll.gameObject.tag;
         switch (colTag)
@@ -181,11 +181,12 @@ public class CardObject : MonoBehaviour {
             case "Hand":
                 inHand = true;
                 break;
-            case "Discard":
+            /* // Discard Collisions handled in CardCenter
+             * case "Discard":
                 Shrink();
-                break;
+                break;*/
         }  
-    }*/
+    }
 
     void OnCollisionStay2D(Collision2D coll)
     {
@@ -195,12 +196,13 @@ public class CardObject : MonoBehaviour {
             case "Hand":
                 inHand = true;
                 break;
+			/* // Discard Collisions handled in CardCenter
             case "Discard":
                 if (!hasShrunk)
                 {
                     //Shrink();
                 }
-                break;
+                break;*/
         }
     }
 
@@ -212,9 +214,10 @@ public class CardObject : MonoBehaviour {
             case "Hand":
                 inHand = false;
                 break;
+			/* // Discard Collisions handled in CardCenter
             case "Discard":
                 //Grow();
-                break;
+                break;*/
         }
     }
 

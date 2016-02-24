@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-	public static GameController gamecontroller;
+	public static GameController gameController;
 
 	// variable to track days passed
 	public int days;
@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
 	public Land[] terrains;
 	// variable to track current terrain
 	public Land currTerrain;
+	public int currTerrainIndex;
 
 	private CardGame cardGame;
 	private Deck playerDeck;
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour {
 	int winSalvage;
 
 	void Awake() {
-		gamecontroller = this;
+		gameController = this;
 	}
 
 	void Start () {
@@ -60,7 +61,8 @@ public class GameController : MonoBehaviour {
 		enemyDeck = cardGame.enemyDeck;
 
 		//Initializes array of traversable terrain as the only current terrain
-		currTerrain = terrains [0];
+		currTerrainIndex = 0;
+		currTerrain = terrains [currTerrainIndex];
         currState = new gameState();
 		currState.setTerrain (currTerrain);
 		phase = 0;
@@ -226,12 +228,26 @@ public class GameController : MonoBehaviour {
 		return GetTerrainByName ("Any");
 	}
 
+	public void MoveTerrain() {
+		if (currTerrainIndex < terrains.Length - 1) {
+			currTerrainIndex++;
+			currState.setTerrain (currTerrainIndex);
+		} else {
+			currState.setTerrain(0);
+		}
+	}
+
 	//NOTE: May move below and associated code to more appropriate class.
 	//Tracks the previous terrain type and whether Lex used a shelter there.
 	//This is stored in an array in the parent class for Lex to access.
 	private class gameState {
 		private Land terrainType;
 		private bool shelter;
+		GameController gameController;
+
+		void Start() {
+			gameController = GameController.gameController;
+		}
 
 		public bool getShelter(){
 			return shelter;
@@ -243,12 +259,16 @@ public class GameController : MonoBehaviour {
 
 		public void setTerrain(Land terrain){
 			this.terrainType = terrain;
+			UIManager.UImanager.SetBoard (terrainType);
+		}
+
+		public void setTerrain(int terrainIndex) {
+			this.terrainType = GameController.gameController.terrains [terrainIndex];
+			UIManager.UImanager.SetBoard (terrainType);
 		}
 
 		public void setShelter(bool shelterUsed){
 			this.shelter = shelterUsed;
 		}
-
 	}
-
 }
