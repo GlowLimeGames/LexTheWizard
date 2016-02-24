@@ -230,7 +230,8 @@ public class GameController : MonoBehaviour {
 
 	public void MoveTerrain() {
 		if (currTerrainIndex < terrains.Length - 1) {
-			currState.setTerrain (currTerrainIndex + 1);
+			currTerrainIndex++;
+			currState.setTerrain (currTerrainIndex);
 		} else {
 			currState.setTerrain(0);
 		}

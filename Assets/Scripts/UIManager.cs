@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour {
 			GameController.gameController.MoveTerrain();
 			player.ChangeStats (0, 0, -tuning.travelCost);
 		} else {
-			showPopup();
+			showPopup("I'm sorry. You do not have enough salvage to travel.");
 		}
 	}
 
@@ -73,8 +73,8 @@ public class UIManager : MonoBehaviour {
 		popup.Dimiss ();
 	}
 
-	void showPopup() {
+	void showPopup(string message) {
 		popupObject.SetActive (true);
-		popup.SetText ("You do not have enough salvage to travel.");
+		popup.SetText (message);
 	}
 }
