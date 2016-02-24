@@ -11,6 +11,7 @@ TagManager:
   - Card
   - Enemy
   - Hand
+  - CardCenter
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Board Interaction
   - 
   - 
   - 
