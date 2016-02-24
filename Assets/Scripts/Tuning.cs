@@ -24,6 +24,8 @@ public class Tuning : MonoBehaviour {
     public float scaleFactor;
     public Vector3 cardScale;
 
+	public int travelCost;
+
     void Awake()
     {
         tuning = this;
