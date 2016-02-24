@@ -51,4 +51,8 @@ public class CardPlayer : MonoBehaviour {
     {
         cardPlayerName = name;
     }
+
+	public int NumberOfCardsOnHand () {
+		return cards.Count;
+	}
 }
