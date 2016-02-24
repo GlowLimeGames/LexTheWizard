@@ -146,8 +146,8 @@ public class CardObject : MonoBehaviour {
 
     public void Shrink()
     {
-        transform.localScale = tuning.cardScale;
-        hasShrunk = true;
+		transform.localScale = tuning.cardScale;
+		hasShrunk = true;
     }
 
 	void checkOwner () {
@@ -181,9 +181,10 @@ public class CardObject : MonoBehaviour {
             case "Hand":
                 inHand = true;
                 break;
-            case "Discard":
-                //Shrink();
-                break;
+            /* // Discard Collisions handled in CardCenter
+             * case "Discard":
+                Shrink();
+                break;*/
         }  
     }
 
@@ -195,12 +196,13 @@ public class CardObject : MonoBehaviour {
             case "Hand":
                 inHand = true;
                 break;
+			/* // Discard Collisions handled in CardCenter
             case "Discard":
                 if (!hasShrunk)
                 {
                     //Shrink();
                 }
-                break;
+                break;*/
         }
     }
 
@@ -212,9 +214,10 @@ public class CardObject : MonoBehaviour {
             case "Hand":
                 inHand = false;
                 break;
+			/* // Discard Collisions handled in CardCenter
             case "Discard":
                 //Grow();
-                break;
+                break;*/
         }
     }
 

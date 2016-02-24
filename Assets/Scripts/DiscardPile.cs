@@ -17,26 +17,28 @@ public class DiscardPile : MonoBehaviour {
         if (discardType == "Sell")
         {
             int goldChange = cardObject.GetCardInfo().gold;
+			//Debug.Log (goldChange);
             Player.player.ChangeStats(0, goldChange, 0);
         }
         else if (discardType == "Salvage")
         {
             int salvageChange = cardObject.GetCardInfo().salvage;
+			//Debug.Log (salvageChange);
             Player.player.ChangeStats(0, 0, salvageChange);
         }
         cardObject.gameObject.SetActive(false);
+		selectedCard = null;
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         GameObject colObject = coll.gameObject;
-        if (colObject.tag == "Card")
-        {
-            selectedCard = colObject.GetComponent<CardObject>();
-        }
+        if (colObject.tag == "Card") {
+			selectedCard = colObject.GetComponent<CardObject>();
+		}
     }
 
-    /*void OnCollisionStay2D(Collision2D coll)
+    void OnCollisionStay2D(Collision2D coll)
     {
         if (Input.GetMouseButtonUp(0))
         {
@@ -45,7 +47,7 @@ public class DiscardPile : MonoBehaviour {
                 Discard(selectedCard);
             }
         }
-    }*/
+    }
 
     void OnCollisionExit2D(Collision2D coll)
     {
@@ -55,35 +57,4 @@ public class DiscardPile : MonoBehaviour {
             selectedCard = null;
         }
     }
-
-    /*void OnMouseEnter()
-    {
-        Debug.Log("mouse has entered");
-        Debug.Log(discardType);
-        if (selectedCard != null)
-        {
-            selectedCard.Shrink();
-        }
-    }*/
-
-    void OnMouseOver()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (selectedCard != null)
-            {
-                Discard(selectedCard);
-            }
-        }
-    }
-
-    /*void OnMouseExit()
-    {
-        Debug.Log("mouse has exited");
-        if (selectedCard != null)
-        {
-            selectedCard.Grow();
-        }
-    }
-     */
 }

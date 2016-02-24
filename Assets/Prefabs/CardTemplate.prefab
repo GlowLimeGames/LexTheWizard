@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &134938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22412230}
+  - 61: {fileID: 6125340}
+  - 114: {fileID: 11498414}
+  m_Layer: 8
+  m_Name: CardCenter
+  m_TagString: CardCenter
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &138136
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +188,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!61 &6125340
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134938}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.75, y: 3}
 --- !u!61 &6191596
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -183,7 +213,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 8, y: 12}
+  m_Size: {x: 15, y: 20}
 --- !u!114 &11409424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -382,6 +412,17 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Card Type
+--- !u!114 &11498414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1987d38793ae044b59d0dc9cffb344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11499320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -479,6 +520,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 5.80000019}
   m_SizeDelta: {x: 60, y: 10}
   m_Pivot: {x: .5, y: .5}
+--- !u!224 &22412230
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22476376}
+  m_RootOrder: 8
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2.75, y: 3}
+  m_Pivot: {x: .5, y: .5}
 --- !u!224 &22417516
 RectTransform:
   m_ObjectHideFlags: 1
@@ -565,6 +623,7 @@ RectTransform:
   - {fileID: 22409786}
   - {fileID: 22417516}
   - {fileID: 22476968}
+  - {fileID: 22412230}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
@@ -645,6 +704,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
