@@ -21,6 +21,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void Start() {
+		UImanager = UIManager.UImanager;
+
 		// Assigns starting stats from tuning object
         player.tuning = Tuning.tuning;
 		player.points = tuning.startingPoints;

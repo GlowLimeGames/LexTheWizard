@@ -12,12 +12,19 @@ using System.Collections;
 public class UIManager : MonoBehaviour {
 
 	// Reference to Text components on Stats Canvas
+	public static UIManager UImanager;
     public Text pointsText;
     public Text goldText;
     public Text salvageText;
 
+	public Image Board;
+
 	// Reference to player
     Player player;
+
+	void Awake() {
+		UImanager = this;
+	}
 
 	void Start () {
         player = Player.player;
@@ -37,4 +44,8 @@ public class UIManager : MonoBehaviour {
         goldText.text = "Gold: " + playerStats[1].ToString();
         salvageText.text = "Salvage: " + playerStats[2].ToString();
     }
+
+	public void SetBoard(Land terrain) {
+		Board.sprite = terrain.boardArt;
+	}
 }

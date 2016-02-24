@@ -107,6 +107,7 @@ public class CardObject : MonoBehaviour {
     public void SetOwner(CardPlayer cardPlayer)
     {
         owner = cardPlayer;
+		inHand = true;
     }
 
     public CardInfo GetCardInfo()
@@ -119,7 +120,6 @@ public class CardObject : MonoBehaviour {
         // Push to front
         transform.SetAsLastSibling();
         //rend.sortingOrder = 1;
-
 
         // Assign screenPoint and offset in case user will drag the mouse
         screenPoint = mainCam.WorldToScreenPoint(gameObject.transform.position);
@@ -173,7 +173,7 @@ public class CardObject : MonoBehaviour {
         return new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
     }
 
-    /*void OnCollisionEnter2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
         string colTag = coll.gameObject.tag;
         switch (colTag)
@@ -182,10 +182,10 @@ public class CardObject : MonoBehaviour {
                 inHand = true;
                 break;
             case "Discard":
-                Shrink();
+                //Shrink();
                 break;
         }  
-    }*/
+    }
 
     void OnCollisionStay2D(Collision2D coll)
     {
