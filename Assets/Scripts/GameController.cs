@@ -19,12 +19,16 @@ public class GameController : MonoBehaviour {
 	private Deck playerDeck;
 	private Deck enemyDeck;
 
-	private GameObject enemy;
+	private CardPlayer enemy;
 	private CardPlayer player;
 
 	private gameState currState;
 	private gameState[] previousTerrain = new gameState[6];
 	private int phase;
+
+
+	private GameObject cardTemplate;
+	private GameObject cardCanvas;
 
 	// variables to track family members status
 	public bool isFatherAlive;
@@ -56,9 +60,15 @@ public class GameController : MonoBehaviour {
 		isGrandmaAlive = true;
 
 		cardGame = GetComponent<CardGame>();
-		enemy = GameObject.FindWithTag("Enemy");
+		enemy = cardGame.enemy;
+		player = cardGame.player;
 		playerDeck = cardGame.playerDeck;
 		enemyDeck = cardGame.enemyDeck;
+
+		cardTemplate = cardGame.cardTemplate;
+		cardCanvas = cardGame.cardCanvas;
+
+
 
 		//Initializes array of traversable terrain as the only current terrain
 		currTerrainIndex = 0;
@@ -84,11 +94,11 @@ public class GameController : MonoBehaviour {
 		switch(phase){
 		//1st Draw (Player and AI both draw)
 		case 0:		
-			//here usedCard is just a CardObject to facilitate drawing	
-			usedCard.CreateCard(playerDeck.DrawCard());
-			player.AddCardToHand(usedCard);
-			usedCard.CreateCard(playerDeck.DrawCard());
-			enemy.GetComponent<CardPlayer>().AddCardToHand (usedCard);
+			//here usedCard is just a CardObject to facilitate drawing
+			//Deals Cards to the player
+			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
+			//Deals Cards to the AI
+			cardGame.DealCards (1, enemyDeck, cardGame.enemyHandTargets, enemy);
 			//Cycles 0 to 5 to represent the phases.
 			phase = (phase + 1) % 6;
 			Turn ();
@@ -99,7 +109,7 @@ public class GameController : MonoBehaviour {
 			//TODO Update art to Dawn
 			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
 			if (usedCard != null) {
-				enemy.GetComponent<CardPlayer>().PlayCard (usedCard);
+				enemy.PlayCard(usedCard);
 			}
 
 			phase = (phase + 1) % 6;
@@ -111,7 +121,7 @@ public class GameController : MonoBehaviour {
 			//Update art to Afternoon
 			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard();
 			if (usedCard != null) {
-				enemy.GetComponent<CardPlayer>().PlayCard (usedCard);
+				enemy.PlayCard(usedCard);
 			}
 			phase = (phase + 1) % 6;
 			SetDusk ();
@@ -121,7 +131,7 @@ public class GameController : MonoBehaviour {
 			//Update art to Dusk
 			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
 			if (usedCard != null) {
-				enemy.GetComponent<CardPlayer>().PlayCard (usedCard);
+				enemy.PlayCard(usedCard);
 			}
 			phase = (phase + 1) % 6;
 			SetNight ();
@@ -129,10 +139,10 @@ public class GameController : MonoBehaviour {
 
 		//2nd draw phase
 		case 4:			
-			usedCard.CreateCard(playerDeck.DrawCard());
-			player.AddCardToHand(usedCard);
-			usedCard.CreateCard(playerDeck.DrawCard());
-			enemy.GetComponent<CardPlayer>().AddCardToHand (usedCard);
+			//Deals Cards to the player
+			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
+			//Deals Cards to the AI
+			cardGame.DealCards (1, enemyDeck, cardGame.enemyHandTargets, enemy);
 			phase = (phase + 1) % 6;
 			Turn ();
 			break;
@@ -143,7 +153,7 @@ public class GameController : MonoBehaviour {
 			//Check if current state has shelter when enemy plays cards at night
 			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
 			if (usedCard != null) {
-				enemy.GetComponent<CardPlayer>().PlayCard (usedCard);
+				enemy.PlayCard(usedCard);
 			}
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
@@ -230,10 +240,8 @@ public class GameController : MonoBehaviour {
 
 	public void MoveTerrain() {
 		if (currTerrainIndex < terrains.Length - 1) {
-			currTerrainIndex++;
-			currState.setTerrain (currTerrainIndex);
-		} else {
-			currState.setTerrain(0);
+			//currTerrainIndex++;
+			currState.setTerrain (Random.Range(0,4));
 		}
 	}
 
