@@ -5,7 +5,7 @@ Mushroom Poisoning,Forest,Discovery,Lex’s stomach doesn’t feel too great… 
 Ravenous Pack of Hounds,Hill,Event,Reduce Lex’s score by 2. Lex discards two cards.,None,4
 Cynocephali Merchants,Any,Event,"Lex meets some kind but awfully chatty dog-headed people. They insist on asking him of his travels... 1, 3,  5: Lex is given a small bag of spices for telling them of his adventures. +2 gold. 2, 4, 6: Lex kindly turned down the storytelling opportunity, much to the merchants’ disappointment.","Depending on Lex’s dice roll/RNG, he either receives 2 gold OR nothing happens.",1
 Swamp Hole,Swamp,Event,Lex has been sucked into a rather clingy swamp hole…,Lex can’t leave the Swamp or make any discoveries for the rest of the current day-phase.,3
-Cave,N/A,Terrain,Cave terrain,"When played, Lex must move to a Cave terrain.",2
-Forest,N/A,Terrain,Forest terrain,"When played, Lex must move to a Forest terrain.",2
-Hills,N/A,Terrain,Hills terrain,"When played, Lex must move to the Hills terrain",2
-Swamp,N/A,Terrain,Swamp terrain,"When played, Lex must move to a Swamp terrain.",2
+Cave,Cave,Terrain,Cave terrain,"When played, Lex must move to a Cave terrain.",2
+Forest,Forest,Terrain,Forest terrain,"When played, Lex must move to a Forest terrain.",2
+Hills,Hills,Terrain,Hills terrain,"When played, Lex must move to the Hills terrain",2
+Swamp,Swamp,Terrain,Swamp terrain,"When played, Lex must move to a Swamp terrain.",2
