@@ -17,10 +17,17 @@ public class UIManager : MonoBehaviour {
     public Text goldText;
     public Text salvageText;
 
-	public Image Board;
+	public Button travelButton;
+	public Image board;
+
+	public GameObject popupObject;
 
 	// Reference to player
     Player player;
+
+	Tuning tuning;
+
+	Popup popup;
 
 	void Awake() {
 		UImanager = this;
@@ -28,6 +35,9 @@ public class UIManager : MonoBehaviour {
 
 	void Start () {
         player = Player.player;
+		tuning = Tuning.tuning;
+		popup = popupObject.GetComponent<Popup> ();
+		popupObject.SetActive(false);
 
         /*
         pointsText.text = "Points: ";
@@ -46,6 +56,25 @@ public class UIManager : MonoBehaviour {
     }
 
 	public void SetBoard(Land terrain) {
-		Board.sprite = terrain.boardArt;
+		board.sprite = terrain.boardArt;
+	}
+
+	public void Travel() {
+		if (tuning.travelCost <= player.GetStats () [2]) {
+			// Player can afford
+			GameController.gameController.MoveTerrain();
+			player.ChangeStats (0, 0, -tuning.travelCost);
+		} else {
+			showPopup();
+		}
+	}
+
+	public void DismissPopup() {
+		popup.Dimiss ();
+	}
+
+	void showPopup() {
+		popupObject.SetActive (true);
+		popup.SetText ("You do not have enough salvage to travel.");
 	}
 }

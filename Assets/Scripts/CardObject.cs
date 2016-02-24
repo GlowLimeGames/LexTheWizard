@@ -94,7 +94,7 @@ public class CardObject : MonoBehaviour {
         salvageText.text = cardInfo.salvage.ToString();
         description.text = cardInfo.desc;
 
-		Land terrain = GameController.gamecontroller.GetTerrainByName (cardInfo.terrain);
+		Land terrain = GameController.gameController.GetTerrainByName (cardInfo.terrain);
 		backgroundImage = images [0];
 		SetBackgroundImage (terrain.cardArt);
     }

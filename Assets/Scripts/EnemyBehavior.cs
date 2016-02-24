@@ -13,7 +13,7 @@ public class EnemyBehavior : MonoBehaviour {
 
     void Awake()
     {
-		gameController = GameController.gamecontroller;
+		gameController = GameController.gameController;
         cardPlayer = GetComponent<CardPlayer>();
         cardPlayer.SetName("Enemy");
 		hand = cardPlayer.GetCards();
