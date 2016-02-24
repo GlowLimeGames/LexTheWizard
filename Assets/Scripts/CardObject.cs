@@ -24,10 +24,13 @@ public class CardObject : MonoBehaviour {
     Text pointsText;
     Text salvageText;
     Text description;
-	Image image;
-    SpriteRenderer rend;
+	Image art;
+	Image backgroundImage;
+    //SpriteRenderer rend;
 
     CardPlayer owner; // Who has this card in their hand, if anyone
+
+	bool locked;
 
     // Variables to control card scale
     float scaleFactor;
@@ -60,7 +63,7 @@ public class CardObject : MonoBehaviour {
         mainCam = Camera.main;
         scaleFactor = tuning.scaleFactor; // Get scale factor from tuning object
         scaleVector = new Vector3(scaleFactor, scaleFactor); // Great scale vector using scale factor
-        rend = GetComponent<SpriteRenderer>();
+        //rend = GetComponent<SpriteRenderer>();
 	}
 
     // This function is called from CardGame
@@ -68,12 +71,11 @@ public class CardObject : MonoBehaviour {
     public void CreateCard(CardInfo cardInfo)
     {
         myCardInfo = cardInfo;
-
+		Image[] images = GetComponentsInChildren<Image> ();
         // Set up reference to Image component in Children
-        image = GetComponentInChildren<Image>();
-        
+        art = images[1];
 		// Assign a sprite to that image
-	    image.sprite = cardInfo.art;
+	    art.sprite = cardInfo.art;
 
         // Set up references to Text components in Children
         Text[] text = GetComponentsInChildren<Text>();
@@ -93,12 +95,24 @@ public class CardObject : MonoBehaviour {
         pointsText.text = cardInfo.points.ToString();
         salvageText.text = cardInfo.salvage.ToString();
         description.text = cardInfo.desc;
+
+		Land terrain = GameController.gameController.GetTerrainByName (cardInfo.terrain);
+		backgroundImage = images [0];
+		SetBackgroundImage (terrain.cardArt);
     }
+
+	public void SetBackgroundImage(Sprite sprite) {
+		backgroundImage.sprite = sprite;
+	}
 
     // This is called from CardGame when cards are dealt
     public void SetOwner(CardPlayer cardPlayer)
     {
         owner = cardPlayer;
+		inHand = true;
+		if (owner.name == "Enemy") {
+			Lock ();
+		}
     }
 
     public CardInfo GetCardInfo()
@@ -110,8 +124,7 @@ public class CardObject : MonoBehaviour {
         Grow();
         // Push to front
         transform.SetAsLastSibling();
-        rend.sortingOrder = 1;
-
+        //rend.sortingOrder = 1;
 
         // Assign screenPoint and offset in case user will drag the mouse
         screenPoint = mainCam.WorldToScreenPoint(gameObject.transform.position);
@@ -121,7 +134,7 @@ public class CardObject : MonoBehaviour {
 
     void OnMouseUp() {
         Shrink();
-        rend.sortingOrder = 0;
+        //rend.sortingOrder = 0;
         if (!inHand && !played)
         { // If card hasn't been played yet and is on the board
 			checkOwner();
@@ -138,8 +151,8 @@ public class CardObject : MonoBehaviour {
 
     public void Shrink()
     {
-        transform.localScale = tuning.cardScale;
-        hasShrunk = true;
+		transform.localScale = tuning.cardScale;
+		hasShrunk = true;
     }
 
 	void checkOwner () {
@@ -165,50 +178,61 @@ public class CardObject : MonoBehaviour {
         return new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
     }
 
-    /*void OnCollisionEnter2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        string colTag = coll.gameObject.tag;
-        switch (colTag)
-        {
-            case "Hand":
-                inHand = true;
-                break;
-            case "Discard":
+		if (!locked) {
+			string colTag = coll.gameObject.tag;
+			switch (colTag) {
+			case "Hand":
+				inHand = true;
+				break;
+			/* // Discard Collisions handled in CardCenter
+             * case "Discard":
                 Shrink();
-                break;
-        }  
-    }*/
+                break;*/
+			}  
+		}
+    }
 
     void OnCollisionStay2D(Collision2D coll)
     {
-        string colTag = coll.gameObject.tag;
-        switch (colTag)
-        {
-            case "Hand":
-                inHand = true;
-                break;
+		if (!locked) {
+			string colTag = coll.gameObject.tag;
+			switch (colTag) {
+			case "Hand":
+				inHand = true;
+				break;
+			/* // Discard Collisions handled in CardCenter
             case "Discard":
                 if (!hasShrunk)
                 {
                     //Shrink();
                 }
-                break;
-        }
+                break;*/
+			}
+		}
     }
 
     void OnCollisionExit2D(Collision2D coll)
     {
-        string colTag = coll.gameObject.tag;
-        switch(colTag)
-        {
-            case "Hand":
-                inHand = false;
-                break;
+        if (!locked) {
+			string colTag = coll.gameObject.tag;
+			switch (colTag) {
+			case "Hand":
+				inHand = false;
+				break;
+			/* // Discard Collisions handled in CardCenter
             case "Discard":
                 //Grow();
-                break;
-        }
+                break;*/
+			}
+		}
     }
+
+	public void Lock() {
+		locked = true;
+		Destroy (GetComponentInChildren<CardCenter> ());
+	}
 
     //Function to read lines from a text file asset
     void readTextFile()
