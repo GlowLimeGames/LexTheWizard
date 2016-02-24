@@ -17,16 +17,18 @@ public class CardPlayer : MonoBehaviour {
 
     public void PlayCard(CardObject cardObject)
     {
+		CardInfo playedCardInfo = cardObject.GetCardInfo();
         // Temporary, don't want to hard code this
         if (cardPlayerName == "Lex")
         {
-            int pointsChange = cardObject.GetCardInfo().points;
+            int pointsChange = playedCardInfo.points;
             Player.player.ChangeStats(pointsChange, 0, 0);
         }
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);
         RemoveCardFromHand(cardObject);
-    }
+		UIManager.UImanager.showPopup(cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.");
+	}
 
     public List<CardObject> GetCards()
     {
