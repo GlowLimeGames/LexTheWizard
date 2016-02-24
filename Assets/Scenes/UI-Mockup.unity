@@ -163,6 +163,7 @@ GameObject:
   - 224: {fileID: 162864023}
   - 222: {fileID: 162864025}
   - 114: {fileID: 162864024}
+  - 61: {fileID: 162864026}
   m_Layer: 0
   m_Name: Player Hand
   m_TagString: Hand
@@ -219,6 +220,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 162864022}
+--- !u!61 &162864026
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162864022}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!1 &222197017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,7 +1284,6 @@ MonoBehaviour:
   enemyBoardTargets:
   - {fileID: 1712896407}
   cardTemplate: {fileID: 176274, guid: b47d09b078e2c3b47899f998c615f851, type: 2}
-  cardTemplateSprite: {fileID: 21300000, guid: 1b9f3507e4ff2cf44995811af7d78751, type: 3}
   cardCanvas: {fileID: 442118575}
 --- !u!1 &932567230
 GameObject:

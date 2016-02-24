@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour {
 		enemyDeck = cardGame.enemyDeck;
 
 		//Initializes array of traversable terrain as the only current terrain
-		currTerrain = terrains [0];
+		currTerrain = terrains [1];
         currState = new gameState();
 		currState.setTerrain (currTerrain);
 		phase = 0;
@@ -243,6 +243,7 @@ public class GameController : MonoBehaviour {
 
 		public void setTerrain(Land terrain){
 			this.terrainType = terrain;
+			UIManager.UImanager.SetBoard (terrain);
 		}
 
 		public void setShelter(bool shelterUsed){
