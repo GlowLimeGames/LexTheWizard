@@ -30,6 +30,8 @@ public class CardObject : MonoBehaviour {
 
     CardPlayer owner; // Who has this card in their hand, if anyone
 
+	bool locked;
+
     // Variables to control card scale
     float scaleFactor;
     Vector3 scaleVector;
@@ -108,6 +110,9 @@ public class CardObject : MonoBehaviour {
     {
         owner = cardPlayer;
 		inHand = true;
+		if (owner.name == "Enemy") {
+			Lock ();
+		}
     }
 
     public CardInfo GetCardInfo()
@@ -175,27 +180,28 @@ public class CardObject : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        string colTag = coll.gameObject.tag;
-        switch (colTag)
-        {
-            case "Hand":
-                inHand = true;
-                break;
-            /* // Discard Collisions handled in CardCenter
+		if (!locked) {
+			string colTag = coll.gameObject.tag;
+			switch (colTag) {
+			case "Hand":
+				inHand = true;
+				break;
+			/* // Discard Collisions handled in CardCenter
              * case "Discard":
                 Shrink();
                 break;*/
-        }  
+			}  
+		}
     }
 
     void OnCollisionStay2D(Collision2D coll)
     {
-        string colTag = coll.gameObject.tag;
-        switch (colTag)
-        {
-            case "Hand":
-                inHand = true;
-                break;
+		if (!locked) {
+			string colTag = coll.gameObject.tag;
+			switch (colTag) {
+			case "Hand":
+				inHand = true;
+				break;
 			/* // Discard Collisions handled in CardCenter
             case "Discard":
                 if (!hasShrunk)
@@ -203,23 +209,30 @@ public class CardObject : MonoBehaviour {
                     //Shrink();
                 }
                 break;*/
-        }
+			}
+		}
     }
 
     void OnCollisionExit2D(Collision2D coll)
     {
-        string colTag = coll.gameObject.tag;
-        switch(colTag)
-        {
-            case "Hand":
-                inHand = false;
-                break;
+        if (!locked) {
+			string colTag = coll.gameObject.tag;
+			switch (colTag) {
+			case "Hand":
+				inHand = false;
+				break;
 			/* // Discard Collisions handled in CardCenter
             case "Discard":
                 //Grow();
                 break;*/
-        }
+			}
+		}
     }
+
+	public void Lock() {
+		locked = true;
+		Destroy (GetComponentInChildren<CardCenter> ());
+	}
 
     //Function to read lines from a text file asset
     void readTextFile()

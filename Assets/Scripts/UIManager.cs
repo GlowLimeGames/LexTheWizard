@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour {
 		popup.Dimiss ();
 	}
 
-	void showPopup(string message) {
+	public void showPopup(string message) {
 		popupObject.SetActive (true);
 		popup.SetText (message);
 	}
