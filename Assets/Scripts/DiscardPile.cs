@@ -26,6 +26,7 @@ public class DiscardPile : MonoBehaviour {
 			//Debug.Log (salvageChange);
             Player.player.ChangeStats(0, 0, salvageChange);
         }
+		cardObject.GetOwner ().RemoveCardFromHand (cardObject);
         cardObject.gameObject.SetActive(false);
 		selectedCard = null;
     }
