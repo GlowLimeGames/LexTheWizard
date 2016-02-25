@@ -115,6 +115,10 @@ public class CardObject : MonoBehaviour {
 		}
     }
 
+	public CardPlayer GetOwner() {
+		return owner;
+	}
+
     public CardInfo GetCardInfo()
     {
         return myCardInfo;
@@ -134,12 +138,12 @@ public class CardObject : MonoBehaviour {
 
     void OnMouseUp() {
         Shrink();
-        //rend.sortingOrder = 0;
         if (!inHand && !played)
         { // If card hasn't been played yet and is on the board
 			checkOwner();
 			owner.PlayCard(this);
             played = true;
+			locked = true;
         }
     }
 
@@ -170,7 +174,9 @@ public class CardObject : MonoBehaviour {
 	}
     void OnMouseDrag()
     {
-        transform.position = mainCam.ScreenToWorldPoint(getMousePosition()) + offset;
+		if (!locked) {
+			transform.position = mainCam.ScreenToWorldPoint (getMousePosition ()) + offset;
+		}
     }
 
     Vector3 getMousePosition()
@@ -231,7 +237,10 @@ public class CardObject : MonoBehaviour {
 
 	public void Lock() {
 		locked = true;
-		Destroy (GetComponentInChildren<CardCenter> ());
+		/*CardCenter cardCenter = GetComponentInChildren<CardCenter> ();
+		Destroy (cardCenter.gameObject.GetComponent<BoxCollider2D> ());
+		Destroy (cardCenter);
+		Debug.Log ("destroying cardCenter");*/
 	}
 
     //Function to read lines from a text file asset
