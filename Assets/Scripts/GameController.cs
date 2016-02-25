@@ -47,6 +47,9 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Start () {
+
+		EventController.Event("PlayGameMusic");
+
 		days = 0;
 		SetDawn ();
 

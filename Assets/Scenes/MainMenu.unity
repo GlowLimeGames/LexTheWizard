@@ -148,6 +148,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 62830667}
+--- !u!1001 &174081932
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &635074543
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +249,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Lex the Wizard
+  m_Text: Lex The Wizard
 --- !u!222 &635074546
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -402,6 +444,7 @@ GameObject:
   - 114: {fileID: 1230858311}
   - 114: {fileID: 1230858310}
   - 114: {fileID: 1230858314}
+  - 114: {fileID: 1230858315}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -494,6 +537,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c288f9f4e91347a4e908e000ee8721cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1230858315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230858309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296ab0139c824853922815c2ee83ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1450000380
