@@ -21,7 +21,12 @@ public class CardPlayer : MonoBehaviour {
         // Temporary, don't want to hard code this
         if (cardPlayerName == "Lex")
         {
-            int pointsChange = playedCardInfo.points;
+			int pointsChange = playedCardInfo.points;
+
+			if (pointsChange > 0) {
+				EventController.Event("PointIncrease");
+			}
+
             Player.player.ChangeStats(pointsChange, 0, 0);
 			GameController.gameController.Turn ();
         }
