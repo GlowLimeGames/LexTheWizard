@@ -21,8 +21,8 @@ public class EnemyBehavior : MonoBehaviour {
 
 	//Method to test playability of card in current state
 	private bool playable(CardObject card){
-		if((card.GetCardInfo().terrain == gameController.currTerrain.name) &&
-			(card.GetCardInfo().daytime == gameController.currDayTime)){
+		if((card.GetCardInfo().terrain == gameController.currTerrain.name) ){
+			//&& (card.GetCardInfo().daytime == gameController.currDayTime)){
 			return true;
 		}
 		return false;

@@ -55,7 +55,7 @@ public class CardGame : MonoBehaviour {
 
     // This is called when the card game starts
 	// Deals the number of starting cards to the player
-    void DealCards(int numOfCards, Deck deck, Transform[] handTargets, CardPlayer cardPlayer)
+    public void DealCards(int numOfCards, Deck deck, Transform[] handTargets, CardPlayer cardPlayer)
     {
         for (int i = 0; i < numOfCards; i++)
         {
