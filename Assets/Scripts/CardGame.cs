@@ -84,7 +84,7 @@ public class CardGame : MonoBehaviour {
 
     // Temporary function
     // Makes enemy play first card and displays it on the board
-    void showEnemyCard()
+    public void showEnemyCard()
     {
         CardObject card = enemyCards[0];
         card.transform.position = enemyBoardTargets[0].position;
