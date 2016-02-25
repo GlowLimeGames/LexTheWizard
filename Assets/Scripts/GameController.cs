@@ -113,12 +113,12 @@ public class GameController : MonoBehaviour {
 		//Dawn/Action 1
 		case 1:			
 			//TODO Update art to Dawn
-			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
-			if (usedCard != null) {
-				enemy.PlayCard(usedCard);
-			}
+			//usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
+			//if (usedCard != null) {
+				//enemy.PlayCard(usedCard);
+			//}
 
-				
+			cardGame.showEnemyCard ();
 
 			phase = (phase + 1) % 6;
 			SetAfternoon ();
@@ -127,20 +127,22 @@ public class GameController : MonoBehaviour {
 		//Afternoon/Action 2
 		case 2:			
 			//Update art to Afternoon
-			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard();
+		/*	usedCard = enemy.GetComponent<EnemyBehavior>().selectCard();
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
-			}
+			}*/
+			cardGame.showEnemyCard ();
 			phase = (phase + 1) % 6;
 			SetDusk ();
 			break;
 		//Dusk/Action 3
 		case 3:			
 			//Update art to Dusk
-			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
+			/*usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
-			}
+			}*/
+			cardGame.showEnemyCard ();
 			phase = (phase + 1) % 6;
 			SetNight ();
 			break;
@@ -164,10 +166,11 @@ public class GameController : MonoBehaviour {
 		case 5:			
 			//Update art to Night
 			//Check if current state has shelter when enemy plays cards at night
-			usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
+			/*usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
-			}
+			}*/
+			cardGame.showEnemyCard ();
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
 			SetDawn ();
