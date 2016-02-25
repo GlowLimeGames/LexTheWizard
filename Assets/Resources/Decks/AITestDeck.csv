@@ -1,10 +1,10 @@
 Title,Terrain,Card Type,Description,Effect,AI Value
-Ancient Sword,Cave/Swamp,Discovery,"Lex finds an old, rusted sword hidden among the rubble of an old temple�",RNG to decide: Lex must return home to have the sword disenchanted by his Grandmother OR Lex leaves the sword and he receives 4 gold.,3
+Ancient Sword,Cave/Swamp,Discovery,"Lex finds an old, rusted sword hidden among the rubble of an old temple",RNG to decide: Lex must return home to have the sword disenchanted by his Grandmother OR Lex leaves the sword and he receives 4 gold.,3
 Heavy Rain,Forest/Swamp/Hill,Event,It is too dangerous to travel during a sudden rainstorm. Lex cannot switch to another land card until the end of the next Day Phase.,Lex cannot switch to another land card until the end of the next Day Phase.,3
-Food Poisoning,Forest,Discovery,Lex’s stomach doesn’t feel too great… Lex loses 3 points and cannot move to another terrain for the current day-phase.,Lex loses 3 point sand cannot switch to another land card for the current day-phase.,2
-Ravenous Hounds,Hill,Event,These hounds aren't too friendly! Reduce Lex’s score by 2 and Lex discards two cards.,None,4
-The Cynocephali,Any,Event,Lex meets some kind but awfully chatty dog-headed people. They insist on asking him of his travels�,"Depending on Lex’s dice roll/RNG, he either receives 2 gold OR nothing happens.",1
-Swamp Hole,Swamp,Event,Lex has been sucked into a rather clingy swamp hole… It doesn't want him to leave.,Lex can’t leave the Swamp or make any discoveries for the rest of the current day-phase.,3
+Food Poisoning,Forest,Discovery,Lex's stomach doesn't feel too great‚¶ Lex loses 3 points and cannot move to another terrain for the current day-phase.,Lex loses 3 point sand cannot switch to another land card for the current day-phase.,2
+Ravenous Hounds,Hill,Event,These hounds aren't too friendly! Reduce Lex's score by 2 and Lex discards two cards.,None,4
+The Cynocephali,Any,Event,Lex meets some kind but awfully chatty dog-headed people. They insist on asking him of his travels,"Depending on Lex's dice roll/RNG, he either receives 2 gold OR nothing happens.",1
+Swamp Hole,Swamp,Event,"Lex has been sucked into a rather clingy swamp hole‚¶ It doesn't want him to leave.",Lex can't leave the Swamp or make any discoveries for the rest of the current day-phase.,3
 Cave,Cave,Terrain,Cave terrain,"When played, Lex must move to a Cave terrain.",2
 Forest,Forest,Terrain,Forest terrain,"When played, Lex must move to a Forest terrain.",2
 Hills,Hills,Terrain,Hills terrain,"When played, Lex must move to the Hills terrain",2
