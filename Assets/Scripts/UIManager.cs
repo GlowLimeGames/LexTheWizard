@@ -64,6 +64,7 @@ public class UIManager : MonoBehaviour {
 			// Player can afford
 			GameController.gameController.MoveTerrain();
 			player.ChangeStats (0, 0, -tuning.travelCost);
+			GameController.gameController.Turn();
 		} else {
 			showPopup("I'm sorry. You do not have enough salvage to travel.");
 		}

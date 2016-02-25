@@ -23,11 +23,20 @@ public class CardPlayer : MonoBehaviour {
         {
             int pointsChange = playedCardInfo.points;
             Player.player.ChangeStats(pointsChange, 0, 0);
+			GameController.gameController.Turn ();
         }
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);
         RemoveCardFromHand(cardObject);
-		UIManager.UImanager.showPopup(cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.");
+		string message = "";
+		if (cardPlayerName == "Enemy") {
+			message += "                     --------->\n";
+		}
+		message += cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.";
+		if (cardPlayerName == "Enemy") {
+			message += "\nTap to read more about it!";
+		}
+		UIManager.UImanager.showPopup(message);
 	}
 
     public List<CardObject> GetCards()
@@ -51,4 +60,8 @@ public class CardPlayer : MonoBehaviour {
     {
         cardPlayerName = name;
     }
+
+	public int NumberOfCardsOnHand () {
+		return cards.Count;
+	}
 }

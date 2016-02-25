@@ -55,7 +55,7 @@ public class CardGame : MonoBehaviour {
 
     // This is called when the card game starts
 	// Deals the number of starting cards to the player
-    void DealCards(int numOfCards, Deck deck, Transform[] handTargets, CardPlayer cardPlayer)
+    public void DealCards(int numOfCards, Deck deck, Transform[] handTargets, CardPlayer cardPlayer)
     {
         for (int i = 0; i < numOfCards; i++)
         {
@@ -64,7 +64,7 @@ public class CardGame : MonoBehaviour {
             // Instantiate prefab with the current transform
             GameObject cardPrefab = (GameObject) Instantiate(cardTemplate, currentTransform.position, currentTransform.rotation);
             // Sets scale
-			cardPrefab.transform.localScale = cardScale;
+			cardPrefab.transform.localScale = currentTransform.localScale;
 			// Makes cardPrefab the child of the cardCanvas
 			cardPrefab.transform.SetParent(cardCanvas.transform, false);
             //cardPrefab.GetComponent<SpriteRenderer>().sprite = cardTemplateSprite;
@@ -88,6 +88,7 @@ public class CardGame : MonoBehaviour {
     {
         CardObject card = enemyCards[0];
         card.transform.position = enemyBoardTargets[0].position;
+		card.transform.localScale = enemyBoardTargets [0].localScale;
         enemy.PlayCard(card);
     }
 }
