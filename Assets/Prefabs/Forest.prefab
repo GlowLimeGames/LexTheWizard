@@ -41,7 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Forest
   cardArt: {fileID: 21300000, guid: 41dc349ab39ecf04e8f3b3245c5b0f23, type: 3}
-  boardArt: {fileID: 21300000, guid: befd692698b905740bad588e21a4ce09, type: 3}
+  boardArt: {fileID: 21300000, guid: d67af1c18c9a5ee489a20f9ecf120ef6, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -52,7 +52,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: boardArt
       value: 
-      objectReference: {fileID: 21300000, guid: befd692698b905740bad588e21a4ce09,
+      objectReference: {fileID: 21300000, guid: d67af1c18c9a5ee489a20f9ecf120ef6,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

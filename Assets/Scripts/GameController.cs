@@ -47,6 +47,9 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Start () {
+
+		EventController.Event("PlayGameMusic");
+
 		days = 0;
 		SetDawn ();
 
@@ -72,7 +75,7 @@ public class GameController : MonoBehaviour {
 
 
 		//Initializes array of traversable terrain as the only current terrain
-		currTerrainIndex = 0;
+		currTerrainIndex = 1;
 		currTerrain = terrains [currTerrainIndex];
 		currState = new gameState();
 		currState.setTerrain (currTerrain);
@@ -259,7 +262,7 @@ public class GameController : MonoBehaviour {
 			//currTerrainIndex++;
 		previousTerrain[terrainIndex] = currState;
 		phase = (phase + 1) % 6;
-			int terr = Random.Range(0,4);
+			int terr = Random.Range(1,terrains.Length);
 			currState = new gameState ();
 			currState.setTerrain (terr);
 	//	}

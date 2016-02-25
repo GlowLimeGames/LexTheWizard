@@ -125,7 +125,9 @@ public class CardObject : MonoBehaviour {
     }
 
     void OnMouseDown() {
-        Grow();
+		EventController.Event("DrawCard");
+
+		Grow();
         // Push to front
         transform.SetAsLastSibling();
         //rend.sortingOrder = 1;
