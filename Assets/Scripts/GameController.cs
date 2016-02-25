@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour {
 		//Initializes array of traversable terrain as the only current terrain
 		currTerrainIndex = 0;
 		currTerrain = terrains [currTerrainIndex];
-        currState = new gameState();
+		currState = new gameState();
 		currState.setTerrain (currTerrain);
 		phase = 0;
 		previousTerrain [0] = currState;
@@ -89,17 +89,22 @@ public class GameController : MonoBehaviour {
 	public void Turn() {
 		//TODO write playCard() to play the card in question
 
-		//Temp var to reduce the number of calls and create cards
+		//Temp var to help enemy play
 		CardObject usedCard = null;
 
 		switch(phase){
 		//1st Draw (Player and AI both draw)
 		case 0:		
-			//here usedCard is just a CardObject to facilitate drawing
+			// make player discard a card if hand is full
+			// TODO change this so player can choose between discarding new card or some old card
+			if (player.NumberOfCardsOnHand () == 5) {
+				UIManager.UImanager.showPopup ("Hand full! Discard at least one card to draw another one.");
+			}
 			//Deals Cards to the player
 			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
 			//Deals Cards to the AI
 			cardGame.DealCards (1, enemyDeck, cardGame.enemyHandTargets, enemy);
+
 			//Cycles 0 to 5 to represent the phases.
 			phase = (phase + 1) % 6;
 			Turn ();
@@ -142,6 +147,11 @@ public class GameController : MonoBehaviour {
 
 		//2nd draw phase
 		case 4:			
+			// make player discard a card if hand is full
+			// TODO change this so player can choose between discarding new card or some old card
+			if (player.NumberOfCardsOnHand () == 5) {
+				UIManager.UImanager.showPopup ("Hand full! Discard at least one card to draw another one.");
+			}
 			//Deals Cards to the player
 			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
 			//Deals Cards to the AI
@@ -199,8 +209,8 @@ public class GameController : MonoBehaviour {
 	};*/
 
 	/*
-	 * Win mechanics
-	 */
+	* Win mechanics
+	*/
 
 	// raise winning condition for points
 	public void raisePoints (int amount) {
