@@ -35,9 +35,17 @@ public class EnemyBehavior : MonoBehaviour {
 	//Simple method for selcting card. Will increase complecity as design team completes more work
 	public CardObject selectCard(){
 		//Temp var to store highest valued playable card.
-		CardObject highestCard = null;
+
+		int searchIndex = 0;
+		CardObject highestCard = hand[searchIndex];
+
+		while (!playable(highestCard) && searchIndex < hand.Count) {
+			searchIndex++;
+			highestCard = hand[searchIndex];
+		}
+
 		//Searches hand for desired card to play. Current criteria is for initial prototype only.
-		for(int i = 0; i < hand.Count; i++){
+		for(int i = 1; i < hand.Count; i++){
 			//Checks playability and relative value of card
 			if (playable(hand[i])&&(highestCard.GetCardInfo().aiValue < hand[i].GetCardInfo().aiValue)) {
 				//Sets temp variable to highest valued card;
