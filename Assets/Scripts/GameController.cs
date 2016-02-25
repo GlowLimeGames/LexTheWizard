@@ -256,7 +256,7 @@ public class GameController : MonoBehaviour {
 			//currTerrainIndex++;
 		previousTerrain[terrainIndex] = currState;
 		phase = (phase + 1) % 6;
-			int terr = Random.Range(0,4);
+			int terr = Random.Range(1,terrains.Length);
 			currState = new gameState ();
 			currState.setTerrain (terr);
 	//	}
