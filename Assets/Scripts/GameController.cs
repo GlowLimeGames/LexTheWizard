@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour {
 
 
 		//Initializes array of traversable terrain as the only current terrain
-		currTerrainIndex = 0;
+		currTerrainIndex = 1;
 		currTerrain = terrains [currTerrainIndex];
 		currState = new gameState();
 		currState.setTerrain (currTerrain);

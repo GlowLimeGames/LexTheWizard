@@ -28,7 +28,15 @@ public class CardPlayer : MonoBehaviour {
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);
         RemoveCardFromHand(cardObject);
-		UIManager.UImanager.showPopup(cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.");
+		string message = "";
+		if (cardPlayerName == "Enemy") {
+			message += "                     --------->\n";
+		}
+		message += cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.";
+		if (cardPlayerName == "Enemy") {
+			message += "\nTap to read more about it!";
+		}
+		UIManager.UImanager.showPopup(message);
 	}
 
     public List<CardObject> GetCards()
