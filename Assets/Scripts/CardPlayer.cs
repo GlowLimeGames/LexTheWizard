@@ -23,6 +23,7 @@ public class CardPlayer : MonoBehaviour {
         {
             int pointsChange = playedCardInfo.points;
             Player.player.ChangeStats(pointsChange, 0, 0);
+			GameController.gameController.Turn ();
         }
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);

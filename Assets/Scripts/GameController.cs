@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour {
 
 	private gameState currState;
 	private gameState[] previousTerrain = new gameState[6];
+	private int terrainIndex;
 	private int phase;
 
 
@@ -49,7 +50,7 @@ public class GameController : MonoBehaviour {
 		days = 0;
 		SetDawn ();
 
-		//currTerrain
+		terrainIndex = 1;
 
 		winPoints = 30;
 		winGold = 25;
@@ -111,6 +112,8 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}
+
+				
 
 			phase = (phase + 1) % 6;
 			SetAfternoon ();
@@ -239,10 +242,14 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void MoveTerrain() {
-		if (currTerrainIndex < terrains.Length - 1) {
+		//if (currTerrainIndex < terrains.Length - 1) {
 			//currTerrainIndex++;
-			currState.setTerrain (Random.Range(0,4));
-		}
+		previousTerrain[terrainIndex] = currState;
+		phase = (phase + 1) % 6;
+			int terr = Random.Range(0,4);
+			currState = new gameState ();
+			currState.setTerrain (terr);
+	//	}
 	}
 
 	//NOTE: May move below and associated code to more appropriate class.
