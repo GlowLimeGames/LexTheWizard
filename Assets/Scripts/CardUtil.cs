@@ -130,22 +130,21 @@ public static class CardUtil {
 	}
 
 	public static CardInfo ParseAICardInfoFromCSVLine (string lineFromCSV) {
-
+	
 		string[] parameters = splitStringWithEscapeQuoteMarks(lineFromCSV, ',');
 
 		if (parameters.Length == _numberOfAICardInfoParameters) {
-
-			return new CardInfo (
-				parameters[0],
-				parameters[1],
-				parameters[2],
-				parameters[3],
-				int.Parse(parameters[5])
-			);
+				return new CardInfo (
+					parameters[0],
+					parameters[1],
+					parameters[2],
+					parameters[3],
+					int.Parse(parameters[5])
+				);
 
 		} else {
 
-			Debug.LogError("Incorrect number of parameters to generate card info: " + parameters.Length);
+			Debug.LogError("Incorrect number of parameters to generate card info: " + parameters.Length + " in card " + parameters[0]);
 			return null;
 
 		}
@@ -193,7 +192,7 @@ public static class CardUtil {
 
 	// Tests for quote mark
 	static bool isQuoteMark (char testForQuoteMark) {
-		return testForQuoteMark == '"' || testForQuoteMark == '\'';
+		return testForQuoteMark == '"';
 	}
 
 	// Removes quote marks from either end of a string
