@@ -20,9 +20,11 @@ public class Deck : MonoBehaviour {
 
     public List<CardInfo> cards;
     DeckShuffling deckShuffling;
+    GameController gameController;
 
-    void Awake()
+    void Start()
     {
+        gameController = GameController.gameController;
         deckShuffling = GetComponent<DeckShuffling>();
         cards = new List<CardInfo>();
         MakeTestDeck();
@@ -31,11 +33,11 @@ public class Deck : MonoBehaviour {
 	void addStaticCardsToDeck () {
         // Add sample cards
 		Sprite placeholder = Resources.Load<Sprite>("Cards/Placeholder");
-		cards.Add(new CardInfo("Title 1", "Swamp", "Night", "Discovery", 2, 10, 20, 1, placeholder, "This is description 1 for Card 1."));
-		cards.Add(new CardInfo("Title 2", "Swamp", "Dawn", "Event", 1, 5, 15, 2, placeholder, "This is description 1 for Card 2."));
-		cards.Add(new CardInfo("Title 3", "Swamp", "Dusk", "Event", 3, 1, 2, 1, placeholder, "This is the description 1 for Card 3."));
-		cards.Add(new CardInfo("Title 4", "Swamp", "Morning", "Discovery", 1, 2, 3, 1, placeholder, "This is description 1 for Card 4."));
-		cards.Add(new CardInfo("Title 5", "Swamp", "Afternoon", "Discovery", 4, 6, 4, 3, placeholder, "This is the description 1 for Card 5."));
+		cards.Add(new CardInfo("Title 1", new Land[1] {gameController.GetTerrainByName("Swamp")}, "Night", "Discovery", 2, 10, 20, 1, placeholder, "This is description 1 for Card 1."));
+		cards.Add(new CardInfo("Title 2", new Land[1] {gameController.GetTerrainByName("Swamp")}, "Dawn", "Event", 1, 5, 15, 2, placeholder, "This is description 1 for Card 2."));
+        cards.Add(new CardInfo("Title 3", new Land[1] { gameController.GetTerrainByName("Swamp") }, "Dusk", "Event", 3, 1, 2, 1, placeholder, "This is the description 1 for Card 3."));
+        cards.Add(new CardInfo("Title 4", new Land[1] { gameController.GetTerrainByName("Swamp") }, "Morning", "Discovery", 1, 2, 3, 1, placeholder, "This is description 1 for Card 4."));
+        cards.Add(new CardInfo("Title 5", new Land[1] { gameController.GetTerrainByName("Swamp") }, "Afternoon", "Discovery", 4, 6, 4, 3, placeholder, "This is the description 1 for Card 5."));
 	}
 
 	// Temporary function
@@ -80,7 +82,7 @@ public class CardInfo
 	public DeckType deckType;
 
     public string title;
-    public string terrain;
+    public Land[] terrains;
 	public string daytime;
 	public string cardType;
     public string desc;
@@ -94,10 +96,10 @@ public class CardInfo
     public Sprite art;
 
 	// Constructor for a player card
-	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, Sprite art, string desc)
+	public CardInfo(string title, Land[] terrains, string daytime, string cardType, int points, int gold, int salvage, int homeValue, Sprite art, string desc)
     {
         this.title = title;
-        this.terrain = terrain;
+        this.terrains = terrains;
 		this.daytime = daytime;
         this.cardType = cardType;
         this.desc = desc;
@@ -110,10 +112,10 @@ public class CardInfo
     }
 
     // For testing cards without art
-	public CardInfo(string title, string terrain, string daytime, string cardType, int points, int gold, int salvage, int homeValue, string desc, int aiValue)
+	public CardInfo(string title, Land[] terrains, string daytime, string cardType, int points, int gold, int salvage, int homeValue, string desc, int aiValue)
     {
         this.title = title;
-        this.terrain = terrain;
+        this.terrains = terrains;
 		this.daytime = daytime;
         this.cardType = cardType;
         this.desc = desc;
@@ -126,11 +128,11 @@ public class CardInfo
     }
 
 	// Constructor for an AI Card
-	public CardInfo (string title, string terrain, string cardType, string description, int aiValue) {
+	public CardInfo (string title, Land[] terrains, string cardType, string description, int aiValue) {
 		this.deckType = DeckType.AI;
 
 		this.title = title;
-		this.terrain = terrain;
+		this.terrains = terrains;
 		this.cardType = cardType;
 		this.desc = description;
 		this.aiValue = aiValue;
@@ -141,10 +143,10 @@ public class CardInfo
 		if (deckType == DeckType.Player) {
 			
 			return string.Format (
-				"[Player CardInfo], Title: {0}, Terrain: {1}, Time of Day: {2}, Card Type: {3}," +
+				"[Player CardInfo], Title: {0}, Terrains: {1}, Time of Day: {2}, Card Type: {3}," +
 				" Points: {4}, Salvage: {5}, Home Value: {6}, Sprite: {7}, Description: {8}",
 				title,
-				terrain,
+				terrains,
 				daytime,
 				cardType,
 				points,
@@ -158,10 +160,10 @@ public class CardInfo
 		} else if (deckType == DeckType.AI) {
 
 			return string.Format (
-				"[AI CardInfo], Title: {0}, Type {1}, Terrain: {2}, Description: {3}, AI Value: {4}",
+				"[AI CardInfo], Title: {0}, Type {1}, Terrains: {2}, Description: {3}, AI Value: {4}",
 				title,
 				cardType,
-				terrain,
+				terrains,
 				desc,
 				aiValue
 			);

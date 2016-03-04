@@ -5,6 +5,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 public static class CardUtil {
 	
@@ -109,7 +110,7 @@ public static class CardUtil {
 			
 			return new CardInfo (
 				parameters[0],
-				parameters[1],
+				ParseTerrains(parameters[1]),
 				parameters[2],
 				parameters[3],
 				int.Parse(parameters[4]),
@@ -136,7 +137,7 @@ public static class CardUtil {
 		if (parameters.Length == _numberOfAICardInfoParameters) {
 				return new CardInfo (
 					parameters[0],
-					parameters[1],
+					ParseTerrains(parameters[1]),
 					parameters[2],
 					parameters[3],
 					int.Parse(parameters[5])
@@ -150,6 +151,59 @@ public static class CardUtil {
 		}
 
 	}
+
+    /*
+     * This function parses strings like "Swamp/Forest/Hills" into arrays of the corresponding Lands
+     * It looks up these terrains in GameController
+     * 
+     * "Any" will return an array of all the terrains.
+     * 
+     * In the case of something like "Caves/Any"
+     * the first terrain ("Caves" in this example) becomes the default 
+     * and is stored in the first index of the returned array.
+     * 
+     * The default terrain determines which card background sprite to use.
+     */
+    public static Land[] ParseTerrains(string terrainString)
+    {
+        Land[] terrains = null;
+        GameController gameController = GameController.gameController;
+        Land[] allTerrains = gameController.terrains;
+        string[] terrainNames = terrainString.Split('/');
+        if (ArrayUtility.Contains(terrainNames, "Any"))
+        { // If card can be played on any terrain
+            terrains = new Land[allTerrains.Length];
+            if (terrainNames[0] == "Any")
+            { // If the default terrain is not specified (which would normally be at the 0 index)
+                terrains = allTerrains; // Include all terrains
+            }
+            else
+            { // If a default terrain is specified
+                Land defaultTerrain = gameController.GetTerrainByName(terrainNames[0]);
+                terrains[0] = defaultTerrain; // Set default terrain as first index of terrains array
+                int nextIndex = 1;
+                // Add remaining terrains
+                for (int i = 0; i < allTerrains.Length; i++)
+                {
+                    Land currentTerrain = allTerrains[i];
+                    if (currentTerrain != defaultTerrain)
+                    { // If the current terrain is not the default terrain (and therefore already in the array)
+                        terrains[nextIndex] = currentTerrain; // Add the terrain to the array
+                        nextIndex++;
+                    }
+                }
+            }
+        }
+        else
+        { // If the card can not be played on any terrain
+            terrains = new Land[terrainNames.Length];
+            for (int i = 0; i < terrainNames.Length; i++)
+            { // For all terrain names specified
+                terrains[i] = gameController.GetTerrainByName(terrainNames[i]); // Look up the terrain and store it in the array
+            }
+        }
+        return terrains;
+    }
 
 	public static Sprite LoadCardSprite (string cardSpriteNameInResources) {
 		return Resources.Load<Sprite>(_cardArtFilePathInResources + cardSpriteNameInResources);

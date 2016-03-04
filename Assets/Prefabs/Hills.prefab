@@ -40,7 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Hills
-  cardArt: {fileID: 21300000, guid: 4de9688a5d51151418eff1504f6d59f7, type: 3}
+  playerCardArt: {fileID: 21300000, guid: 4de9688a5d51151418eff1504f6d59f7, type: 3}
+  enemyCardArt: {fileID: 21300000, guid: 39d24dafd53cda948ba419e7616ea8a3, type: 3}
   boardArt: {fileID: 21300000, guid: f40b90d63bfd9b642b8ab9303813e6a2, type: 3}
 --- !u!1001 &100100000
 Prefab:
@@ -53,6 +54,16 @@ Prefab:
       propertyPath: boardArt
       value: 
       objectReference: {fileID: 21300000, guid: f40b90d63bfd9b642b8ab9303813e6a2,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: enemyCardArt
+      value: 
+      objectReference: {fileID: 21300000, guid: 39d24dafd53cda948ba419e7616ea8a3,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: playerCardArt
+      value: 
+      objectReference: {fileID: 21300000, guid: 4de9688a5d51151418eff1504f6d59f7,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
