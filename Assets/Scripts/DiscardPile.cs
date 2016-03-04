@@ -16,16 +16,34 @@ public class DiscardPile : MonoBehaviour {
     {
         if (discardType == "Sell")
         {
+
+
+
+
             int goldChange = cardObject.GetCardInfo().gold;
+
+			if (goldChange > 0) {
+				EventController.Event("GoldIncrease");
+			}
+
 			//Debug.Log (goldChange);
             Player.player.ChangeStats(0, goldChange, 0);
         }
         else if (discardType == "Salvage")
         {
+
+
+
             int salvageChange = cardObject.GetCardInfo().salvage;
+
+			if (salvageChange > 0) {
+				EventController.Event("SalvageIncrease");
+			}
+
 			//Debug.Log (salvageChange);
             Player.player.ChangeStats(0, 0, salvageChange);
         }
+		cardObject.GetOwner ().RemoveCardFromHand (cardObject);
         cardObject.gameObject.SetActive(false);
 		selectedCard = null;
     }

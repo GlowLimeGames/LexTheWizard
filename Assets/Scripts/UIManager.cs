@@ -62,8 +62,10 @@ public class UIManager : MonoBehaviour {
 	public void Travel() {
 		if (tuning.travelCost <= player.GetStats () [2]) {
 			// Player can afford
+			EventController.Event("Decrease");
 			GameController.gameController.MoveTerrain();
 			player.ChangeStats (0, 0, -tuning.travelCost);
+			GameController.gameController.Turn();
 		} else {
 			showPopup("I'm sorry. You do not have enough salvage to travel.");
 		}
@@ -76,5 +78,9 @@ public class UIManager : MonoBehaviour {
 	public void showPopup(string message) {
 		popupObject.SetActive (true);
 		popup.SetText (message);
+	}
+
+	public void PlayButtonPressSFX () {
+		EventController.Event("ButtonPress");
 	}
 }
