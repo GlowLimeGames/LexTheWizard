@@ -40,7 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Swamp
-  cardArt: {fileID: 21300000, guid: d637e4caa74e6734bb925966f43533ca, type: 3}
+  playerCardArt: {fileID: 21300000, guid: d637e4caa74e6734bb925966f43533ca, type: 3}
+  enemyCardArt: {fileID: 21300000, guid: 014f1ee0af9e4204685bc6cf65d7bbfc, type: 3}
   boardArt: {fileID: 21300000, guid: 14637b1e80a33d1458ee8ac7b59ea430, type: 3}
 --- !u!1001 &100100000
 Prefab:
@@ -58,6 +59,16 @@ Prefab:
       propertyPath: boardArt
       value: 
       objectReference: {fileID: 21300000, guid: 14637b1e80a33d1458ee8ac7b59ea430,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: enemyCardArt
+      value: 
+      objectReference: {fileID: 21300000, guid: 014f1ee0af9e4204685bc6cf65d7bbfc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: playerCardArt
+      value: 
+      objectReference: {fileID: 21300000, guid: d637e4caa74e6734bb925966f43533ca,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

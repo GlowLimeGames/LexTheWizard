@@ -21,11 +21,16 @@ public class EnemyBehavior : MonoBehaviour {
 
 	//Method to test playability of card in current state
 	private bool playable(CardObject card){
-		if((card.GetCardInfo().terrain != gameController.currTerrain.name) ){
-			//&& (card.GetCardInfo().daytime == gameController.currDayTime)){        taken out for alpha
-			return false;
-		}
-		return true;
+        Land[] cardsAcceptedTerrains = card.GetCardInfo().terrains;
+        string cardsAcceptedDayTime = card.GetCardInfo().daytime;
+        for (int i = 0; i < cardsAcceptedTerrains.Length; i++)
+        {
+            if (cardsAcceptedTerrains[i] == gameController.currTerrain)//&& (card.GetCardInfo().daytime == gameController.currDayTime)){ taken out for alpha
+            {
+                return true;
+            }
+        }
+		return false;
 	}
 
 

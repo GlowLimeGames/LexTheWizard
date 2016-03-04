@@ -1467,7 +1467,8 @@ MonoBehaviour:
   - {fileID: 2112049465}
   enemyBoardTargets:
   - {fileID: 1712896407}
-  cardTemplate: {fileID: 176274, guid: b47d09b078e2c3b47899f998c615f851, type: 2}
+  playerCardTemplate: {fileID: 123512, guid: b86a191d8539aca4ea67ecabc0e85562, type: 2}
+  enemyCardTemplate: {fileID: 173400, guid: 83505db4c910078428fcc44422f2c301, type: 2}
   cardCanvas: {fileID: 442118575}
 --- !u!1 &932567230
 GameObject:
@@ -2636,6 +2637,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10

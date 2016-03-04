@@ -27,8 +27,7 @@ public class GameController : MonoBehaviour {
 	private int terrainIndex;
 	private int phase;
 
-
-	private GameObject cardTemplate;
+    private GameObject[] cardTemplates; 
 	private GameObject cardCanvas;
 
 	// variables to track family members status
@@ -69,10 +68,8 @@ public class GameController : MonoBehaviour {
 		playerDeck = cardGame.playerDeck;
 		enemyDeck = cardGame.enemyDeck;
 
-		cardTemplate = cardGame.cardTemplate;
+		cardTemplates = new GameObject[2] {cardGame.playerCardTemplate, cardGame.enemyCardTemplate};
 		cardCanvas = cardGame.cardCanvas;
-
-
 
 		//Initializes array of traversable terrain as the only current terrain
 		currTerrainIndex = 1;

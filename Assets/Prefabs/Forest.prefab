@@ -40,7 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Forest
-  cardArt: {fileID: 21300000, guid: 41dc349ab39ecf04e8f3b3245c5b0f23, type: 3}
+  playerCardArt: {fileID: 21300000, guid: 41dc349ab39ecf04e8f3b3245c5b0f23, type: 3}
+  enemyCardArt: {fileID: 21300000, guid: 7b252082d4082394eae1e19545442fb4, type: 3}
   boardArt: {fileID: 21300000, guid: d67af1c18c9a5ee489a20f9ecf120ef6, type: 3}
 --- !u!1001 &100100000
 Prefab:
@@ -53,6 +54,16 @@ Prefab:
       propertyPath: boardArt
       value: 
       objectReference: {fileID: 21300000, guid: d67af1c18c9a5ee489a20f9ecf120ef6,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: enemyCardArt
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b252082d4082394eae1e19545442fb4,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: playerCardArt
+      value: 
+      objectReference: {fileID: 21300000, guid: 41dc349ab39ecf04e8f3b3245c5b0f23,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
