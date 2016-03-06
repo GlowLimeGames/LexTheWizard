@@ -2,21 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyBehavior : MonoBehaviour {
+public class EnemyBehavior : CardPlayer {
 
-    CardPlayer cardPlayer;
+	void Awake() {
+		base.Awake ();
+	}
 
-	//Placeholder for the enemy's hand
-	List<CardObject> hand = new List<CardObject>();
-
-	GameController gameController;
-
-    void Awake()
+    void Start()
     {
-		gameController = GameController.gameController;
-        cardPlayer = GetComponent<CardPlayer>();
-        cardPlayer.SetName("Enemy");
-		hand = cardPlayer.GetCards();
+		cardPlayerName = "Enemy";
+		base.Start ();
     }
 
 	//Method to test playability of card in current state
@@ -32,8 +27,7 @@ public class EnemyBehavior : MonoBehaviour {
         }
 		return false;
 	}
-
-
+	
 	//TODO talk with design team to determine how a real player might value their cards
 	//TODO Change the behavior of enemy selction depending on what kind of enemy it is.
 
