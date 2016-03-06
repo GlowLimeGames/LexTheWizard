@@ -5,7 +5,7 @@
  * This information is determined by CardInfo
  * 
  * Describes user interaction, such as changing scale on MouseDown and MouseUp
- * Script for click and drag: http://answers.unity3d.com/questions/12322/drag-gameobject-with-mouse.html
+ * 
  */
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,42 +13,31 @@ using System.Collections;
 
 public class CardObject : MonoBehaviour {
 
-    // text asset variable to assign the text file to
-    public TextAsset testFile;
-
     // UI Components
-    Text titleText;
-    Text terrainText;
-    Text cardTypeText;
-    Text goldText;
-    Text pointsText;
-    Text salvageText;
-    Text description;
-	Image image;
-    SpriteRenderer rend;
+    protected Text[] text;
+    protected Text titleText;
+    protected Text terrainText;
+    protected Text cardTypeText;
+    protected Text description;
+    protected Image[] images;
+    protected Sprite cardBackground;
 
-    CardPlayer owner; // Who has this card in their hand, if anyone
+    protected CardPlayer owner; // Who has this card in their hand, if anyone
+    protected Land[] acceptedTerrains; // Terrains this card can be played on
 
-    // Variables to control card scale
-    float scaleFactor;
-    Vector3 scaleVector;
+	protected bool locked; // Whether the card is interactable
 
-    // Variables for click and drag
-    Camera mainCam;
-    Vector3 screenPoint;
-    Vector3 offset;
-    Vector3 mousePosition;
+    Vector3 scaleVector; // Variable to control card scale when pressed
 
     // Variable for handling collisions
-    bool touchingBoard;
-    bool inHand;
-    bool played; // Whether the card has been played
-    bool hasShrunk;
+    protected bool inHand; // Whether the card is in a card player's hand
+    protected bool played; // Whether the card has been played
+    protected bool touchingBoard;
+    protected bool hasShrunk;
 
-    CardInfo myCardInfo;
+    protected CardInfo myCardInfo;
 
-    // Reference to Tuning object
-    Tuning tuning;
+    protected Tuning tuning; // Reference to Tuning object
 
 	//Usability variables: Indices correspond to enums for time and terrain. 0 means not usable 1 means usable.
 	int[] terrainUse = new int[4];
@@ -57,47 +46,115 @@ public class CardObject : MonoBehaviour {
     void Start()
     {
         tuning = Tuning.tuning;
-        mainCam = Camera.main;
-        scaleFactor = tuning.scaleFactor; // Get scale factor from tuning object
-        scaleVector = new Vector3(scaleFactor, scaleFactor); // Great scale vector using scale factor
-        rend = GetComponent<SpriteRenderer>();
+        float scaleFactor = tuning.scaleFactor; // Get scale factor from tuning object
+        scaleVector = new Vector3(scaleFactor, scaleFactor); // This vector is added to local scale on Grow()
 	}
 
-    // This function is called from CardGame
-    // A CardObject is created from the variables in CardInfo
-    public void CreateCard(CardInfo cardInfo)
+    // This is called in CardGame and overridden in CardObject subclasses (PlayerCardObject and EnemyCardObject)
+    public virtual void CreateCard(CardInfo cardInfo)
+    {
+
+    }
+
+    /* This function is called in PlayerCardObject and EnemyCardObject
+     * Sets info both classes have in common
+     * Assigns myCardInfo, cardBackground, titleText, terrainText, cardTypeText, 
+     * description, accepted terrains
+     */
+    protected void SetCommonInfo(CardInfo cardInfo)
     {
         myCardInfo = cardInfo;
 
-        // Set up reference to Image component in Children
-        image = GetComponentInChildren<Image>();
-        // Assign a sprite to that image
-        image.sprite = cardInfo.art;
+        // Set reference to image component(s) in children
+        images = GetComponentsInChildren<Image>();
+        cardBackground = images[0].sprite; // Setting the background is called in each subclass
 
-        // Set up references to Text components in Children
-        Text[] text = GetComponentsInChildren<Text>();
+        // Set references to Text components in Children
+        text = GetComponentsInChildren<Text>();
         titleText = text[0];
         terrainText = text[1];
         cardTypeText = text[2];
-        goldText = text[3];
-        pointsText = text[4];
-        salvageText = text[5];
-        description = text[6];
+        description = text[3];
+
+        // Set array of accepted terrains
+        acceptedTerrains = myCardInfo.terrains;
 
         // Assign strings to Text components
-        titleText.text = cardInfo.title;
-        terrainText.text = cardInfo.terrain;
+        titleText.text = myCardInfo.title;
         cardTypeText.text = cardInfo.cardType;
-        goldText.text = cardInfo.gold.ToString();
-        pointsText.text = cardInfo.points.ToString();
-        salvageText.text = cardInfo.salvage.ToString();
         description.text = cardInfo.desc;
+        SetTerrainText();
+    }
+
+    public void PlayCard()
+    {
+        CheckOwner();
+        owner.PlayCard(this);
+        played = true;
+    }
+
+    // Sets Card Background
+    // This is called in PlayerCardObject and EnemyCardObject
+	public void SetCardBackground(Sprite sprite) {
+		images[0].sprite = sprite;
+	}
+
+    /*
+     * Sets the card's terrain text from its accepted terrains array
+     * This is called in SetCommonInfo()
+     * 
+     * Ex: [Swamp, Forest] will produce the string "Swamp/Forest"
+     * If the card accepts every terrain, the terrain text is set to "Any"
+     */
+    void SetTerrainText()
+    {
+        if (acceptedTerrains.Length == GameController.gameController.terrains.Length)
+        { // If this card accepts the total number of terrains
+            terrainText.text = "Any"; // Set its terrain text to "Any"
+            return;
+        }
+        // Combine terrains into one string
+        string terrainsString = acceptedTerrains[0].name;
+        for (int i = 1; i < acceptedTerrains.Length; i++)
+        {
+            terrainsString += "/" + acceptedTerrains[i].name;
+        }
+        terrainText.text = terrainsString;
     }
 
     // This is called from CardGame when cards are dealt
     public void SetOwner(CardPlayer cardPlayer)
     {
         owner = cardPlayer;
+		inHand = true;
+		/*if (owner.name == "Enemy") {
+			Lock ();
+		}*/
+    }
+
+    public CardPlayer GetOwner()
+    {
+        CheckOwner();
+        return owner;
+    }
+
+    void CheckOwner()
+    {
+        if (owner == null)
+        {
+            if (myCardInfo.deckType == DeckType.AI)
+            {
+
+                owner = CardGame.Instance.enemy;
+
+            }
+            else if (myCardInfo.deckType == DeckType.Player)
+            {
+
+                owner = CardGame.Instance.player;
+
+            }
+        }
     }
 
     public CardInfo GetCardInfo()
@@ -105,27 +162,21 @@ public class CardObject : MonoBehaviour {
         return myCardInfo;
     }
 
+    public bool Played
+    {
+        get { return played; }
+    }
+
     void OnMouseDown() {
-        Grow();
+		EventController.Event("DrawCard");
+
+		Grow();
         // Push to front
         transform.SetAsLastSibling();
-        rend.sortingOrder = 1;
-
-
-        // Assign screenPoint and offset in case user will drag the mouse
-        screenPoint = mainCam.WorldToScreenPoint(gameObject.transform.position);
-        //mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-        offset = gameObject.transform.position - mainCam.ScreenToWorldPoint(getMousePosition());
     }
 
     void OnMouseUp() {
         Shrink();
-        rend.sortingOrder = 0;
-        if (!inHand && !played)
-        { // If card hasn't been played yet and is on the board
-            owner.PlayCard(this);
-            played = true;
-        }
     }
 
     public void Grow()
@@ -136,87 +187,8 @@ public class CardObject : MonoBehaviour {
 
     public void Shrink()
     {
-        transform.localScale = tuning.cardScale;
-        hasShrunk = true;
-    }
-
-    void OnMouseDrag()
-    {
-        transform.position = mainCam.ScreenToWorldPoint(getMousePosition()) + offset;
-    }
-
-    Vector3 getMousePosition()
-    {
-        return new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-    }
-
-    /*void OnCollisionEnter2D(Collision2D coll)
-    {
-        string colTag = coll.gameObject.tag;
-        switch (colTag)
-        {
-            case "Hand":
-                inHand = true;
-                break;
-            case "Discard":
-                Shrink();
-                break;
-        }  
-    }*/
-
-    void OnCollisionStay2D(Collision2D coll)
-    {
-        string colTag = coll.gameObject.tag;
-        switch (colTag)
-        {
-            case "Hand":
-                inHand = true;
-                break;
-            case "Discard":
-                if (!hasShrunk)
-                {
-                    //Shrink();
-                }
-                break;
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D coll)
-    {
-        string colTag = coll.gameObject.tag;
-        switch(colTag)
-        {
-            case "Hand":
-                inHand = false;
-                break;
-            case "Discard":
-                //Grow();
-                break;
-        }
-    }
-
-    //Function to read lines from a text file asset
-    void readTextFile()
-    {
-        //splits each line into a spot in an array
-        string[] linesInFile = testFile.text.Split ('\n');
-        //prints each line to the console
-        //foreach (string line in linesInFile) {
-        //	print (line);
-        //}
-    }
-    //function to read a particular line from a file by searching for it with substring lineStart
-    void readLineFromFile(string lineStart)
-    {
-        //splits each line into a spot in an array
-        string[] linesInFile = testFile.text.Split ('\n');
-        foreach (string line in linesInFile) {
-            //searches each index for substring lineStart
-            if (line.Contains (lineStart))
-            {
-                print (line);
-            }
-        }
+		transform.localScale = tuning.cardScale;
+		hasShrunk = true;
     }
 }
 

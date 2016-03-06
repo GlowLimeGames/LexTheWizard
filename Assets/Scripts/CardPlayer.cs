@@ -17,21 +17,38 @@ public class CardPlayer : MonoBehaviour {
 
     public void PlayCard(CardObject cardObject)
     {
+		CardInfo playedCardInfo = cardObject.GetCardInfo();
         // Temporary, don't want to hard code this
         if (cardPlayerName == "Lex")
         {
-            int pointsChange = cardObject.GetCardInfo().points;
+			int pointsChange = playedCardInfo.points;
+
+			if (pointsChange > 0) {
+				EventController.Event("PointIncrease");
+			}
+
             Player.player.ChangeStats(pointsChange, 0, 0);
+			GameController.gameController.Turn ();
         }
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);
         RemoveCardFromHand(cardObject);
-    }
+		string message = "";
+		if (cardPlayerName == "Enemy") {
+			message += "                     --------->\n";
+		}
+		message += cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.";
+		if (cardPlayerName == "Enemy") {
+			message += "\nTap to read more about it!";
+		}
+		UIManager.UImanager.showPopup(message);
+	}
 
     public List<CardObject> GetCards()
     {
         return cards;
     }
+
 
     public void AddCardToHand(CardObject cardObject)
     {
@@ -48,4 +65,8 @@ public class CardPlayer : MonoBehaviour {
     {
         cardPlayerName = name;
     }
+
+	public int NumberOfCardsOnHand () {
+		return cards.Count;
+	}
 }
