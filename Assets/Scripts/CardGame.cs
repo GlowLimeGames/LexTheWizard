@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
  * Attached to GameManager object 
  * 
  * Contains function for dealing cards
@@ -38,7 +39,9 @@ public class CardGame : MonoBehaviour {
     int numOfStartingCards; // Number of cards each card player starts with
     Vector3 cardScale;
 
-	void Awake () {
+	bool[] playerSpotsForCards = {false, false, false, false, false}; // Array that keeps track of each available position in player's hand to insert new cards
+
+	void Start () {
 		Instance = this;
 	}
 
@@ -84,27 +87,50 @@ public class CardGame : MonoBehaviour {
             if (cardDeckType == DeckType.Player)
             { // If this is a player card
                 cardTemplate = playerCardTemplate; // Use player card template (that with more text fields for gold, salvage, etc.)
+
+				// Check which position in hand is free to insert new card
+				while (i < numOfStartingCards && playerSpotsForCards[i] != false)
+				{
+					i++;
+				}
+				if (i < numOfStartingCards) 
+				{ // Update available position
+					currentTransform = handTargets [i];
+				}
             }
             else if (cardDeckType == DeckType.AI)
             { // If this is an enemy card
                 cardTemplate = enemyCardTemplate; // Use enemy card template
             }
+			// If player's hand is not full
+			if (i < numOfStartingCards) {
+				// Instantiate prefab with the current transform
+				GameObject cardPrefab = (GameObject)Instantiate (cardTemplate, currentTransform.position, currentTransform.rotation);
+				// Sets scale
+				cardPrefab.transform.localScale = currentTransform.localScale;
+				// Makes cardPrefab the child of the cardCanvas
+				cardPrefab.transform.SetParent (cardCanvas.transform, false);
 
-            // Instantiate prefab with the current transform
-            GameObject cardPrefab = (GameObject) Instantiate(cardTemplate, currentTransform.position, currentTransform.rotation);
-            // Sets scale
-			cardPrefab.transform.localScale = currentTransform.localScale;
-			// Makes cardPrefab the child of the cardCanvas
-			cardPrefab.transform.SetParent(cardCanvas.transform, false);
+				// Retrieves CardObject component (either PlayerCardObject or EnemyCardObject)
+				CardObject cardObject = cardPrefab.GetComponent<CardObject> ();
 
-			// Retrieves CardObject component (either PlayerCardObject or EnemyCardObject)
-            CardObject cardObject = cardPrefab.GetComponent<CardObject>();
-            // Assign the CardInfo to this CardObject
-            cardObject.CreateCard(cardInfo);
-            // Give the CardObject reference to its CardPlayer
-			cardObject.SetOwner(cardPlayer);
-            // Add the CardObject to CardPlayer's hand
-            cardPlayer.AddCardToHand(cardObject);
+				// Update card's position and mark card's position as taken
+				if (cardDeckType == DeckType.Player) {
+					cardObject.SetHandPosition (i);
+					playerSpotsForCards [i] = true;
+				}
+
+				// Assign the CardInfo to this CardObject
+				cardObject.CreateCard (cardInfo);
+				// Give the CardObject reference to its CardPlayer
+				cardObject.SetOwner (cardPlayer);
+				// Add the CardObject to CardPlayer's hand
+				cardPlayer.AddCardToHand (cardObject);
+			} 
+			// If player's hand is full can't draw a card
+			else {
+				Debug.Log ("Hand is full");
+			}
         }
     }
 
@@ -119,4 +145,9 @@ public class CardGame : MonoBehaviour {
 		yield return new WaitForSeconds(waitTime);
         enemy.PlayCard(card);
     }
+
+	// Set a position in player's hand as free
+	public void SetPositionFree (int pos){
+		playerSpotsForCards [pos] = false;
+	}
 }
