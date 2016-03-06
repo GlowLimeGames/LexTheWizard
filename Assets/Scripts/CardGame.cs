@@ -37,20 +37,24 @@ public class CardGame : MonoBehaviour {
     int numOfStartingCards; // Number of cards each card player starts with
     Vector3 cardScale;
 
-	void Start () {
+	void Awake () {
 		Instance = this;
+	}
 
-        tuning = Tuning.tuning;
-        numOfStartingCards = tuning.numOfStartingCards;
-        cardScale = tuning.cardScale;
+	public void SetupCardGame() {
+		tuning = Tuning.tuning;
+		numOfStartingCards = tuning.numOfStartingCards;
+		cardScale = tuning.cardScale;
+		
+		playerCards = player.GetCards();
+		enemyCards = enemy.GetCards();
+	}
 
-        playerCards = player.GetCards();
-        enemyCards = enemy.GetCards();
-
-        DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
-        DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
-
-        showEnemyCard();
+	public void BeginCardGame() {
+		DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
+		DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
+		
+		showEnemyCard();
 	}
 
     // This is called when the card game starts

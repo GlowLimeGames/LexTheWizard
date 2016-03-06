@@ -41,7 +41,7 @@ public class CardPlayer : MonoBehaviour {
 		if (cardPlayerName == "Enemy") {
 			message += "\nTap to read more about it!";
 		}
-		UIManager.UImanager.showPopup(message);
+		UIManager.UImanager.ShowPopup(message);
 	}
 
     public List<CardObject> GetCards()

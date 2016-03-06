@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour {
 	public bool isSisterAlive;
 	public bool isGrandmaAlive;
 
+	public UIManager UImanager;
+
 	//TODO associate with unwritten move home. For alpha win if points is good.
 	// win conditions varibles
 	int winPoints;
@@ -48,6 +50,8 @@ public class GameController : MonoBehaviour {
 	void Start () {
 
 		EventController.Event("PlayGameMusic");
+		UImanager = UIManager.UImanager;
+		UImanager.SetupUI ();
 
 		days = 0;
 		SetDawn ();
@@ -63,6 +67,7 @@ public class GameController : MonoBehaviour {
 		isGrandmaAlive = true;
 
 		cardGame = GetComponent<CardGame>();
+		cardGame.SetupCardGame ();
 		enemy = cardGame.enemy;
 		player = cardGame.player;
 		playerDeck = cardGame.playerDeck;
@@ -81,6 +86,24 @@ public class GameController : MonoBehaviour {
 		for (int i = 1; i < previousTerrain.Length; i++) {
 			previousTerrain [i] = null;
 		}
+
+		cardGame.BeginCardGame ();
+	}
+
+	/*
+	 * Called from UIManager when:
+	 * - PauseButton is pressed
+	 * - ReturnToGame Button is pressed
+	 * 
+	 * Pauses when input is true
+	 * Unpauses when input is false 
+	 */
+	public void Pause(bool pauseGame) {
+		if (pauseGame) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
+		}
 	}
 
 	/*
@@ -98,7 +121,7 @@ public class GameController : MonoBehaviour {
 			// make player discard a card if hand is full
 			// TODO change this so player can choose between discarding new card or some old card
 			if (player.NumberOfCardsOnHand () == 5) {
-				UIManager.UImanager.showPopup ("Hand full! Discard at least one card to draw another one.");
+				UImanager.ShowPopup ("Hand full! Discard at least one card to draw another one.");
 			}
 			//Deals Cards to the player
 			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
@@ -152,7 +175,7 @@ public class GameController : MonoBehaviour {
 			// make player discard a card if hand is full
 			// TODO change this so player can choose between discarding new card or some old card
 			if (player.NumberOfCardsOnHand () == 5) {
-				UIManager.UImanager.showPopup ("Hand full! Discard at least one card to draw another one.");
+				UImanager.ShowPopup ("Hand full! Discard at least one card to draw another one.");
 			}
 			//Deals Cards to the player
 			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
