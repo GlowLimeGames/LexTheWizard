@@ -14,13 +14,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CardGame : MonoBehaviour {
+
 	public static CardGame Instance;
 
-    public CardPlayer player;
-    public CardPlayer enemy;
-
-    public Deck playerDeck; // Reference to Deck from Player Deck GameObject
-    public Deck enemyDeck; // Reference to Deck from Enemy Deck GameObject
+    public Player player; // Inherits from CardPlayer
+    public EnemyBehavior enemy; // Inherits from CardPlayer
 
     public Transform[] playerHandTargets; // Array of transforms for each card in the player's hand
     public Transform[] enemyHandTargets; // Array of transforms for each card in enemy's hand
@@ -31,8 +29,11 @@ public class CardGame : MonoBehaviour {
     public GameObject enemyCardTemplate; // Reference to enemy card prefab
     public GameObject cardCanvas; // Reference to canvas containing cards
 
-    List<CardObject> playerCards; // Reference to cards from Player's CardPlayer
-    List<CardObject> enemyCards; // Reference to cards from Enemy's CardPlayer
+	Deck playerDeck; // Reference to Deck from Player
+	Deck enemyDeck; // Reference to Deck from EnemyBehavior
+
+    List<CardObject> playerCards; // Reference to cards in Player's hand
+    List<CardObject> enemyCards; // Reference to cards from Enemy's hand
 
     Tuning tuning; // Reference to tuning object
     int numOfStartingCards; // Number of cards each card player starts with
@@ -44,26 +45,33 @@ public class CardGame : MonoBehaviour {
 		Instance = this;
 	}
 
-	public void SetupCardGame() {
+	public void SetupCardGame(Deck playerDeck, Deck enemyDeck) {
 		tuning = Tuning.tuning;
 		numOfStartingCards = tuning.numOfStartingCards;
 		cardScale = tuning.cardScale;
-		
-		playerCards = player.GetCards();
-		enemyCards = enemy.GetCards();
+
+		this.playerDeck = playerDeck;
+		this.enemyDeck = enemyDeck;
+
+		playerCards = player.GetHand();
+		enemyCards = enemy.GetHand();
 	}
 
 	public void BeginCardGame() {
+
+		//playerDeck = player.GetDeck ();
+		//enemyDeck = enemy.GetDeck ();
 		DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
 		DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
 		
-		showEnemyCard();
+		waitAndShowEnemyCard(tuning.enemyWaitTime);
 	}
 
     // This is called when the card game starts
 	// Deals the number of starting cards to the player
     public void DealCards(int numOfCards, Deck deck, Transform[] handTargets, CardPlayer cardPlayer)
     {
+		deck = cardPlayer.GetDeck ();
         for (int i = 0; i < numOfCards; i++)
         {
             Transform currentTransform = handTargets[i];
@@ -128,11 +136,13 @@ public class CardGame : MonoBehaviour {
 
     // Temporary function
     // Makes enemy play first card and displays it on the board
-    public void showEnemyCard()
+    public IEnumerator waitAndShowEnemyCard(float waitTime)
     {
         CardObject card = enemyCards[0];
         card.transform.position = enemyBoardTargets[0].position;
 		card.transform.localScale = enemyBoardTargets [0].localScale;
+
+		yield return new WaitForSeconds(waitTime);
         enemy.PlayCard(card);
     }
 

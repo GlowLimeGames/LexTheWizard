@@ -11,55 +11,68 @@ using System.Collections.Generic;
 
 public class CardPlayer : MonoBehaviour {
 
-    string cardPlayerName; // Name of character
+	protected GameController gameController;
+	protected UIManager UImanager;
+	protected Tuning tuning;
 
-    List<CardObject> cards = new List<CardObject>(); // Reference to cards in hand
+    protected string cardPlayerName; // Name of character
+    protected List<CardObject> hand = new List<CardObject>(); // Reference to cards in hand
+	protected Deck deck;
 
-    public void PlayCard(CardObject cardObject)
+	protected virtual void Awake() {
+		deck = GetComponent<Deck> ();
+	}
+
+	protected virtual void Start() {
+		gameController = GameController.gameController;
+		UImanager = UIManager.UImanager;
+		tuning = Tuning.tuning;
+	}
+
+
+
+
+
+    public virtual void PlayCard(CardObject cardObject)
     {
-		CardInfo playedCardInfo = cardObject.GetCardInfo();
-        // Temporary, don't want to hard code this
-        if (cardPlayerName == "Lex")
-        {
-			int pointsChange = playedCardInfo.points;
+		/*CardInfo playedCardInfo = cardObject.GetCardInfo();
 
-			if (pointsChange > 0) {
-				EventController.Event("PointIncrease");
-			}
-
-            Player.player.ChangeStats(pointsChange, 0, 0);
+      
 			CardGame.Instance.SetPositionFree (cardObject.GetHandPosition ()); // Set hand position as free
-			GameController.gameController.Turn ();
+			GameController.gameController.Turn ();*/
         }
+
+
+
+	/*
+
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);
         RemoveCardFromHand(cardObject);
-		string message = "";
-		if (cardPlayerName == "Enemy") {
-			message += "                     --------->\n";
-		}
-		message += cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.";
-		if (cardPlayerName == "Enemy") {
-			message += "\nTap to read more about it!";
-		}
-		UIManager.UImanager.ShowPopup(message);
+
+		string message = cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.\nTap to read more about it!";
+		Debug.Log (UImanager == null);
+		UImanager.ShowPopup(message);*/
 	}
 
-    public List<CardObject> GetCards()
+	public Deck GetDeck() {
+		return deck;
+	}
+
+    public List<CardObject> GetHand()
     {
-        return cards;
+        return hand;
     }
-
-
+	
     public void AddCardToHand(CardObject cardObject)
     {
-        cards.Add(cardObject);
+        hand.Add(cardObject);
     }
 
     public void RemoveCardFromHand(CardObject cardObject)
     {
-        cards.Remove(cardObject);
-        Debug.Log("Cards left in " + cardPlayerName + "\'s hand: " + cards.Count.ToString());
+        hand.Remove(cardObject);
+        Debug.Log("Cards left in " + cardPlayerName + "\'s hand: " + hand.Count.ToString());
     }
 
     public void SetName(string name)
@@ -67,7 +80,7 @@ public class CardPlayer : MonoBehaviour {
         cardPlayerName = name;
     }
 
-	public int NumberOfCardsOnHand () {
-		return cards.Count;
+	public int NumberOfCardsInHand () {
+		return hand.Count;
 	}
 }

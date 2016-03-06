@@ -19,8 +19,8 @@ public class GameController : MonoBehaviour {
 	private Deck playerDeck;
 	private Deck enemyDeck;
 
-	private CardPlayer enemy;
-	private CardPlayer player;
+	private EnemyBehavior enemy;
+	private Player player;
 
 	private gameState currState;
 	private gameState[] previousTerrain = new gameState[6];
@@ -36,12 +36,11 @@ public class GameController : MonoBehaviour {
 	public bool isGrandmaAlive;
 
 	public UIManager UImanager;
+	public Tuning tuning;
 
 	//TODO associate with unwritten move home. For alpha win if points is good.
 	// win conditions varibles
 	int winPoints;
-	int winGold;
-	int winSalvage;
 
 	void Awake() {
 		gameController = this;
@@ -53,25 +52,25 @@ public class GameController : MonoBehaviour {
 		UImanager = UIManager.UImanager;
 		UImanager.SetupUI ();
 
+		tuning = Tuning.tuning;
+
 		days = 0;
 		SetDawn ();
 
 		terrainIndex = 1;
 
-		winPoints = 30;
-		winGold = 25;
-		winSalvage = 40;
+		winPoints = tuning.winPoints;
 
 		isFatherAlive = true;
 		isSisterAlive = true;
 		isGrandmaAlive = true;
 
 		cardGame = GetComponent<CardGame>();
-		cardGame.SetupCardGame ();
 		enemy = cardGame.enemy;
 		player = cardGame.player;
-		playerDeck = cardGame.playerDeck;
-		enemyDeck = cardGame.enemyDeck;
+		playerDeck = player.GetDeck();
+		enemyDeck = enemy.GetDeck();
+		cardGame.SetupCardGame (playerDeck, enemyDeck);
 
 		cardTemplates = new GameObject[2] {cardGame.playerCardTemplate, cardGame.enemyCardTemplate};
 		cardCanvas = cardGame.cardCanvas;
@@ -120,7 +119,7 @@ public class GameController : MonoBehaviour {
 		case 0:		
 			// make player discard a card if hand is full
 			// TODO change this so player can choose between discarding new card or some old card
-			if (player.NumberOfCardsOnHand () == 5) {
+			if (player.NumberOfCardsInHand () == tuning.handLimit) {
 				UImanager.ShowPopup ("Hand full! Discard at least one card to draw another one.");
 			}
 			//Deals Cards to the player
@@ -141,7 +140,7 @@ public class GameController : MonoBehaviour {
 				//enemy.PlayCard(usedCard);
 			//}
 
-			cardGame.showEnemyCard ();
+			cardGame.waitAndShowEnemyCard (tuning.enemyWaitTime);
 
 			phase = (phase + 1) % 6;
 			SetAfternoon ();
@@ -154,7 +153,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
-			cardGame.showEnemyCard ();
+			cardGame.waitAndShowEnemyCard (tuning.enemyWaitTime);
 			phase = (phase + 1) % 6;
 			SetDusk ();
 			break;
@@ -165,7 +164,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
-			cardGame.showEnemyCard ();
+			cardGame.waitAndShowEnemyCard (tuning.enemyWaitTime);
 			phase = (phase + 1) % 6;
 			SetNight ();
 			break;
@@ -174,7 +173,7 @@ public class GameController : MonoBehaviour {
 		case 4:			
 			// make player discard a card if hand is full
 			// TODO change this so player can choose between discarding new card or some old card
-			if (player.NumberOfCardsOnHand () == 5) {
+			if (player.NumberOfCardsInHand () == tuning.handLimit) {
 				UImanager.ShowPopup ("Hand full! Discard at least one card to draw another one.");
 			}
 			//Deals Cards to the player
@@ -193,7 +192,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
-			cardGame.showEnemyCard ();
+			cardGame.waitAndShowEnemyCard (tuning.enemyWaitTime);
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
 			SetDawn ();
@@ -243,22 +242,12 @@ public class GameController : MonoBehaviour {
 		winPoints += amount;
 	}
 
-	// raise winning condition for gold
-	public void raiseGold (int amount) {
-		winGold += amount;
-	}
-
-	// raise winning condition for salvage
-	public void raiseSalvage (int amount) {
-		winSalvage += amount;
-	}
-
 	// check for winning conditions
 	public bool Win () {
 		// gets player's stats
 		int[] stats = Player.player.GetStats();
 
-		if (stats [0] >= winPoints || stats [1] >= winGold || stats [2] >= winSalvage) {
+		if (stats [0] >= winPoints) {
 			return true;
 		} 
 		else {

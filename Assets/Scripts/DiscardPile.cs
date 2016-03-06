@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class DiscardPile : MonoBehaviour {
-
+/*
     public string discardType;
 
     CardObject selectedCard;
@@ -76,4 +76,5 @@ public class DiscardPile : MonoBehaviour {
             selectedCard = null;
         }
     }
+*/
 }

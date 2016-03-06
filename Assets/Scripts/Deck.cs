@@ -25,7 +25,7 @@ public class Deck : MonoBehaviour {
     void Start()
     {
         gameController = GameController.gameController;
-        deckShuffling = GetComponent<DeckShuffling>();
+        deckShuffling = gameObject.AddComponent<DeckShuffling>();
         cards = new List<CardInfo>();
         MakeTestDeck();
     }
