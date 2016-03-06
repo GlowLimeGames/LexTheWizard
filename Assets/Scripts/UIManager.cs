@@ -14,36 +14,35 @@ public class UIManager : MonoBehaviour {
 	// Reference to Text components on Stats Canvas
 	public static UIManager UImanager;
     public Text pointsText;
-    public Text goldText;
-    public Text salvageText;
-
-	public Button travelButton;
+	
 	public Image board;
-
-	public GameObject popupObject;
 
 	// Reference to player
     Player player;
 
+	// Reference to tuning
 	Tuning tuning;
 
-	Popup popup;
+	// Reference to GameController
+	GameController gameController;
+
+	// Reference to popups
+	public GameObject pauseMenu;
+	public GameObject popupObject; // object itself
+	Popup popup; // popup script
 
 	void Awake() {
 		UImanager = this;
 	}
 
-	void Start () {
+	public void SetupUI () {
         player = Player.player;
 		tuning = Tuning.tuning;
-		popup = popupObject.GetComponent<Popup> ();
-		popupObject.SetActive(false);
+		gameController = GameController.gameController;
 
-        /*
-        pointsText.text = "Points: ";
-        goldText.text = "Gold: ";
-        salvageText.text = "Salvage: ";
-        */
+		popup = popupObject.GetComponent<Popup> ();
+		hideAllPopups ();
+		//popupObject.SetActive(false); // Hide popup
 	}
 
 	// This is called from Player
@@ -51,33 +50,50 @@ public class UIManager : MonoBehaviour {
     {
         int[] playerStats = player.GetStats();
         pointsText.text = "Points: " + playerStats[0].ToString();
-        goldText.text = "Gold: " + playerStats[1].ToString();
-        salvageText.text = "Salvage: " + playerStats[2].ToString();
     }
 
+	// This is called from GameController in SetTerrain()
 	public void SetBoard(Land terrain) {
 		board.sprite = terrain.boardArt;
 	}
 
+	// This is called when the Travel Button is pressed
 	public void Travel() {
 		if (tuning.travelCost <= player.GetStats () [2]) {
 			// Player can afford
 			EventController.Event("Decrease");
-			GameController.gameController.MoveTerrain();
+			gameController.MoveTerrain();
 			player.ChangeStats (0, 0, -tuning.travelCost);
 			GameController.gameController.Turn();
 		} else {
-			showPopup("I'm sorry. You do not have enough salvage to travel.");
+			ShowPopup("I'm sorry. You do not have enough salvage to travel.");
 		}
 	}
 
+	// This is called when Pause Button is pressed (pauseGame = true)
+	// Or when ReturnToMenu Button is pressed (pauseGame = false)
+	public void Pause(bool pauseGame) {
+		showPauseMenu (pauseGame);
+		gameController.Pause (pauseGame);
+	}
+
+	void showPauseMenu(bool isPaused) {
+		pauseMenu.SetActive (isPaused);
+	}
+
+	// This is called from the Dismiss Button on the Popup
 	public void DismissPopup() {
 		popup.Dimiss ();
 	}
 
-	public void showPopup(string message) {
+	public void ShowPopup(string message) {
 		popupObject.SetActive (true);
 		popup.SetText (message);
+	}
+
+	void hideAllPopups() {
+		popupObject.SetActive (false);
+		pauseMenu.SetActive (false);
 	}
 
 	public void PlayButtonPressSFX () {
