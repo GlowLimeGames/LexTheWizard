@@ -14,6 +14,9 @@ public class Tuning : MonoBehaviour {
 
     public static Tuning tuning;
 
+	// Win Condition
+	public int numOfCardsToWin;
+
     // Player variables
     public int startingGold;
     public int startingSalvage;
@@ -25,6 +28,8 @@ public class Tuning : MonoBehaviour {
     public Vector3 cardScale;
 
 	public int travelCost;
+
+	public string defaultDismissButtonText;
 
     void Awake()
     {

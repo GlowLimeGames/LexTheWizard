@@ -42,18 +42,22 @@ public class CardGame : MonoBehaviour {
 
 	void Start () {
 		Instance = this;
+	}
 
-        tuning = Tuning.tuning;
-        numOfStartingCards = tuning.numOfStartingCards;
-        cardScale = tuning.cardScale;
+	public void SetupCardGame() {
+		tuning = Tuning.tuning;
+		numOfStartingCards = tuning.numOfStartingCards;
+		cardScale = tuning.cardScale;
+		
+		playerCards = player.GetCards();
+		enemyCards = enemy.GetCards();
+	}
 
-        playerCards = player.GetCards();
-        enemyCards = enemy.GetCards();
-
-        DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
-        DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
-
-        showEnemyCard();
+	public void BeginCardGame() {
+		DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
+		DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
+		
+		showEnemyCard();
 	}
 
     // This is called when the card game starts
