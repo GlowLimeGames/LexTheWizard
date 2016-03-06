@@ -28,6 +28,7 @@ public class CardPlayer : MonoBehaviour {
 			}
 
             Player.player.ChangeStats(pointsChange, 0, 0);
+			CardGame.Instance.SetPositionFree (cardObject.GetHandPosition ()); // Set hand position as free
 			GameController.gameController.Turn ();
         }
         string cardName = cardObject.GetCardInfo().title;
