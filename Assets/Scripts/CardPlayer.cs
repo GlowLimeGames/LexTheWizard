@@ -11,68 +11,55 @@ using System.Collections.Generic;
 
 public class CardPlayer : MonoBehaviour {
 
-	protected GameController gameController;
-	protected UIManager UImanager;
-	protected Tuning tuning;
+    string cardPlayerName; // Name of character
 
-    protected string cardPlayerName; // Name of character
-    protected List<CardObject> hand = new List<CardObject>(); // Reference to cards in hand
-	protected Deck deck;
+    List<CardObject> cards = new List<CardObject>(); // Reference to cards in hand
 
-	protected virtual void Awake() {
-		deck = GetComponent<Deck> ();
-	}
-
-	protected virtual void Start() {
-		gameController = GameController.gameController;
-		UImanager = UIManager.UImanager;
-		tuning = Tuning.tuning;
-	}
-
-
-
-
-
-    public virtual void PlayCard(CardObject cardObject)
+    public void PlayCard(CardObject cardObject)
     {
-		/*CardInfo playedCardInfo = cardObject.GetCardInfo();
+		CardInfo playedCardInfo = cardObject.GetCardInfo();
+        // Temporary, don't want to hard code this
+        if (cardPlayerName == "Lex")
+        {
+			int pointsChange = playedCardInfo.points;
 
-      
+			if (pointsChange > 0) {
+				EventController.Event("PointIncrease");
+			}
+
+            Player.player.ChangeStats(pointsChange, 0, 0);
 			CardGame.Instance.SetPositionFree (cardObject.GetHandPosition ()); // Set hand position as free
-			GameController.gameController.Turn ();*/
+			GameController.gameController.Turn ();
         }
-
-
-
-	/*
-
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);
         RemoveCardFromHand(cardObject);
-
-		string message = cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.\nTap to read more about it!";
-		Debug.Log (UImanager == null);
-		UImanager.ShowPopup(message);*/
+		string message = "";
+		if (cardPlayerName == "Enemy") {
+			message += "                     --------->\n";
+		}
+		message += cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.";
+		if (cardPlayerName == "Enemy") {
+			message += "\nTap to read more about it!";
+		}
+		UIManager.UImanager.ShowPopup(message);
 	}
 
-	public Deck GetDeck() {
-		return deck;
-	}
-
-    public List<CardObject> GetHand()
+    public List<CardObject> GetCards()
     {
-        return hand;
+        return cards;
     }
-	
+
+
     public void AddCardToHand(CardObject cardObject)
     {
-        hand.Add(cardObject);
+        cards.Add(cardObject);
     }
 
     public void RemoveCardFromHand(CardObject cardObject)
     {
-        hand.Remove(cardObject);
-        Debug.Log("Cards left in " + cardPlayerName + "\'s hand: " + hand.Count.ToString());
+        cards.Remove(cardObject);
+        Debug.Log("Cards left in " + cardPlayerName + "\'s hand: " + cards.Count.ToString());
     }
 
     public void SetName(string name)
@@ -80,7 +67,7 @@ public class CardPlayer : MonoBehaviour {
         cardPlayerName = name;
     }
 
-	public int NumberOfCardsInHand () {
-		return hand.Count;
+	public int NumberOfCardsOnHand () {
+		return cards.Count;
 	}
 }

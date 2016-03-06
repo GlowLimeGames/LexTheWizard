@@ -28,8 +28,7 @@ public class UIManager : MonoBehaviour {
 
 	// Reference to popups
 	public GameObject pauseMenu;
-	public GameObject confirmMenu;
-	public GameObject notificationPopup; // object itself
+	public GameObject popupObject; // object itself
 	Popup popup; // popup script
 
 	void Awake() {
@@ -41,17 +40,16 @@ public class UIManager : MonoBehaviour {
 		tuning = Tuning.tuning;
 		gameController = GameController.gameController;
 
-		SetStats (tuning.startingPoints);
-
-		popup = notificationPopup.GetComponent<Popup> ();
+		popup = popupObject.GetComponent<Popup> ();
 		hideAllPopups ();
 		//popupObject.SetActive(false); // Hide popup
 	}
 
-	// This is called from Player and SetupUI
-    public void SetStats(int points)
+	// This is called from Player
+    public void SetStats()
     {
-        pointsText.text = "Points: " + points.ToString();
+        int[] playerStats = player.GetStats();
+        pointsText.text = "Points: " + playerStats[0].ToString();
     }
 
 	// This is called from GameController in SetTerrain()
@@ -61,11 +59,15 @@ public class UIManager : MonoBehaviour {
 
 	// This is called when the Travel Button is pressed
 	public void Travel() {
-		// Player can afford
-		EventController.Event("Decrease");
-		gameController.MoveTerrain();
-		GameController.gameController.Turn();
-		ShowPopup("You moved to a new terrain!");
+		if (tuning.travelCost <= player.GetStats () [2]) {
+			// Player can afford
+			EventController.Event("Decrease");
+			gameController.MoveTerrain();
+			player.ChangeStats (0, 0, -tuning.travelCost);
+			GameController.gameController.Turn();
+		} else {
+			ShowPopup("I'm sorry. You do not have enough salvage to travel.");
+		}
 	}
 
 	// This is called when Pause Button is pressed (pauseGame = true)
@@ -85,30 +87,13 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void ShowPopup(string message) {
-		notificationPopup.SetActive (true);
+		popupObject.SetActive (true);
 		popup.SetText (message);
 	}
 
-	public void ShowConfirmMenu(bool showMenu) {
-		confirmMenu.SetActive (showMenu);
-	}
-
-	// This is called by the Yes and No Buttons on the Confirmation Prompt
-	public void Confirm(bool confirm) {
-		if (confirm) {
-			Debug.Log ("Confirmed.");
-			player.Confirm(true);
-		} else {
-			Debug.Log ("Cancelled.");
-			player.Confirm(false);
-		}
-		ShowConfirmMenu (false);;	    
-	}
-
 	void hideAllPopups() {
-		notificationPopup.SetActive (false);
+		popupObject.SetActive (false);
 		pauseMenu.SetActive (false);
-		confirmMenu.SetActive (false);
 	}
 
 	public void PlayButtonPressSFX () {
