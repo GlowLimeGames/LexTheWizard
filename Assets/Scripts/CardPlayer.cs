@@ -29,16 +29,30 @@ public class CardPlayer : MonoBehaviour {
 		tuning = Tuning.tuning;
 	}
 
+
+
+
+
     public virtual void PlayCard(CardObject cardObject)
     {
-		CardInfo playedCardInfo = cardObject.GetCardInfo();
+		/*CardInfo playedCardInfo = cardObject.GetCardInfo();
+
+      
+			CardGame.Instance.SetPositionFree (cardObject.GetHandPosition ()); // Set hand position as free
+			GameController.gameController.Turn ();*/
+        }
+
+
+
+	/*
+
         string cardName = cardObject.GetCardInfo().title;
         Debug.Log(cardName + " has been played by " + cardPlayerName);
         RemoveCardFromHand(cardObject);
 
 		string message = cardPlayerName + " just played " + cardName + ".\nIt has _____ effect.\nTap to read more about it!";
 		Debug.Log (UImanager == null);
-		UImanager.ShowPopup(message);
+		UImanager.ShowPopup(message);*/
 	}
 
 	public Deck GetDeck() {
