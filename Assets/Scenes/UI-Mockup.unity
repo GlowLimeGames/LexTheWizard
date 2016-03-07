@@ -2026,7 +2026,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1029208977}
   - 114: {fileID: 1029208976}
-  - 114: {fileID: 1029208978}
   - 114: {fileID: 1029208979}
   m_Layer: 0
   m_Name: Player
@@ -2058,17 +2057,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
---- !u!114 &1029208978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1029208975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcaf76672fa77f04884f86b6162de33b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1029208979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2090,7 +2078,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1111293361}
   - 114: {fileID: 1111293360}
-  - 114: {fileID: 1111293362}
   - 114: {fileID: 1111293363}
   m_Layer: 0
   m_Name: Enemy
@@ -2122,17 +2109,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
---- !u!114 &1111293362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1111293359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcaf76672fa77f04884f86b6162de33b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1111293363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2922,7 +2898,6 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -3536,7 +3511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 7

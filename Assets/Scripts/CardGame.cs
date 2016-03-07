@@ -49,6 +49,8 @@ public class CardGame : MonoBehaviour {
 
 		this.playerDeck = playerDeck;
 		this.enemyDeck = enemyDeck;
+        playerDeck.Init();
+        enemyDeck.Init();
 
 		playerCards = player.GetHand();
 		enemyCards = enemy.GetHand();
@@ -68,7 +70,6 @@ public class CardGame : MonoBehaviour {
 	// Deals the number of starting cards to the player
     public void DealCards(int numOfCards, Deck deck, Transform[] handTargets, CardPlayer cardPlayer)
     {
-		deck = cardPlayer.GetDeck ();
         for (int i = 0; i < numOfCards; i++)
         {
             Transform currentTransform = handTargets[i];
