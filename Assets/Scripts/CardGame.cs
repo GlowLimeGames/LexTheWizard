@@ -16,11 +16,11 @@ using System.Collections.Generic;
 public class CardGame : MonoBehaviour {
 	public static CardGame Instance;
 
-    public CardPlayer player;
-    public CardPlayer enemy;
+    public Player player; // Inherits from CardPlayer
+    public EnemyBehavior enemy; // Inherits from CardPlayer
 
-    public Deck playerDeck; // Reference to Deck from Player Deck GameObject
-    public Deck enemyDeck; // Reference to Deck from Enemy Deck GameObject
+    Deck playerDeck; // Reference to Deck from Player
+    Deck enemyDeck; // Reference to Deck from EnemyBehavior
 
     public Transform[] playerHandTargets; // Array of transforms for each card in the player's hand
     public Transform[] enemyHandTargets; // Array of transforms for each card in enemy's hand
@@ -44,16 +44,22 @@ public class CardGame : MonoBehaviour {
 		Instance = this;
 	}
 
-	public void SetupCardGame() {
+	public void SetupCardGame(Deck playerDeck, Deck enemyDeck) {
 		tuning = Tuning.tuning;
 		numOfStartingCards = tuning.numOfStartingCards;
 		cardScale = tuning.cardScale;
-		
-		playerCards = player.GetCards();
-		enemyCards = enemy.GetCards();
+
+		this.playerDeck = playerDeck;
+		this.enemyDeck = enemyDeck;
+
+		playerCards = player.GetHand();
+		enemyCards = enemy.GetHand();
 	}
 
 	public void BeginCardGame() {
+		playerDeck.Init ();
+		enemyDeck.Init ();
+
 		DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
 		DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
 		
@@ -130,12 +136,20 @@ public class CardGame : MonoBehaviour {
     // Makes enemy play first card and displays it on the board
     public void showEnemyCard()
     {
-        CardObject card = enemyCards[0];
-        card.transform.position = enemyBoardTargets[0].position;
-		card.transform.localScale = enemyBoardTargets [0].localScale;
-        enemy.PlayCard(card);
+		StartCoroutine ("waitAndShow", tuning.enemyWaitTime);
     }
 
+	IEnumerator waitAndShow(float waitTime)
+	{
+		CardObject card = enemyCards[0];
+		
+		yield return new WaitForSeconds (waitTime);
+		
+		card.transform.position = enemyBoardTargets[0].position;
+		card.transform.localScale = enemyBoardTargets [0].localScale;
+		enemy.PlayCard(card);
+	}
+	
 	// Set a position in player's hand as free
 	public void SetPositionFree (int pos){
 		playerSpotsForCards [pos] = false;
