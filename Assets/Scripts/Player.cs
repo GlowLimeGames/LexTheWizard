@@ -2,56 +2,63 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player : MonoBehaviour {
-
+public class Player : CardPlayer {
+	
 	public static Player player; // Static instance of this class
-	public UIManager UImanager;
-    Tuning tuning;
-
+	
 	// Stat variables
-    int points;
-    int gold;
-    int salvage;
-
-	string[] inventory = new string[5];
-    CardPlayer cardPlayer;
-
+	int points;
+	
+	// Card Player variables
+	CardObject selectedCard;
+	
 	void Awake() {
 		player = this;
+		base.Awake ();
 	}
-
+	
 	void Start() {
-		UImanager = UIManager.UImanager;
-
-		// Assigns starting stats from tuning object
-        player.tuning = Tuning.tuning;
-		player.points = tuning.startingPoints;
-		player.gold = tuning.startingGold;
-		player.salvage = tuning.startingSalvage;
-		for (int i = 0; i < inventory.Length; i++){
-			player.inventory [i] = "";
-		}
-		// Calls UIManager to display the stats
-		UImanager.SetStats ();
-
-        player.cardPlayer = GetComponent<CardPlayer>();
-        cardPlayer.SetName("Lex");
+		base.Start ();
+		cardPlayerName = "Lex";
 	}
-
-	//TODO add bool functions for item checks.
-
+	
 	// This allows other objects to get stats from Player without reassigning them
-    public int[] GetStats()
-    {
-        return new int[3] { points, gold, salvage };
-    }
-
-    public void ChangeStats(int pointsChange, int goldChange, int salvageChange)
-    {
-        points += pointsChange;
-        gold += goldChange;
-        salvage += salvageChange;
-
-        UImanager.SetStats();
-    }
+	public int[] GetStats()
+	{
+		return new int[1] {points};
+	}
+	
+	public void ChangeStats(int pointsChange)
+	{
+		points += pointsChange;
+		UImanager.SetStats(points);
+	}
+	
+	public override void PlayCard(CardObject cardObject) {
+		selectedCard = cardObject;
+		UImanager.ShowConfirmMenu(true);
+	}
+	
+	public void Confirm(bool isConfirmed) {
+		if (isConfirmed) {
+			CardInfo playedCardInfo = selectedCard.GetCardInfo();
+			string cardName = playedCardInfo.title;
+			RemoveCardFromHand(selectedCard);
+			
+			int pointsChange = playedCardInfo.points;
+			
+			if (pointsChange > 0) {
+				EventController.Event("PointIncrease");
+			}
+			
+			ChangeStats(pointsChange);
+			gameController.Turn ();
+			
+			Debug.Log("Lex just played" + cardName);
+		}
+		else {
+			Debug.Log("Lex cancelled");
+		}
+		selectedCard = null;
+	}
 }
