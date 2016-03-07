@@ -61,8 +61,6 @@ public class CardGame : MonoBehaviour {
 
 	public void BeginCardGame() {
 
-		//playerDeck = player.GetDeck ();
-		//enemyDeck = enemy.GetDeck ();
 		DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
 		DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
 		
