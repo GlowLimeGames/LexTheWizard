@@ -5,7 +5,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 
 public static class CardUtil {
 	
@@ -170,7 +169,7 @@ public static class CardUtil {
         GameController gameController = GameController.gameController;
         Land[] allTerrains = gameController.terrains;
         string[] terrainNames = terrainString.Split('/');
-        if (ArrayUtility.Contains(terrainNames, "Any"))
+		if (ArrayUtil.Contains(terrainNames, "Any"))
         { // If card can be played on any terrain
             terrains = new Land[allTerrains.Length];
             if (terrainNames[0] == "Any")
