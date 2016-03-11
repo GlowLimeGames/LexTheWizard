@@ -52,6 +52,7 @@ public class Player : CardPlayer {
 			}
 			
 			ChangeStats(pointsChange);
+			CardGame.Instance.SetPositionFree (selectedCard.GetHandPosition ()); // Set hand position as free
 			gameController.Turn ();
 			
 			Debug.Log("Lex just played" + cardName);
