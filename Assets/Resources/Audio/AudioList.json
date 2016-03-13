@@ -89,6 +89,42 @@
 			“Type”:“FX”,
 			“Channel”:3,
 			"Volume": 100
+		},
+		{
+			“FileName”:"CaveAmbiance",
+			“EventNames”:["PlayCaveAmbiance"],
+			"StopEventNames":["StopCaveAmbiance"],
+			“Loop”:true,
+			“Type”:“FX”,
+			“Channel”:4,
+			"Volume": 100
+		},
+		{
+			“FileName”:"ForestAmbiance",
+			“EventNames”:["PlayForestAmbiance"],
+			"StopEventNames":["StopForestAmbiance"],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:4,
+			"Volume": 100
+		},
+		{
+			“FileName”:"HillAmbiance",
+			“EventNames”:["PlayHillAmbiance"],
+			"StopEventNames":["StopHillAmbiance"],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:4,
+			"Volume": 100
+		},
+		{
+			“FileName”:"SwampAmbiance",
+			“EventNames”:["PlaySwampAmbiance"],
+			"StopEventNames":["StopSwampAmbiance"],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:4,
+			"Volume": 100
 		}
 	]
 }
