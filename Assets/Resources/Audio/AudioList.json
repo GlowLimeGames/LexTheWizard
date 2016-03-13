@@ -103,7 +103,7 @@
 			“FileName”:"ForestAmbiance",
 			“EventNames”:["PlayForestAmbiance"],
 			"StopEventNames":["StopForestAmbiance"],
-			“Loop”:false,
+			“Loop”:true,
 			“Type”:“FX”,
 			“Channel”:4,
 			"Volume": 100
@@ -112,7 +112,7 @@
 			“FileName”:"HillAmbiance",
 			“EventNames”:["PlayHillAmbiance"],
 			"StopEventNames":["StopHillAmbiance"],
-			“Loop”:false,
+			“Loop”:true,
 			“Type”:“FX”,
 			“Channel”:4,
 			"Volume": 100
@@ -121,7 +121,7 @@
 			“FileName”:"SwampAmbiance",
 			“EventNames”:["PlaySwampAmbiance"],
 			"StopEventNames":["StopSwampAmbiance"],
-			“Loop”:false,
+			“Loop”:true,
 			“Type”:“FX”,
 			“Channel”:4,
 			"Volume": 100
