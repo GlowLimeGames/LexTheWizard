@@ -96,7 +96,7 @@
 			"StopEventNames":["StopCaveAmbiance"],
 			“Loop”:true,
 			“Type”:“FX”,
-			“Channel”:4,
+			“Channel”:5,
 			"Volume": 100
 		},
 		{
@@ -105,8 +105,8 @@
 			"StopEventNames":["StopForestAmbiance"],
 			“Loop”:true,
 			“Type”:“FX”,
-			“Channel”:4,
-			"Volume": 100
+			“Channel”:5,
+			"Volume": 75
 		},
 		{
 			“FileName”:"HillAmbiance",
@@ -114,8 +114,8 @@
 			"StopEventNames":["StopHillAmbiance"],
 			“Loop”:true,
 			“Type”:“FX”,
-			“Channel”:4,
-			"Volume": 100
+			“Channel”:5,
+			"Volume": 75
 		},
 		{
 			“FileName”:"SwampAmbiance",
@@ -123,8 +123,8 @@
 			"StopEventNames":["StopSwampAmbiance"],
 			“Loop”:true,
 			“Type”:“FX”,
-			“Channel”:4,
-			"Volume": 100
+			“Channel”:5,
+			"Volume": 75
 		}
 	]
 }
