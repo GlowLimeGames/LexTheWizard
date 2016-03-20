@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour {
 
 		popup = notificationPopup.GetComponent<Popup> ();
 		hideAllPopups ();
-		//popupObject.SetActive(false); // Hide popup
+		//notificationPopup.SetActive(false); // Hide popup
 	}
 
 	// This is called from Player and SetupUI
@@ -61,11 +61,10 @@ public class UIManager : MonoBehaviour {
 
 	// This is called when the Travel Button is pressed
 	public void Travel() {
-		// Player can afford
 		EventController.Event("Decrease");
 		gameController.MoveTerrain();
+		//player.ChangeStats (0, 0, -tuning.travelCost);
 		GameController.gameController.Turn();
-		ShowPopup("You moved to a new terrain!");
 	}
 
 	// This is called when Pause Button is pressed (pauseGame = true)
@@ -89,12 +88,12 @@ public class UIManager : MonoBehaviour {
 		popup.SetText (message);
 	}
 
+	// Can be used to hide or show
 	public void ShowConfirmMenu(bool showMenu) {
 		confirmMenu.SetActive (showMenu);
 	}
 
-	// This is called by the Yes and No Buttons on the Confirmation Prompt
-	public void Confirm(bool confirm) {
+	public void ConfirmAction(bool confirm) {
 		if (confirm) {
 			Debug.Log ("Confirmed.");
 			player.Confirm(true);
@@ -102,7 +101,7 @@ public class UIManager : MonoBehaviour {
 			Debug.Log ("Cancelled.");
 			player.Confirm(false);
 		}
-		ShowConfirmMenu (false);;	    
+		ShowConfirmMenu (false);
 	}
 
 	void hideAllPopups() {

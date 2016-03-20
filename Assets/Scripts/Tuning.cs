@@ -25,8 +25,10 @@ public class Tuning : MonoBehaviour {
     // Card Game variables
     public int numOfStartingCards;
 	public int handLimit;
+
     public float scaleFactor;
     public Vector3 cardScale;
+
 	public float enemyWaitTime; // Time enemy takes to pick a card
 
 	public int travelCost;

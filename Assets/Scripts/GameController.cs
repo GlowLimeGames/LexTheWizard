@@ -35,12 +35,14 @@ public class GameController : MonoBehaviour {
 	public bool isSisterAlive;
 	public bool isGrandmaAlive;
 
-	public UIManager UImanager;
-	public Tuning tuning;
+	UIManager UImanager;
+	Tuning tuning;
 
 	//TODO associate with unwritten move home. For alpha win if points is good.
 	// win conditions varibles
 	int winPoints;
+	//int winGold;
+	//int winSalvage;
 
 	void Awake() {
 		gameController = this;
@@ -60,6 +62,8 @@ public class GameController : MonoBehaviour {
 		terrainIndex = 1;
 
 		winPoints = tuning.winPoints;
+		//winGold = 25;
+		//winSalvage = 40;
 
 		isFatherAlive = true;
 		isSisterAlive = true;
@@ -69,7 +73,7 @@ public class GameController : MonoBehaviour {
 		enemy = cardGame.enemy;
 		player = cardGame.player;
 		playerDeck = player.GetDeck();
-		enemyDeck = enemy.GetDeck();
+		enemyDeck = enemy.GetDeck ();
 		cardGame.SetupCardGame (playerDeck, enemyDeck);
 
 		cardTemplates = new GameObject[2] {cardGame.playerCardTemplate, cardGame.enemyCardTemplate};
@@ -140,7 +144,7 @@ public class GameController : MonoBehaviour {
 				//enemy.PlayCard(usedCard);
 			//}
 
-			cardGame.waitAndShowEnemyCard (tuning.enemyWaitTime);
+			cardGame.showEnemyCard ();
 
 			phase = (phase + 1) % 6;
 			SetAfternoon ();
@@ -153,7 +157,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
-			cardGame.waitAndShowEnemyCard (tuning.enemyWaitTime);
+			cardGame.showEnemyCard ();
 			phase = (phase + 1) % 6;
 			SetDusk ();
 			break;
@@ -164,7 +168,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
-			cardGame.waitAndShowEnemyCard (tuning.enemyWaitTime);
+			cardGame.showEnemyCard ();
 			phase = (phase + 1) % 6;
 			SetNight ();
 			break;
@@ -192,7 +196,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
-			cardGame.waitAndShowEnemyCard (tuning.enemyWaitTime);
+			cardGame.showEnemyCard ();
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
 			SetDawn ();
@@ -242,18 +246,37 @@ public class GameController : MonoBehaviour {
 		winPoints += amount;
 	}
 
+	// raise winning condition for gold
+	/*public void raiseGold (int amount) {
+		winGold += amount;
+	}
+
+	// raise winning condition for salvage
+	public void raiseSalvage (int amount) {
+		winSalvage += amount;
+	}
+
 	// check for winning conditions
 	public bool Win () {
 		// gets player's stats
 		int[] stats = Player.player.GetStats();
 
-		if (stats [0] >= winPoints) {
+		if (stats [0] >= winPoints || stats [1] >= winGold || stats [2] >= winSalvage) {
 			return true;
 		} 
 		else {
 			return false;
 		}
 		// need to add swamp king condition if it goes to final game
+	}*/
+
+	public bool Win() {
+		int[] stats = player.GetStats ();
+		if (stats [0] >= winPoints) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public Land GetTerrainByName(string name) {

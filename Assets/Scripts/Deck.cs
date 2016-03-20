@@ -22,7 +22,7 @@ public class Deck : MonoBehaviour {
     DeckShuffling deckShuffling;
     GameController gameController;
 
-    void Start()
+    public void Init()
     {
         gameController = GameController.gameController;
         deckShuffling = gameObject.AddComponent<DeckShuffling>();
