@@ -290,14 +290,17 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void MoveTerrain() {
-		//if (currTerrainIndex < terrains.Length - 1) {
-			//currTerrainIndex++;
+		//Random select terrain
+		int nextTerr = Random.Range(1,terrains.Length);
+		//Prevents the same terrain being chosen
+		if (nextTerr == currTerrainIndex) {
+			nextTerr = (nextTerr+1)%terrains.Length;
+		}
+		//Tracking previous terrains
 		previousTerrain[terrainIndex] = currState;
 		phase = (phase + 1) % 6;
-			int terr = Random.Range(1,terrains.Length);
-			currState = new gameState ();
-			currState.setTerrain (terr);
-	//	}
+		currState = new gameState ();
+		currState.setTerrain (nextTerr);
 	}
 
 	//NOTE: May move below and associated code to more appropriate class.
