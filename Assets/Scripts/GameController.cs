@@ -79,14 +79,14 @@ public class GameController : MonoBehaviour {
 		cardTemplates = new GameObject[2] {cardGame.playerCardTemplate, cardGame.enemyCardTemplate};
 		cardCanvas = cardGame.cardCanvas;
 
-		//Initializes array of traversable terrain as the only current terrain
+        //Initializes array of traversable terrain as the only current terrain       
 		currTerrainIndex = 1;
-		currTerrain = terrains [currTerrainIndex];
+        currTerrain = terrains [currTerrainIndex];
 		currState = new gameState();
 		currState.setTerrain (currTerrain);
 		phase = 0;
-		previousTerrain [0] = currState;
-		for (int i = 1; i < previousTerrain.Length; i++) {
+		previousTerrain [0] = currState;        
+        for (int i = 1; i < previousTerrain.Length; i++) {
 			previousTerrain [i] = null;
 		}
 
@@ -290,13 +290,14 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void MoveTerrain() {
-		//if (currTerrainIndex < terrains.Length - 1) {
-			//currTerrainIndex++;
+        //if (currTerrainIndex < terrains.Length - 1) {
+        //currTerrainIndex++;
 		previousTerrain[terrainIndex] = currState;
 		phase = (phase + 1) % 6;
-			int terr = Random.Range(1,terrains.Length);
-			currState = new gameState ();
-			currState.setTerrain (terr);
+		int terr = Random.Range(1,terrains.Length);
+		currState = new gameState ();
+		currState.setTerrain (terr);
+        //PlayAmbiance.ambiences.NewAmbiance();                        
 	//	}
 	}
 
