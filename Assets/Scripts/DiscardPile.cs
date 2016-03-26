@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class DiscardPile : MonoBehaviour {
-
+/*
     public string discardType;
 
     CardObject selectedCard;
@@ -46,6 +46,7 @@ public class DiscardPile : MonoBehaviour {
 		cardObject.GetOwner ().RemoveCardFromHand (cardObject);
         cardObject.gameObject.SetActive(false);
 		selectedCard = null;
+		CardGame.Instance.SetPositionFree (cardObject.GetHandPosition ()); // Set hand position as free
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -75,4 +76,5 @@ public class DiscardPile : MonoBehaviour {
             selectedCard = null;
         }
     }
+*/
 }

@@ -43,6 +43,8 @@ public class CardObject : MonoBehaviour {
 	int[] terrainUse = new int[4];
 	int[] timeUse = new int[4];
 
+	int handPos; // Keep track of what position each card is in player's hand
+
     void Start()
     {
         tuning = Tuning.tuning;
@@ -190,5 +192,17 @@ public class CardObject : MonoBehaviour {
 		transform.localScale = tuning.cardScale;
 		hasShrunk = true;
     }
+
+	// set the position of where the card is in player's hand
+	public void SetHandPosition (int n)
+	{
+		handPos = n;
+	}
+
+	// return position of where card is in player's hand
+	public int GetHandPosition ()
+	{
+		return handPos;
+	}
 }
 

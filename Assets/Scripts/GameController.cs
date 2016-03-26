@@ -19,8 +19,8 @@ public class GameController : MonoBehaviour {
 	private Deck playerDeck;
 	private Deck enemyDeck;
 
-	private CardPlayer enemy;
-	private CardPlayer player;
+	private EnemyBehavior enemy;
+	private Player player;
 
 	private gameState currState;
 	private gameState[] previousTerrain = new gameState[6];
@@ -35,11 +35,14 @@ public class GameController : MonoBehaviour {
 	public bool isSisterAlive;
 	public bool isGrandmaAlive;
 
+	UIManager UImanager;
+	Tuning tuning;
+
 	//TODO associate with unwritten move home. For alpha win if points is good.
 	// win conditions varibles
 	int winPoints;
-	int winGold;
-	int winSalvage;
+	//int winGold;
+	//int winSalvage;
 
 	void Awake() {
 		gameController = this;
@@ -48,15 +51,19 @@ public class GameController : MonoBehaviour {
 	void Start () {
 
 		EventController.Event("PlayGameMusic");
+		UImanager = UIManager.UImanager;
+		UImanager.SetupUI ();
+
+		tuning = Tuning.tuning;
 
 		days = 0;
 		SetDawn ();
 
 		terrainIndex = 1;
 
-		winPoints = 30;
-		winGold = 25;
-		winSalvage = 40;
+		winPoints = tuning.winPoints;
+		//winGold = 25;
+		//winSalvage = 40;
 
 		isFatherAlive = true;
 		isSisterAlive = true;
@@ -65,8 +72,9 @@ public class GameController : MonoBehaviour {
 		cardGame = GetComponent<CardGame>();
 		enemy = cardGame.enemy;
 		player = cardGame.player;
-		playerDeck = cardGame.playerDeck;
-		enemyDeck = cardGame.enemyDeck;
+		playerDeck = player.GetDeck();
+		enemyDeck = enemy.GetDeck ();
+		cardGame.SetupCardGame (playerDeck, enemyDeck);
 
 		cardTemplates = new GameObject[2] {cardGame.playerCardTemplate, cardGame.enemyCardTemplate};
 		cardCanvas = cardGame.cardCanvas;
@@ -80,6 +88,24 @@ public class GameController : MonoBehaviour {
 		previousTerrain [0] = currState;
 		for (int i = 1; i < previousTerrain.Length; i++) {
 			previousTerrain [i] = null;
+		}
+
+		cardGame.BeginCardGame ();
+	}
+
+	/*
+	 * Called from UIManager when:
+	 * - PauseButton is pressed
+	 * - ReturnToGame Button is pressed
+	 * 
+	 * Pauses when input is true
+	 * Unpauses when input is false 
+	 */
+	public void Pause(bool pauseGame) {
+		if (pauseGame) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
 		}
 	}
 
@@ -97,8 +123,8 @@ public class GameController : MonoBehaviour {
 		case 0:		
 			// make player discard a card if hand is full
 			// TODO change this so player can choose between discarding new card or some old card
-			if (player.NumberOfCardsOnHand () == 5) {
-				UIManager.UImanager.showPopup ("Hand full! Discard at least one card to draw another one.");
+			if (player.NumberOfCardsInHand () == tuning.handLimit) {
+				UImanager.ShowPopup ("Hand full! Discard at least one card to draw another one.");
 			}
 			//Deals Cards to the player
 			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
@@ -151,8 +177,8 @@ public class GameController : MonoBehaviour {
 		case 4:			
 			// make player discard a card if hand is full
 			// TODO change this so player can choose between discarding new card or some old card
-			if (player.NumberOfCardsOnHand () == 5) {
-				UIManager.UImanager.showPopup ("Hand full! Discard at least one card to draw another one.");
+			if (player.NumberOfCardsInHand () == tuning.handLimit) {
+				UImanager.ShowPopup ("Hand full! Discard at least one card to draw another one.");
 			}
 			//Deals Cards to the player
 			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
@@ -221,7 +247,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	// raise winning condition for gold
-	public void raiseGold (int amount) {
+	/*public void raiseGold (int amount) {
 		winGold += amount;
 	}
 
@@ -242,6 +268,15 @@ public class GameController : MonoBehaviour {
 			return false;
 		}
 		// need to add swamp king condition if it goes to final game
+	}*/
+
+	public bool Win() {
+		int[] stats = player.GetStats ();
+		if (stats [0] >= winPoints) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public Land GetTerrainByName(string name) {
@@ -255,14 +290,17 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void MoveTerrain() {
-		//if (currTerrainIndex < terrains.Length - 1) {
-			//currTerrainIndex++;
+		//Random select terrain
+		int nextTerr = Random.Range(1,terrains.Length);
+		//Prevents the same terrain being chosen
+		if (nextTerr == currTerrainIndex) {
+			nextTerr = (nextTerr+1)%terrains.Length;
+		}
+		//Tracking previous terrains
 		previousTerrain[terrainIndex] = currState;
 		phase = (phase + 1) % 6;
-			int terr = Random.Range(1,terrains.Length);
-			currState = new gameState ();
-			currState.setTerrain (terr);
-	//	}
+		currState = new gameState ();
+		currState.setTerrain (nextTerr);
 	}
 
 	//NOTE: May move below and associated code to more appropriate class.

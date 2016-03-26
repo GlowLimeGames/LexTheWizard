@@ -22,10 +22,10 @@ public class Deck : MonoBehaviour {
     DeckShuffling deckShuffling;
     GameController gameController;
 
-    void Start()
+    public void Init()
     {
         gameController = GameController.gameController;
-        deckShuffling = GetComponent<DeckShuffling>();
+        deckShuffling = gameObject.AddComponent<DeckShuffling>();
         cards = new List<CardInfo>();
         MakeTestDeck();
     }
