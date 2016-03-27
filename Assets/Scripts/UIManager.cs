@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject pauseMenu;
 	public GameObject confirmMenu;
 	public GameObject notificationPopup; // object itself
+	public GameObject gameOver;
 	Popup popup; // popup script
 
 	void Awake() {
@@ -104,10 +105,15 @@ public class UIManager : MonoBehaviour {
 		ShowConfirmMenu (false);
 	}
 
+	public void ShowGameOver(bool isGameOver) {
+		gameOver.SetActive (isGameOver);
+	}
+
 	void hideAllPopups() {
 		notificationPopup.SetActive (false);
 		pauseMenu.SetActive (false);
 		confirmMenu.SetActive (false);
+		gameOver.SetActive (false);
 	}
 
 	public void PlayButtonPressSFX () {

@@ -130,7 +130,6 @@ public class GameController : MonoBehaviour {
 			cardGame.DealCards (1, playerDeck, cardGame.playerHandTargets, player);
 			//Deals Cards to the AI
 			cardGame.DealCards (1, enemyDeck, cardGame.enemyHandTargets, enemy);
-
 			//Cycles 0 to 5 to represent the phases.
 			phase = (phase + 1) % 6;
 			Turn ();
@@ -143,6 +142,7 @@ public class GameController : MonoBehaviour {
 			//if (usedCard != null) {
 				//enemy.PlayCard(usedCard);
 			//}
+			UImanager.ShowGameOver (isGameOver ());
 
 			cardGame.showEnemyCard ();
 
@@ -157,6 +157,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
+			UImanager.ShowGameOver (isGameOver ());
 			cardGame.showEnemyCard ();
 			phase = (phase + 1) % 6;
 			SetDusk ();
@@ -168,6 +169,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
+			UImanager.ShowGameOver (isGameOver ());
 			cardGame.showEnemyCard ();
 			phase = (phase + 1) % 6;
 			SetNight ();
@@ -196,6 +198,7 @@ public class GameController : MonoBehaviour {
 			if (usedCard != null) {
 				enemy.PlayCard(usedCard);
 			}*/
+			UImanager.ShowGameOver (isGameOver ());
 			cardGame.showEnemyCard ();
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
@@ -269,6 +272,10 @@ public class GameController : MonoBehaviour {
 		}
 		// need to add swamp king condition if it goes to final game
 	}*/
+
+	private bool isGameOver(){
+		return player.NumberOfCardsInHand () == 0;
+	}
 
 	public bool Win() {
 		int[] stats = player.GetStats ();
