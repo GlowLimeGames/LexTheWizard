@@ -4,11 +4,14 @@ using System.Collections;
 
 public class PlayerCardObject : CardObject {
 
+    ClickManager clickManager;
+    UIManager UImanager;
+
     Text goldText;
     Text pointsText;
     Text salvageText;
     Sprite art;
-
+    
     public override void CreateCard(CardInfo cardInfo)
     {
         SetCommonInfo(cardInfo); // Function from parent class
@@ -27,6 +30,31 @@ public class PlayerCardObject : CardObject {
         salvageText.text = cardInfo.salvage.ToString();
 
         // Add Click and Drag functionality to this object
-        gameObject.AddComponent<ClickAndDrag>();
+        //gameObject.AddComponent<ClickAndDrag>();
+
+        // Add Reference to Click Manager
+        clickManager = new ClickManager();
+
+        // Add Reference to UI Manager
+        UImanager = UIManager.UImanager;
     }
+
+    public override void OnMouseDown()
+    {
+        if (clickManager.DoubleClick())
+        {
+            showActionMenu();
+        }
+        //Grow();
+        // Push to front
+    }
+
+    void showActionMenu()
+    {
+        transform.SetAsLastSibling(); 
+        Grow();
+        Player.player.SelectedCard = this;
+        UImanager.ShowActionIcons(true);
+    }
+
 }

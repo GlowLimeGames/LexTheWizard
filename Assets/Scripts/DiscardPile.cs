@@ -1,18 +1,49 @@
 ﻿/*
- * Attached to Discard Pile GameObject 
+ * Attached to Discard Icon
  * 
+ * Only applies to Player Card Objects
  */
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class DiscardPile : MonoBehaviour {
-/*
-    public string discardType;
 
+    //public string discardType;
+    UIManager UImanager;
+    GameController gameController;
+    Player player;
     CardObject selectedCard;
 
-    void Discard(CardObject cardObject)
+    void Start()
+    {
+        UImanager = UIManager.UImanager;
+        gameController = GameController.gameController;
+        player = Player.player;
+    }
+
+    void OnMouseDown()
+    {
+        if (selectedCard != null)
+        {
+            UImanager.ShowConfirmMenu(true);
+            Discard();
+        }
+    }
+
+    // Called when icon is pressed
+    public void Discard()
+    {
+        selectedCard = player.SelectedCard;
+        player.RemoveCardFromHand(selectedCard);
+        selectedCard.gameObject.SetActive(false);
+        selectedCard = null;
+        CardGame.Instance.SetPositionFree(selectedCard.GetHandPosition()); // Set hand position as free
+        UImanager.ShowActionIcons(false);
+        gameController.MoveTerrain();
+    }
+
+    /*void Discard(CardObject cardObject)
     {
         if (discardType == "Sell")
         {
@@ -43,6 +74,7 @@ public class DiscardPile : MonoBehaviour {
 			//Debug.Log (salvageChange);
             Player.player.ChangeStats(0, 0, salvageChange);
         }
+
 		cardObject.GetOwner ().RemoveCardFromHand (cardObject);
         cardObject.gameObject.SetActive(false);
 		selectedCard = null;
@@ -75,6 +107,5 @@ public class DiscardPile : MonoBehaviour {
         {
             selectedCard = null;
         }
-    }
-*/
+    }*/
 }

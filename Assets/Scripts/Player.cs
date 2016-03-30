@@ -38,6 +38,11 @@ public class Player : CardPlayer {
 		selectedCard = cardObject;
 		UImanager.ShowConfirmMenu(true);
 	}
+
+    public void PlayCard()
+    {
+        UImanager.ShowConfirmMenu(true);
+    }
 	
 	public void Confirm(bool isConfirmed) {
 		if (isConfirmed) {
@@ -62,4 +67,10 @@ public class Player : CardPlayer {
 		}
 		selectedCard = null;
 	}
+
+    public CardObject SelectedCard
+    {
+        get { return selectedCard; }
+        set { selectedCard = value; }
+    }
 }

@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour {
 	public Land currTerrain;
 	public int currTerrainIndex;
 
+    public ClickManager clickManager;
+
 	private CardGame cardGame;
 	private Deck playerDeck;
 	private Deck enemyDeck;
@@ -53,6 +55,7 @@ public class GameController : MonoBehaviour {
 		EventController.Event("PlayGameMusic");
 		UImanager = UIManager.UImanager;
 		UImanager.SetupUI ();
+        clickManager = new ClickManager();
 
 		tuning = Tuning.tuning;
 
