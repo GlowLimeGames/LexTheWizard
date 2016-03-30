@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Player : CardPlayer {
 	
 	public static Player player; // Static instance of this class
+    DiscardPile discard;
 	
 	// Stat variables
 	int points;
@@ -38,28 +39,52 @@ public class Player : CardPlayer {
 		selectedCard = cardObject;
 		UImanager.ShowConfirmMenu(true);
 	}
+
+    public void PlayCard()
+    {
+        UImanager.ShowConfirmMenu(true);
+    }
+
+    public void Discard()
+    {
+        if (discard == null)
+        {
+            discard = UImanager.Discard;
+        }
+        discard.Discard();
+    }
 	
 	public void Confirm(bool isConfirmed) {
-		if (isConfirmed) {
-			CardInfo playedCardInfo = selectedCard.GetCardInfo();
-			string cardName = playedCardInfo.title;
-			RemoveCardFromHand(selectedCard);
-			
-			int pointsChange = playedCardInfo.points;
-			
-			if (pointsChange > 0) {
-				EventController.Event("PointIncrease");
-			}
-			
-			ChangeStats(pointsChange);
-			CardGame.Instance.SetPositionFree (selectedCard.GetHandPosition ()); // Set hand position as free
-			gameController.Turn ();
-			
-			Debug.Log("Lex just played" + cardName);
-		}
-		else {
-			Debug.Log("Lex cancelled");
-		}
-		selectedCard = null;
+        if (isConfirmed)
+        {
+            CardInfo playedCardInfo = selectedCard.GetCardInfo();
+            string cardName = playedCardInfo.title;
+            RemoveCardFromHand(selectedCard);
+
+            int pointsChange = playedCardInfo.points;
+
+            if (pointsChange > 0)
+            {
+                EventController.Event("PointIncrease");
+            }
+
+            ChangeStats(pointsChange);
+            CardGame.Instance.SetPositionFree(selectedCard.GetHandPosition()); // Set hand position as free
+            selectedCard.PlayEffect();
+            gameController.Turn();
+
+            Debug.Log("Lex just played " + cardName + ".");
+            selectedCard = null;
+        }
+        else
+        {
+            Debug.Log("Lex cancelled");
+        }		
 	}
+
+    public CardObject SelectedCard
+    {
+        get { return selectedCard; }
+        set { selectedCard = value; }
+    }
 }
