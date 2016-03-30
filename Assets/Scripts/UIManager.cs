@@ -84,6 +84,14 @@ public class UIManager : MonoBehaviour {
 		UImanager.ShowConfirmMenu(true);
 	}
 
+	//Called when the discarding a card
+	public void Discard () {
+		actionType = ActionType.Discard;
+		//TODO set selectedCard based on UI implementation
+
+		UImanager.ShowConfirmMenu(true);
+	}
+
 	void showPauseMenu(bool isPaused) {
 		pauseMenu.SetActive (isPaused);
 	}
@@ -122,6 +130,14 @@ public class UIManager : MonoBehaviour {
 				gameController.Turn ();
 			}
 			break;
+		case ActionType.Discard:
+			if (confirm) {
+				//TODO set selectedCard based on UI implementation
+				//player.RemoveCardFromHand (TODO);
+				gameController.MoveTerrain ();
+				gameController.Turn ();
+			}
+			break;
 		}
 
 		actionType = ActionType.None;
@@ -149,6 +165,7 @@ public class UIManager : MonoBehaviour {
 	public enum ActionType {
 		Pass,
 		Play,
+		Discard,
 		None
 	};
 }
