@@ -65,6 +65,9 @@ public class GameController : MonoBehaviour {
 		//winGold = 25;
 		//winSalvage = 40;
 
+
+		tuning.winPoints = 40;
+
 		isFatherAlive = true;
 		isSisterAlive = true;
 		isGrandmaAlive = true;
