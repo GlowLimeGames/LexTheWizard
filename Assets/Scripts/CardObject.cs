@@ -93,6 +93,16 @@ public class CardObject : MonoBehaviour {
         CheckOwner();
         owner.PlayCard(this);
         played = true;
+        PlayEffect();
+        
+    }
+
+    // Overridden by Discovery Cards, etc.
+    public virtual void PlayEffect() {
+        // Something here
+
+        // Hide card
+        gameObject.SetActive(false);
     }
 
     // Sets Card Background
@@ -169,7 +179,7 @@ public class CardObject : MonoBehaviour {
         get { return played; }
     }
 
-    void OnMouseDown() {
+    public virtual void OnMouseDown() {
 		EventController.Event("DrawCard");
 
 		Grow();
@@ -177,13 +187,14 @@ public class CardObject : MonoBehaviour {
         transform.SetAsLastSibling();
     }
 
-    void OnMouseUp() {
+    /*void OnMouseUp() {
         Shrink();
-    }
+    }*/
 
     public void Grow()
     {
-        transform.localScale = tuning.cardScale + scaleVector;
+        transform.localPosition = tuning.largeCardPosition;
+        transform.localScale = tuning.largeCardScale;
         hasShrunk = false;
     }
 
