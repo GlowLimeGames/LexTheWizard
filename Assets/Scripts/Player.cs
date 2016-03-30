@@ -33,9 +33,10 @@ public class Player : CardPlayer {
 		points += pointsChange;
 		UImanager.SetStats(points);
 	}
-	
+
 	public override void PlayCard(CardObject cardObject) {
 		selectedCard = cardObject;
+		UImanager.setActionType (UIManager.ActionType.Play);
 		UImanager.ShowConfirmMenu(true);
 	}
 	
