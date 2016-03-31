@@ -4,9 +4,6 @@ using System.Collections;
 
 public class PlayerCardObject : CardObject {
 
-    ClickManager clickManager;
-    UIManager UImanager;
-
     Text goldText;
     Text pointsText;
     Text salvageText;
@@ -31,12 +28,6 @@ public class PlayerCardObject : CardObject {
 
         // Add Click and Drag functionality to this object
         //gameObject.AddComponent<ClickAndDrag>();
-
-        // Add reference to Click Manager
-        clickManager = new ClickManager();
-
-        // Add refernce to UI Manager
-        UImanager = UIManager.UImanager;
     }
 
     public override void OnMouseDown()

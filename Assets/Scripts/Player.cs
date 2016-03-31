@@ -11,7 +11,8 @@ public class Player : CardPlayer {
 	int points;
 	
 	// Card Player variables
-	CardObject selectedCard;
+	CardObject selectedCard; // Player Card Object
+    CardObject viewedCard; // Enemy Card Object the player is viewing
 	
 	void Awake() {
 		player = this;
@@ -82,9 +83,29 @@ public class Player : CardPlayer {
         }		
 	}
 
+    // Returns currently selected card to hand
+    public void ReturnCardToHand()
+    {
+        selectedCard.Shrink();
+        selectedCard = null;
+    }
+
+    public void ReturnViewedCard()
+    {
+        Debug.Log("trying to return viewed card");
+        viewedCard.Shrink();
+        viewedCard = null;
+    }
+
     public CardObject SelectedCard
     {
         get { return selectedCard; }
         set { selectedCard = value; }
+    }
+
+    public CardObject ViewedCard
+    {
+        get { return viewedCard; }
+        set { viewedCard = value; }
     }
 }

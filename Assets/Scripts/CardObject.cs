@@ -13,6 +13,9 @@ using System.Collections;
 
 public class CardObject : MonoBehaviour {
 
+    protected Player player;
+    protected UIManager UImanager;
+
     // UI Components
     protected Text[] text;
     protected Text titleText;
@@ -21,6 +24,7 @@ public class CardObject : MonoBehaviour {
     protected Text description;
     protected Image[] images;
     protected Sprite cardBackground;
+    protected ClickManager clickManager;
 
     protected CardPlayer owner; // Who has this card in their hand, if anyone
     protected Land[] acceptedTerrains; // Terrains this card can be played on
@@ -34,6 +38,7 @@ public class CardObject : MonoBehaviour {
     protected bool played; // Whether the card has been played
     protected bool touchingBoard;
     protected bool hasShrunk;
+    protected Vector3 lastPosition;
 
     protected CardInfo myCardInfo;
 
@@ -48,8 +53,11 @@ public class CardObject : MonoBehaviour {
     void Start()
     {
         tuning = Tuning.tuning;
+        player = Player.player;
+        UImanager = UIManager.UImanager;
         float scaleFactor = tuning.scaleFactor; // Get scale factor from tuning object
         scaleVector = new Vector3(scaleFactor, scaleFactor); // This vector is added to local scale on Grow()
+        clickManager = new ClickManager();
 	}
 
     // This is called in CardGame and overridden in CardObject subclasses (PlayerCardObject and EnemyCardObject)
@@ -93,8 +101,7 @@ public class CardObject : MonoBehaviour {
         CheckOwner();
         owner.PlayCard(this);
         played = true;
-        PlayEffect();
-        
+        PlayEffect();  
     }
 
     // Overridden by Discovery Cards, etc.
@@ -182,7 +189,10 @@ public class CardObject : MonoBehaviour {
     public virtual void OnMouseDown() {
 		EventController.Event("DrawCard");
 
-		Grow();
+        if (clickManager.DoubleClick())
+        {
+            Grow();
+        }
         // Push to front
         transform.SetAsLastSibling();
     }
@@ -193,6 +203,19 @@ public class CardObject : MonoBehaviour {
 
     public void Grow()
     {
+        CardObject selectedCard = player.SelectedCard;
+        CardObject viewedCard = player.ViewedCard;
+        Debug.Log(viewedCard == null);
+        if (selectedCard != null && selectedCard != this)
+        {
+            player.ReturnCardToHand();
+        }
+        if (viewedCard != null & viewedCard != this)
+        {
+            player.ReturnViewedCard();
+        }
+        lastPosition = transform.localPosition;
+        Debug.Log(lastPosition);
         transform.localPosition = tuning.largeCardPosition;
         transform.localScale = tuning.largeCardScale;
         hasShrunk = false;
@@ -200,6 +223,7 @@ public class CardObject : MonoBehaviour {
 
     public void Shrink()
     {
+        transform.localPosition = lastPosition;
 		transform.localScale = tuning.cardScale;
 		hasShrunk = true;
     }
