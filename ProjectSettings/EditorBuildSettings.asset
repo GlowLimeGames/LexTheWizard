@@ -7,5 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/UI-Mockup.unity
+  - enabled: 1
+    path: Assets/Scenes/Gameplay.unity
