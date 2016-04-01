@@ -203,7 +203,7 @@ public class CardObject : MonoBehaviour {
 
     public void Grow()
     {
-        CardObject selectedCard = player.SelectedCard;
+        /*CardObject selectedCard = player.SelectedCard;
         CardObject viewedCard = player.ViewedCard;
         Debug.Log(viewedCard == null);
         if (selectedCard != null && selectedCard != this)
@@ -213,7 +213,8 @@ public class CardObject : MonoBehaviour {
         if (viewedCard != null & viewedCard != this)
         {
             player.ReturnViewedCard();
-        }
+        }*/
+        player.CheckSelection(this);
         lastPosition = transform.localPosition;
         Debug.Log(lastPosition);
         transform.localPosition = tuning.largeCardPosition;

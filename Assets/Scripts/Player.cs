@@ -83,6 +83,18 @@ public class Player : CardPlayer {
         }		
 	}
 
+    public void CheckSelection(CardObject cardObject)
+    {
+        if (cardObject != selectedCard && selectedCard != null)
+        {
+            ReturnCardToHand();
+        }
+        else if (cardObject != viewedCard && viewedCard != null)
+        {
+            ReturnViewedCard();
+        }
+    }
+
     // Returns currently selected card to hand
     public void ReturnCardToHand()
     {
@@ -92,7 +104,6 @@ public class Player : CardPlayer {
 
     public void ReturnViewedCard()
     {
-        Debug.Log("trying to return viewed card");
         viewedCard.Shrink();
         viewedCard = null;
     }
