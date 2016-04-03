@@ -13,6 +13,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class Deck : MonoBehaviour {
 
 	// Enum determines whether this is a player of an AI deck

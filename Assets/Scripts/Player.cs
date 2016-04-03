@@ -7,7 +7,7 @@ public class Player : CardPlayer {
 	public static Player player; // Static instance of this class
 	
 	// Stat variables
-	int points;
+	public int points;
 	
 	// Card Player variables
 	CardObject selectedCard;
