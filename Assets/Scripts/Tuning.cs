@@ -26,8 +26,11 @@ public class Tuning : MonoBehaviour {
     public int numOfStartingCards;
 	public int handLimit;
 
+    // Card Object variables
     public float scaleFactor;
     public Vector3 cardScale;
+    public Vector3 largeCardScale;
+    public Vector3 largeCardPosition;
 
 	public float enemyWaitTime; // Time enemy takes to pick a card
 
