@@ -26,12 +26,17 @@ public class UIManager : MonoBehaviour {
 	// Reference to GameController
 	GameController gameController;
 
+    // Reference to action icons parent
+    public GameObject actionIcons;
+    DiscardPile discard;
+
 	// Reference to popups
 	public GameObject pauseMenu;
 	public GameObject confirmMenu;
 	public GameObject notificationPopup; // object itself
 	public GameObject gameOver;
 	Popup popup; // popup script
+    ConfirmationPopup confirmPopup;
 
 	//Used to specify action to confirm
 	private ActionType actionType;
@@ -45,11 +50,14 @@ public class UIManager : MonoBehaviour {
 		tuning = Tuning.tuning;
 		gameController = GameController.gameController;
 
-		SetStats (tuning.startingPoints);
+        SetStats(tuning.startingPoints);
 
-		popup = notificationPopup.GetComponent<Popup> ();
-		hideAllPopups ();
-		//notificationPopup.SetActive(false); // Hide popup
+        popup = notificationPopup.GetComponent<Popup>();
+        confirmPopup = confirmMenu.GetComponent<ConfirmationPopup>();
+        hideAllPopups();
+
+        discard = actionIcons.GetComponentInChildren<DiscardPile>();
+        ShowActionIcons(false);
 	}
 
 	// This is called from Player and SetupUI
@@ -98,13 +106,18 @@ public class UIManager : MonoBehaviour {
 
 	// This is called from the Dismiss Button on the Popup
 	public void DismissPopup() {
-		popup.Dimiss ();
+		popup.Hide ();
 	}
 
 	public void ShowPopup(string message) {
 		notificationPopup.SetActive (true);
 		popup.SetText (message);
 	}
+
+    public void ShowActionIcons(bool showIcons)
+    {
+        actionIcons.SetActive(showIcons);
+    }
 
 	// Can be used to hide or show
 	public void ShowConfirmMenu(bool showMenu) {
@@ -154,6 +167,11 @@ public class UIManager : MonoBehaviour {
 		confirmMenu.SetActive (false);
 		gameOver.SetActive (false);
 	}
+
+    public DiscardPile Discard
+    {
+        get { return discard; }
+    }
 
 	public void PlayButtonPressSFX () {
 		EventController.Event("ButtonPress");

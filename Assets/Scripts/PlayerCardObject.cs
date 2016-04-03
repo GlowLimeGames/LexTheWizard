@@ -26,6 +26,22 @@ public class PlayerCardObject : CardObject {
         salvageText.text = cardInfo.salvage.ToString();
 
         // Add Click and Drag functionality to this object
-        gameObject.AddComponent<ClickAndDrag>();
+        //gameObject.AddComponent<ClickAndDrag>();
+    }
+
+    public override void OnMouseDown()
+    {
+        if (clickManager.DoubleClick())
+        {
+            showActionMenu();
+        }
+    }
+
+    void showActionMenu()
+    {
+        transform.SetAsLastSibling();
+        Grow();
+        Player.player.SelectedCard = this;
+        UImanager.ShowActionIcons(true);
     }
 }
