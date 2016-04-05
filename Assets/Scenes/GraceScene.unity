@@ -1666,6 +1666,15 @@ MonoBehaviour:
   isFatherAlive: 0
   isSisterAlive: 0
   isGrandmaAlive: 0
+  saveData:
+    playerDeck: []
+    enemyDeck: []
+    score: 0
+    phase: 0
+    days: 0
+    currDayTime: 
+    currTerrain: 
+    currTerrainIndex: 0
 --- !u!114 &891024543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1733,6 +1742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05bb96f655026c247bfb354f3fd511c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 0
 --- !u!4 &1029208977
 Transform:
   m_ObjectHideFlags: 0
@@ -1757,6 +1767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeckType: 0
+  cards: []
 --- !u!1 &1111293359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,6 +1820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeckType: 1
+  cards: []
 --- !u!1 &1177638587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,9 +2326,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadSceneOnClick
-        m_Mode: 3
+      - m_Target: {fileID: 1353636834}
+        m_MethodName: Pass
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

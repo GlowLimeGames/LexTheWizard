@@ -13,7 +13,6 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
 public class Deck : MonoBehaviour {
 
 	// Enum determines whether this is a player of an AI deck
@@ -78,6 +77,7 @@ public class Deck : MonoBehaviour {
 
 // Doesn't inherit from MonoBehavior so we can call "new" in Deck class
 // This means CardInfo is not actually attached to an object
+[System.Serializable]
 public class CardInfo
 {
 	public DeckType deckType;

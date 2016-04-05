@@ -266,9 +266,9 @@ public class GameController : MonoBehaviour {
 		//When save is called, the save data instance in this class updates its variabes and serializes using SaveSystem's save function
 
 		//gameController.saveData.playerHand = gameController.player.GetHand ();
-		//gameController.saveData.playerDeck = gameController.player.GetDeck ();
+		gameController.saveData.playerDeck = gameController.player.GetDeck().cards;
 		//gameController.saveData.enemyHand = CardGame.Instance.enemy.GetHand ();
-		//gameController.saveData.enemyDeck = CardGame.Instance.enemy.GetDeck ();
+		gameController.saveData.enemyDeck = CardGame.Instance.enemy.GetDeck ().cards;
 
 		gameController.saveData.score = gameController.player.points;
 		gameController.	saveData.phase = gameController.phase;
@@ -286,9 +286,15 @@ public class GameController : MonoBehaviour {
 		//TODO update the difficult pieces from saveData
 
 		//gameController.saveData.playerHand = gameController.player.GetHand ();
-		//gameController.saveData.playerDeck = gameController.player.GetDeck ();
+		gameController.saveData.playerDeck = gameController.player.GetDeck().cards;
 		//gameController.saveData.enemyHand = CardGame.Instance.enemy.GetHand ();
-		//gameController.saveData.enemyDeck = CardGame.Instance.enemy.GetDeck ();
+		gameController.saveData.enemyDeck = CardGame.Instance.enemy.GetDeck ().cards;
+
+
+		//gameController.player.GetHand (). = gameController.saveData.playerHand;
+		gameController.player.GetDeck ().cards = gameController.saveData.playerDeck;
+		//gameController.saveData.enemyHand = CardGam	e.Instance.enemy.GetHand ();
+		CardGame.Instance.enemy.GetDeck ().cards = gameController.saveData.enemyDeck;
 
 		gameController.player.points = gameController.saveData.score;
 		gameController.phase = gameController.saveData.phase; 
