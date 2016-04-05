@@ -407,6 +407,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 195678900}
+--- !u!4 &206265080 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 489520, guid: 835b2039c2403440eb499c7dc2e23f72, type: 2}
+  m_PrefabInternal: {fileID: 338756782}
 --- !u!1 &222197017
 GameObject:
   m_ObjectHideFlags: 0
