@@ -2,40 +2,121 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player : MonoBehaviour {
-
+public class Player : CardPlayer {
+	
 	public static Player player; // Static instance of this class
-	public UIManager UImanager;
-    Tuning tuning;
-
+    DiscardPile discard;
+	
 	// Stat variables
-    int points;
-    int gold;
-    int salvage;
-
-    CardPlayer cardPlayer;
-
+	int points;
+	
+	// Card Player variables
+	CardObject selectedCard; // Player Card Object
+    CardObject viewedCard; // Enemy Card Object the player is viewing
+	
 	void Awake() {
 		player = this;
+		base.Awake ();
 	}
-
+	
 	void Start() {
-		// Assigns starting stats from tuning object
-        player.tuning = Tuning.tuning;
-		player.points = tuning.startingPoints;
-		player.gold = tuning.startingGold;
-		player.salvage = tuning.startingSalvage;
-
-		// Calls UIManager to display the stats
-		UImanager.SetStats ();
-
-        player.cardPlayer = GetComponent<CardPlayer>();
-        cardPlayer.SetName("Lex");
+		base.Start ();
+		cardPlayerName = "Lex";
+	}
+	
+	// This allows other objects to get stats from Player without reassigning them
+	public int[] GetStats()
+	{
+		return new int[1] {points};
+	}
+	
+	public void ChangeStats(int pointsChange)
+	{
+		points += pointsChange;
+		UImanager.SetStats(points);
+	}
+	
+	public override void PlayCard(CardObject cardObject) {
+		selectedCard = cardObject;
+		UImanager.ShowConfirmMenu(true);
 	}
 
-	// This allows other objects to get stats from Player without reassigning them
-    public int[] GetStats()
+    public void PlayCard()
     {
-        return new int[3] { points, gold, salvage };
+        UImanager.ShowConfirmMenu(true);
+    }
+
+    public void Discard()
+    {
+        if (discard == null)
+        {
+            discard = UImanager.Discard;
+        }
+        discard.Discard();
+    }
+	
+	public void Confirm(bool isConfirmed) {
+        if (isConfirmed)
+        {
+            CardInfo playedCardInfo = selectedCard.GetCardInfo();
+            string cardName = playedCardInfo.title;
+            RemoveCardFromHand(selectedCard);
+
+            int pointsChange = playedCardInfo.points;
+
+            if (pointsChange > 0)
+            {
+                EventController.Event("PointIncrease");
+            }
+
+            ChangeStats(pointsChange);
+            CardGame.Instance.SetPositionFree(selectedCard.GetHandPosition()); // Set hand position as free
+            selectedCard.PlayEffect();
+            gameController.Turn();
+
+            Debug.Log("Lex just played " + cardName + ".");
+            selectedCard = null;
+        }
+        else
+        {
+            Debug.Log("Lex cancelled");
+        }		
+	}
+
+    public void CheckSelection(CardObject cardObject)
+    {
+        if (cardObject != selectedCard && selectedCard != null)
+        {
+            ReturnCardToHand();
+        }
+        else if (cardObject != viewedCard && viewedCard != null)
+        {
+            ReturnViewedCard();
+        }
+    }
+
+    // Returns currently selected card to hand
+    public void ReturnCardToHand()
+    {
+        selectedCard.Shrink();
+        selectedCard = null;
+    }
+
+    public void ReturnViewedCard()
+    {
+        viewedCard.Shrink();
+        viewedCard = null;
+    }
+
+    public CardObject SelectedCard
+    {
+        get { return selectedCard; }
+        set { selectedCard = value; }
+    }
+
+    public CardObject ViewedCard
+    {
+        get { return viewedCard; }
+        set { viewedCard = value; }
     }
 }

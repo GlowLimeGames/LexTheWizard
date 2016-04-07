@@ -2,45 +2,59 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyBehavior : MonoBehaviour {
-
-    CardPlayer cardPlayer;
-
-	//Placeholder for the enemy's hand
-	List<CardObject> hand = new List<CardObject>();
-
-    void Awake()
-    {
-        cardPlayer = GetComponent<CardPlayer>();
-        cardPlayer.SetName("Enemy");
-        hand = cardPlayer.GetCards();
-    }
-
-	//TEST
-	//Unused for now
-    /*
-	void Update () {
+public class EnemyBehavior : CardPlayer {
 	
+	void Awake() {
+		base.Awake ();
 	}
-    */
-
-	//Simple method for selcting card. Will increase complecity as design team completes more work
-	//TODO Change the behavior of enemy selction depending on what it is.
-	int selectCard(int[] hand){
-		//Currently an int but will change to a Card when code is more complete
-		int cardValue = 0;
-		//Searches hand for desired card to play. Current criteria is for initial prototype only.
-		for(int i = 0; i < hand.Length; i++){
-			//When code is more complete; Change this to check card's value variable
-			//TODO talk with design team to determine how a real player might value their cards
-			if (cardValue < hand[i]) {
-				//Sets temp variable to highest valued card;
-				cardValue = hand [i];
-						}
+	
+	void Start()
+	{
+		cardPlayerName = "Enemy";
+		base.Start ();
+	}
+	
+	//Method to test playability of card in current state
+	private bool playable(CardObject card){
+		Land[] cardsAcceptedTerrains = card.GetCardInfo().terrains;
+		string cardsAcceptedDayTime = card.GetCardInfo().daytime;
+		for (int i = 0; i < cardsAcceptedTerrains.Length; i++)
+		{
+			if (cardsAcceptedTerrains[i] == gameController.currTerrain)//&& (card.GetCardInfo().daytime == gameController.currDayTime)){ taken out for alpha
+			{
+				return true;
+			}
 		}
-		return cardValue;
+		return false;
 	}
-
-	//TODO write enemy preferences & behaviors
+	
+	//TODO talk with design team to determine how a real player might value their cards
+	//TODO Change the behavior of enemy selction depending on what kind of enemy it is.
+	
+	//Simple method for selcting card. Will increase complexity as design team completes more work
+	public CardObject selectCard(){
+		//Temp var to store highest valued playable card.
+		
+		int searchIndex = 0;
+		CardObject highestCard = hand[searchIndex];
+		
+		while (!playable(highestCard) && searchIndex < hand.Count) {
+			searchIndex++;
+			highestCard = hand[searchIndex];
+		}
+		
+		//Searches hand for desired card to play. Current criteria is for initial prototype only.
+		foreach(CardObject card in hand){
+			
+			//Checks playability and relative value of card
+			if (playable(card)&&(highestCard.GetCardInfo().aiValue < card.GetCardInfo().aiValue)) {
+				//Sets temp variable to highest valued card;
+				highestCard = card;
+			}
+		}
+		return highestCard;
+	}
+	
+	//TODO write enemy preferences & behaviors(post alpha)
 	//TODO write planning algorithm for 2 card combos
 }

@@ -9,6 +9,9 @@ TagManager:
   - Sell
   - Salvage
   - Card
+  - Enemy
+  - Hand
+  - CardCenter
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Board Interaction
   - 
   - 
   - 

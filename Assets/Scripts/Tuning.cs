@@ -14,6 +14,9 @@ public class Tuning : MonoBehaviour {
 
     public static Tuning tuning;
 
+	// Win Condition
+	public int winPoints;
+
     // Player variables
     public int startingGold;
     public int startingSalvage;
@@ -21,8 +24,19 @@ public class Tuning : MonoBehaviour {
 
     // Card Game variables
     public int numOfStartingCards;
+	public int handLimit;
+
+    // Card Object variables
     public float scaleFactor;
     public Vector3 cardScale;
+    public Vector3 largeCardScale;
+    public Vector3 largeCardPosition;
+
+	public float enemyWaitTime; // Time enemy takes to pick a card
+
+	public int travelCost;
+
+	public string defaultDismissButtonText;
 
     void Awake()
     {

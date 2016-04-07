@@ -1,0 +1,130 @@
+{
+	"Audio": [
+		{
+			“FileName”:"GameMusic",
+			“EventNames”:["PlayGameMusic"],
+			"StopEventNames":["StopGameMusic"],
+			“Loop”:true,
+			“Type”:"Music",
+			“Channel”:1,
+			"Volume": 50
+		},
+		{
+			“FileName”:"MenuMusic",
+			“EventNames”:["PlayMenuMusic"],
+			"StopEventNames":["StopMenuMusic"],
+			“Loop”:true,
+			“Type”:"Music",
+			“Channel”:1,
+			"Volume": 100
+		},
+		{
+			“FileName”:"ButtonPress",
+			“EventNames”:["ButtonPress"],
+			"StopEventNames":[],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:4,
+			"Volume": 100
+		},
+		{
+			“FileName”:"Decrease",
+			“EventNames”:["Decrease"],
+			"StopEventNames":[],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:3,
+			"Volume": 100
+		},
+		{
+			“FileName”:"DrawCard",
+			“EventNames”:["DrawCard"],
+			"StopEventNames":[],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:2,
+			"Volume": 100
+		},
+		{
+			“FileName”:"Gibberish",
+			“EventNames”:["Gibberish"],
+			"StopEventNames":[],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:2,
+			"Volume": 100
+		},
+		{
+			“FileName”:"GoldIncrease1",
+			“EventNames”:["GoldIncrease"],
+			"StopEventNames":[],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:3,
+			"Volume": 100
+		},
+		{
+			“FileName”:"PlayDiscoveryCard",
+			“EventNames”:["PlayDiscoveryCard"],
+			"StopEventNames":[],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:2,
+			"Volume": 100
+		},
+		{
+			“FileName”:"PointIncrease",
+			“EventNames”:["PointIncrease"],
+			"StopEventNames":[],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:3,
+			"Volume": 100
+		},
+		{
+			“FileName”:"SalvageIncrease",
+			“EventNames”:["SalvageIncrease"],
+			"StopEventNames":[],
+			“Loop”:false,
+			“Type”:“FX”,
+			“Channel”:3,
+			"Volume": 100
+		},
+		{
+			“FileName”:"CaveAmbiance",
+			“EventNames”:["PlayCaveAmbiance"],
+			"StopEventNames":["StopCaveAmbiance"],
+			“Loop”:true,
+			“Type”:“FX”,
+			“Channel”:5,
+			"Volume": 100
+		},
+		{
+			“FileName”:"ForestAmbiance",
+			“EventNames”:["PlayForestAmbiance"],
+			"StopEventNames":["StopForestAmbiance"],
+			“Loop”:true,
+			“Type”:“FX”,
+			“Channel”:5,
+			"Volume": 75
+		},
+		{
+			“FileName”:"HillAmbiance",
+			“EventNames”:["PlayHillAmbiance"],
+			"StopEventNames":["StopHillAmbiance"],
+			“Loop”:true,
+			“Type”:“FX”,
+			“Channel”:5,
+			"Volume": 75
+		},
+		{
+			“FileName”:"SwampAmbiance",
+			“EventNames”:["PlaySwampAmbiance"],
+			"StopEventNames":["StopSwampAmbiance"],
+			“Loop”:true,
+			“Type”:“FX”,
+			“Channel”:5,
+			"Volume": 75
+		}
+	]
+}
