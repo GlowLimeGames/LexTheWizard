@@ -10,4 +10,16 @@ public class EnemyCardObject : CardObject {
 
         SetCardBackground(acceptedTerrains[0].enemyCardArt);
     }
+
+    public override void OnMouseDown()
+    {
+        if (clickManager.DoubleClick())
+        {
+            player.ViewedCard = this;
+            Grow();
+            // Push to front
+            transform.SetAsLastSibling();
+            UImanager.ShowActionIcons(false);
+        }
+    }
 }
