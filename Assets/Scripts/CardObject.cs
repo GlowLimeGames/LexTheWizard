@@ -222,7 +222,7 @@ public class CardObject : MonoBehaviour {
         hasShrunk = false;
     }
 
-    public void Shrink()
+    public virtual void Shrink()
     {
         transform.localPosition = lastPosition;
 		transform.localScale = tuning.cardScale;

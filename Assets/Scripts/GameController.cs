@@ -310,6 +310,10 @@ public class GameController : MonoBehaviour {
 		currState.setTerrain (nextTerr);
 	}
 
+	public CardGame thisCardGame {
+		get { return cardGame; }
+	}
+
 	//NOTE: May move below and associated code to more appropriate class.
 	//Tracks the previous terrain type and whether Lex used a shelter there.
 	//This is stored in an array in the parent class for Lex to access.
