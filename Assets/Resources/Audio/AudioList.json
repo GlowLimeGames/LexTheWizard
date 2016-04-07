@@ -169,7 +169,7 @@
 			“Loop”:false,
 			“Type”:“FX”,
 			“Channel”:2,
-			"Volume": 100
+			"Volume": 65
 		},
 		{
 			“FileName”:"FlickToCenter",
