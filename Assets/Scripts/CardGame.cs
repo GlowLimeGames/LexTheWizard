@@ -31,6 +31,10 @@ public class CardGame : MonoBehaviour {
     public GameObject enemyCardTemplate; // Reference to enemy card prefab
     public GameObject cardCanvas; // Reference to canvas containing cards
 
+	public Sprite[] cardIcons;
+	Sprite discoveryIcon;
+	Sprite dialogueIcon;
+
     List<CardObject> playerCards; // Reference to cards from Player's CardPlayer
     List<CardObject> enemyCards; // Reference to cards from Enemy's CardPlayer
 
@@ -54,6 +58,9 @@ public class CardGame : MonoBehaviour {
 
 		playerCards = player.GetHand();
 		enemyCards = enemy.GetHand();
+
+		discoveryIcon = cardIcons [(int) CardType.Discovery];
+		dialogueIcon = cardIcons [(int) CardType.Dialogue];
 	}
 
 	public void BeginCardGame() {
@@ -153,5 +160,18 @@ public class CardGame : MonoBehaviour {
 	// Set a position in player's hand as free
 	public void SetPositionFree (int pos){
 		playerSpotsForCards [pos] = false;
+	}
+
+	public Sprite GetIconByType(string type) {
+		switch (type) {
+			case "Dialogue":
+				return dialogueIcon;
+			case "Discovery":
+				return discoveryIcon;
+		}
+		if (type.Contains("Discovery")) {
+			return discoveryIcon;
+		}
+		return null;
 	}
 }
