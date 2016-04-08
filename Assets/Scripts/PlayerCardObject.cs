@@ -46,6 +46,11 @@ public class PlayerCardObject : CardObject {
         }
     }
 
+	public override void Grow() {
+		base.Grow ();
+		//UImanager.ShowActionIcons (true);
+	}
+
 	public override void Shrink() {
 		base.Shrink ();
 		toggleIcon (true);
@@ -60,7 +65,6 @@ public class PlayerCardObject : CardObject {
     }
 
 	void toggleIcon(bool showIcon) {
-		Debug.Log ("toggling Icon on? " + showIcon.ToString ());
 		iconObject.SetActive (showIcon);
 		card.SetActive (! showIcon);
 		images [0].enabled = ! showIcon;
