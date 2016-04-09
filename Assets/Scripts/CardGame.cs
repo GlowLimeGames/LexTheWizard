@@ -155,6 +155,7 @@ public class CardGame : MonoBehaviour {
 		card.transform.position = enemyBoardTargets[0].position;
 		//card.transform.localScale = enemyBoardTargets [0].localScale;
 		enemy.PlayCard(card);
+        EventController.Event("PlayAIPlayCard");
 	}
 	
 	// Set a position in player's hand as free
