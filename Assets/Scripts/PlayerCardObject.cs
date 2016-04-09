@@ -4,10 +4,14 @@ using System.Collections;
 
 public class PlayerCardObject : CardObject {
 
+	public GameObject card;
+	public GameObject iconObject;
+
     Text goldText;
     Text pointsText;
     Text salvageText;
     Sprite art;
+	Sprite icon;
 
     public override void CreateCard(CardInfo cardInfo)
     {
@@ -15,6 +19,7 @@ public class PlayerCardObject : CardObject {
 
         SetCardBackground(acceptedTerrains[0].playerCardArt);
         images[1].sprite = cardInfo.art; // Images array is assigned in parent class
+		images[2].sprite = GameController.gameController.thisCardGame.GetIconByType(cardInfo.cardType);
 
         // Set references to remaining Text components
         goldText = text[4];
@@ -26,6 +31,8 @@ public class PlayerCardObject : CardObject {
         pointsText.text = cardInfo.points.ToString();
         salvageText.text = cardInfo.salvage.ToString();
 
+		toggleIcon (true);
+
         // Add Click and Drag functionality to this object
         //gameObject.AddComponent<ClickAndDrag>();
     }
@@ -34,9 +41,20 @@ public class PlayerCardObject : CardObject {
     {
         if (clickManager.DoubleClick())
         {
+			toggleIcon(false);
             showActionMenu();
         }
     }
+
+	public override void Grow() {
+		base.Grow ();
+		//UImanager.ShowActionIcons (true);
+	}
+
+	public override void Shrink() {
+		base.Shrink ();
+		toggleIcon (true);
+	}
 
     void showActionMenu()
     {
@@ -45,4 +63,10 @@ public class PlayerCardObject : CardObject {
         Player.player.SelectedCard = this;
         UImanager.ShowActionIcons(true);
     }
+
+	void toggleIcon(bool showIcon) {
+		iconObject.SetActive (showIcon);
+		card.SetActive (! showIcon);
+		images [0].enabled = ! showIcon;
+	}
 }
