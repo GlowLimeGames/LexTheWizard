@@ -77,6 +77,7 @@ public class Deck : MonoBehaviour {
 
 // Doesn't inherit from MonoBehavior so we can call "new" in Deck class
 // This means CardInfo is not actually attached to an object
+
 public class CardInfo
 {
 	public DeckType deckType;
