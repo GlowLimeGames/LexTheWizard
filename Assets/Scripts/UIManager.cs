@@ -38,6 +38,9 @@ public class UIManager : MonoBehaviour {
 	Popup popup; // popup script
     ConfirmationPopup confirmPopup;
 
+	//Used to specify action to confirm
+	private ActionType actionType;
+
 	void Awake() {
 		UImanager = this;
 	}
@@ -83,6 +86,13 @@ public class UIManager : MonoBehaviour {
 		gameController.Pause (pauseGame);
 	}
 
+	//Called when the Pass Button is pressed
+	public void Pass () {
+		//actionType = ActionType.Pass;
+		//UImanager.ShowConfirmMenu(true);
+		gameController.Turn ();
+	}
+		
 	void showPauseMenu(bool isPaused) {
 		pauseMenu.SetActive (isPaused);
 	}
@@ -108,13 +118,27 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void ConfirmAction(bool confirm) {
+		//cases to go by a variable that is reset to -1 at end of this. run whatever.confirm(confirm)
 		if (confirm) {
 			Debug.Log ("Confirmed.");
-			player.Confirm(true);
 		} else {
 			Debug.Log ("Cancelled.");
-			player.Confirm(false);
 		}
+
+		//Facilitates the different actions that need confirmation
+		switch(actionType){
+		case ActionType.Play:
+			player.Confirm(confirm);
+			break;
+
+		/*case ActionType.Pass:
+			if (confirm) {
+				gameController.Turn ();
+			}
+			break;*/
+		}
+
+		actionType = ActionType.None;
 		ShowConfirmMenu (false);
 	}
 
@@ -137,4 +161,14 @@ public class UIManager : MonoBehaviour {
 	public void PlayButtonPressSFX () {
 		EventController.Event("ButtonPress");
 	}
+	public void setActionType(ActionType action){
+		actionType = action;
+	}
+	//Types of actions utilizing confirm menu
+	public enum ActionType {
+		Pass,
+		Play,
+	//	Discard,
+		None
+	};
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class GameController : MonoBehaviour {
 
 	public static GameController gameController;
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour {
 	private Player player;
 
 	private gameState currState;
+	//TODO track in save
 	private gameState[] previousTerrain = new gameState[6];
 	private int terrainIndex;
 	private int phase;
@@ -35,14 +37,12 @@ public class GameController : MonoBehaviour {
 	public bool isSisterAlive;
 	public bool isGrandmaAlive;
 
+	public SaveData saveData;
+
 	UIManager UImanager;
 	Tuning tuning;
 
-	//TODO associate with unwritten move home. For alpha win if points is good.
-	// win conditions varibles
 	int winPoints;
-	//int winGold;
-	//int winSalvage;
 
 	void Awake() {
 		gameController = this;
@@ -62,8 +62,8 @@ public class GameController : MonoBehaviour {
 		terrainIndex = 1;
 
 		winPoints = tuning.winPoints;
-		//winGold = 25;
-		//winSalvage = 40;
+
+		tuning.winPoints = 40;
 
 		isFatherAlive = true;
 		isSisterAlive = true;
@@ -115,9 +115,6 @@ public class GameController : MonoBehaviour {
 	public void Turn() {
 		//TODO write playCard() to play the card in question
 
-		//Temp var to help enemy play
-		CardObject usedCard = null;
-
 		switch(phase){
 		//1st Draw (Player and AI both draw)
 		case 0:		
@@ -137,38 +134,22 @@ public class GameController : MonoBehaviour {
 
 		//Dawn/Action 1
 		case 1:			
-			//TODO Update art to Dawn
-			//usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
-			//if (usedCard != null) {
-				//enemy.PlayCard(usedCard);
-			//}
 			UImanager.ShowGameOver (isGameOver ());
-
 			cardGame.showEnemyCard ();
-
 			phase = (phase + 1) % 6;
 			SetAfternoon ();
 			break;
 
 		//Afternoon/Action 2
 		case 2:			
-			//Update art to Afternoon
-		/*	usedCard = enemy.GetComponent<EnemyBehavior>().selectCard();
-			if (usedCard != null) {
-				enemy.PlayCard(usedCard);
-			}*/
 			UImanager.ShowGameOver (isGameOver ());
 			cardGame.showEnemyCard ();
 			phase = (phase + 1) % 6;
 			SetDusk ();
 			break;
+
 		//Dusk/Action 3
 		case 3:			
-			//Update art to Dusk
-			/*usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
-			if (usedCard != null) {
-				enemy.PlayCard(usedCard);
-			}*/
 			UImanager.ShowGameOver (isGameOver ());
 			cardGame.showEnemyCard ();
 			phase = (phase + 1) % 6;
@@ -192,12 +173,6 @@ public class GameController : MonoBehaviour {
 
 		//Night/Action 4
 		case 5:			
-			//Update art to Night
-			//Check if current state has shelter when enemy plays cards at night
-			/*usedCard = enemy.GetComponent<EnemyBehavior>().selectCard ();
-			if (usedCard != null) {
-				enemy.PlayCard(usedCard);
-			}*/
 			UImanager.ShowGameOver (isGameOver ());
 			cardGame.showEnemyCard ();
 			//This time phase will loop back to 0
@@ -205,40 +180,30 @@ public class GameController : MonoBehaviour {
 			SetDawn ();
 			break;
 		}
+		//Autosave after every phase.
+		SaveGame ();
+	}
+
+	public int getCurrPhase(){
+		return phase;
 	}
 
 	/*
 	 * Phases of day mechanics
 	 */
-
-	// sets time to dawn and updates days passed
 	public void SetDawn() {
 		currDayTime = "Dawn";
 		days++;
 	}
-
-	// sets time to afternoon
 	public void SetAfternoon() {
 		currDayTime = "Afternoon";
 	}
-
-	// sets time to dusk
 	public void SetDusk() {
 		currDayTime = "Dusk";
 	}
-
-	// sets time to night
 	public void SetNight() {
 		currDayTime = "Night";
 	}
-
-	/*// the possible phases of the day
-	public enum DayTime {
-		Dawn,
-		Afternoon,
-		Dusk,
-		Night
-	};*/
 
 	/*
 	* Win mechanics
@@ -248,30 +213,6 @@ public class GameController : MonoBehaviour {
 	public void raisePoints (int amount) {
 		winPoints += amount;
 	}
-
-	// raise winning condition for gold
-	/*public void raiseGold (int amount) {
-		winGold += amount;
-	}
-
-	// raise winning condition for salvage
-	public void raiseSalvage (int amount) {
-		winSalvage += amount;
-	}
-
-	// check for winning conditions
-	public bool Win () {
-		// gets player's stats
-		int[] stats = Player.player.GetStats();
-
-		if (stats [0] >= winPoints || stats [1] >= winGold || stats [2] >= winSalvage) {
-			return true;
-		} 
-		else {
-			return false;
-		}
-		// need to add swamp king condition if it goes to final game
-	}*/
 
 	private bool isGameOver(){
 		return player.NumberOfCardsInHand () == 0;
@@ -295,7 +236,9 @@ public class GameController : MonoBehaviour {
 		}
 		return GetTerrainByName ("Any");
 	}
-
+	/*
+	* Terrain mechanics
+	*/
 	public void MoveTerrain() {
 		//Random select terrain
 		int nextTerr = Random.Range(1,terrains.Length);
@@ -310,7 +253,67 @@ public class GameController : MonoBehaviour {
 		currState.setTerrain (nextTerr);
 	}
 
-	//NOTE: May move below and associated code to more appropriate class.
+	public static void SaveGame () {
+		//When save is called, the save data instance in this class updates its variabes and serializes using SaveSystem's save function
+
+		//By necessity, save Decks and Hands by the titles of their cards
+		foreach(CardObject card in gameController.player.GetHand ()){
+			gameController.saveData.playerHand.Add (card.GetCardInfo().title);
+		}
+		foreach(CardInfo card in gameController.player.GetDeck().cards){
+			gameController.saveData.playerDeck.Add (card.title);
+		}
+		foreach(CardObject card in CardGame.Instance.enemy.GetHand ()){
+			gameController.saveData.enemyHand.Add (card.GetCardInfo().title);
+		}
+		foreach(CardInfo card in CardGame.Instance.enemy.GetDeck ().cards){
+			gameController.saveData.enemyDeck.Add (card.title);
+		}
+
+
+		gameController.saveData.score = gameController.player.points;
+		gameController.	saveData.phase = gameController.phase;
+		gameController.saveData.days = gameController.days;
+		gameController.saveData.currDayTime = gameController.currDayTime;
+		gameController.	saveData.currTerrain = gameController.currTerrain.name;
+		gameController.saveData.currTerrainIndex = gameController.currTerrainIndex;
+
+		SaveSystem.Save ();
+	}
+
+	public static void LoadData (){
+		SaveSystem.Load ();
+		gameController.saveData = SaveSystem.saveGame;
+
+		//TODO write method to get card info from csv based only on title
+
+	/*	//gameController.player.GetHand (). = gameController.saveData.playerHand;
+		foreach(string card in gameController.saveData.playerHand){
+			Deck loadPlayerHand = new Deck //with all cards 
+			player.
+				gameController.saveData.playerHand.Count
+			//Deals Cards to the player
+			//cardGame.DealCards (1, toLoadHand, cardGame.playerHandTargets, player);
+			//Deals Cards to the AI
+			//cardGame.DealCards (1, enemyDeck, cardGame.enemyHandTargets, enemy);
+		}*/
+		//gameController.player.GetDeck ().cards = gameController.saveData.playerDeck;
+		//gameController.saveData.enemyHand = CardGame.Instance.enemy.GetHand ();
+		//CardGame.Instance.enemy.GetDeck ().cards = gameController.saveData.enemyDeck;
+
+		gameController.player.points = gameController.saveData.score;
+		gameController.phase = gameController.saveData.phase; 
+		gameController.days = gameController.saveData.days;
+		gameController.currDayTime = gameController.saveData.currDayTime;
+		gameController.currTerrain = gameController.GetTerrainByName(gameController.saveData.currTerrain);
+		gameController.currTerrainIndex = gameController.saveData.currTerrainIndex;
+	}
+
+
+	public CardGame thisCardGame {
+		get { return cardGame; }
+	}
+
 	//Tracks the previous terrain type and whether Lex used a shelter there.
 	//This is stored in an array in the parent class for Lex to access.
 	private class gameState {
@@ -344,4 +347,5 @@ public class GameController : MonoBehaviour {
 			this.shelter = shelterUsed;
 		}
 	}
+		
 }

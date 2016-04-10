@@ -8,7 +8,7 @@ public class Player : CardPlayer {
     DiscardPile discard;
 	
 	// Stat variables
-	int points;
+	public int points;
 	
 	// Card Player variables
 	CardObject selectedCard; // Player Card Object
@@ -35,9 +35,10 @@ public class Player : CardPlayer {
 		points += pointsChange;
 		UImanager.SetStats(points);
 	}
-	
+
 	public override void PlayCard(CardObject cardObject) {
 		selectedCard = cardObject;
+		UImanager.setActionType (UIManager.ActionType.Play);
 		UImanager.ShowConfirmMenu(true);
 	}
 
@@ -94,6 +95,14 @@ public class Player : CardPlayer {
             ReturnViewedCard();
         }
     }
+
+	public void ReturnCard() {
+		if (selectedCard != null) {
+			ReturnCardToHand ();
+		} else if (viewedCard != null) {
+			ReturnViewedCard();
+		}
+	}
 
     // Returns currently selected card to hand
     public void ReturnCardToHand()
