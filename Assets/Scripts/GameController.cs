@@ -253,15 +253,6 @@ public class GameController : MonoBehaviour {
 		currState.setTerrain (nextTerr);
 	}
 
-
-
-
-
-
-
-
-
-
 	public static void SaveGame () {
 		//When save is called, the save data instance in this class updates its variabes and serializes using SaveSystem's save function
 
@@ -304,7 +295,11 @@ public class GameController : MonoBehaviour {
 		gameController.currTerrainIndex = gameController.saveData.currTerrainIndex;
 	}
 
-		
+
+	public CardGame thisCardGame {
+		get { return cardGame; }
+	}
+
 	//Tracks the previous terrain type and whether Lex used a shelter there.
 	//This is stored in an array in the parent class for Lex to access.
 	private class gameState {

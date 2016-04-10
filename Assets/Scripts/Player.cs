@@ -96,6 +96,14 @@ public class Player : CardPlayer {
         }
     }
 
+	public void ReturnCard() {
+		if (selectedCard != null) {
+			ReturnCardToHand ();
+		} else if (viewedCard != null) {
+			ReturnViewedCard();
+		}
+	}
+
     // Returns currently selected card to hand
     public void ReturnCardToHand()
     {

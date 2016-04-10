@@ -201,7 +201,7 @@ public class CardObject : MonoBehaviour {
         Shrink();
     }*/
 
-    public void Grow()
+    public virtual void Grow()
     {
         /*CardObject selectedCard = player.SelectedCard;
         CardObject viewedCard = player.ViewedCard;
@@ -216,13 +216,13 @@ public class CardObject : MonoBehaviour {
         }*/
         player.CheckSelection(this);
         lastPosition = transform.localPosition;
-        Debug.Log(lastPosition);
+        //Debug.Log(lastPosition);
         transform.localPosition = tuning.largeCardPosition;
         transform.localScale = tuning.largeCardScale;
         hasShrunk = false;
     }
 
-    public void Shrink()
+    public virtual void Shrink()
     {
         transform.localPosition = lastPosition;
 		transform.localScale = tuning.cardScale;
