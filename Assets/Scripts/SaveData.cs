@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class SaveData {
 
 	//public List<CardObject> playerHand;
-	public List<CardInfo> playerDeck;
+	//public List<CardInfo> playerDeck;
 	//public List<CardObject>  enemyHand;
-	public List<CardInfo> enemyDeck;
+	//public List<CardInfo> enemyDeck;
 	public int score;
 	public int phase;
 	public int days;
