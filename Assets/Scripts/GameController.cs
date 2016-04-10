@@ -256,10 +256,20 @@ public class GameController : MonoBehaviour {
 	public static void SaveGame () {
 		//When save is called, the save data instance in this class updates its variabes and serializes using SaveSystem's save function
 
-		//gameController.saveData.playerHand = gameController.player.GetHand ();
-		//gameController.saveData.playerDeck = gameController.player.GetDeck().cards;
-		//gameController.saveData.enemyHand = CardGame.Instance.enemy.GetHand ();
-		//gameController.saveData.enemyDeck = CardGame.Instance.enemy.GetDeck ().cards;
+		//By necessity, save Decks and Hands by the titles of their cards
+		foreach(CardObject card in gameController.player.GetHand ()){
+			gameController.saveData.playerHand.Add (card.GetCardInfo().title);
+		}
+		foreach(CardInfo card in gameController.player.GetDeck().cards){
+			gameController.saveData.playerDeck.Add (card.title);
+		}
+		foreach(CardObject card in CardGame.Instance.enemy.GetHand ()){
+			gameController.saveData.enemyHand.Add (card.GetCardInfo().title);
+		}
+		foreach(CardInfo card in CardGame.Instance.enemy.GetDeck ().cards){
+			gameController.saveData.enemyDeck.Add (card.title);
+		}
+
 
 		gameController.saveData.score = gameController.player.points;
 		gameController.	saveData.phase = gameController.phase;
@@ -274,12 +284,22 @@ public class GameController : MonoBehaviour {
 	public static void LoadData (){
 		SaveSystem.Load ();
 		gameController.saveData = SaveSystem.saveGame;
-		//TODO update the difficult pieces from saveData
 
-		//gameController.player.GetHand (). = gameController.saveData.playerHand;
+		//TODO write method to get card info from csv based only on title
+
+	/*	//gameController.player.GetHand (). = gameController.saveData.playerHand;
+		foreach(string card in gameController.saveData.playerHand){
+			Deck loadPlayerHand = new Deck //with all cards 
+			player.
+				gameController.saveData.playerHand.Count
+			//Deals Cards to the player
+			//cardGame.DealCards (1, toLoadHand, cardGame.playerHandTargets, player);
+			//Deals Cards to the AI
+			//cardGame.DealCards (1, enemyDeck, cardGame.enemyHandTargets, enemy);
+		}*/
 		//gameController.player.GetDeck ().cards = gameController.saveData.playerDeck;
 		//gameController.saveData.enemyHand = CardGame.Instance.enemy.GetHand ();
-	//	CardGame.Instance.enemy.GetDeck ().cards = gameController.saveData.enemyDeck;
+		//CardGame.Instance.enemy.GetDeck ().cards = gameController.saveData.enemyDeck;
 
 		gameController.player.points = gameController.saveData.score;
 		gameController.phase = gameController.saveData.phase; 

@@ -8,7 +8,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-[System.Serializable]
+
 public class UIManager : MonoBehaviour {
 
 	// Reference to Text components on Stats Canvas
@@ -88,8 +88,9 @@ public class UIManager : MonoBehaviour {
 
 	//Called when the Pass Button is pressed
 	public void Pass () {
-		actionType = ActionType.Pass;
-		UImanager.ShowConfirmMenu(true);
+		//actionType = ActionType.Pass;
+		//UImanager.ShowConfirmMenu(true);
+		gameController.Turn ();
 	}
 		
 	void showPauseMenu(bool isPaused) {
@@ -130,11 +131,11 @@ public class UIManager : MonoBehaviour {
 			player.Confirm(confirm);
 			break;
 
-		case ActionType.Pass:
+		/*case ActionType.Pass:
 			if (confirm) {
 				gameController.Turn ();
 			}
-			break;
+			break;*/
 		}
 
 		actionType = ActionType.None;
