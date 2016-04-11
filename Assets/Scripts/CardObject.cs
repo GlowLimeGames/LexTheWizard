@@ -216,6 +216,7 @@ public class CardObject : MonoBehaviour {
         }*/
         player.CheckSelection(this);
         lastPosition = transform.localPosition;
+        EventController.Event("PlayTapToView");
         //Debug.Log(lastPosition);
         transform.localPosition = tuning.largeCardPosition;
         transform.localScale = tuning.largeCardScale;
@@ -226,6 +227,7 @@ public class CardObject : MonoBehaviour {
     {
         transform.localPosition = lastPosition;
 		transform.localScale = tuning.cardScale;
+        EventController.Event("PlayAICardShrink");
 		hasShrunk = true;
     }
 
