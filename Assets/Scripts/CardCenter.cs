@@ -8,7 +8,7 @@ using UnityEngine;
 using System.Collections;
 
 public class CardCenter : MonoBehaviour {
-
+	/*
 	CardObject cardObject; // Reference to this CardCenter's CardObject
 
 	void Start() {
@@ -31,5 +31,5 @@ public class CardCenter : MonoBehaviour {
 		{
 			cardObject.Grow();
 		}
-	}
+	}*/
 }

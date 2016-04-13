@@ -43,6 +43,7 @@ public class DiscardPile : MonoBehaviour {
 
         UImanager.ShowActionIcons(false);
         gameController.MoveTerrain();
+		gameController.Turn ();
     }
 
     /*void OnCollisionEnter2D(Collision2D coll)

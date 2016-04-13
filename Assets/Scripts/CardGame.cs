@@ -31,6 +31,10 @@ public class CardGame : MonoBehaviour {
     public GameObject enemyCardTemplate; // Reference to enemy card prefab
     public GameObject cardCanvas; // Reference to canvas containing cards
 
+	public Sprite[] cardIcons;
+	Sprite discoveryIcon;
+	Sprite dialogueIcon;
+
     List<CardObject> playerCards; // Reference to cards from Player's CardPlayer
     List<CardObject> enemyCards; // Reference to cards from Enemy's CardPlayer
 
@@ -54,6 +58,9 @@ public class CardGame : MonoBehaviour {
 
 		playerCards = player.GetHand();
 		enemyCards = enemy.GetHand();
+
+		discoveryIcon = cardIcons [(int) CardType.Discovery];
+		dialogueIcon = cardIcons [(int) CardType.Dialogue];
 	}
 
 	public void BeginCardGame() {
@@ -105,7 +112,7 @@ public class CardGame : MonoBehaviour {
 				// Instantiate prefab with the current transform
 				GameObject cardPrefab = (GameObject)Instantiate (cardTemplate, currentTransform.position, currentTransform.rotation);
 				// Sets scale
-				cardPrefab.transform.localScale = currentTransform.localScale;
+				//cardPrefab.transform.localScale = tuning.cardScale;
 				// Makes cardPrefab the child of the cardCanvas
 				cardPrefab.transform.SetParent (cardCanvas.transform, false);
 
@@ -146,12 +153,26 @@ public class CardGame : MonoBehaviour {
 		yield return new WaitForSeconds (waitTime);
 		
 		card.transform.position = enemyBoardTargets[0].position;
-		card.transform.localScale = enemyBoardTargets [0].localScale;
+		//card.transform.localScale = enemyBoardTargets [0].localScale;
 		enemy.PlayCard(card);
+        EventController.Event("PlayAIPlayCard");
 	}
 	
 	// Set a position in player's hand as free
 	public void SetPositionFree (int pos){
 		playerSpotsForCards [pos] = false;
+	}
+
+	public Sprite GetIconByType(string type) {
+		switch (type) {
+			case "Dialogue":
+				return dialogueIcon;
+			case "Discovery":
+				return discoveryIcon;
+		}
+		if (type.Contains("Discovery")) {
+			return discoveryIcon;
+		}
+		return null;
 	}
 }
