@@ -1902,6 +1902,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1141996436}
+  - 114: {fileID: 1141996437}
   m_Layer: 0
   m_Name: Ambiance Controller
   m_TagString: Untagged
@@ -1921,6 +1922,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 891024541}
   m_RootOrder: 0
+--- !u!114 &1141996437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1141996435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81aeb9c7e5f07894e89f06f2ff46616a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177638587
 GameObject:
   m_ObjectHideFlags: 0
