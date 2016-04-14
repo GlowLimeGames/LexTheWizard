@@ -11,12 +11,12 @@ public static class CardUtil {
 	const string _cardArtFilePathInResources = "Cards/";
 
 	// Specifies where the CSV files are saved (do not include file extension)
-	const string _defaultPlayerDeck = "Decks/PlayerTestDeck";
-	const string _defaultAIDeck = "Decks/AITestDeck";
+	const string _defaultPlayerDeck = "Decks/PlayerMVPDeck";
+	const string _defaultAIDeck = "Decks/AIMVPDeck";
 
 	// Corresponds to columns in CSV's
-	const int _numberOfPlayerCardInfoParameters = 11;
-	const int _numberOfAICardInfoParameters = 6;
+	const int _numberOfPlayerCardInfoParameters = 12;
+	const int _numberOfAICardInfoParameters = 7;
 
 	const int _csvHeaderOffset = 1;
 
@@ -108,20 +108,23 @@ public static class CardUtil {
 		if (parameters.Length == _numberOfPlayerCardInfoParameters) {
 			
 			return new CardInfo (
-				parameters[0],
-				ParseTerrains(parameters[1]),
-				parameters[2],
-				parameters[3],
-				int.Parse(parameters[4]),
-				int.Parse(parameters[5]),
-				int.Parse(parameters[6]),
-				int.Parse(parameters[7]),
-				LoadCardSprite(parameters[8]),
-				parameters[9]
+				parameters[0], // Title
+				ParseTerrains(parameters[1]), // Terrain
+				parameters[2], // Daytime
+				int.Parse(parameters[3]), // Week
+				parameters[4], // Card Type
+				int.Parse(parameters[5]), // Point
+				int.Parse(parameters[6]), // Gold
+				int.Parse(parameters[7]), // Salvage
+				int.Parse(parameters[8]), // Home Value
+				LoadCardSprite(parameters[9]), // Sprite
+				parameters[10], // Description
+				parameters[11] // Effects
 			);
 
 		} else {
 
+			Debug.Log (parameters [0]);
 			Debug.LogError("Incorrect number of parameters to generate card info: " + parameters.Length);
 			return null;
 
@@ -135,11 +138,13 @@ public static class CardUtil {
 
 		if (parameters.Length == _numberOfAICardInfoParameters) {
 				return new CardInfo (
-					parameters[0],
-					ParseTerrains(parameters[1]),
-					parameters[2],
-					parameters[3],
-					int.Parse(parameters[5])
+					parameters[0], // Title
+					ParseTerrains(parameters[1]), // Terrain
+					parameters[2], // Card Type
+					int.Parse(parameters[3]), // Week
+					parameters[4], // Description
+					int.Parse(parameters[5]), // AI Value
+					parameters[6] // Effects
 				);
 
 		} else {

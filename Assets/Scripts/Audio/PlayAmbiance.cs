@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayAmbiance : MonoBehaviour {
+	
     public static PlayAmbiance ambiences;
 
     string[] playAmbiance = { "Any", "PlayForestAmbiance", "PlayHillAmbiance", "PlaySwampAmbiance", "PlayCaveAmbiance" };
@@ -39,5 +40,4 @@ public class PlayAmbiance : MonoBehaviour {
 
         }
     }
-	
 }
