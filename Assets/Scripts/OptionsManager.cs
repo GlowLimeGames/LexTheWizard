@@ -3,28 +3,22 @@ using System.Collections;
 
 public class OptionsManager : MonoBehaviour {
 
-	bool musicToggle = false;
-	bool sfxToggle = false;
-	bool ambianceToggle = false;
+	bool muteMusic = false;
+	bool muteSfx = false;
+	bool muteAmbiance = false;
 
-	void Update () {
-		//SettingsUtil.ToggleMusicMuted (musicToggle);
-
+	void ToggleMusic(){
+		muteMusic = !muteMusic;
+		SettingsUtil.ToggleMusicMuted (muteMusic);
 	}
 
-
-	public void ToggleMusic(){
-		musicToggle = !musicToggle;
-		SettingsUtil.ToggleMusicMuted (musicToggle);
+	void ToggleFX(){
+		muteSfx = !muteSfx;
+		SettingsUtil.ToggleFXMuted (muteSfx);
 	}
 
-	public void ToggleFX(){
-		sfxToggle = !sfxToggle;
-		SettingsUtil.ToggleFXMuted (sfxToggle);
-	}
-
-	public void ToggleAmbiance(){
-		ambianceToggle = !ambianceToggle;
-		SettingsUtil.ToggleVOMuted (ambianceToggle);
+	void ToggleAmbiance(){
+		muteAmbiance = !muteAmbiance;
+		SettingsUtil.ToggleVOMuted (muteAmbiance);
 	}
 }
