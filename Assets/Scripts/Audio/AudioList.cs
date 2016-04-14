@@ -12,20 +12,19 @@ using System.Collections.Generic;
 [System.Serializable]
 public class AudioList {
 
-	Dictionary<AudioClip, AudioFile> clipToFileDictionary = new Dictionary<AudioClip, AudioFile>();
+	Dictionary<AudioClip, AudioFile> clipToFileDictionary;
 
 	public AudioList (AudioFile[] files) {
 		Audio = files;
+		InitClipDictionary();
 		SubscribeEvents();
 	}
-
+		
 	// Destructor for Garbage Collection:
 	~AudioList () {
 		UnsubscribeEvents();
 	}
-
-	public AudioList(){}
-
+		
 	public AudioFile[] Audio;
 
 	public AudioFile this[int index] {
@@ -53,14 +52,17 @@ public class AudioList {
 	}
 
 	void AddToClipDictionary (AudioFile file) {
-
-		if (!clipToFileDictionary.ContainsKey(file.Clip)) {
+		if (file.Clip != null && !clipToFileDictionary.ContainsKey(file.Clip)) {
 			clipToFileDictionary.Add(file.Clip, file);
 		}
 
 	}
 
-	void SubscribeEvents () {
+	public void SubscribeEvents () {
+		if (clipToFileDictionary == null) {
+			InitClipDictionary();
+		}
+
 		for (int i = 0; i < Audio.Length; i++) {
 			Audio[i].OnClipRequest += ProcessAudioFileAccess;
 		}
@@ -74,6 +76,10 @@ public class AudioList {
 
 	void HandleClipRequest (AudioFile file) {
 		ProcessAudioFileAccess(file);
+	}
+
+	void InitClipDictionary () {
+		clipToFileDictionary = new Dictionary<AudioClip, AudioFile>();
 	}
 		
 }

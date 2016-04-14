@@ -23,12 +23,15 @@ public class AudioLoader {
 	public AudioList Load () {
 
 #if UNITY_5_3
-		return JsonUtility.FromJson<AudioList>(
+		AudioList audioList = JsonUtility.FromJson<AudioList>(
 			FileUtil.FileText (
 				this._path
 			)
 		);
 
+		audioList.SubscribeEvents();
+
+		return audioList;
 #else
 
 		JSONNode parentNode = JSON.Parse(
