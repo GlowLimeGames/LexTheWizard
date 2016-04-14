@@ -12,4 +12,8 @@ public class ButtonAudio : MonoBehaviour {
     {
         EventController.Event("PlayDiscoveryCard");
     }
+    public void playDrawCardSFX()
+    {
+        EventController.Event("DrawCard");
+    }
 }
