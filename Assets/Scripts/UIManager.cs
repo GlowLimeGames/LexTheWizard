@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject confirmMenu;
 	public GameObject notificationPopup; // object itself
 	public GameObject gameOver;
+	public GameObject winPopup;
 	Popup popup; // popup script
     ConfirmationPopup confirmPopup;
 
@@ -146,11 +147,16 @@ public class UIManager : MonoBehaviour {
 		gameOver.SetActive (isGameOver);
 	}
 
+	public void ShowWinPopup (bool won) {
+		winPopup.SetActive (won);
+	}
+
 	void hideAllPopups() {
 		notificationPopup.SetActive (false);
 		pauseMenu.SetActive (false);
 		confirmMenu.SetActive (false);
 		gameOver.SetActive (false);
+		winPopup.SetActive (false);
 	}
 
     public DiscardPile Discard
