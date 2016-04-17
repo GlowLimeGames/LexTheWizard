@@ -42,7 +42,7 @@ MonoBehaviour:
   name: Caves
   playerCardArt: {fileID: 21300000, guid: 117c00c4859f460448c571c3dcf7529f, type: 3}
   enemyCardArt: {fileID: 21300000, guid: 3258b5a3481f7a14599348ef9113f8f6, type: 3}
-  boardArt: {fileID: 21300000, guid: 55f1ffbf87ad071479a19683348da398, type: 3}
+  boardArt: {fileID: 21300000, guid: 31d36466d2bf30041b4ed0da1e7b09e4, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -64,6 +64,11 @@ Prefab:
       propertyPath: name
       value: Caves
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: boardArt
+      value: 
+      objectReference: {fileID: 21300000, guid: 31d36466d2bf30041b4ed0da1e7b09e4,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 160508}

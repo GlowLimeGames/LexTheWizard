@@ -111,16 +111,22 @@ public class CardObject : MonoBehaviour {
 		if (myCardInfo.cardType == "Dialogue") {
 
 			if (myCardInfo.title == "Sage Tree Ghost") {
+				GameController.gameController.setWaiting (true);
 				Fungus.Flowchart.BroadcastFungusMessage ("sagetree");
 			} else if (myCardInfo.title == "Merchant Gaspard") {
+				GameController.gameController.setWaiting (true);
 				Fungus.Flowchart.BroadcastFungusMessage ("gaspard");
 			} else if (myCardInfo.title == "Grandpa Bark") {
+				GameController.gameController.setWaiting (true);
 				Fungus.Flowchart.BroadcastFungusMessage ("grandpa");
 			} else if (myCardInfo.title == "Enraged Ragti") {
+				GameController.gameController.setWaiting (true);
 				Fungus.Flowchart.BroadcastFungusMessage ("ragti");
 			} else if (myCardInfo.title == "Abandoned House") {
+				GameController.gameController.setWaiting (true);
 				Fungus.Flowchart.BroadcastFungusMessage ("house");
 			} else if (myCardInfo.title == "Trouble in Trusian Cave") {
+				GameController.gameController.setWaiting (true);
 				Fungus.Flowchart.BroadcastFungusMessage ("grateria");
 			} else {
 				Debug.Log ("Card under construction");

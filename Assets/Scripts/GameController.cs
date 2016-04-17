@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour {
 	private EnemyBehavior enemy;
 	private Player player;
 
+	private bool waiting;
+
 	private gameState currState;
 	//TODO track in save
 	private gameState[] previousTerrain = new gameState[6];
@@ -114,7 +116,7 @@ public class GameController : MonoBehaviour {
 	 */
 	public void Turn() {
 		//TODO write playCard() to play the card in question
-
+		if(waiting == false){
 		switch(phase){
 		//1st Draw (Player and AI both draw)
 		case 0:		
@@ -192,6 +194,7 @@ public class GameController : MonoBehaviour {
 		UImanager.ShowWinPopup (Win());
 		//Autosave after every phase.
 		SaveGame ();
+		}
 	}
 
 	public int getCurrPhase(){
@@ -278,6 +281,10 @@ public class GameController : MonoBehaviour {
 		previousTerrain[terrainIndex] = currState;
 		currState = new gameState ();
 		currState.setTerrain (nextTerr);
+	}
+
+	public void setWaiting(bool newWaiting){
+		waiting = newWaiting;
 	}
 
 	public static void SaveGame () {

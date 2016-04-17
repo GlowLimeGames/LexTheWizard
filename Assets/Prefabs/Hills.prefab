@@ -42,7 +42,7 @@ MonoBehaviour:
   name: Hills
   playerCardArt: {fileID: 21300000, guid: 4de9688a5d51151418eff1504f6d59f7, type: 3}
   enemyCardArt: {fileID: 21300000, guid: 39d24dafd53cda948ba419e7616ea8a3, type: 3}
-  boardArt: {fileID: 21300000, guid: f40b90d63bfd9b642b8ab9303813e6a2, type: 3}
+  boardArt: {fileID: 21300000, guid: d38563480beff4344b1d8f497ced690b, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -53,7 +53,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: boardArt
       value: 
-      objectReference: {fileID: 21300000, guid: f40b90d63bfd9b642b8ab9303813e6a2,
+      objectReference: {fileID: 21300000, guid: d38563480beff4344b1d8f497ced690b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: enemyCardArt
