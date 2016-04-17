@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour {
 
 		winPoints = tuning.winPoints;
 
-		tuning.winPoints = 40;
+		//tuning.winPoints = 40;
 
 		isFatherAlive = true;
 		isSisterAlive = true;
@@ -135,7 +135,9 @@ public class GameController : MonoBehaviour {
 		//Dawn/Action 1
 		case 1:			
 			UImanager.ShowGameOver (isGameOver ());
-			cardGame.showEnemyCard ();
+			if (!Win ()) {
+				cardGame.showEnemyCard ();
+			}
 			phase = (phase + 1) % 6;
 			SetAfternoon ();
 			break;
@@ -143,7 +145,9 @@ public class GameController : MonoBehaviour {
 		//Afternoon/Action 2
 		case 2:			
 			UImanager.ShowGameOver (isGameOver ());
-			cardGame.showEnemyCard ();
+			if (!Win ()) {
+				cardGame.showEnemyCard ();
+			}
 			phase = (phase + 1) % 6;
 			SetDusk ();
 			break;
@@ -151,7 +155,9 @@ public class GameController : MonoBehaviour {
 		//Dusk/Action 3
 		case 3:			
 			UImanager.ShowGameOver (isGameOver ());
-			cardGame.showEnemyCard ();
+			if (!Win ()) {
+				cardGame.showEnemyCard ();
+			}
 			phase = (phase + 1) % 6;
 			SetNight ();
 			break;
@@ -174,12 +180,16 @@ public class GameController : MonoBehaviour {
 		//Night/Action 4
 		case 5:			
 			UImanager.ShowGameOver (isGameOver ());
-			cardGame.showEnemyCard ();
+			if (!Win ()) {
+				cardGame.showEnemyCard ();
+			}
 			//This time phase will loop back to 0
 			phase = (phase + 1) % 6;
 			SetDawn ();
 			break;
 		}
+		// chech win condition after every phase
+		UImanager.ShowWinPopup (Win());
 		//Autosave after every phase.
 		SaveGame ();
 	}
