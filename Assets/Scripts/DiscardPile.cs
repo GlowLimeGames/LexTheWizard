@@ -33,18 +33,30 @@ public class DiscardPile : MonoBehaviour {
         }
     }
 
-    public void Discard()
-    {
-        selectedCard = player.SelectedCard;
-        CardGame.Instance.SetPositionFree(selectedCard.GetHandPosition()); // Set hand position as free
-        player.RemoveCardFromHand(selectedCard);
-        selectedCard.gameObject.SetActive(false);
+	public void Discard()
+	{
+		selectedCard = player.SelectedCard;
+		CardGame.Instance.SetPositionFree(selectedCard.GetHandPosition()); // Set hand position as free
+		player.RemoveCardFromHand(selectedCard);
+		selectedCard.gameObject.SetActive(false);
 		selectedCard = null;
 
-        UImanager.ShowActionIcons(false);
-        gameController.MoveTerrain();
+		UImanager.ShowActionIcons(false);
+		gameController.MoveTerrain();
 		gameController.Turn ();
-    }
+	}
+	public void DiscardRand()
+	{
+		selectedCard = player.SelectedCard;
+		CardGame.Instance.SetPositionFree(selectedCard.GetHandPosition()); // Set hand position as free
+		player.RemoveCardFromHand(selectedCard);
+		selectedCard.gameObject.SetActive(false);
+		selectedCard = null;
+
+		UImanager.ShowActionIcons(false);
+		//gameController.MoveTerrain();
+		gameController.Turn ();
+	}
 
     /*void OnCollisionEnter2D(Collision2D coll)
     {

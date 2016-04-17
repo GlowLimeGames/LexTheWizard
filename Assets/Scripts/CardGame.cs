@@ -70,7 +70,7 @@ public class CardGame : MonoBehaviour {
 		DealCards(numOfStartingCards, playerDeck, playerHandTargets, player);
 		DealCards(numOfStartingCards, enemyDeck, enemyHandTargets, enemy);
 		
-		showEnemyCard();
+		//showEnemyCard();
 	}
 
     // This is called when the card game starts

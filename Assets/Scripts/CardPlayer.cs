@@ -33,11 +33,13 @@ public class CardPlayer : MonoBehaviour {
 	{
 		CardInfo playedCardInfo = cardObject.GetCardInfo();
 		string cardName = cardObject.GetCardInfo().title;
+		cardObject.PlayEffect ();
 		RemoveCardFromHand(cardObject);
 		
 		string message = cardPlayerName + " just played " + cardName + ".";
         Debug.Log(message);
-        message += "\nIt has _____ effect.\nTap to read more about it!";
+       // message += "\nIt has _____ effect.\nTap to read more about it!";
+		message += cardObject.GetCardInfo().desc;
 		UImanager.ShowPopup(message);
 	}
 	

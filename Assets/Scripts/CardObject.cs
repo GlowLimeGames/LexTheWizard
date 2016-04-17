@@ -107,8 +107,102 @@ public class CardObject : MonoBehaviour {
     // Overridden by Discovery Cards, etc.
     public virtual void PlayEffect() {
         // Something here
-
         // Hide card
+		if (myCardInfo.cardType == "Dialogue") {
+
+			if (myCardInfo.title == "Sage Tree Ghost") {
+				Fungus.Flowchart.BroadcastFungusMessage ("sagetree");
+			} else if (myCardInfo.title == "Merchant Gaspard") {
+				Fungus.Flowchart.BroadcastFungusMessage ("gaspard");
+			} else if (myCardInfo.title == "Grandpa Bark") {
+				Fungus.Flowchart.BroadcastFungusMessage ("grandpa");
+			} else if (myCardInfo.title == "Enraged Ragti") {
+				Fungus.Flowchart.BroadcastFungusMessage ("ragti");
+			} else if (myCardInfo.title == "Abandoned House") {
+				Fungus.Flowchart.BroadcastFungusMessage ("house");
+			} else if (myCardInfo.title == "Trouble in Trusian Cave") {
+				Fungus.Flowchart.BroadcastFungusMessage ("grateria");
+			} else {
+				Debug.Log ("Card under construction");
+			}
+		}
+		int diceRoll = -1;
+		if (myCardInfo.deckType == DeckType.AI) {
+			//AI Cards
+			if (myCardInfo.title == "Cave") {
+				GameController.gameController.MoveTo ("cave");
+			} else if (myCardInfo.title == "Swamp") {
+				GameController.gameController.MoveTo ("swamp");
+			} else if (myCardInfo.title == "Hill") {
+				GameController.gameController.MoveTo ("hills");
+			} else if (myCardInfo.title == "Forest") {
+				GameController.gameController.MoveTo ("forest");
+			} else if (myCardInfo.title == "Cynocephali Merchants") {
+				diceRoll = Random.Range (0, 2);
+				if (diceRoll == 1) {
+					player.ChangeStats (-3);
+				} else {
+					player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+					UImanager.Discard.DiscardRand ();
+				}
+			} else if (myCardInfo.title == "Heavy Rain") {
+				diceRoll = Random.Range (0, 2);
+				player.ChangeStats (-3);
+				player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+				UImanager.Discard.DiscardRand ();
+			} else if (myCardInfo.title == "Mushroom Poisoning") {
+				diceRoll = Random.Range (0, 3);
+				if (diceRoll == 1) {
+					player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+					UImanager.Discard.DiscardRand ();
+					player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+					UImanager.Discard.DiscardRand ();
+				} else {
+					player.ChangeStats (-4);
+				}
+			} else if (myCardInfo.title == "Ravenous Pack of Hounds") {
+				player.ChangeStats (-2);
+				player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+				UImanager.Discard.DiscardRand ();
+			} else if (myCardInfo.title == "Snake Bite") {
+				diceRoll = Random.Range (0, 3);
+				if (diceRoll == 1) {
+					player.ChangeStats (-6);
+				} else {
+					player.ChangeStats (-4);
+				}
+			} else if (myCardInfo.title == "Swamp Hole") {
+				player.ChangeStats (-2);
+				GameController.gameController.MoveTo ("swamp");
+			} else if (myCardInfo.title == "Bean Nighe") {
+				player.ChangeStats (-2);
+			} else if (myCardInfo.title == "Alchemy Practice") {
+				player.ChangeStats (-4);
+				CardGame.Instance.DealCards (1, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+				CardGame.Instance.DealCards (1, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+			} else {
+				player.ChangeStats (-1);
+			}
+		} else {
+		//Player Cards
+			if (myCardInfo.title == "Esoteric Palmist"||myCardInfo.title == "Pitfall Diagram"||myCardInfo.title == "Glyphs on a Wall"||myCardInfo.title == "Hidden Path"||myCardInfo.title == "Unicorn Hair"||myCardInfo.title == "Old Log Cabin") {
+				CardGame.Instance.DealCards (2, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+			} else if (myCardInfo.title == "Naughty Knickers"||myCardInfo.title == "Hieroglyph Book"||myCardInfo.title == "Love Letter"||myCardInfo.title == "Big Metal Key") {
+				CardGame.Instance.DealCards (1, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+			}else if (myCardInfo.title == "Polite Kettle"||myCardInfo.title == "Well-Kept House"||myCardInfo.title == "River Treehouse") {
+				player.ChangeStats (2);
+			} else if (myCardInfo.title == "Everlasting Lantern"||myCardInfo.title == "Tree Temple"||myCardInfo.title == "Magical Plants") {
+				player.ChangeStats (1);
+			} else if (myCardInfo.title == "Magic Chest"||myCardInfo.title == "Qilin Lake") {
+				CardGame.Instance.DealCards (5, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+			} else {
+				diceRoll = Random.Range (1,11);
+				if(diceRoll==7){
+					CardGame.Instance.DealCards (1, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+				}
+			}
+		}
+
         gameObject.SetActive(false);
     }
 

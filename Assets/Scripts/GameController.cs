@@ -263,6 +263,23 @@ public class GameController : MonoBehaviour {
 		currState.setTerrain (nextTerr);
 	}
 
+	public void MoveTo(string terr) {
+		//Tracking previous terrains
+		int nextTerr = -1;
+		if(terr == "hills"){
+			nextTerr = 2;
+		}else if(terr == "cave"){
+			nextTerr = 4;
+		}else if(terr == "swamp"){
+			nextTerr = 3;
+		}else{
+			nextTerr = 1;
+		}
+		previousTerrain[terrainIndex] = currState;
+		currState = new gameState ();
+		currState.setTerrain (nextTerr);
+	}
+
 	public static void SaveGame () {
 		//When save is called, the save data instance in this class updates its variabes and serializes using SaveSystem's save function
 
