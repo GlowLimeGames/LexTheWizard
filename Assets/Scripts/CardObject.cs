@@ -108,28 +108,84 @@ public class CardObject : MonoBehaviour {
     public virtual void PlayEffect() {
         // Something here
         // Hide card
-		if(myCardInfo.cardType=="Dialogue"){
+		if (myCardInfo.cardType == "Dialogue") {
 
 			if (myCardInfo.title == "Sage Tree Ghost") {
-				//TODO send signal to flowchart
-				Fungus.Flowchart.BroadcastFungusMessage("sagetree");
+				Fungus.Flowchart.BroadcastFungusMessage ("sagetree");
 			} else if (myCardInfo.title == "Merchant Gaspard") {
-				Fungus.Flowchart.BroadcastFungusMessage("gaspard");
+				Fungus.Flowchart.BroadcastFungusMessage ("gaspard");
 			} else if (myCardInfo.title == "Grandpa Bark") {
-				Fungus.Flowchart.BroadcastFungusMessage("grandpa");
+				Fungus.Flowchart.BroadcastFungusMessage ("grandpa");
 			} else if (myCardInfo.title == "Enraged Ragti") {
-				Fungus.Flowchart.BroadcastFungusMessage("ragti");
+				Fungus.Flowchart.BroadcastFungusMessage ("ragti");
 			} else if (myCardInfo.title == "Abandoned House") {
-				Fungus.Flowchart.BroadcastFungusMessage("house");
+				Fungus.Flowchart.BroadcastFungusMessage ("house");
 			} else if (myCardInfo.title == "Trouble in Trusian Cave") {
-				Fungus.Flowchart.BroadcastFungusMessage("grateria");
+				Fungus.Flowchart.BroadcastFungusMessage ("grateria");
 			} else {
 				Debug.Log ("Card under construction");
 			}
 		}
+		int diceRoll = -1;
+		if (myCardInfo.deckType == "") {
+			//AI Cards
+			if (myCardInfo.title == "Cave") {
+				GameController.gameController.MoveTo ("cave");
+			} else if (myCardInfo.title == "Swamp") {
+				GameController.gameController.MoveTo ("swamp");
+			} else if (myCardInfo.title == "Hill") {
+				GameController.gameController.MoveTo ("hills");
+			} else if (myCardInfo.title == "Forest") {
+				GameController.gameController.MoveTo ("forest");
+			} else if (myCardInfo.title == "Cynocephali Merchants") {
+				diceRoll = Random.Range (0, 2);
+				if (diceRoll == 1) {
+					player.ChangeStats (-3);
+				} else {
+					player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+					UImanager.Discard.DiscardRand ();
+				}
+			} else if (myCardInfo.title == "Heavy Rain") {
+				diceRoll = Random.Range (0, 2);
+				player.ChangeStats (-3);
+				player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+				UImanager.Discard.DiscardRand ();
+			} else if (myCardInfo.title == "Mushroom Poisoning") {
+				diceRoll = Random.Range (0, 3);
+				if (diceRoll == 1) {
+					player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+					UImanager.Discard.DiscardRand ();
+					player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+					UImanager.Discard.DiscardRand ();
+				} else {
+					player.ChangeStats (-4);
+				}
+			} else if (myCardInfo.title == "Ravenous Pack of Hounds") {
+				player.ChangeStats (-2);
+				player.SelectedCard = player.GetHand () [Random.Range (0, player.GetHand ().Count)];
+				UImanager.Discard.DiscardRand ();
+			} else if (myCardInfo.title == "Snake Bite") {
+				diceRoll = Random.Range (0, 3);
+				if (diceRoll == 1) {
+					player.ChangeStats (-6);
+				} else {
+					player.ChangeStats (-4);
+				}
+			} else if (myCardInfo.title == "Swamp Hole") {
+				player.ChangeStats (-2);
+				GameController.gameController.MoveTo ("swamp");
+			} else if (myCardInfo.title == "Bean Nighe") {
+				player.ChangeStats (-2);
+			} else if (myCardInfo.title == "Alchemy Practice") {
+				player.ChangeStats (-4);
+				CardGame.Instance.DealCards (1, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+				CardGame.Instance.DealCards (1, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+			} else {
+				player.ChangeStats (-1);
+			}
+		}
 
-
-		Debug.Log (myCardInfo.title+"nnnn");
+		Debug.Log (myCardInfo.deckType+",,,,");
 
         gameObject.SetActive(false);
     }
