@@ -107,8 +107,30 @@ public class CardObject : MonoBehaviour {
     // Overridden by Discovery Cards, etc.
     public virtual void PlayEffect() {
         // Something here
-
         // Hide card
+		if(myCardInfo.cardType=="Dialogue"){
+
+			if (myCardInfo.title == "Sage Tree Ghost") {
+				//TODO send signal to flowchart
+				Fungus.Flowchart.BroadcastFungusMessage("sagetree");
+			} else if (myCardInfo.title == "Merchant Gaspard") {
+				Fungus.Flowchart.BroadcastFungusMessage("gaspard");
+			} else if (myCardInfo.title == "Grandpa Bark") {
+				Fungus.Flowchart.BroadcastFungusMessage("grandpa");
+			} else if (myCardInfo.title == "Enraged Ragti") {
+				Fungus.Flowchart.BroadcastFungusMessage("ragti");
+			} else if (myCardInfo.title == "Abandoned House") {
+				Fungus.Flowchart.BroadcastFungusMessage("house");
+			} else if (myCardInfo.title == "Trouble in Trusian Cave") {
+				Fungus.Flowchart.BroadcastFungusMessage("grateria");
+			} else {
+				Debug.Log ("Card under construction");
+			}
+		}
+
+
+		Debug.Log (myCardInfo.title+"nnnn");
+
         gameObject.SetActive(false);
     }
 
