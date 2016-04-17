@@ -2714,7 +2714,7 @@ MonoBehaviour:
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 420
-  zoom: 0.7272474
+  zoom: 0.7722474
   scrollViewRect:
     serializedVersion: 2
     x: -702
@@ -2763,8 +2763,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -64.5983
-    y: 190.493
+    x: -65.278015
+    y: 300.6958
     width: 120
     height: 40
   itemId: 0
