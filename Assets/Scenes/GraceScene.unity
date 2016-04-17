@@ -414,7 +414,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1423593740}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 1300, y: -1000}
@@ -2785,6 +2785,14 @@ GameObject:
   - 114: {fileID: 938931815}
   - 114: {fileID: 938931321}
   - 114: {fileID: 938931819}
+  - 114: {fileID: 938931827}
+  - 114: {fileID: 938931826}
+  - 114: {fileID: 938931825}
+  - 114: {fileID: 938931824}
+  - 114: {fileID: 938931823}
+  - 114: {fileID: 938931822}
+  - 114: {fileID: 938931821}
+  - 114: {fileID: 938931820}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -2816,9 +2824,9 @@ MonoBehaviour:
     y: -416
     width: 1908.7999
     height: 1556.584
-  selectedBlock: {fileID: 938931509}
+  selectedBlock: {fileID: 938931578}
   selectedCommands:
-  - {fileID: 938931512}
+  - {fileID: 938931321}
   variables:
   - {fileID: 938931508}
   description: 
@@ -3237,9 +3245,26 @@ MonoBehaviour:
     PublicKeyToken=null
   targetComponentFullname: UnityEngine.Component[]
   targetComponentText: GameController
-  targetMethod: Turn
-  targetMethodText: 'Turn (): Void'
-  methodParameters: []
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
   saveReturnValue: 0
   returnValueVariableKey: 
   returnValueType: System.Void
@@ -3842,6 +3867,7 @@ MonoBehaviour:
   - {fileID: 938931387}
   - {fileID: 938931768}
   - {fileID: 938931390}
+  - {fileID: 938931823}
   - {fileID: 938931342}
   - {fileID: 938931341}
 --- !u!114 &938931346
@@ -3907,6 +3933,7 @@ MonoBehaviour:
   - {fileID: 938931374}
   - {fileID: 938931373}
   - {fileID: 938931770}
+  - {fileID: 938931824}
   - {fileID: 938931344}
   - {fileID: 938931322}
 --- !u!114 &938931348
@@ -5305,6 +5332,7 @@ MonoBehaviour:
   - {fileID: 938931448}
   - {fileID: 938931449}
   - {fileID: 938931816}
+  - {fileID: 938931826}
   - {fileID: 938931396}
   - {fileID: 938931397}
 --- !u!114 &938931401
@@ -5370,6 +5398,7 @@ MonoBehaviour:
   - {fileID: 938931427}
   - {fileID: 938931433}
   - {fileID: 938931808}
+  - {fileID: 938931825}
   - {fileID: 938931399}
   - {fileID: 938931398}
 --- !u!114 &938931402
@@ -6881,6 +6910,7 @@ MonoBehaviour:
   - {fileID: 938931459}
   - {fileID: 938931792}
   - {fileID: 938931819}
+  - {fileID: 938931827}
   - {fileID: 938931773}
   - {fileID: 938931489}
 --- !u!114 &938931459
@@ -7874,6 +7904,7 @@ MonoBehaviour:
   - {fileID: 938931555}
   - {fileID: 938931541}
   - {fileID: 938931750}
+  - {fileID: 938931821}
   - {fileID: 938931494}
   - {fileID: 938931493}
 --- !u!114 &938931499
@@ -7971,6 +8002,7 @@ MonoBehaviour:
   - {fileID: 938931530}
   - {fileID: 938931532}
   - {fileID: 938931525}
+  - {fileID: 938931822}
   - {fileID: 938931495}
   - {fileID: 938931496}
 --- !u!114 &938931503
@@ -9962,6 +9994,7 @@ MonoBehaviour:
   - {fileID: 938931590}
   - {fileID: 938931670}
   - {fileID: 938931657}
+  - {fileID: 938931820}
   - {fileID: 938931584}
   - {fileID: 938931576}
 --- !u!114 &938931576
@@ -10475,7 +10508,7 @@ MonoBehaviour:
   replacedCharacter: {fileID: 0}
   portrait: {fileID: 21300000, guid: a2f0dc6cbb41039469349536d11f1d74, type: 3}
   offset: 0
-  fromPosition: {fileID: 520569247}
+  fromPosition: {fileID: 0}
   toPosition: {fileID: 424872317}
   facing: 1
   useDefaultSettings: 0
@@ -14328,7 +14361,7 @@ MonoBehaviour:
   replacedCharacter: {fileID: 0}
   portrait: {fileID: 21300000, guid: 2569f9f7f0a35e74b858ccd7e578a97f, type: 3}
   offset: 0
-  fromPosition: {fileID: 520569247}
+  fromPosition: {fileID: 0}
   toPosition: {fileID: 424872317}
   facing: 1
   useDefaultSettings: 1
@@ -16680,6 +16713,358 @@ MonoBehaviour:
   returnValueType: System.Void
   showInherited: 0
   callMode: 0
+--- !u!114 &938931820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938931304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 545
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 891024540}
+  targetComponentAssemblyName: GameController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: GameController
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &938931821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938931304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 544
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 891024540}
+  targetComponentAssemblyName: GameController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: GameController
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &938931822
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938931304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 542
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 891024540}
+  targetComponentAssemblyName: GameController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: GameController
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &938931823
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938931304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 541
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 891024540}
+  targetComponentAssemblyName: GameController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: GameController
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &938931824
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938931304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 540
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 891024540}
+  targetComponentAssemblyName: GameController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: GameController
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &938931825
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938931304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 539
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 891024540}
+  targetComponentAssemblyName: GameController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: GameController
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &938931826
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938931304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 538
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 891024540}
+  targetComponentAssemblyName: GameController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: GameController
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &938931827
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938931304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 537
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 891024540}
+  targetComponentAssemblyName: GameController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: GameController
+  targetMethod: setWaiting
+  targetMethodText: 'setWaiting (Boolean): Void'
+  methodParameters:
+  - objValue:
+      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      typeFullname: System.Boolean
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+      stringValue: 
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      gameObjectValue: {fileID: 0}
+      materialValue: {fileID: 0}
+      objectValue: {fileID: 0}
+      spriteValue: {fileID: 0}
+      textureValue: {fileID: 0}
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+    variableKey: 
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
 --- !u!1 &995315275 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 112170, guid: f16f212321a11da47bc80d0b4946aaf3, type: 2}
@@ -16833,7 +17218,7 @@ MonoBehaviour:
   positions:
   - {fileID: 2097523091}
   - {fileID: 424872317}
-  - {fileID: 520569247}
+  - {fileID: 0}
   - {fileID: 1185081448}
   - {fileID: 100411846}
   charactersOnStage: []
@@ -17032,7 +17417,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1423593740}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -1300, y: -1000}
@@ -17783,7 +18168,6 @@ RectTransform:
   m_Children:
   - {fileID: 424872317}
   - {fileID: 2097523091}
-  - {fileID: 520569247}
   - {fileID: 1185081448}
   - {fileID: 100411846}
   m_Father: {fileID: 1133731314}
