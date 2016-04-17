@@ -2609,7 +2609,6 @@ GameObject:
   - 114: {fileID: 938931673}
   - 114: {fileID: 938931672}
   - 114: {fileID: 938931671}
-  - 114: {fileID: 938931670}
   - 114: {fileID: 938931669}
   - 114: {fileID: 938931668}
   - 114: {fileID: 938931667}
@@ -2824,9 +2823,9 @@ MonoBehaviour:
     y: -416
     width: 1908.7999
     height: 1556.584
-  selectedBlock: {fileID: 938931578}
+  selectedBlock: {fileID: 938931575}
   selectedCommands:
-  - {fileID: 938931321}
+  - {fileID: 938931657}
   variables:
   - {fileID: 938931508}
   description: 
@@ -9992,7 +9991,6 @@ MonoBehaviour:
   - {fileID: 938931664}
   - {fileID: 938931587}
   - {fileID: 938931590}
-  - {fileID: 938931670}
   - {fileID: 938931657}
   - {fileID: 938931820}
   - {fileID: 938931584}
@@ -12463,36 +12461,6 @@ MonoBehaviour:
   fadeWhenDone: 1
   waitForClick: 1
   setSayDialog: {fileID: 0}
---- !u!114 &938931670
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 938931304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 357
-  errorMessage: 
-  indentLevel: 0
-  stage: {fileID: 0}
-  display: 2
-  character: {fileID: 1782329597}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 0}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 1185081448}
-  facing: 0
-  useDefaultSettings: 0
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 1
-  shiftIntoPlace: 0
-  waitUntilFinished: 1
 --- !u!114 &938931671
 MonoBehaviour:
   m_ObjectHideFlags: 2
