@@ -127,7 +127,7 @@ public class CardObject : MonoBehaviour {
 			}
 		}
 		int diceRoll = -1;
-		if (myCardInfo.deckType == "") {
+		if (myCardInfo.deckType == DeckType.AI) {
 			//AI Cards
 			if (myCardInfo.title == "Cave") {
 				GameController.gameController.MoveTo ("cave");
@@ -183,9 +183,25 @@ public class CardObject : MonoBehaviour {
 			} else {
 				player.ChangeStats (-1);
 			}
+		} else {
+		//Player Cards
+			if (myCardInfo.title == "Esoteric Palmist"||myCardInfo.title == "Pitfall Diagram"||myCardInfo.title == "Glyphs on a Wall"||myCardInfo.title == "Hidden Path"||myCardInfo.title == "Unicorn Hair"||myCardInfo.title == "Old Log Cabin") {
+				CardGame.Instance.DealCards (2, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+			} else if (myCardInfo.title == "Naughty Knickers"||myCardInfo.title == "Hieroglyph Book"||myCardInfo.title == "Love Letter"||myCardInfo.title == "Big Metal Key") {
+				CardGame.Instance.DealCards (1, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+			}else if (myCardInfo.title == "Polite Kettle"||myCardInfo.title == "Well-Kept House"||myCardInfo.title == "River Treehouse") {
+				player.ChangeStats (2);
+			} else if (myCardInfo.title == "Everlasting Lantern"||myCardInfo.title == "Tree Temple"||myCardInfo.title == "Magical Plants") {
+				player.ChangeStats (1);
+			} else if (myCardInfo.title == "Magic Chest"||myCardInfo.title == "Qilin Lake") {
+				CardGame.Instance.DealCards (5, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+			} else {
+				diceRoll = Random.Range (1,11);
+				if(diceRoll==7){
+					CardGame.Instance.DealCards (1, player.GetDeck (), CardGame.Instance.playerHandTargets, player);
+				}
+			}
 		}
-
-		Debug.Log (myCardInfo.deckType+",,,,");
 
         gameObject.SetActive(false);
     }
