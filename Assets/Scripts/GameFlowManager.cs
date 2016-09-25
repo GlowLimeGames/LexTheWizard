@@ -12,6 +12,8 @@ public class GameFlowManager : MonoBehaviour {
     public int currentState = 0;
     public IGameState[] gameStates = new IGameState[5];
 
+    public int dayCount = 0;
+
     void Awake()
     {
         if(INSTANCE == null)
@@ -47,6 +49,10 @@ public class GameFlowManager : MonoBehaviour {
     public void NextState()
     {
         currentState++;
+        if(currentState >= gameStates.Length)
+        {
+            dayCount++;
+        }
         currentState = currentState % gameStates.Length;
     }
 }

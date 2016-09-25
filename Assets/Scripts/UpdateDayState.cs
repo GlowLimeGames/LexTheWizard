@@ -6,7 +6,7 @@ public class UpdateDayState : IGameState{
 
     public void UpdateState()
     {
-        Debug.Log("Update the day cycle");
+        Debug.Log("Day " + GameFlowManager.INSTANCE.dayCount + ": " + "Update the day cycle");
         GameFlowManager.INSTANCE.NextState();
     }
 

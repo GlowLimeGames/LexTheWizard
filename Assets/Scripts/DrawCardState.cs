@@ -6,7 +6,7 @@ public class DrawCardState : IGameState{
 
     public void UpdateState()
     {
-        Debug.Log("Draw the cards");
+        Debug.Log("Day " + GameFlowManager.INSTANCE.dayCount + ": " + "Draw the cards");
         GameFlowManager.INSTANCE.NextState();
     }
 
