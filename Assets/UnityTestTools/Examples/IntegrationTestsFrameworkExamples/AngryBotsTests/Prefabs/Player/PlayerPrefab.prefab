@@ -2668,11 +2668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  glowColor:
-    r: 0.32653064
-    g: 0.30357552
-    b: 0.03318388
-    a: 1
+  glowColor: {r: 0.32653064, g: 0.30357552, b: 0.03318388, a: 1}
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6
