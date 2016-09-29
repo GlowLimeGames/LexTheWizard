@@ -12,8 +12,6 @@ public class GameFlowManager : MonoBehaviour {
     public int currentState = 0;
     public IGameState[] gameStates = new IGameState[5];
 
-    public int dayCount = 0;
-
     void Awake()
     {
         if(INSTANCE == null)
@@ -37,8 +35,8 @@ public class GameFlowManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
-	}
+        gameStates[currentState].Start();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -49,10 +47,9 @@ public class GameFlowManager : MonoBehaviour {
     public void NextState()
     {
         currentState++;
-        if(currentState >= gameStates.Length)
-        {
-            dayCount++;
-        }
         currentState = currentState % gameStates.Length;
+        gameStates[currentState].Start();
     }
+
+
 }

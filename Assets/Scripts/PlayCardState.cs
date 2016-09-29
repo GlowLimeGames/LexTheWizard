@@ -8,7 +8,7 @@ public class PlayCardState : IGameState{
     {
         if (Input.anyKeyDown)
         {
-            Debug.Log("Day " + GameFlowManager.INSTANCE.dayCount + ": " + "Play the cards");
+            Debug.Log("Player play the cards");
             GameFlowManager.INSTANCE.NextState();
         }
 

@@ -6,7 +6,7 @@ public class AIPlayState : IGameState{
 
     public void UpdateState()
     {
-        Debug.Log("Day " + GameFlowManager.INSTANCE.dayCount + ": " + "AI playes the cards");
+        Debug.Log("AI playes the cards");
         GameFlowManager.INSTANCE.NextState();
     }
 
