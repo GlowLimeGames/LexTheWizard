@@ -9,8 +9,8 @@ public class GameFlowManager : MonoBehaviour {
 
     public static GameFlowManager INSTANCE;
 
-    public int currentState = 0;
-    public IGameState[] gameStates = new IGameState[5];
+    private int currentState = 0;
+    private IGameState[] gameStates = new IGameState[5];
 
     void Awake()
     {
