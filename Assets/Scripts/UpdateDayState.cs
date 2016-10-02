@@ -1,38 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
-public class UpdateDayState : IGameState{
+public class UpdateDayState : MonoBehaviour{
 
-    public int dayCount = 0;
+    public Text dayText;
 
-    public enum DayTime
+    void Update()
     {
-        Dawn,
-        Dusk,
-        Night
-    }
-
-    public DayTime currentDayTime = DayTime.Dawn;
-
-    public void UpdateState()
-    {
-
-        currentDayTime++;
-        if ((int)currentDayTime >= System.Enum.GetValues(typeof(DayTime)).Length)
+        
+        if(GameController.INSTANCE == null)
         {
-            currentDayTime = 0;
-            dayCount++;
+            Debug.Log("GameController Ins is null");
+        }
+
+        GameController.INSTANCE.currentDayTime++;
+        if ((int)GameController.INSTANCE.currentDayTime >= System.Enum.GetValues(typeof(GameController.DayTime)).Length)
+        {
+            GameController.INSTANCE.currentDayTime = 0;
+            GameController.INSTANCE.dayCount++;
 
         }
 
-        Debug.Log("Day " + dayCount + ": Time : " + currentDayTime + " Update the day cycle");
-        GameFlowManager.INSTANCE.NextState();
-    }
-
-    void IGameState.Start()
-    {
-        
+        dayText.text = "Day " + GameController.INSTANCE.dayCount + ": " + GameController.INSTANCE.currentDayTime.ToString();
+        GameController.INSTANCE.NextState();
     }
 
 }

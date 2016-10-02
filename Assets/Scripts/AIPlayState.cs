@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
-public class AIPlayState : IGameState{
+public class AIPlayState : MonoBehaviour{
 
-    public void UpdateState()
+    public Text eventText;
+    private float timeLeft = 2f;
+
+    void Update()
     {
-        Debug.Log("AI playes the cards");
-        GameFlowManager.INSTANCE.NextState();
-    }
-
-    void IGameState.Start()
-    {
-        
+        eventText.text = "AI played a card";
+        timeLeft -= Time.deltaTime;
+        if (timeLeft <= 0)
+        {
+            timeLeft = 2f;
+            GameController.INSTANCE.NextState();
+        }
     }
 
 }

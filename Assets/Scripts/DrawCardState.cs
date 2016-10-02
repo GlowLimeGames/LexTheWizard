@@ -2,17 +2,22 @@
 using System.Collections;
 using System;
 
-public class DrawCardState : IGameState{
+public class DrawCardState : MonoBehaviour{
 
-    public void UpdateState()
-    {
-        Debug.Log("Draw the cards");
-        GameFlowManager.INSTANCE.NextState();
-    }
+    // Temporary field for testing
+    private Card[] testCards = new Card[] {
+        new Card("Card 1", "Random card #1", null),
+        new Card("Card 2", "Random card #2", null),
+        new Card("Card 3", "Random card #3", null)
+    };
 
-    void IGameState.Start()
+    void Update()
     {
-        
+        GameController.INSTANCE.Card1 = testCards[UnityEngine.Random.Range(0, testCards.Length)];
+        GameController.INSTANCE.Card2 = testCards[UnityEngine.Random.Range(0, testCards.Length)];
+        GameController.INSTANCE.Card3 = testCards[UnityEngine.Random.Range(0, testCards.Length)];
+
+        GameController.INSTANCE.NextState();
     }
 
 }

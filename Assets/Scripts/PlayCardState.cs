@@ -2,21 +2,53 @@
 using System.Collections;
 using System;
 
-public class PlayCardState : IGameState{
+public class PlayCardState : MonoBehaviour{
 
-    public void UpdateState()
+    void Update()
     {
-        if (Input.anyKeyDown)
+
+    }
+
+    public void NextButton()
+    {
+        GameController.INSTANCE.NextState();
+    }
+
+    public void PlayCard(int card)
+    {
+        if(card == 1 && GameController.INSTANCE.Card1 != null)
         {
-            Debug.Log("Player play the cards");
-            GameFlowManager.INSTANCE.NextState();
+            GameController.INSTANCE.Card1 = null;
+            GameController.INSTANCE.Points++;
         }
-
+        else if(card == 2 && GameController.INSTANCE.Card2 != null)
+        {
+            GameController.INSTANCE.Card2 = null;
+            GameController.INSTANCE.Points++;
+        }
+        else if(card == 3 && GameController.INSTANCE.Card3 != null)
+        {
+            GameController.INSTANCE.Card3 = null;
+            GameController.INSTANCE.Points++;
+        }
     }
 
-    void IGameState.Start()
+    public void ScrapCard(int card)
     {
-        
+        if (card == 1 && GameController.INSTANCE.Card1 != null)
+        {
+            GameController.INSTANCE.Card1 = null;
+            GameController.INSTANCE.Mana++;
+        }
+        else if (card == 2 && GameController.INSTANCE.Card2 != null)
+        {
+            GameController.INSTANCE.Card2 = null;
+            GameController.INSTANCE.Mana++;
+        }
+        else if (card == 3 && GameController.INSTANCE.Card3 != null)
+        {
+            GameController.INSTANCE.Card3 = null;
+            GameController.INSTANCE.Mana++;
+        }
     }
-
 }
