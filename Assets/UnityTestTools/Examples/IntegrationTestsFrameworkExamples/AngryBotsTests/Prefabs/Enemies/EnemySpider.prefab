@@ -1846,11 +1846,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   minGlow: 0.1
   maxGlow: 0.75
-  glowColor:
-    r: 0.90217394
-    g: 0.1742836
-    b: 0.1742836
-    a: 1
+  glowColor: {r: 0.90217394, g: 0.1742836, b: 0.1742836, a: 1}
 --- !u!1002 &11400021
 EditorExtensionImpl:
   serializedVersion: 6

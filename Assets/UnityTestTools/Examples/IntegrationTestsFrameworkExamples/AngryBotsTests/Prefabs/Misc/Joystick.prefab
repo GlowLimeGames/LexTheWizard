@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchPad: 0
   touchZone:
+    serializedVersion: 2
     x: 0
     y: 0
     width: 0

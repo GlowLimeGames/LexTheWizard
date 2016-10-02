@@ -133,17 +133,21 @@ MonoBehaviour:
   - gameObject: {fileID: 100000, guid: 24b406bea89b34ec582aae7babb277ba, type: 2}
     delay: 0
     hqOnly: 0
+    yOffset: 0
   explosionEmitters:
   - gameObject: {fileID: 100000, guid: 97767d7c7ee0541cf8c1898412d39287, type: 2}
     delay: 0.2
     hqOnly: 0
+    yOffset: 0
   - gameObject: {fileID: 100000, guid: 97767d7c7ee0541cf8c1898412d39287, type: 2}
     delay: 0
     hqOnly: 0
+    yOffset: 0
   smokeEmitters:
   - gameObject: {fileID: 100000, guid: 1b6efec96f2de41a9b93752f8e4dfa6f, type: 2}
     delay: 0.45
     hqOnly: 0
+    yOffset: 0
   miscSpecialEffects: []
 --- !u!1002 &11400001
 EditorExtensionImpl:
