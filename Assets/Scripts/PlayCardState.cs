@@ -11,6 +11,9 @@ public class PlayCardState : MonoBehaviour{
 
     public void NextButton()
     {
+        GameController.INSTANCE.Card1 = null;
+        GameController.INSTANCE.Card2 = null;
+        GameController.INSTANCE.Card3 = null;
         GameController.INSTANCE.NextState();
     }
 
