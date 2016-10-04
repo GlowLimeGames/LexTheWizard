@@ -34,12 +34,26 @@ public class Hand : MonoBehaviour {
         }
     }
 
-    public void NextCard () { NextCard(cardShown.Index); }
+    public void NextCard () {
+        if (cardShown.Card == null)
+        {
+            return;
+        }
+
+        NextCard(cardShown.Index);
+    }
     public void NextCard(int index) {
         SwitchCard(index, 1);
     }
 
-    public void PreviousCard () { PreviousCard(cardShown.Index); }
+    public void PreviousCard () {
+        if (cardShown.Card == null)
+        {
+            return;
+        }
+
+        PreviousCard(cardShown.Index);
+    }
     public void PreviousCard (int index) {
         SwitchCard(index, -1);
     }
@@ -54,11 +68,8 @@ public class Hand : MonoBehaviour {
         // Only run this code if we've verified that there
         // is at least one card left.
         if (cardsLeft) {
-            if ((dir == 1 && index < cards.Length - 1) || (dir == -1 && index > 0)) {
-                index += dir;
-            }
-            else if (dir == 1) { index = 0; }
-            else if (dir == -1) { index = cards.Length - 1; }
+
+            index = (index + dir) % cards.Length;
 
             if (cards[index].Card == null) { SwitchCard(index, dir, true); }
             else { ShowCard(cards[index]); }
@@ -66,11 +77,21 @@ public class Hand : MonoBehaviour {
     }
     
     public void PlayCard() {
+        if(cardShown.Card == null)
+        {
+            return;
+        }
+
         print("Played the card, wow!");
         RemoveCard(cardShown);
     }
     
     public void SalvageCard() {
+        if (cardShown.Card == null)
+        {
+            return;
+        }
+
         print("Salvaged the card.");
         RemoveCard(cardShown);
     }
