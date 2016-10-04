@@ -68,8 +68,11 @@ public class Hand : MonoBehaviour {
         // Only run this code if we've verified that there
         // is at least one card left.
         if (cardsLeft) {
-
-            index = (index + dir) % cards.Length;
+            if ((dir == 1 && index < cards.Length - 1) || (dir == -1 && index > 0)) {
+                index += dir;
+            }
+            else if (dir == 1) { index = 0; }
+            else if (dir == -1) { index = cards.Length - 1; }
 
             if (cards[index].Card == null) { SwitchCard(index, dir, true); }
             else { ShowCard(cards[index]); }
