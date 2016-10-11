@@ -12,10 +12,6 @@ public class Hand : MonoBehaviour {
         new Card("Card 3", "Random card #3", null)
     };
 
-    void Start () {
-        Draw();
-    }
-
     // Temporary method for testing
     public void Draw () {
         foreach (CardViewer card in cards) {
@@ -95,7 +91,7 @@ public class Hand : MonoBehaviour {
             return;
         }
 
-        print("Salvaged the card.");
+        GameController.INSTANCE.Mana++;
         RemoveCard(cardShown);
     }
 

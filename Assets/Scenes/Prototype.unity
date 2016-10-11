@@ -2012,7 +2012,7 @@ MonoBehaviour:
   - {fileID: 580973757}
   - {fileID: 953449671}
   - {fileID: 1481855711}
-  currentTerrain: 0
+  currentTerrain: 2
   dayCount: -1
   currentDayTime: 2
   manaText: {fileID: 1612406820}

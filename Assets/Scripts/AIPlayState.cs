@@ -13,8 +13,8 @@ public class AIPlayState : MonoBehaviour{
 
     void Update()
     {
-        Debug.Log("AI played a card");
-
+        //TODO: Have AI play card from deck
+        /*
         hand.ShowCard(AIcard);
 
         if(timer < 0)
@@ -24,6 +24,9 @@ public class AIPlayState : MonoBehaviour{
         }
 
         timer -= Time.deltaTime;
+        */
+
+        GameController.INSTANCE.NextState();
     }
 
 }

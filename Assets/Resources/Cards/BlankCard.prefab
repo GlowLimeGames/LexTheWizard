@@ -27,7 +27,7 @@ GameObject:
   - 224: {fileID: 22452498}
   - 222: {fileID: 22230064}
   m_Layer: 5
-  m_Name: crumbo
+  m_Name: BlankCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: crumbo
+  m_Text: Phone
 --- !u!114 &11443466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +149,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: dumbo
+  m_Text: Call home
 --- !u!114 &11489000
 MonoBehaviour:
   m_ObjectHideFlags: 1
