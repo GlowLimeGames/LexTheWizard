@@ -5,18 +5,28 @@ using UnityEngine.UI;
 
 public class AIPlayState : MonoBehaviour{
 
-    public Text eventText;
-    private float timeLeft = 2f;
+    public Hand hand;
+
+    public CardViewer AIcard;
+
+    private float timer = 2f;
 
     void Update()
     {
-        eventText.text = "AI played a card";
-        timeLeft -= Time.deltaTime;
-        if (timeLeft <= 0)
+        //TODO: Have AI play card from deck
+        /*
+        hand.ShowCard(AIcard);
+
+        if(timer < 0)
         {
-            timeLeft = 2f;
+            timer = 2f;
             GameController.INSTANCE.NextState();
         }
+
+        timer -= Time.deltaTime;
+        */
+
+        GameController.INSTANCE.NextState();
     }
 
 }

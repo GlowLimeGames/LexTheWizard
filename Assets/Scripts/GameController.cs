@@ -69,49 +69,6 @@ public class GameController : MonoBehaviour {
     public Text eventText;
     ////////////////////////////////
 
-    private Card card1;
-    private Card card2;
-    private Card card3;
-    
-    public Card Card1
-    {
-        get
-        {
-            return card1;
-        }
-        set
-        {
-            card1 = value;
-            updateCards();
-        }
-    }
-
-    public Card Card2
-    {
-        get
-        {
-            return card2;
-        }
-        set
-        {
-            card2 = value;
-            updateCards();
-        }
-    }
-
-    public Card Card3
-    {
-        get
-        {
-            return card3;
-        }
-        set
-        {
-            card3 = value;
-            updateCards();
-        }
-    }
-
     void Awake()
     {
         if (INSTANCE == null)
@@ -156,26 +113,6 @@ public class GameController : MonoBehaviour {
             currentState = currentState % gameStates.Length;
             gameStates[currentState].enabled = true;
             isNextState = false;
-        }
-    }
-
-    public void updateCards()
-    {
-        eventText.text = "";
-
-        if(card1 != null)
-        {
-            eventText.text += "Card1: " + Card1.Name + " " + Card1.Description + "\n";
-        }
-
-        if (card2 != null)
-        {
-            eventText.text += "Card2: " + Card2.Name + " " + Card2.Description + "\n";
-        }
-
-        if (card3 != null)
-        {
-            eventText.text += "Card3: " + Card3.Name + " " + Card3.Description + "\n";
         }
     }
 

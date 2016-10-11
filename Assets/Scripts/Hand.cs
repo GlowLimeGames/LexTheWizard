@@ -12,10 +12,6 @@ public class Hand : MonoBehaviour {
         new Card("Card 3", "Random card #3", null)
     };
 
-    void Start () {
-        Draw();
-    }
-
     // Temporary method for testing
     public void Draw () {
         foreach (CardViewer card in cards) {
@@ -34,12 +30,26 @@ public class Hand : MonoBehaviour {
         }
     }
 
-    public void NextCard () { NextCard(cardShown.Index); }
+    public void NextCard () {
+        if (cardShown.Card == null)
+        {
+            return;
+        }
+
+        NextCard(cardShown.Index);
+    }
     public void NextCard(int index) {
         SwitchCard(index, 1);
     }
 
-    public void PreviousCard () { PreviousCard(cardShown.Index); }
+    public void PreviousCard () {
+        if (cardShown.Card == null)
+        {
+            return;
+        }
+
+        PreviousCard(cardShown.Index);
+    }
     public void PreviousCard (int index) {
         SwitchCard(index, -1);
     }
@@ -66,12 +76,22 @@ public class Hand : MonoBehaviour {
     }
     
     public void PlayCard() {
+        if(cardShown.Card == null)
+        {
+            return;
+        }
+
         print("Played the card, wow!");
         RemoveCard(cardShown);
     }
     
     public void SalvageCard() {
-        print("Salvaged the card.");
+        if (cardShown.Card == null)
+        {
+            return;
+        }
+
+        GameController.INSTANCE.Mana++;
         RemoveCard(cardShown);
     }
 
