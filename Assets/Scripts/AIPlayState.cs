@@ -11,22 +11,24 @@ public class AIPlayState : MonoBehaviour{
 
     private float timer = 2f;
 
+    public AudioClip aiPlayCardSound;
+
     void Update()
     {
         //TODO: Have AI play card from deck
-        /*
-        hand.ShowCard(AIcard);
+        
+        //hand.ShowCard(AIcard);
 
         if(timer < 0)
         {
             timer = 2f;
+            SoundManager.instance.PlaySingle(aiPlayCardSound);
             GameController.INSTANCE.NextState();
         }
 
         timer -= Time.deltaTime;
-        */
+        
 
-        GameController.INSTANCE.NextState();
     }
 
 }
