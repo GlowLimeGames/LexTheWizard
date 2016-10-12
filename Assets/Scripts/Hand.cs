@@ -5,6 +5,8 @@ public class Hand : MonoBehaviour {
     public CardViewer cardShown;
     public CardViewer[] cards = new CardViewer[3];
 
+    public AudioClip discardCardSound;
+
     // Temporary field for testing
     private Card[] testCards = new Card[] {
         new Card("Card 1", "Random card #1", null),
@@ -81,6 +83,7 @@ public class Hand : MonoBehaviour {
             return;
         }
 
+
         print("Played the card, wow!");
         RemoveCard(cardShown);
     }
@@ -90,6 +93,8 @@ public class Hand : MonoBehaviour {
         {
             return;
         }
+
+        SoundManager.instance.PlaySingle(discardCardSound);
 
         GameController.INSTANCE.Mana++;
         RemoveCard(cardShown);
