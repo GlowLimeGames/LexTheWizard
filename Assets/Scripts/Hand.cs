@@ -5,6 +5,8 @@ public class Hand : MonoBehaviour {
     //public CardViewer cardShown;
     public CardViewer[] cards = new CardViewer[3];
 
+    public CardViewer shownCard;
+
     private int currentCardIndex = -1;
     public int CurrentCardIndex {
         get
@@ -20,9 +22,10 @@ public class Hand : MonoBehaviour {
             else if(value == -1 || cards[value].Card != null)
             {
                 currentCardIndex = value;
-                if(value >= 0)
+                shownCard.Card = null;
+                if(value != -1)
                 {
-                    cards[currentCardIndex].Show(true);
+                    shownCard.Card = Instantiate(cards[currentCardIndex].Card);
                 }
             }
             else
@@ -104,13 +107,13 @@ public class Hand : MonoBehaviour {
     }
 
     private void RemoveCard(int index) {
+        
         cards[index].Card = null;
 
         NextCard();
         if(index == CurrentCardIndex)
         {
             CurrentCardIndex = -1;
-
         }
     }
 }

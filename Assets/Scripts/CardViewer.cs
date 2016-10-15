@@ -16,6 +16,10 @@ public class CardViewer : MonoBehaviour {
                 Show(true);
             }
             else {
+                foreach (Transform child in transform)
+                {
+                    Destroy(child.gameObject);
+                }
                 Show(false);
             }
         }
@@ -29,8 +33,10 @@ public class CardViewer : MonoBehaviour {
 
 	private void UpdateCard (GameObject newCard) {
         newCard.transform.SetParent(gameObject.transform);
-        newCard.GetComponent<RectTransform>().localPosition = new Vector3();
-        newCard.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        newCard.GetComponent<RectTransform>().anchorMin = new Vector2();
+        newCard.GetComponent<RectTransform>().anchorMax = new Vector2(1,1);
+        newCard.GetComponent<RectTransform>().offsetMax = new Vector2();
+        newCard.GetComponent<RectTransform>().offsetMin = new Vector2();
 
     }
 
