@@ -3,28 +3,23 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CardViewer : MonoBehaviour {
-    public Text cardName;
-    public Text description;
-    public Image image;
     
-    public int index = -1;
-    private Card card;
+    private GameObject card;
 
-    public int Index {
-        get { return index; }
-        set { index = value; }
-    }
-
-    public Card Card {
+    public GameObject Card {
         get { return card; }
         set {
             card = value;
 
             if (card != null) {
+                UpdateCard(value);
                 Show(true);
-                UpdateCard();
             }
             else {
+                foreach (Transform child in transform)
+                {
+                    Destroy(child.gameObject);
+                }
                 Show(false);
             }
         }
@@ -36,11 +31,14 @@ public class CardViewer : MonoBehaviour {
     }
 	
 
-	private void UpdateCard () {
-        cardName.text = card.Name;
-        description.text = card.Description;
-        image.sprite = card.Image;
-	}
+	private void UpdateCard (GameObject newCard) {
+        newCard.transform.SetParent(gameObject.transform);
+        newCard.GetComponent<RectTransform>().anchorMin = new Vector2();
+        newCard.GetComponent<RectTransform>().anchorMax = new Vector2(1,1);
+        newCard.GetComponent<RectTransform>().offsetMax = new Vector2();
+        newCard.GetComponent<RectTransform>().offsetMin = new Vector2();
+
+    }
 
 
     public void Show (bool show) {

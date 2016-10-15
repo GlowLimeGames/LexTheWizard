@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class AIPlayState : MonoBehaviour{
 
-    public Hand hand;
+    public CardViewer shownCard;
 
-    public CardViewer AIcard;
+    public GameObject AIcard;
 
     private float timer = 2f;
 
@@ -16,14 +16,21 @@ public class AIPlayState : MonoBehaviour{
     void Update()
     {
         //TODO: Have AI play card from deck
-        
-        //hand.ShowCard(AIcard);
 
-        if(timer < 0)
+        if (timer == 2f)
         {
-            timer = 2f;
+            //Play the AI card
+            shownCard.Card = Instantiate(AIcard);
             SoundManager.instance.PlaySingle(aiPlayCardSound);
+        }
+        else if(timer < 0)
+        {
+            //Wait 2 seconds before moving to the next state
+            timer = 2f;
+            shownCard.Card = null;
             GameController.INSTANCE.NextState();
+
+            return;
         }
 
         timer -= Time.deltaTime;
