@@ -29,6 +29,7 @@ public class AIPlayState : MonoBehaviour{
             //Wait 2 seconds before moving to the next state
             timer = 2f;
             GameController.INSTANCE.NextState();
+            return;
         }
 
         timer -= Time.deltaTime;

@@ -457,7 +457,7 @@ PlayerSettings:
   - WebGL::emscriptenArgs
   - WebGL::template
   - additionalIl2CppArgs::additionalIl2CppArgs
-  Build_ServiceEnabled::Build_ServiceEnabled: False
+  Build_ServiceEnabled::Build_ServiceEnabled: True
   UNet_ServiceEnabled::UNet_ServiceEnabled: True
   WebGL::emscriptenArgs: 
   WebGL::template: APPLICATION:Default
