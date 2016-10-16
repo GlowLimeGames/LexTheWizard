@@ -15,4 +15,16 @@ public class Card {
         description = d;
         image = s; 
     }
+
+    /// <summary>
+    /// TBD: Return true if the card can be played on the
+    /// current turn.
+    /// </summary>
+    public bool isCurrentlyPlayable() { return true; }
+
+    /// <summary>
+    /// TBD: check whether this card should be in the
+    /// deck at this point in the game.
+    /// </summary>
+    public bool isInPlay() { return true; }
 }
