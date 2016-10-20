@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Fungus;
 
 public class GameController : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class GameController : MonoBehaviour {
     private MonoBehaviour[] gameStates;
 
     private bool isNextState = false;
+
+    public GameObject canvas;
 
     public enum Terrain
     {
@@ -66,7 +69,6 @@ public class GameController : MonoBehaviour {
     // UI stuff to be replaced////////////////////
     public Text manaText;
     public Text pointsText;
-    public Text eventText;
     ////////////////////////////////
 
     void Awake()
@@ -114,6 +116,15 @@ public class GameController : MonoBehaviour {
             gameStates[currentState].enabled = true;
             isNextState = false;
         }
+    }
+
+    /// <summary>
+    /// Should be called from the flowchart whenever the dialog finishes
+    /// Makes the canvas active again
+    /// </summary>
+    public void EndDialog()
+    {
+        INSTANCE.canvas.SetActive(true);
     }
 
 }

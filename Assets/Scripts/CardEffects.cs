@@ -11,6 +11,13 @@ public class CardEffects : MonoBehaviour {
 	}
 
 	public void ChangePoints(int i){
+        GameController.INSTANCE.Points += i;
 		Debug.Log ("Changed points by " + i);
 	}
+
+    public void StartDialog(Fungus.Flowchart flowchart)
+    {
+        GameController.INSTANCE.canvas.SetActive(false);
+        Instantiate(flowchart);
+    }
 }
