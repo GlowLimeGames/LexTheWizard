@@ -41,27 +41,10 @@ public class PlayCardState : MonoBehaviour{
                     }
                     else
                     {
-                        hand.PlayCard();
+                        hand.PlayCard(hand.cards[hand.CurrentCardIndex].GetComponentInChildren<CardEffects>());
                     }
                 }
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            hand.PlayCard();
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            hand.SalvageCard();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            hand.PreviousCard();
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            hand.NextCard();
         }
     }
 

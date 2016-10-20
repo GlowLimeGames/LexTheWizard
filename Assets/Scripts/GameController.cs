@@ -13,10 +13,7 @@ public class GameController : MonoBehaviour {
 
     private bool isNextState = false;
 
-    public Flowchart flowchart;
-
-    [SerializeField]
-    private GameObject canvas;
+    public GameObject canvas;
 
     public enum Terrain
     {
@@ -72,7 +69,6 @@ public class GameController : MonoBehaviour {
     // UI stuff to be replaced////////////////////
     public Text manaText;
     public Text pointsText;
-    public Text eventText;
     ////////////////////////////////
 
     void Awake()
@@ -122,11 +118,13 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void StartDialogue(string name)
+    /// <summary>
+    /// Should be called from the flowchart whenever the dialog finishes
+    /// Makes the canvas active again
+    /// </summary>
+    public void EndDialog()
     {
-        canvas.SetActive(false);
-
-        flowchart.SendFungusMessage(name);
+        INSTANCE.canvas.SetActive(true);
     }
 
 }

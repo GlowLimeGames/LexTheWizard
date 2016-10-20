@@ -79,16 +79,23 @@ public class Hand : MonoBehaviour {
         CurrentCardIndex = (CurrentCardIndex - newIndex + cards.Length) % cards.Length;
     }
     
-    public void PlayCard() {
+    public void PlayCard(CardEffects cardEffects) {
         
         if(CurrentCardIndex == -1)
         {
             return;
         }
 
-        GameController.INSTANCE.StartDialogue("TestSay");
+        //GameController.INSTANCE.StartDialog("TestSay");
+        if(cardEffects != null)
+        {
+            cardEffects.OnPlay();
+        }
+        else
+        {
+            Debug.Log("The card effects is null");
+        }
 
-        print("Played the card, wow!");
         RemoveCard(CurrentCardIndex);
         
     }
