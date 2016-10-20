@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Fungus;
 
 public class GameController : MonoBehaviour {
 
@@ -11,6 +12,11 @@ public class GameController : MonoBehaviour {
     private MonoBehaviour[] gameStates;
 
     private bool isNextState = false;
+
+    public Flowchart flowchart;
+
+    [SerializeField]
+    private GameObject canvas;
 
     public enum Terrain
     {
@@ -114,6 +120,13 @@ public class GameController : MonoBehaviour {
             gameStates[currentState].enabled = true;
             isNextState = false;
         }
+    }
+
+    public void StartDialogue(string name)
+    {
+        canvas.SetActive(false);
+
+        flowchart.SendFungusMessage(name);
     }
 
 }

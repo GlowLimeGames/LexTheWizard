@@ -86,6 +86,7 @@ public class Hand : MonoBehaviour {
             return;
         }
 
+        GameController.INSTANCE.StartDialogue("TestSay");
 
         print("Played the card, wow!");
         RemoveCard(CurrentCardIndex);
