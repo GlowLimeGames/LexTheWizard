@@ -26,7 +26,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22452498}
   - 222: {fileID: 22230064}
-  - 114: {fileID: 11407260}
+  - 114: {fileID: 11438342}
   m_Layer: 5
   m_Name: BlankCard
   m_TagString: Untagged
@@ -85,22 +85,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &11407260
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee2aaf0444d6494bb2ee6f7940b11ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effects:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!114 &11416496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,6 +118,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Phone
+--- !u!114 &11438342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9081310dfb4c66e4998ed7955c73cdb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardEffectsOnPlay: {fileID: 0}
 --- !u!114 &11443466
 MonoBehaviour:
   m_ObjectHideFlags: 1

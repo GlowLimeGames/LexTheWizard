@@ -162,11 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee2aaf0444d6494bb2ee6f7940b11ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!114 &11477490
 MonoBehaviour:
   m_ObjectHideFlags: 1

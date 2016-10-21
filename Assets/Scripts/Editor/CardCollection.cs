@@ -84,10 +84,12 @@ public class CardParsing{
 		}
 	}
 
+    /*
 	[MenuItem("Cards/Test Card Effect")]
 	static void TestCardEvents(){
 		CardEffects toTest = GameObject.FindGameObjectWithTag ("Card").GetComponent<CardEffects> ();
 		if (toTest)
 			toTest.OnPlay ();
 	}
+    */
 }

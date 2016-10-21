@@ -5,15 +5,11 @@ using UnityEngine.UI;
 
 public class UpdateDayState : MonoBehaviour{
 
-    public Text dayText;
+    [SerializeField]
+    private Text dayText;
 
     void Update()
     {
-        
-        if(GameController.INSTANCE == null)
-        {
-            Debug.Log("GameController Ins is null");
-        }
 
         GameController.INSTANCE.currentDayTime++;
         if ((int)GameController.INSTANCE.currentDayTime >= System.Enum.GetValues(typeof(GameController.DayTime)).Length)

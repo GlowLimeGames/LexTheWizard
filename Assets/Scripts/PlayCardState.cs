@@ -41,7 +41,7 @@ public class PlayCardState : MonoBehaviour{
                     }
                     else
                     {
-                        hand.PlayCard(hand.cards[hand.CurrentCardIndex].GetComponentInChildren<CardEffects>());
+                        hand.PlayCard();
                     }
                 }
             }
