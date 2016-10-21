@@ -7,6 +7,11 @@ public class UpdateTerrainState : MonoBehaviour{
 
     public Text terrainText;
 
+    void OnEnable()
+    {
+        Fungus.Flowchart.BroadcastFungusMessage("UpdateTerrainStateStart");
+    }
+
     void Update()
     {
         int r = UnityEngine.Random.Range(1, 5);

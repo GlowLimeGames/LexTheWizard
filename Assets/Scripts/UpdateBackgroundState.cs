@@ -8,9 +8,13 @@ public class UpdateBackgroundState : MonoBehaviour {
 
     public Sprite[] terrainType;
 
-	
-	// Update is called once per frame
-	void Update () {
+    void OnEnable()
+    {
+        Fungus.Flowchart.BroadcastFungusMessage("UpdateBackgroundStateStart");
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         switch (GameController.INSTANCE.currentTerrain)
         {

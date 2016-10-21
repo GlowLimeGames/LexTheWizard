@@ -8,6 +8,11 @@ public class DrawCardState : MonoBehaviour{
 
     public AudioClip drawCardSound;
 
+    void OnEnable()
+    {
+        Fungus.Flowchart.BroadcastFungusMessage("DrawCardStateStart");
+    }
+
     void Update()
     {
 

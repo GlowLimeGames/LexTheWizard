@@ -8,6 +8,11 @@ public class PlayCardState : MonoBehaviour{
     public Hand hand;
     float distsq = 4000f;
 
+    void OnEnable()
+    {
+        Fungus.Flowchart.BroadcastFungusMessage("PlayCardStateStart");
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

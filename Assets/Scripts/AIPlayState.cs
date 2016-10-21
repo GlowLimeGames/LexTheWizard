@@ -13,6 +13,11 @@ public class AIPlayState : MonoBehaviour{
 
     public AudioClip aiPlayCardSound;
 
+    void OnEnable()
+    {
+        Fungus.Flowchart.BroadcastFungusMessage("AIPlayStateStart");
+    }
+
     void Update()
     {
         //TODO: Have AI play card from deck

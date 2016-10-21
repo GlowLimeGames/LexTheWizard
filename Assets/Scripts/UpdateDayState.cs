@@ -8,6 +8,11 @@ public class UpdateDayState : MonoBehaviour{
     [SerializeField]
     private Text dayText;
 
+    void OnEnable()
+    {
+        Fungus.Flowchart.BroadcastFungusMessage("UpdateDayStateStart");
+    }
+
     void Update()
     {
 
