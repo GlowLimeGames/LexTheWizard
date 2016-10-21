@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Card {
-    private string name;
-    private string description;
-    private Sprite image;
+public class Card : MonoBehaviour{
 
-    public string Name { get { return name; } }
-    public string Description { get { return description; } }
-    public Sprite Image { get { return image; } }
+    public Fungus.Flowchart cardEffectsOnPlay;
 
-    public Card (string n, string d, Sprite s) {
-        name = n;
-        description = d;
-        image = s; 
-    }
+    public void OnPlay()
+    {
+        if(cardEffectsOnPlay != null)
+        {
+            Instantiate(cardEffectsOnPlay);
+        }
+    } 
 }

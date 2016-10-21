@@ -118,13 +118,6 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Should be called from the flowchart whenever the dialog finishes
-    /// Makes the canvas active again
-    /// </summary>
-    public void EndDialog()
-    {
-        INSTANCE.canvas.SetActive(true);
-    }
+
 
 }

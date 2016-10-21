@@ -79,22 +79,14 @@ public class Hand : MonoBehaviour {
         CurrentCardIndex = (CurrentCardIndex - newIndex + cards.Length) % cards.Length;
     }
     
-    public void PlayCard(CardEffects cardEffects) {
+    public void PlayCard() {
         
         if(CurrentCardIndex == -1)
         {
             return;
         }
 
-        //GameController.INSTANCE.StartDialog("TestSay");
-        if(cardEffects != null)
-        {
-            cardEffects.OnPlay();
-        }
-        else
-        {
-            Debug.Log("The card effects is null");
-        }
+        cards[CurrentCardIndex].GetComponentInChildren<Card>().OnPlay();
 
         RemoveCard(CurrentCardIndex);
         
@@ -102,7 +94,7 @@ public class Hand : MonoBehaviour {
     
     public void SalvageCard() {
         
-        if(CurrentCardIndex == -1)
+        if(CurrentCardIndex == -1 || GameController.INSTANCE.currentDayTime == GameController.DayTime.Night)
         {
             return;
         }
