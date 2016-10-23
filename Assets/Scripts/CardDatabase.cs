@@ -5,9 +5,6 @@ using System.Collections.Generic;
 public class CardDatabase : MonoBehaviour {
 	public List<Object> CardList;
 
-    public Hand hand;
-    public AudioClip drawCardSound;
-
     private static List<GameObject> AICardPool = new List<GameObject>();
     private static List<GameObject> PlayerCardPool = new List<GameObject>();
     private static List<GameObject> PlayerDeck = new List<GameObject>();
@@ -15,12 +12,6 @@ public class CardDatabase : MonoBehaviour {
 
     public CardDatabase() {
 		CardList = new List<Object> ();
-    }
-    
-    void Update() {
-        hand.Draw();
-        SoundManager.instance.PlaySingle(drawCardSound);
-        GameController.INSTANCE.NextState();
     }
 
     void Start () {
