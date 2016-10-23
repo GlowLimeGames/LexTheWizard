@@ -2,37 +2,44 @@
 using System.Collections.Generic;
 
 public class DeckHandler {
-    private static List<Card> AICardPool = new List<Card>();
-    private static List<Card> PlayerCardPool = new List<Card>();
-    private static List<Card> PlayerDeck = new List<Card>();
-    private static List<Card> AIDeck = new List<Card>();
+    private static List<LexCard> AICardPool = new List<LexCard>();
+    private static List<LexCard> PlayerCardPool = new List<LexCard>();
+    private static List<LexCard> PlayerDeck = new List<LexCard>();
+    private static List<LexCard> AIDeck = new List<LexCard>();
 
-    private static Card Draw(List<Card> deck, bool onlyPlayable = false) {
+    private static LexCard[] Draw(int amt, List<LexCard> deck, bool onlyPlayable = false) {
         int index;
-        Card card;
+        LexCard[] cards = new LexCard[amt];
         if (onlyPlayable) {
-            List<Card> subDeck = new List<Card>();
-            foreach (Card c in deck) {
+            List<LexCard> subDeck = new List<LexCard>();
+            foreach (LexCard c in deck) {
                 if (c.isCurrentlyPlayable()) {
                     subDeck.Add(c);
                 }
             }
-            index = Random.Range(0, subDeck.Count);
-            card = subDeck[index];
+            for (int i = 0; i < cards.Length; i++) {
+                index = Random.Range(0, subDeck.Count);
+                cards[i] = subDeck[index];
+                deck.Remove(cards[i]);
+            }
         }
         else {
-            index = Random.Range(0, deck.Count);
-            card = deck[index];
+            for (int i = 0; i < cards.Length; i++) {
+                index = Random.Range(0, deck.Count);
+                cards[i] = deck[index];
+                deck.Remove(cards[i]);
+            }
         }
-        deck.Remove(card);
-        return card;
+        return cards;
     }
 
-    public static Card DrawPlayer() { return Draw(PlayerDeck); }
-    public static Card DrawAI() { return Draw(AIDeck, true); }
+    public static LexCard DrawPlayer() { return DrawPlayer(1)[0]; }
+    public static LexCard[] DrawPlayer(int amt) { return Draw(amt, PlayerDeck); }
+    public static LexCard DrawAI() { return DrawAI(1)[0]; }
+    public static LexCard[] DrawAI(int amt) { return Draw(amt, AIDeck, true); }
 
-    private static void UpdateDeck(List<Card> deck, List<Card> cardPool) {
-        foreach (Card card in cardPool) {
+    private static void UpdateDeck(List<LexCard> deck, List<LexCard> cardPool) {
+        foreach (LexCard card in cardPool) {
             if (card.isInPlay()) {
                 deck.Add(card);
                 cardPool.Remove(card);

@@ -86,7 +86,7 @@ public class Hand : MonoBehaviour {
             return;
         }
 
-        cards[CurrentCardIndex].GetComponentInChildren<Card>().OnPlay();
+        cards[CurrentCardIndex].GetComponentInChildren<LexCard>().OnPlay();
 
         RemoveCard(CurrentCardIndex);
         
@@ -114,6 +114,18 @@ public class Hand : MonoBehaviour {
         if(index == CurrentCardIndex)
         {
             CurrentCardIndex = -1;
+        }
+    }
+
+    public void Draw()
+    {
+        foreach (CardViewer card in cards)
+        {
+            if (card.Card == null)
+            {
+                GameObject g = Instantiate(CardDatabase.DrawPlayer().gameObject);
+                card.Card = g;
+            }
         }
     }
 }
