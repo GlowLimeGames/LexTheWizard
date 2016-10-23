@@ -49,15 +49,15 @@ public class CardParsing{
 		foreach (Object obj in Resources.LoadAll("CardPrefabs")) {
 			Debug.Log (AssetDatabase.GetAssetPath (obj));
 			Debug.Log (AssetDatabase.DeleteAsset (AssetDatabase.GetAssetPath (obj)));
-		}
+        }
 
-		GameObject tempListGO = new GameObject ();
-		CardDatabase tempList = tempListGO.AddComponent<CardDatabase> ();
-		Object tempObj = PrefabUtility.CreateEmptyPrefab (PrefabFolder + "/CardDatabase.prefab");
-		PrefabUtility.ReplacePrefab (tempListGO, tempObj);
-		MonoBehaviour.DestroyImmediate (tempListGO);
+        GameObject tempListGO = new GameObject();
+        Object tempObj = PrefabUtility.CreateEmptyPrefab(PrefabFolder + "/CardDatabase.prefab");
+        GameObject tempPrefab = PrefabUtility.ReplacePrefab(tempListGO, tempObj);
+        MonoBehaviour.DestroyImmediate(tempListGO);
+        CardDatabase tempList = tempPrefab.AddComponent<CardDatabase>();
 
-		CardCollection collection = CardCollection.Load (XMLDoc);
+        CardCollection collection = CardCollection.Load (XMLDoc);
 		foreach (LexCard card in collection.Cards) {
 			GameObject go = Resources.Load (BlankCard) as GameObject;
 			go.name = card.CardName;
