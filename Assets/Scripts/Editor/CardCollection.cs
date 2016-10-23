@@ -15,18 +15,18 @@ using System.IO;
 /// 		Establish an undo pattern.
 /// 		Further parse the cards into their respective decks.
 /// </summary>
+/// 
+public class LexCard {
+    [XmlElement("CardName")]
+    public string CardName;
 
-public class LexCard{
-	[XmlElement("CardName")]
-	public string CardName;
+    [XmlElement("CardText")]
+    public string CardText;
 
-	[XmlElement("CardText")]
-	public string CardText;	
+    [XmlElement("CardImage")]
+    public string CardImageName;
 
-	[XmlElement("CardImage")]
-	public string CardImageName;
-
-	public LexCard (){}
+    public LexCard() { }
 }
 
 [XmlRoot("CardCollection")]
@@ -62,15 +62,15 @@ public class CardParsing{
 		foreach (Object obj in Resources.LoadAll("CardPrefabs")) {
 			Debug.Log (AssetDatabase.GetAssetPath (obj));
 			Debug.Log (AssetDatabase.DeleteAsset (AssetDatabase.GetAssetPath (obj)));
-		}
+        }
 
-		GameObject tempListGO = new GameObject ();
-		CardDatabase tempList = tempListGO.AddComponent<CardDatabase> ();
-		Object tempObj = PrefabUtility.CreateEmptyPrefab (PrefabFolder + "/CardDatabase.prefab");
-		PrefabUtility.ReplacePrefab (tempListGO, tempObj);
-		MonoBehaviour.DestroyImmediate (tempListGO);
+        GameObject tempListGO = new GameObject();
+        Object tempObj = PrefabUtility.CreateEmptyPrefab(PrefabFolder + "/CardDatabase.prefab");
+        GameObject tempPrefab = PrefabUtility.ReplacePrefab(tempListGO, tempObj);
+        MonoBehaviour.DestroyImmediate(tempListGO);
+        CardDatabase tempList = tempPrefab.AddComponent<CardDatabase>();
 
-		CardCollection collection = CardCollection.Load (XMLDoc);
+        CardCollection collection = CardCollection.Load (XMLDoc);
 		foreach (LexCard card in collection.Cards) {
 			GameObject go = Resources.Load (BlankCard) as GameObject;
 			go.name = card.CardName;
