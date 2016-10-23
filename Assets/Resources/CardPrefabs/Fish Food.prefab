@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9081310dfb4c66e4998ed7955c73cdb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardEffectsOnPlay: {fileID: 0}
+  cardEffectsOnPlay: {fileID: 11495292, guid: 7bde75ca76794d94c847718d7ba60485, type: 2}
 --- !u!222 &222000011498316528
 CanvasRenderer:
   m_ObjectHideFlags: 1

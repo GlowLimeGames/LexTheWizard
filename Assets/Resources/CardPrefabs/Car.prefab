@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9081310dfb4c66e4998ed7955c73cdb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardEffectsOnPlay: {fileID: 0}
+  cardEffectsOnPlay: {fileID: 11426004, guid: 4008a7faa2750164986673efe9d7d388, type: 2}
 --- !u!114 &114000010810578332
 MonoBehaviour:
   m_ObjectHideFlags: 1
