@@ -86,7 +86,7 @@ public class Hand : MonoBehaviour {
             return;
         }
 
-        cards[CurrentCardIndex].GetComponentInChildren<LexCard>().OnPlay();
+        cards[CurrentCardIndex].GetComponentInChildren<Card>().OnPlay();
 
         RemoveCard(CurrentCardIndex);
         
@@ -117,14 +117,14 @@ public class Hand : MonoBehaviour {
         }
     }
 
-    public void Draw()
-    {
-        foreach (CardViewer card in cards)
-        {
-            if (card.Card == null)
-            {
-                GameObject g = Instantiate(CardDatabase.DrawPlayer().gameObject);
-                card.Card = g;
+    public void Draw() {
+        foreach (CardViewer card in cards) {
+            if (card.Card == null) {
+                GameObject g = CardDatabase.DrawPlayer();
+                if (g != null) {
+                    g = Instantiate(g);
+                    card.Card = g;
+                }
             }
         }
     }

@@ -23,10 +23,10 @@ public class CardDatabase : MonoBehaviour {
         GameController.INSTANCE.NextState();
     }
 
-    public void Init () {
+    void Start () {
         foreach (Object o in CardList){
             GameObject card = (GameObject)o;
-            if (card.GetComponent<LexCard>().isAI()) {
+            if (card.GetComponent<Card>().isAI()) {
                 AICardPool.Add(card);
             } else {
                 PlayerCardPool.Add(card);
@@ -37,25 +37,24 @@ public class CardDatabase : MonoBehaviour {
 
     private static GameObject Draw(List<GameObject> deck, bool onlyPlayable = false) {
         int index;
-        GameObject card;
-        if (onlyPlayable)
-        {
+        GameObject card = null;
+        if (deck.Count == 0) {
+            print("Out of cards!");
+        }
+        else if (onlyPlayable) {
             List<GameObject> subDeck = new List<GameObject>();
-            foreach (GameObject c in deck)
-            {
-                if (c.GetComponent<LexCard>().isCurrentlyPlayable())
-                {
+            foreach (GameObject c in deck) {
+                if (c.GetComponent<Card>().isCurrentlyPlayable()) {
                     subDeck.Add(c);
                 }
             }
-            index = Random.Range(0, subDeck.Count);
-            card = subDeck[index];
+            card = Draw(subDeck);
         }
         else {
             index = Random.Range(0, deck.Count);
             card = deck[index];
+            deck.Remove(card);
         }
-        deck.Remove(card);
         return card;
     }
 
@@ -63,11 +62,15 @@ public class CardDatabase : MonoBehaviour {
     public static GameObject DrawAI() { return Draw(AIDeck, true); }
 
     private static void UpdateDeck(List<GameObject> deck, List<GameObject> cardPool) {
+        List<GameObject> remove = new List<GameObject>();
         foreach (GameObject card in cardPool) {
-            if (card.GetComponent<LexCard>().isInPlay()) {
+            if (card.GetComponent<Card>().isInPlay()) {
                 deck.Add(card);
-                cardPool.Remove(card);
+                remove.Add(card);
             }
+        }
+        foreach (GameObject card in remove) {
+            cardPool.Remove(card);
         }
     }
 

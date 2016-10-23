@@ -15,6 +15,19 @@ using System.IO;
 /// 		Establish an undo pattern.
 /// 		Further parse the cards into their respective decks.
 /// </summary>
+/// 
+public class LexCard {
+    [XmlElement("CardName")]
+    public string CardName;
+
+    [XmlElement("CardText")]
+    public string CardText;
+
+    [XmlElement("CardImage")]
+    public string CardImageName;
+
+    public LexCard() { }
+}
 
 [XmlRoot("CardCollection")]
 public class CardCollection{

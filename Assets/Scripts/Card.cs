@@ -2,20 +2,8 @@
 using System.Collections;
 using System.Xml.Serialization;
 
-public class LexCard : MonoBehaviour{
-    [XmlElement("CardName")]
-    public string CardName;
-
-    [XmlElement("CardText")]
-    public string CardText;
-
-    [XmlElement("CardImage")]
-    public string CardImageName;
-
+public class Card : MonoBehaviour {
     public Fungus.Flowchart cardEffectsOnPlay;
-
-    public LexCard() { }
-
 
     /// <summary>
     /// Called when the hand object plays a card
