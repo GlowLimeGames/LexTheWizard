@@ -116,4 +116,16 @@ public class Hand : MonoBehaviour {
             CurrentCardIndex = -1;
         }
     }
+
+    public void Draw() {
+        foreach (CardViewer card in cards) {
+            if (card.Card == null) {
+                GameObject g = CardDatabase.DrawPlayer();
+                if (g != null) {
+                    g = Instantiate(g);
+                    card.Card = g;
+                }
+            }
+        }
+    }
 }

@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Xml.Serialization;
 
-public class Card : MonoBehaviour{
-
+public class Card : MonoBehaviour {
     public Fungus.Flowchart cardEffectsOnPlay;
-
 
     /// <summary>
     /// Called when the hand object plays a card
     /// </summary>
-    public void OnPlay()
-    {
-        if(cardEffectsOnPlay != null)
-        {
+    public void OnPlay() {
+        if(cardEffectsOnPlay != null) {
             Instantiate(cardEffectsOnPlay);
         }
     } 
@@ -28,4 +25,10 @@ public class Card : MonoBehaviour{
     /// deck at this point in the game.
     /// </summary>
     public bool isInPlay() { return true; }
+
+    /// <summary>
+    /// TBD: check whether this is an AI card or a
+    /// player card
+    /// </summary>
+    public bool isAI() { return false; }
 }
