@@ -79,7 +79,7 @@ MonoBehaviour:
   callMode: 0
 --- !u!114 &11440950
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191228}
@@ -105,8 +105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 67
-    y: 70
+    x: 68.81818
+    y: 71.81818
     width: 120
     height: 40
   itemId: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.55000013
+  zoom: 0.4900004
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -140,8 +140,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlock: {fileID: 11477914}
-  selectedCommands:
-  - {fileID: 11440950}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
