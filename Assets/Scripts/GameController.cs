@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour {
         set
         {
             mana = value;
-            manaText.text = "Mana: " + mana;
+            manaText.text = "" + mana;
         }
     }
 
@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour {
         set
         {
             points = value;
-            pointsText.text = "Points: " + points;
+            pointsText.text = "" + points;
         }
     }
 

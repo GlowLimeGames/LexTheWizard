@@ -16,6 +16,7 @@ using System.IO;
 /// 		Further parse the cards into their respective decks.
 /// </summary>
 /// 
+/*
 public class LexCard {
     [XmlElement("CardName")]
     public string CardName;
@@ -28,6 +29,7 @@ public class LexCard {
 
     public LexCard() { }
 }
+*/
 
 [XmlRoot("CardCollection")]
 public class CardCollection{

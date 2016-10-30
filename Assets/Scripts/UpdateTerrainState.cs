@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class UpdateTerrainState : MonoBehaviour{
 
-    public Text terrainText;
+    void OnEnable()
+    {
+        Fungus.Flowchart.BroadcastFungusMessage("UpdateTerrainStateStart");
+    }
 
     void Update()
     {
@@ -28,8 +31,6 @@ public class UpdateTerrainState : MonoBehaviour{
             default:
                 break;
         }
-
-        terrainText.text = GameController.INSTANCE.currentTerrain.ToString();
 
         GameController.INSTANCE.NextState();
     }

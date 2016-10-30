@@ -3,7 +3,15 @@ using System.Collections;
 using System.Xml.Serialization;
 
 public class Card : MonoBehaviour {
+    private string name = "untitled";
+    // public string Name { get; }
+    private string description = "description";
+
     public Fungus.Flowchart cardEffectsOnPlay;
+
+    public void Init (LexCard card) {
+
+    }
 
     /// <summary>
     /// Called when the hand object plays a card
@@ -31,4 +39,15 @@ public class Card : MonoBehaviour {
     /// player card
     /// </summary>
     public bool isAI() { return false; }
+}
+
+public class LexCard {
+    [XmlElement("CardName")]
+    public string CardName;
+
+    [XmlElement("CardText")]
+    public string CardText;
+
+    [XmlElement("CardImage")]
+    public string CardImageName;
 }
