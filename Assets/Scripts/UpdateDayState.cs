@@ -6,7 +6,15 @@ using UnityEngine.UI;
 public class UpdateDayState : MonoBehaviour{
 
     [SerializeField]
-    private Text dayText;
+    private Image dayIcon;
+
+    [SerializeField]
+    private Text dayCount;
+
+    public Sprite daySprite;
+    public Sprite afternoonSprite;
+    public Sprite nightSprite;
+
 
     void OnEnable()
     {
@@ -24,7 +32,22 @@ public class UpdateDayState : MonoBehaviour{
 
         }
 
-        dayText.text = "Day " + GameController.INSTANCE.dayCount + ": " + GameController.INSTANCE.currentDayTime.ToString();
+        switch (GameController.INSTANCE.currentDayTime)
+        {
+            case GameController.DayTime.Dawn:
+                dayIcon.sprite = daySprite;
+                break;
+            case GameController.DayTime.Dusk:
+                dayIcon.sprite = afternoonSprite;
+                break;
+            case GameController.DayTime.Night:
+                dayIcon.sprite = nightSprite;
+                break;
+            default:
+                break;
+        }
+
+        dayCount.text = "" + GameController.INSTANCE.dayCount;
         GameController.INSTANCE.NextState();
     }
 
