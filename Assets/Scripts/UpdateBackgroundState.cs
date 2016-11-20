@@ -21,7 +21,7 @@ public class UpdateBackgroundState : MonoBehaviour {
             case GameController.Terrain.Caves:
                 background.sprite = terrainType[0];
                 break;
-            case GameController.Terrain.Forrests:
+            case GameController.Terrain.Forests:
                 background.sprite = terrainType[1];
                 break;
             case GameController.Terrain.Hills:

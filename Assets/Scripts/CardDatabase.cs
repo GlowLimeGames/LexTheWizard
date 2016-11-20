@@ -26,7 +26,7 @@ public class CardDatabase : MonoBehaviour {
         UpdateDecks();
     }
 
-    private static GameObject Draw(List<GameObject> deck, bool onlyPlayable = false) {
+    private static GameObject Draw(List<GameObject> deck, bool onlyPlayable = true) {
         int index;
         GameObject card = null;
         if (deck.Count == 0) {
@@ -39,7 +39,7 @@ public class CardDatabase : MonoBehaviour {
                     subDeck.Add(c);
                 }
             }
-            card = Draw(subDeck);
+            card = Draw(subDeck, false);
         }
         else {
             index = Random.Range(0, deck.Count);

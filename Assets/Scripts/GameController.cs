@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour {
     {
         Swamps,
         Hills,
-        Forrests,
+        Forests,
         Caves
     }
 

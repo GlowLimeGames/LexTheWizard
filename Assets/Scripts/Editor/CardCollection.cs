@@ -61,14 +61,23 @@ public class CardParsing{
 	[MenuItem("Cards/Reset Card Collection")]
 	static void ResetCardList ()
 	{
+        Object cardDatabase = null;
+
 		foreach (Object obj in Resources.LoadAll("CardPrefabs")) {
-			Debug.Log (AssetDatabase.GetAssetPath (obj));
-			Debug.Log (AssetDatabase.DeleteAsset (AssetDatabase.GetAssetPath (obj)));
+			// Debug.Log (AssetDatabase.GetAssetPath (obj));
+            if (obj.name != "CardDatabase") {
+                AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(obj));
+            }
+            else {
+                cardDatabase = obj;
+            }
         }
 
         GameObject tempListGO = new GameObject();
-        Object tempObj = PrefabUtility.CreateEmptyPrefab(PrefabFolder + "/CardDatabase.prefab");
-        GameObject tempPrefab = PrefabUtility.ReplacePrefab(tempListGO, tempObj);
+        if (cardDatabase == null) {
+            cardDatabase = PrefabUtility.CreateEmptyPrefab(PrefabFolder + "/CardDatabase.prefab");
+        }
+        GameObject tempPrefab = PrefabUtility.ReplacePrefab(tempListGO, cardDatabase);
         MonoBehaviour.DestroyImmediate(tempListGO);
         CardDatabase tempList = tempPrefab.AddComponent<CardDatabase>();
 
@@ -76,13 +85,17 @@ public class CardParsing{
 		foreach (LexCard card in collection.Cards) {
 			GameObject go = Resources.Load (BlankCard) as GameObject;
 			go.name = card.CardName;
+            
 			Sprite cardImage = Resources.Load<Sprite> (ArtPath + card.CardImageName);
 			if (cardImage)
 				go.transform.FindChild ("Card Image").GetComponent<Image> ().sprite = cardImage;
 			go.transform.FindChild ("Card Name").GetComponent<Text> ().text = card.CardName;
 			go.transform.FindChild ("Card Text").GetComponent<Text> ().text = card.CardText;
+            
 			Object empty = PrefabUtility.CreateEmptyPrefab (PrefabFolder+ "/" + card.CardName + ".prefab");
-			tempList.CardList.Add (PrefabUtility.ReplacePrefab (go, empty));
+            GameObject prefab = PrefabUtility.ReplacePrefab(go, empty);
+            prefab.GetComponent<Card>().Init(card);
+			tempList.CardList.Add (prefab);
 		}
 	}
 

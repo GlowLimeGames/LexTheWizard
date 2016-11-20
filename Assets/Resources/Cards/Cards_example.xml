@@ -1,0 +1,24 @@
+<CardCollection>
+  <Cards>
+    <Card>
+      <CardName>Fish Food</CardName>
+      <CardText>feeds fish</CardText>
+      <CardImage>fishflakes</CardImage>
+    </Card>
+    <Card>
+      <CardName>crumbo</CardName>
+      <CardText>dumbo</CardText>
+      <CardImage>bumbo</CardImage>
+    </Card>
+    <Card>
+      <CardName>Car</CardName>
+      <CardText>Crash into the void</CardText>
+      <CardImage>carImg</CardImage>
+    </Card>
+    <Card>
+      <CardName>Phone</CardName>
+      <CardText>Call home</CardText>
+      <CardImage>phoneImg</CardImage>
+    </Card>
+  </Cards>
+</CardCollection>

@@ -17,7 +17,7 @@ public class UpdateTerrainState : MonoBehaviour{
         switch (r)
         {
             case 1:
-                GameController.INSTANCE.currentTerrain = GameController.Terrain.Forrests;
+                GameController.INSTANCE.currentTerrain = GameController.Terrain.Forests;
                 break;
             case 2:
                 GameController.INSTANCE.currentTerrain = GameController.Terrain.Caves;
