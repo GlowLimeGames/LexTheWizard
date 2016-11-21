@@ -27,6 +27,12 @@ public class GameController : MonoBehaviour {
 
     public int dayCount = 0;
 
+    public int week {
+        get {
+            return (dayCount + 2) / 3;
+        }
+    }
+
     public enum DayTime
     {
         Dawn,

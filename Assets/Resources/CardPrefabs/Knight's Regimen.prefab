@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012319535164}
+  m_RootGameObject: {fileID: 1000012792425278}
   m_IsPrefabParent: 1
---- !u!1 &1000010387520780
+--- !u!1 &1000010030133448
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 224: {fileID: 224000010529431620}
-  - 222: {fileID: 222000013253436176}
-  - 114: {fileID: 114000013749809798}
+  - 224: {fileID: 224000012729266906}
+  - 222: {fileID: 222000010858053602}
+  - 114: {fileID: 114000011630112114}
   m_Layer: 5
   m_Name: Card Text
   m_TagString: Untagged
@@ -28,16 +28,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000010892274976
+--- !u!1 &1000011518659568
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 224: {fileID: 224000010968379028}
-  - 222: {fileID: 222000011729605540}
-  - 114: {fileID: 114000012043511444}
+  - 224: {fileID: 224000013340876370}
+  - 222: {fileID: 222000011037952162}
+  - 114: {fileID: 114000013716717902}
   m_Layer: 5
   m_Name: Card Image
   m_TagString: Untagged
@@ -45,33 +45,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000012319535164
+--- !u!1 &1000012267407926
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 224: {fileID: 224000013712248950}
-  - 222: {fileID: 222000012209353912}
-  - 114: {fileID: 114000013123753472}
-  m_Layer: 5
-  m_Name: Knight's Regimen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1000012399150196
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 224000011406513702}
-  - 222: {fileID: 222000014292165348}
-  - 114: {fileID: 114000013442798274}
+  - 224: {fileID: 224000010983118670}
+  - 222: {fileID: 222000010025192156}
+  - 114: {fileID: 114000010435670712}
   m_Layer: 5
   m_Name: Card Name
   m_TagString: Untagged
@@ -79,16 +62,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000014003354542
+--- !u!1 &1000012792425278
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 224: {fileID: 224000011879406582}
-  - 222: {fileID: 222000013116059882}
-  - 114: {fileID: 114000013894476744}
+  - 224: {fileID: 224000013459789318}
+  - 222: {fileID: 222000011947504818}
+  - 114: {fileID: 114000012115720722}
+  m_Layer: 5
+  m_Name: Knight's Regimen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013902154232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 224000011674128020}
+  - 222: {fileID: 222000012073971452}
+  - 114: {fileID: 114000010533172784}
   m_Layer: 5
   m_Name: Card Background
   m_TagString: Untagged
@@ -96,51 +96,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114000012043511444
+--- !u!114 &114000010435670712
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010892274976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!114 &114000013123753472
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012319535164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9081310dfb4c66e4998ed7955c73cdb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardEffectsOnPlay: {fileID: 0}
---- !u!114 &114000013442798274
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012399150196}
+  m_GameObject: {fileID: 1000012267407926}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
@@ -168,12 +129,39 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Knight's Regimen
---- !u!114 &114000013749809798
+--- !u!114 &114000010533172784
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010387520780}
+  m_GameObject: {fileID: 1000013902154232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114000011630112114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010030133448}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
@@ -202,12 +190,24 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: The knight who wrote this didn't have a lot to say, but Lex gleans what
     he can. Draw a card.
---- !u!114 &114000013894476744
+--- !u!114 &114000012115720722
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014003354542}
+  m_GameObject: {fileID: 1000012792425278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9081310dfb4c66e4998ed7955c73cdb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardEffectsOnPlay: {fileID: 0}
+--- !u!114 &114000013716717902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011518659568}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
@@ -221,131 +221,131 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!222 &222000011729605540
+--- !u!222 &222000010025192156
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010892274976}
---- !u!222 &222000012209353912
+  m_GameObject: {fileID: 1000012267407926}
+--- !u!222 &222000010858053602
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012319535164}
---- !u!222 &222000013116059882
+  m_GameObject: {fileID: 1000010030133448}
+--- !u!222 &222000011037952162
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014003354542}
---- !u!222 &222000013253436176
+  m_GameObject: {fileID: 1000011518659568}
+--- !u!222 &222000011947504818
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010387520780}
---- !u!222 &222000014292165348
+  m_GameObject: {fileID: 1000012792425278}
+--- !u!222 &222000012073971452
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012399150196}
---- !u!224 &224000010529431620
+  m_GameObject: {fileID: 1000013902154232}
+--- !u!224 &224000010983118670
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010387520780}
+  m_GameObject: {fileID: 1000012267407926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 224000013712248950}
-  m_RootOrder: 3
-  m_AnchorMin: {x: 0.064, y: 0.07036622}
-  m_AnchorMax: {x: 0.92300004, y: 0.42253524}
-  m_AnchoredPosition: {x: 0.004501343, y: -0.0000038146973}
-  m_SizeDelta: {x: -2.009, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224000010968379028
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010892274976}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 224000013712248950}
-  m_RootOrder: 2
-  m_AnchorMin: {x: 0.08117095, y: 0.45774648}
-  m_AnchorMax: {x: 0.92300004, y: 0.85200006}
-  m_AnchoredPosition: {x: -0.5, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224000011406513702
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012399150196}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 224000013712248950}
+  m_Father: {fileID: 224000013459789318}
   m_RootOrder: 1
   m_AnchorMin: {x: 0.132453, y: 0.83100003}
   m_AnchorMax: {x: 0.87600005, y: 0.9647887}
   m_AnchoredPosition: {x: -0.5, y: -0.44999886}
   m_SizeDelta: {x: -1, y: -0.9}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224000011879406582
+--- !u!224 &224000011674128020
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014003354542}
+  m_GameObject: {fileID: 1000013902154232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 224000013712248950}
+  m_Father: {fileID: 224000013459789318}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224000013712248950
+--- !u!224 &224000012729266906
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012319535164}
+  m_GameObject: {fileID: 1000010030133448}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 224000013459789318}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0.064, y: 0.07036622}
+  m_AnchorMax: {x: 0.92300004, y: 0.42253524}
+  m_AnchoredPosition: {x: 0.004501343, y: -0.0000038146973}
+  m_SizeDelta: {x: -2.009, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224000013340876370
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011518659568}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 224000013459789318}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0.08117095, y: 0.45774648}
+  m_AnchorMax: {x: 0.92300004, y: 0.85200006}
+  m_AnchoredPosition: {x: -0.5, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224000013459789318
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012792425278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 224000011879406582}
-  - {fileID: 224000011406513702}
-  - {fileID: 224000010968379028}
-  - {fileID: 224000010529431620}
+  - {fileID: 224000011674128020}
+  - {fileID: 224000010983118670}
+  - {fileID: 224000013340876370}
+  - {fileID: 224000012729266906}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}

@@ -4,36 +4,50 @@ using System.Xml.Serialization;
 
 public class Card : MonoBehaviour {
     public const string imagePath = "Cards/";
+    public const string flowchartPath = "Flowcharts/";
 
     private string name;
     private string description;
     private Sprite image;
-    private int dayAdded;
-    private HashSet<GameController.Terrain> terrain = new HashSet<GameController.Terrain>();
-    private HashSet<GameController.DayTime> dayTime = new HashSet<GameController.DayTime>();
+    private Sprite background;
+    private int week;
+    private List<GameController.Terrain> terrain = new List<GameController.Terrain>();
+    private List<GameController.DayTime> dayTime = new List<GameController.DayTime>();
 
     public string Name { get { return name; } }
     public string Description { get { return description; } }
     public Sprite Image { get { return image; } }
+    public CardType Type { get; set; }
 
-    public Fungus.Flowchart cardEffectsOnPlay;
+    public List<Fungus.Flowchart> cardEffectsOnPlay;
+
+    public enum CardType { Player, AI };
+
+    public Card (LexCard card) { Init(card); }
 
     public void Init(LexCard card) {
         name = card.CardName;
         description = card.CardText;
         image = Resources.Load<Sprite>(imagePath + card.CardImageName);
-        dayAdded = card.DayAdded;
+        week = card.Week;
 
+        string[] flowcharts = card.Flowchart.Split(',', ' ');
         string[] times = card.DayPhase.Split(',', ' ');
         string[] terrains = card.Terrain.Split(',', ' ');
 
+        cardEffectsOnPlay = new List<Fungus.Flowchart>();
+        foreach (string flowchart in flowcharts) {
+            if (flowchart.Length > 0) {
+                cardEffectsOnPlay.Add(Resources.Load<Fungus.Flowchart>(flowchartPath + flowchart));
+            }
+        }
+
         foreach (string t in terrains) {
-            Debug.Log("Adding terrain [" + t + "] to " + name);
             switch (t) {
                 case "Any":
+                    terrain.Add(GameController.Terrain.Forests);
                     terrain.Add(GameController.Terrain.Caves);
                     terrain.Add(GameController.Terrain.Hills);
-                    terrain.Add(GameController.Terrain.Forests);
                     terrain.Add(GameController.Terrain.Swamps);
                     break;
                 case "Cave":
@@ -69,18 +83,14 @@ public class Card : MonoBehaviour {
                     break;
             }
         }
-
-        foreach (GameController.Terrain t in terrain) {
-            Debug.Log(t);
-        }
     }
 
     /// <summary>
     /// Called when the hand object plays a card
     /// </summary>
     public void OnPlay() {
-        if(cardEffectsOnPlay != null) {
-            Instantiate(cardEffectsOnPlay);
+        foreach (Fungus.Flowchart effect in cardEffectsOnPlay) {
+            Instantiate(effect);
         }
     } 
 
@@ -89,15 +99,8 @@ public class Card : MonoBehaviour {
     /// current turn.
     /// </summary>
     public bool isCurrentlyPlayable() {
-        Debug.Log("Terrains:");
-        foreach (GameController.Terrain t in terrain) {
-            Debug.Log(t);
-        }
-
-        bool playable = (terrain.Contains(GameController.INSTANCE.currentTerrain)
+        return (terrain.Contains(GameController.INSTANCE.currentTerrain)
                 && dayTime.Contains(GameController.INSTANCE.currentDayTime));
-        // if (!playable) { Debug.Log("Filtering out unplayable card: " + name); }
-        return true;
     }
 
     /// <summary>
@@ -105,14 +108,16 @@ public class Card : MonoBehaviour {
     /// deck at this point in the game.
     /// </summary>
     public bool isInPlay() {
-        return (GameController.INSTANCE.dayCount >= dayAdded);
+        return (GameController.INSTANCE.week >= week);
     }
 
     /// <summary>
     /// TBD: check whether this is an AI card or a
     /// player card
     /// </summary>
-    public bool isAI() { return false; }
+    public bool isAI() {
+        return Type == CardType.AI;
+    }
 }
 
 public class LexCard {
@@ -131,6 +136,9 @@ public class LexCard {
     [XmlElement("DayPhase")]
     public string DayPhase;
 
-    [XmlElement("DayAdded")]
-    public int DayAdded;
+    [XmlElement("Week")]
+    public int Week;
+
+    [XmlElement("Flowchart")]
+    public string Flowchart;
 }

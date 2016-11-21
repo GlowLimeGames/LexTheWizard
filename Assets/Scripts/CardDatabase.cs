@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class CardDatabase : MonoBehaviour {
 	public List<Object> CardList;
 
+    private static List<Card> AICards = new List<Card>();
+    private static List<Card> PlayerCards = new List<Card>();
+
     private static List<GameObject> AICardPool = new List<GameObject>();
     private static List<GameObject> PlayerCardPool = new List<GameObject>();
     private static List<GameObject> PlayerDeck = new List<GameObject>();
@@ -26,7 +29,15 @@ public class CardDatabase : MonoBehaviour {
         UpdateDecks();
     }
 
-    private static GameObject Draw(List<GameObject> deck, bool onlyPlayable = true) {
+    public static void AddCard (LexCard lexCard, bool ai) {
+        Card card = new Card(lexCard);
+        List<Card> deck = ai ? AICards : PlayerCards;
+
+        card.Type = ai ? Card.CardType.AI : Card.CardType.Player;
+        deck.Add(card);
+    }
+
+    private static GameObject Draw(List<GameObject> deck, bool onlyPlayable = false) {
         int index;
         GameObject card = null;
         if (deck.Count == 0) {
@@ -45,6 +56,7 @@ public class CardDatabase : MonoBehaviour {
             index = Random.Range(0, deck.Count);
             card = deck[index];
             deck.Remove(card);
+            Debug.Log("Removed " + card.GetComponent<Card>().Name + ": " + !deck.Contains(card));
         }
         return card;
     }

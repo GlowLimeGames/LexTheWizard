@@ -1,0 +1,175 @@
+<CardCollection>
+  <Cards>
+    <Card>
+      <CardName>Swamp Hole</CardName>
+      <Mechanics>Cannot move terrain until end of day, -2 points per day phase until swamp is left</Mechanics>
+      <Terrain>Swamp</Terrain>
+      <Week>1</Week>
+      <DayPhase>Any</DayPhase>
+      <CardText>Lex’s leg gets caught in a pit of mud.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Cynocephali Merchants</CardName>
+      <Mechanics>50% Chance +3 magic OR -3 points, Trigger Dialogue Sequence</Mechanics>
+      <Terrain>Any</Terrain>
+      <Week>1</Week>
+      <DayPhase>Afternoon</DayPhase>
+      <CardText>Lex meets some kind but awfully chatty dog-headed people. They insist on asking him of his travels...</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>A Fork in the Road</CardName>
+      <Mechanics>Return to previous terrain (TO BE EDITED)</Mechanics>
+      <Terrain>Any</Terrain>
+      <Week>1</Week>
+      <DayPhase>Any</DayPhase>
+      <CardText>Irony dictates that the first choice is the wrong one.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Well Kept House Owners Return</CardName>
+      <Mechanics>-10 Points, +2 Magic for each card in hand</Mechanics>
+      <Terrain>Hills</Terrain>
+      <Week>1</Week>
+      <DayPhase>Any</DayPhase>
+      <CardText>Lex manages to snag a few things on his way out, despite being followed closely by an aggressive broom. +2 Magic for each card in hand. -10 points and additional -5 for each time Well-Kept House was played</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Bat Colony</CardName>
+      <Mechanics>-5 Points</Mechanics>
+      <Terrain>Any</Terrain>
+      <Week>1</Week>
+      <DayPhase>Morning</DayPhase>
+      <CardText>Lex accidentally disturbs a colony of bats and is swarmed by the angry creatures. He loses 5 points.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Heavy Rain</CardName>
+      <Mechanics>Cannot move terrain, -3 Points, Discard a card</Mechanics>
+      <Terrain>Swamp, Hills, Forest</Terrain>
+      <Week>1</Week>
+      <DayPhase>Morning</DayPhase>
+      <CardText>It is too dangerous to travel during a sudden rainstorm. Lex cannot change terrain next day phase, loses 3 points and discards a card.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Mushroom Poisoning</CardName>
+      <Mechanics>50% Discards two cards OR -4 Points, Trigger Dialogue Sequence</Mechanics>
+      <Terrain>Any</Terrain>
+      <Week>1</Week>
+      <DayPhase>Night</DayPhase>
+      <CardText>All of Lex’s food has mysteriously gone bad and must be discarded, and he doesn’t have enough to sleep here. Lex discards two cards OR Half of Lex’s food has mysteriously gone bad and has to be discarded, -4 points</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>The Stomach Rumbles</CardName>
+      <Mechanics>Cannot move terrain, +2 Points</Mechanics>
+      <Terrain>Any</Terrain>
+      <Week>1</Week>
+      <DayPhase>Night</DayPhase>
+      <CardText>There’s no greater calamity than the one Lex wrought upon that ditch. Lex cannot move terrain during the next day phase, but get 2 points for relieving himself.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Bandit Camp</CardName>
+      <Mechanics>Trigger Dialogue Sequence, 20% -4 Points, cannot move terrain next day phase OR 30% +4 Points OR 50% Move to a random terrain</Mechanics>
+      <Terrain>Any</Terrain>
+      <Week>2</Week>
+      <DayPhase>Afternoon</DayPhase>
+      <CardText>Lex accidentally stumbles upon a bandit camp in his travels. 20% Lex is attacked! -4 Points, and must stay in the terrain to heal until the next morning phase. OR 30% Lex conjures a thick fog as cover, and steals from the bandits amidst the confusion. +4 points OR 50% Lex flees as soon as he sees a bandit sneer. Move to a random terrain.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Midday Storm</CardName>
+      <Mechanics>Cannot move terrain next day phase, Discard 1 card</Mechanics>
+      <Terrain>Swamp, Hills, Forest</Terrain>
+      <Week>2</Week>
+      <DayPhase>Afternoon</DayPhase>
+      <CardText>Lex is unable to move terrain for the next day phase and discards 1 card.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Incredibly Hungry</CardName>
+      <Mechanics>-2 Points for each following consecutive day phase spent in a swamp</Mechanics>
+      <Terrain>Swamp</Terrain>
+      <Week>2</Week>
+      <DayPhase>Any</DayPhase>
+      <CardText>Lex has run out of water being in the swamp for too long and must find something to eat. -2 points per day phase until Lex has left the swamp.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Incredibly Thirsty</CardName>
+      <Mechanics>-2 Points for each following consecutive day phase spent in a Hills</Mechanics>
+      <Terrain>Hills</Terrain>
+      <Week>2</Week>
+      <DayPhase>Any</DayPhase>
+      <CardText>Lex has run out of water being in the hills for too long and must find something to drink. -2 points per day phase until Lex has left the hills.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>A Mighty Gust</CardName>
+      <Mechanics>-3 points and Lex’s hand is discarded, giving him only magic</Mechanics>
+      <Terrain>Any</Terrain>
+      <Week>2</Week>
+      <DayPhase>Night</DayPhase>
+      <CardText>A heavy gust of wind bombards Lex in his travels, scattering his things into the dark. -3 points and Lex’s hand is discarded, giving him only magic</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Drekavac</CardName>
+      <Mechanics>-12 Points</Mechanics>
+      <Terrain>Cave</Terrain>
+      <Week>2</Week>
+      <DayPhase>Night</DayPhase>
+      <CardText>Lex encounters a Drekavac which scares him into paralysis. -12 points.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>End of the Path</CardName>
+      <Mechanics>20 Magic&gt; Discard 1 card, 20 Magic&lt; Discard 2 cards</Mechanics>
+      <Terrain>Swamp, Forest, Cave</Terrain>
+      <Week>2</Week>
+      <DayPhase>Night, Afternoon</DayPhase>
+      <CardText>Lex discards a card. If his magic is more than 20, he discards two cards instead.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Abandoned House</CardName>
+      <Mechanics>Trigger Dialogue Sequence, Discard hand then draw three cards, -4 Points</Mechanics>
+      <Terrain></Terrain>
+      <Week>3</Week>
+      <DayPhase>Any</DayPhase>
+      <CardText>An old hag claiming to be Lex’s Grandmother tries to eat him, but he escapes. Lex discards his hand and draws three cards. -4 Points</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Trouble in Trusian</CardName>
+      <Mechanics>Trigger Dialogue Sequence, -1 Point OR -8 Points and discard two cards</Mechanics>
+      <Terrain>Cave</Terrain>
+      <Week>3</Week>
+      <DayPhase>Any</DayPhase>
+      <CardText>As Lex is in the Trusian cave searching for crystals, he encounters an avalanche of rocks that block his path.The cave spirit Grateria appears to be displeased.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Snakebite</CardName>
+      <Mechanics>40% Chance -8 Points, 60% +4 Magic</Mechanics>
+      <Terrain>Swamp, Forest, Hills</Terrain>
+      <Week>3</Week>
+      <DayPhase>Morning</DayPhase>
+      <CardText>Lex is awoken by the faint hiss, too close for comfort. 40% A snake darts out of the bushes and bites Lex! He loses 8 points. 60% Lex anticipates the creature in wait, and conjures a spell to kill it. Earn 4 magic.</CardText>
+      <CardImage></CardImage>
+    </Card>
+    <Card>
+      <CardName>Ancient Rusted Sword</CardName>
+      <Mechanics>Magic 25&lt; +3 Magic, Magic 25&gt; -3 Points and add another Gwyllgi Attack to the deck</Mechanics>
+      <Terrain></Terrain>
+      <Week>3</Week>
+      <DayPhase>Night</DayPhase>
+      <CardText>Lex finds an old, rusted sword hidden among the rubble of an old temple.</CardText>
+      <CardImage></CardImage>
+    </Card>
+  </Cards>
+</CardCollection>

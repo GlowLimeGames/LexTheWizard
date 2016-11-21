@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11423624}
   - 114: {fileID: 11497458}
   - 114: {fileID: 11440950}
+  - 114: {fileID: 114000012012312316}
   m_Layer: 0
   m_Name: AddPoints
   m_TagString: Untagged
@@ -71,7 +72,7 @@ MonoBehaviour:
       textureValue: {fileID: 0}
       vector2Value: {x: 0, y: 0}
       vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: 
+    variableKey: Points
   saveReturnValue: 0
   returnValueVariableKey: 
   returnValueType: System.Void
@@ -105,8 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 68.81818
-    y: 71.81818
+    x: 1.7727051
+    y: 9.318207
     width: 120
     height: 40
   itemId: 0
@@ -128,20 +129,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1.0
-  scrollPos: {x: 329.0908, y: 236.36357}
+  scrollPos: {x: 327.95444, y: 236.36357}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.4900004
+  zoom: 0.8800002
   scrollViewRect:
     serializedVersion: 2
-    x: -343
-    y: -340
-    width: 1114
-    height: 859
-  selectedBlock: {fileID: 11477914}
+    x: -491.4091
+    y: -431.5909
+    width: 1262.4088
+    height: 950.59094
+  selectedBlock: {fileID: 0}
   selectedCommands: []
-  variables: []
+  variables:
+  - {fileID: 114000012012312316}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -172,3 +174,17 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 191228}
   m_IsPrefabParent: 1
+--- !u!114 &114000012012312316
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 1
+  key: Points
+  value: 0

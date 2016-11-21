@@ -53,14 +53,26 @@ public class CardCollection{
 /// </summary>
 public class CardParsing{
 	
-	public const string XMLDoc = "Cards/Cards";
+	public const string PlayerXML = "Cards/Cards_Player";
+    public const string AIXML = "Cards/Cards_AI";
 	public const string BlankCard = "Cards/BlankCard";
 	public const string ArtPath = "Cards";
 	public const string PrefabFolder = "Assets/Resources/CardPrefabs";
 
 	[MenuItem("Cards/Reset Card Collection")]
-	static void ResetCardList ()
-	{
+	static void ResetCardList () {
+        CardCollection aiCards = CardCollection.Load(AIXML);
+        CardCollection playerCards = CardCollection.Load(PlayerXML);
+
+        foreach (LexCard lexCard in aiCards.Cards) {
+            CardDatabase.AddCard(lexCard, true);
+        }
+
+        foreach (LexCard lexCard in playerCards.Cards) {
+            CardDatabase.AddCard(lexCard, false);
+        }
+
+        /*
         Object cardDatabase = null;
 
 		foreach (Object obj in Resources.LoadAll("CardPrefabs")) {
@@ -80,24 +92,33 @@ public class CardParsing{
         GameObject tempPrefab = PrefabUtility.ReplacePrefab(tempListGO, cardDatabase);
         MonoBehaviour.DestroyImmediate(tempListGO);
         CardDatabase tempList = tempPrefab.AddComponent<CardDatabase>();
-
-        CardCollection collection = CardCollection.Load (XMLDoc);
-		foreach (LexCard card in collection.Cards) {
-			GameObject go = Resources.Load (BlankCard) as GameObject;
-			go.name = card.CardName;
-            
-			Sprite cardImage = Resources.Load<Sprite> (ArtPath + card.CardImageName);
-			if (cardImage)
-				go.transform.FindChild ("Card Image").GetComponent<Image> ().sprite = cardImage;
-			go.transform.FindChild ("Card Name").GetComponent<Text> ().text = card.CardName;
-			go.transform.FindChild ("Card Text").GetComponent<Text> ().text = card.CardText;
-            
-			Object empty = PrefabUtility.CreateEmptyPrefab (PrefabFolder+ "/" + card.CardName + ".prefab");
-            GameObject prefab = PrefabUtility.ReplacePrefab(go, empty);
-            prefab.GetComponent<Card>().Init(card);
-			tempList.CardList.Add (prefab);
-		}
+        buildCollection(tempList, PlayerXML, false);
+        buildCollection(tempList, AIXML, true);
+        */
 	}
+
+    /*
+    private static void buildCollection (CardDatabase database, string path, bool ai) {
+        CardCollection collection = CardCollection.Load(path);
+        foreach (LexCard lexCard in collection.Cards) {
+            GameObject go = Resources.Load(BlankCard) as GameObject;
+            go.name = lexCard.CardName;
+
+            Sprite cardImage = Resources.Load<Sprite>(ArtPath + lexCard.CardImageName);
+            if (cardImage)
+                go.transform.FindChild("Card Image").GetComponent<Image>().sprite = cardImage;
+            go.transform.FindChild("Card Name").GetComponent<Text>().text = lexCard.CardName;
+            go.transform.FindChild("Card Text").GetComponent<Text>().text = lexCard.CardText;
+
+            Object empty = PrefabUtility.CreateEmptyPrefab(PrefabFolder + "/" + lexCard.CardName + ".prefab");
+            GameObject prefab = PrefabUtility.ReplacePrefab(go, empty);
+            Card card = prefab.GetComponent<Card>();
+            card.Init(lexCard);
+            card.Type = ai ? Card.CardType.AI : Card.CardType.Player;
+            database.CardList.Add(prefab);
+        }
+    }
+    */
 
     /*
 	[MenuItem("Cards/Test Card Effect")]

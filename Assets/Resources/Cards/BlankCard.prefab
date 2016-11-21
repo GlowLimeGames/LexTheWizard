@@ -117,7 +117,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Harding Manor's Stables
+  m_Text: Ancient Rusted Sword
 --- !u!114 &11438342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,10 +162,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The nobility of the manor are very rude about Lex being a wizard, so he
-    settles for spending the night with their horses - without permission, of course.
-    Since Lex has the Massive Metal Key, he finds gold hidden in a storage room. +6
-    Points
+  m_Text: Lex finds an old, rusted sword hidden among the rubble of an old temple.
 --- !u!114 &11489000
 MonoBehaviour:
   m_ObjectHideFlags: 1
