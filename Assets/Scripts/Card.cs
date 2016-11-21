@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 public class Card {
-    public const string imagePath = "Cards/images/{0}.png";
-    public const string flowchartPath = "Cards/effects";
+    public const string imagePath = "Cards/images/";
+    public const string flowchartPath = "Cards/effects/";
 
     private string name;
     private string description;
@@ -23,15 +23,14 @@ public class Card {
     public enum CardType { Player, AI };
 
     public Card (LexCard card) {
-        name = card.CardName;
-        description = card.CardText;
-        image = Resources.Load<Sprite>(string.Format(imagePath, card.CardImageName));
+        name = card.Name;
+        description = card.Description;
         week = card.Week;
-        
+        image = Resources.Load<Sprite>(imagePath + card.RefName);
+        cardEffectsOnPlay = Resources.Load<Fungus.Flowchart>(flowchartPath + card.RefName);
+
         string[] times = card.DayPhase.Split(',', ' ');
         string[] terrains = card.Terrain.Split(',', ' ');
-       
-        cardEffectsOnPlay = Resources.Load<Fungus.Flowchart>(flowchartPath + card.Flowchart);
 
         foreach (string t in terrains) {
             switch (t) {
@@ -97,7 +96,7 @@ public class Card {
     /// Check whether this card should be in the deck at this point in the game.
     /// </summary>
     public bool isInPlay() {
-        return GameController.INSTANCE.week >= week;
+        return (GameController.INSTANCE.week >= week && week > -1);
     }
 
     /// <summary>

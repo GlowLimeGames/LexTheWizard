@@ -13,14 +13,14 @@ using System.IO;
 /// </summary>
 /// 
 public class LexCard {
-    [XmlElement("CardName")]
-    public string CardName;
+    [XmlElement("Name")]
+    public string Name;
 
-    [XmlElement("CardText")]
-    public string CardText;
+    [XmlElement("Description")]
+    public string Description;
 
-    [XmlElement("CardImage")]
-    public string CardImageName;
+    [XmlElement("RefName")]
+    public string RefName;
 
     [XmlElement("Terrain")]
     public string Terrain;
@@ -30,9 +30,6 @@ public class LexCard {
 
     [XmlElement("Week")]
     public int Week;
-
-    [XmlElement("Flowchart")]
-    public string Flowchart;
 }
 
 [XmlRoot("CardCollection")]
