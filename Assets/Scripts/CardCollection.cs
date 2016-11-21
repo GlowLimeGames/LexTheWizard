@@ -12,6 +12,48 @@ using System.IO;
 /// 		Further parse the cards into their respective decks.
 /// </summary>
 /// 
+
+[XmlRoot("CardCollection")]
+public class CardCollection {
+	[XmlArray("PlayerCards")]
+	[XmlArrayItem("Card")]
+	public List<LexCard> PlayerCards = new List<LexCard>();
+
+    [XmlArray("AICards")]
+    [XmlArrayItem("Card")]
+    public List<LexCard> AICards = new List<LexCard>();
+
+	public static CardCollection Load(string path){
+		TextAsset _xml = Resources.Load<TextAsset> (path);
+		XmlSerializer serializer = new XmlSerializer (typeof(CardCollection));
+		StringReader reader = new StringReader (_xml.text);
+
+		CardCollection cards = serializer.Deserialize (reader) as CardCollection;
+		reader.Close();
+		return cards;
+	}
+}
+
+/// <summary>
+/// Utility class responsible for parsing the XML document, generating a list of cards, and cleaning up the card prefab folder.
+/// </summary>
+public class CardParsing {
+    public const string XMLPath = "Cards/Cards";
+
+	public static void ResetCardList () {
+        CardCollection cards = CardCollection.Load(XMLPath);
+
+        foreach (LexCard card in cards.AICards) {
+            CardDatabase.AddCard(new Card(card, LexCard.Type.AI));
+        }
+
+        foreach (LexCard card in cards.PlayerCards) {
+            CardDatabase.AddCard(new Card(card, LexCard.Type.Player));
+        }
+	}
+}
+
+/*
 public class LexCard {
     [XmlElement("Name")]
     public string Name;
@@ -31,46 +73,4 @@ public class LexCard {
     [XmlElement("Week")]
     public int Week;
 }
-
-[XmlRoot("CardCollection")]
-public class CardCollection {
-
-	[XmlArray("Cards")]
-	[XmlArrayItem("Card")]
-	public List<LexCard> Cards = new List<LexCard>();
-
-	public static CardCollection Load(string path){
-		TextAsset _xml = Resources.Load<TextAsset> (path);
-		XmlSerializer serializer = new XmlSerializer (typeof(CardCollection));
-		StringReader reader = new StringReader (_xml.text);
-
-		CardCollection cards = serializer.Deserialize (reader) as CardCollection;
-		reader.Close();
-		return cards;
-	}
-}
-/// <summary>
-/// Utility class responsible for parsing the XML document, generating a list of cards, and cleaning up the card prefab folder.
-/// </summary>
-public class CardParsing {
-	
-	public const string PlayerXML = "Cards/Cards_Player";
-    public const string AIXML = "Cards/Cards_AI";
-	public const string BlankCard = "Cards/BlankCard";
-	public const string ArtPath = "Cards";
-	public const string PrefabFolder = "Assets/Resources/CardPrefabs";
-
-	// [MenuItem("Cards/Reset Card Collection")]
-	public static void ResetCardList () {
-        CardCollection aiCards = CardCollection.Load(AIXML);
-        CardCollection playerCards = CardCollection.Load(PlayerXML);
-
-        foreach (LexCard lexCard in aiCards.Cards) {
-            CardDatabase.AddCard(lexCard, true);
-        }
-
-        foreach (LexCard lexCard in playerCards.Cards) {
-            CardDatabase.AddCard(lexCard, false);
-        }
-	}
-}
+*/

@@ -1,38 +1,77 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
-public class Card {
-    public const string imagePath = "Cards/images/";
-    public const string flowchartPath = "Cards/effects/";
-    public const string backgroundPath = "Cards/backgrounds/";
+public class LexCard : IEquatable<Card> {
+    public enum Type { Player, AI };
 
-    private string name;
-    private string description;
-    private Sprite image;
-    private Sprite background;
-    private int week = 0;
+    protected const string imagePath = "Cards/images/";
+    protected const string flowchartPath = "Cards/effects/";
+    protected const string backgroundPath = "Cards/backgrounds/";
+
+    [XmlElement("Name")]
+    public string Name { get; private set; }
+
+    [XmlElement("Description")]
+    public string Description { get; private set; }
+
+    [XmlElement("Week")]
+    public int week { get; private set; }
+
+    [XmlElement("RefName")]
+    public string refName { get; private set; }
+
+    [XmlElement("Terrain")]
+    public string terrainString { get; private set; }
+
+    [XmlElement("DayPhase")]
+    public string dayPhaseString { get; private set; }
+
+    public void Copy (LexCard card) {
+        Name = card.Name;
+        Description = card.Description;
+        week = card.week;
+        refName = card.refName;
+        terrainString = card.terrainString;
+        dayPhaseString = card.dayPhaseString;
+    }
+
+    public override bool Equals(object obj) {
+        return Equals(obj as Card);
+    }
+
+    public override int GetHashCode() {
+        return Name.GetHashCode();
+    }
+
+    public bool Equals(Card card) {
+        return (card != null && card.Name == Name);
+    }
+}
+
+public class Card : LexCard {
     private List<GameController.Terrain> terrain = new List<GameController.Terrain>();
-    private List<GameController.DayTime> dayTime = new List<GameController.DayTime>();
+    private List<GameController.DayTime> dayPhase = new List<GameController.DayTime>();
 
-    public string Name { get { return name; } }
-    public string Description { get { return description; } }
-    public Sprite Image { get { return image; } }
-    public Sprite Background { get { return background; } }
-    public CardType Type { get; set; }
+    public Sprite Image { get; private set; }
+    public Sprite Background { get; private set; }
+    public new Type Type { get; private set; }
+    public Fungus.Flowchart cardEffectsOnPlay { get; private set; }
 
-    public Fungus.Flowchart cardEffectsOnPlay;
+    public Card (LexCard card, Type type) {
+        Copy(card);
+        Type = type;
+        Image = Resources.Load<Sprite>(imagePath + refName);
+        cardEffectsOnPlay = Resources.Load<Fungus.Flowchart>(flowchartPath + refName);
+        
+        ParseTerrain();
+        ParseDayPhase();
+        SetBackground();
+    }
 
-    public enum CardType { Player, AI };
-
-    public Card (LexCard card) {
-        name = card.Name;
-        description = card.Description;
-        week = card.Week;
-        image = Resources.Load<Sprite>(imagePath + card.RefName);
-        cardEffectsOnPlay = Resources.Load<Fungus.Flowchart>(flowchartPath + card.RefName);
-
-        string[] times = card.DayPhase.Split(',', ' ');
-        string[] terrains = card.Terrain.Split(',', ' ');
+    private void ParseTerrain () {
+        string[] terrains = terrainString.Split(',', ' ');
 
         foreach (string t in terrains) {
             switch (t) {
@@ -56,28 +95,34 @@ public class Card {
                     break;
             }
         }
+    }
+
+    private void ParseDayPhase () {
+        string[] times = dayPhaseString.Split(',', ' ');
 
         foreach (string t in times) {
             switch (t) {
                 case "Any":
-                    dayTime.Add(GameController.DayTime.Dawn);
-                    dayTime.Add(GameController.DayTime.Dusk);
-                    dayTime.Add(GameController.DayTime.Night);
+                    dayPhase.Add(GameController.DayTime.Dawn);
+                    dayPhase.Add(GameController.DayTime.Dusk);
+                    dayPhase.Add(GameController.DayTime.Night);
                     break;
                 case "Morning":
-                    dayTime.Add(GameController.DayTime.Dawn);
+                    dayPhase.Add(GameController.DayTime.Dawn);
                     break;
                 case "Afternoon":
-                    dayTime.Add(GameController.DayTime.Dusk);
+                    dayPhase.Add(GameController.DayTime.Dusk);
                     break;
                 case "Night":
-                    dayTime.Add(GameController.DayTime.Night);
+                    dayPhase.Add(GameController.DayTime.Night);
                     break;
             }
         }
+    }
 
+    private void SetBackground () {
         if (terrain.Count > 0) {
-            string bg = (Type == CardType.AI) ? "AICard_" : "cardformat_";
+            string bg = (Type == Type.AI) ? "AICard_" : "cardformat_";
             switch (terrain[0]) {
                 case GameController.Terrain.Forests:
                     bg += "forest";
@@ -92,7 +137,7 @@ public class Card {
                     bg += "swamps";
                     break;
             }
-            background = Resources.Load<Sprite>(backgroundPath + bg);
+            Background = Resources.Load<Sprite>(backgroundPath + bg);
         }
     }
 
@@ -101,7 +146,7 @@ public class Card {
     /// </summary>
     public void OnPlay() {
         if (cardEffectsOnPlay != null) {
-            Object.Instantiate(cardEffectsOnPlay);
+            UnityEngine.Object.Instantiate(cardEffectsOnPlay);
         }
     } 
 
@@ -109,8 +154,8 @@ public class Card {
     /// Return true if the card can be played on the current turn.
     /// </summary>
     public bool isCurrentlyPlayable() {
-        return (terrain.Contains(GameController.INSTANCE.currentTerrain)
-                && dayTime.Contains(GameController.INSTANCE.currentDayTime));
+         return (terrain.Contains(GameController.INSTANCE.currentTerrain)
+                 && dayPhase.Contains(GameController.INSTANCE.currentDayTime));
     }
 
     /// <summary>
@@ -118,12 +163,5 @@ public class Card {
     /// </summary>
     public bool isInPlay() {
         return (GameController.INSTANCE.week >= week && week > -1);
-    }
-
-    /// <summary>
-    /// Check whether this is an AI card or a player card
-    /// </summary>
-    public bool isAI() {
-        return Type == CardType.AI;
     }
 }

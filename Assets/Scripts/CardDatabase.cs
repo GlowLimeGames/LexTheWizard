@@ -7,16 +7,13 @@ public class CardDatabase {
     private static List<Card> PlayerDeck = new List<Card>();
     private static List<Card> AIDeck = new List<Card>();
 
-    public static void AddCard (LexCard lexCard, bool ai) {
-        Card card = new Card(lexCard);
-        List<Card> deck = ai ? AICardPool : PlayerCardPool;
-
-        card.Type = ai ? Card.CardType.AI : Card.CardType.Player;
+    public static void AddCard (Card card) {
+        List<Card> deck = (card.Type == LexCard.Type.AI) ? AICardPool : PlayerCardPool;
+        if (deck.Contains(card)) { Debug.Log("Re-added " + card.Name); }
         deck.Add(card);
     }
 
-    private static Card Draw(List<Card> deck, bool onlyPlayable = false) {
-        int index;
+    private static Card Draw(List<Card> deck, bool onlyPlayable, List<Card> subset = null) {
         Card card = null;
         if (deck.Count == 0) {
             Debug.Log("Out of cards!");
@@ -28,24 +25,24 @@ public class CardDatabase {
                     subDeck.Add(c);
                 }
             }
-            card = Draw(subDeck, false);
+            card = Draw(deck, false, subDeck);
         }
         else {
-            index = Random.Range(0, deck.Count);
-            card = deck[index];
+            if (subset == null) { subset = deck; }
+            card = subset[Random.Range(0, subset.Count)];
             deck.Remove(card);
-            // Debug.Log("Drew " + card.Name);
         }
         return card;
     }
 
-    public static Card DrawPlayer() { return Draw(PlayerDeck); }
+    public static Card DrawPlayer() { return Draw(PlayerDeck, false); }
     public static Card DrawAI() { return Draw(AIDeck, true); }
 
     private static void UpdateDeck(List<Card> deck, List<Card> cardPool) {
         List<Card> remove = new List<Card>();
         foreach (Card card in cardPool) {
             if (card.isInPlay()) {
+                if (deck.Contains(card)) { Debug.Log("Re-added " + card.Name); }
                 deck.Add(card);
                 remove.Add(card);
             }
