@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
-public class Card : MonoBehaviour {
-    public const string imagePath = "Cards/";
-    public const string flowchartPath = "Flowcharts/";
+public class Card {
+    public const string imagePath = "Cards/images/{0}.png";
+    public const string flowchartPath = "Cards/effects";
 
     private string name;
     private string description;
     private Sprite image;
     private Sprite background;
-    private int week;
+    private int week = 0;
     private List<GameController.Terrain> terrain = new List<GameController.Terrain>();
     private List<GameController.DayTime> dayTime = new List<GameController.DayTime>();
 
@@ -19,28 +18,20 @@ public class Card : MonoBehaviour {
     public Sprite Image { get { return image; } }
     public CardType Type { get; set; }
 
-    public List<Fungus.Flowchart> cardEffectsOnPlay;
+    public Fungus.Flowchart cardEffectsOnPlay;
 
     public enum CardType { Player, AI };
 
-    public Card (LexCard card) { Init(card); }
-
-    public void Init(LexCard card) {
+    public Card (LexCard card) {
         name = card.CardName;
         description = card.CardText;
-        image = Resources.Load<Sprite>(imagePath + card.CardImageName);
+        image = Resources.Load<Sprite>(string.Format(imagePath, card.CardImageName));
         week = card.Week;
-
-        string[] flowcharts = card.Flowchart.Split(',', ' ');
+        
         string[] times = card.DayPhase.Split(',', ' ');
         string[] terrains = card.Terrain.Split(',', ' ');
-
-        cardEffectsOnPlay = new List<Fungus.Flowchart>();
-        foreach (string flowchart in flowcharts) {
-            if (flowchart.Length > 0) {
-                cardEffectsOnPlay.Add(Resources.Load<Fungus.Flowchart>(flowchartPath + flowchart));
-            }
-        }
+       
+        cardEffectsOnPlay = Resources.Load<Fungus.Flowchart>(flowchartPath + card.Flowchart);
 
         foreach (string t in terrains) {
             switch (t) {
@@ -89,14 +80,13 @@ public class Card : MonoBehaviour {
     /// Called when the hand object plays a card
     /// </summary>
     public void OnPlay() {
-        foreach (Fungus.Flowchart effect in cardEffectsOnPlay) {
-            Instantiate(effect);
+        if (cardEffectsOnPlay != null) {
+            Object.Instantiate(cardEffectsOnPlay);
         }
     } 
 
     /// <summary>
-    /// TBD: Return true if the card can be played on the
-    /// current turn.
+    /// Return true if the card can be played on the current turn.
     /// </summary>
     public bool isCurrentlyPlayable() {
         return (terrain.Contains(GameController.INSTANCE.currentTerrain)
@@ -104,41 +94,16 @@ public class Card : MonoBehaviour {
     }
 
     /// <summary>
-    /// TBD: check whether this card should be in the
-    /// deck at this point in the game.
+    /// Check whether this card should be in the deck at this point in the game.
     /// </summary>
     public bool isInPlay() {
-        return (GameController.INSTANCE.week >= week);
+        return GameController.INSTANCE.week >= week;
     }
 
     /// <summary>
-    /// TBD: check whether this is an AI card or a
-    /// player card
+    /// Check whether this is an AI card or a player card
     /// </summary>
     public bool isAI() {
         return Type == CardType.AI;
     }
-}
-
-public class LexCard {
-    [XmlElement("CardName")]
-    public string CardName;
-
-    [XmlElement("CardText")]
-    public string CardText;
-
-    [XmlElement("CardImage")]
-    public string CardImageName;
-
-    [XmlElement("Terrain")]
-    public string Terrain;
-
-    [XmlElement("DayPhase")]
-    public string DayPhase;
-
-    [XmlElement("Week")]
-    public int Week;
-
-    [XmlElement("Flowchart")]
-    public string Flowchart;
 }

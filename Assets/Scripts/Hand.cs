@@ -25,7 +25,7 @@ public class Hand : MonoBehaviour {
                 shownCard.Card = null;
                 if(value != -1)
                 {
-                    shownCard.Card = Instantiate(cards[currentCardIndex].Card);
+                    shownCard.Card = cards[currentCardIndex].Card;
                 }
             }
             else
@@ -86,7 +86,7 @@ public class Hand : MonoBehaviour {
             return;
         }
 
-        cards[CurrentCardIndex].GetComponentInChildren<Card>().OnPlay();
+        cards[CurrentCardIndex].Card.OnPlay();
 
         RemoveCard(CurrentCardIndex);
         
@@ -120,11 +120,15 @@ public class Hand : MonoBehaviour {
     public void Draw() {
         foreach (CardViewer card in cards) {
             if (card.Card == null) {
+                card.Card = CardDatabase.DrawPlayer();
+
+                /*
                 GameObject g = CardDatabase.DrawPlayer();
                 if (g != null) {
                     g = Instantiate(g);
                     card.Card = g;
                 }
+                */
             }
         }
     }

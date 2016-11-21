@@ -23,7 +23,6 @@ public class UpdateDayState : MonoBehaviour{
 
     void Update()
     {
-
         GameController.INSTANCE.currentDayTime++;
         if ((int)GameController.INSTANCE.currentDayTime >= System.Enum.GetValues(typeof(GameController.DayTime)).Length)
         {
@@ -49,6 +48,8 @@ public class UpdateDayState : MonoBehaviour{
 
         dayCount.text = "" + GameController.INSTANCE.dayCount;
         GameController.INSTANCE.NextState();
+
+        CardDatabase.UpdateDecks();
     }
 
 }

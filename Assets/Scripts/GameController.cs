@@ -93,15 +93,10 @@ public class GameController : MonoBehaviour {
 
     void Start()
     {
+        CardParsing.ResetCardList();
         gameStates[0].enabled = true;
         Points = 0;
         Mana = 0;
-
-    }
-
-    void Update()
-    {
-
     }
 
     /// <summary>

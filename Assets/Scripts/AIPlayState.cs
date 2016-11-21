@@ -25,7 +25,7 @@ public class AIPlayState : MonoBehaviour{
         if (timer == 2f)
         {
             //Play the AI card
-            shownCard.Card = Instantiate(CardDatabase.DrawAI());
+            shownCard.Card = CardDatabase.DrawAI();
             SoundManager.instance.PlaySingle(aiPlayCardSound);
         }
         else if(timer < 0)

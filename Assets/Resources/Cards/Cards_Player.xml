@@ -344,7 +344,7 @@
       <CardName>Harding Manor&apos;s Stables</CardName>
       <Mechanics>Plus 6 Points.</Mechanics>
       <Terrain>Hills</Terrain>
-      <Week>Special(Massive Metal Key)</Week>
+      <!-- <Week>Special(Massive Metal Key)</Week> -->
       <DayPhase>Night</DayPhase>
       <PointChange>6</PointChange>
       <CardText>The nobility of the manor are very rude about Lex being a wizard, so he settles for spending the night with their horses - without permission, of course. Since Lex has the Massive Metal Key, he finds gold hidden in a storage room. +6 Points</CardText>
