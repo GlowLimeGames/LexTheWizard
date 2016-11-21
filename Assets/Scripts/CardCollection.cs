@@ -48,7 +48,7 @@ public class CardParsing {
         }
 
         foreach (LexCard card in cards.PlayerCards) {
-            CardDatabase.AddCard(new Card(card, LexCard.Type.Player));
+            CardDatabase.AddCard(new Card(card, LexCard.Type.PLAYER));
         }
 	}
 }

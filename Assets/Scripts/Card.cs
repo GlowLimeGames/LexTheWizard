@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-public class LexCard : IEquatable<Card> {
-    public enum Type { Player, AI };
+public class LexCard {
+    public enum Type { PLAYER, AI };
 
     protected const string imagePath = "Cards/images/";
     protected const string flowchartPath = "Cards/effects/";
@@ -35,18 +34,6 @@ public class LexCard : IEquatable<Card> {
         refName = card.refName;
         terrainString = card.terrainString;
         dayPhaseString = card.dayPhaseString;
-    }
-
-    public override bool Equals(object obj) {
-        return Equals(obj as Card);
-    }
-
-    public override int GetHashCode() {
-        return Name.GetHashCode();
-    }
-
-    public bool Equals(Card card) {
-        return (card != null && card.Name == Name);
     }
 }
 
@@ -146,7 +133,7 @@ public class Card : LexCard {
     /// </summary>
     public void OnPlay() {
         if (cardEffectsOnPlay != null) {
-            UnityEngine.Object.Instantiate(cardEffectsOnPlay);
+            Object.Instantiate(cardEffectsOnPlay);
         }
     } 
 
