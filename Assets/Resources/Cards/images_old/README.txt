@@ -1,1 +1,0 @@
-Card images that can be read in dynamically at runtime

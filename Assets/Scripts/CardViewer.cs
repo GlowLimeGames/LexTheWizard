@@ -6,6 +6,7 @@ public class CardViewer : MonoBehaviour {
     public Text cardName;
     public Text description;
     public Image image;
+    public Image background;
     
     private Card card;
 
@@ -37,6 +38,7 @@ public class CardViewer : MonoBehaviour {
     private void UpdateCard() {
         cardName.text = card.Name;
         description.text = card.Description;
-        image.sprite = card.Image;
+        if (image != null) { image.sprite = card.Image; }
+        background.sprite = card.Background;
     }
 }

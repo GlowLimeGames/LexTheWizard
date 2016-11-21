@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Card {
     public const string imagePath = "Cards/images/";
     public const string flowchartPath = "Cards/effects/";
+    public const string backgroundPath = "Cards/backgrounds/";
 
     private string name;
     private string description;
@@ -16,6 +17,7 @@ public class Card {
     public string Name { get { return name; } }
     public string Description { get { return description; } }
     public Sprite Image { get { return image; } }
+    public Sprite Background { get { return background; } }
     public CardType Type { get; set; }
 
     public Fungus.Flowchart cardEffectsOnPlay;
@@ -72,6 +74,25 @@ public class Card {
                     dayTime.Add(GameController.DayTime.Night);
                     break;
             }
+        }
+
+        if (terrain.Count > 0) {
+            string bg = (Type == CardType.AI) ? "AICard_" : "cardformat_";
+            switch (terrain[0]) {
+                case GameController.Terrain.Forests:
+                    bg += "forest";
+                    break;
+                case GameController.Terrain.Caves:
+                    bg += "caves";
+                    break;
+                case GameController.Terrain.Hills:
+                    bg += "hills";
+                    break;
+                case GameController.Terrain.Swamps:
+                    bg += "swamps";
+                    break;
+            }
+            background = Resources.Load<Sprite>(backgroundPath + bg);
         }
     }
 
