@@ -44,11 +44,11 @@ public class PlayCardState : MonoBehaviour{
                     //Vertical swipe
                     if (d.y < 0)
                     {
-                        hand.SalvageCard();
+                        StartCoroutine("ScrapCard");
                     }
                     else
                     {
-                        hand.PlayCard();
+                        StartCoroutine("PlayCard");
                     }
                 }
             }
@@ -110,5 +110,37 @@ public class PlayCardState : MonoBehaviour{
         }
 
         currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, yPos);
+    }
+
+    IEnumerator PlayCard()
+    {
+        float xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+        float yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+
+        while (yPos < 800)
+        {
+            currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos + swipeSpeed);
+            yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+            yield return null;
+        }
+
+        hand.PlayCard();
+        currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+    }
+
+    IEnumerator ScrapCard()
+    {
+        float xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+        float yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+
+        while (yPos > -800)
+        {
+            currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos - swipeSpeed);
+            yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+            yield return null;
+        }
+
+        hand.SalvageCard();
+        currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
     }
 }
