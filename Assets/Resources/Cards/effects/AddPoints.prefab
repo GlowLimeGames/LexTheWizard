@@ -133,15 +133,16 @@ MonoBehaviour:
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.8800002
+  zoom: 0.49000052
   scrollViewRect:
     serializedVersion: 2
     x: -491.4091
     y: -431.5909
     width: 1262.4088
     height: 950.59094
-  selectedBlock: {fileID: 0}
-  selectedCommands: []
+  selectedBlock: {fileID: 11477914}
+  selectedCommands:
+  - {fileID: 11423624}
   variables:
   - {fileID: 114000012012312316}
   description: 

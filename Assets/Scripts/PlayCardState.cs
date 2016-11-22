@@ -7,6 +7,8 @@ public class PlayCardState : MonoBehaviour{
     Vector3 startTouchPos;
     public Hand hand;
     float distsq = 4000f;
+    public CardViewer currentCard;
+    public int swipeSpeed = 200;
 
     void OnEnable()
     {
@@ -30,11 +32,11 @@ public class PlayCardState : MonoBehaviour{
                     //Horizontal swipe
                     if(d.x < 0)
                     {
-                        hand.PreviousCard();
+                        StartCoroutine("SwipeLeft");
                     }
                     else
                     {
-                        hand.NextCard();
+                        StartCoroutine("SwipeRight");
                     }
                 }
                 else
@@ -56,5 +58,57 @@ public class PlayCardState : MonoBehaviour{
     public void NextButton()
     {
         GameController.INSTANCE.NextState();
+    }
+
+    IEnumerator SwipeLeft()
+    {
+        float xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+        float yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+
+        while (xPos > -800)
+        {
+            currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos - swipeSpeed, yPos);
+            xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+            yield return null;
+        }
+
+        hand.PreviousCard();
+        currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(800, yPos);
+
+        xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+        while (xPos > 0)
+        {
+            currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos - swipeSpeed, yPos);
+            xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+            yield return null;
+        }
+
+        currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, yPos);
+    }
+
+    IEnumerator SwipeRight()
+    {
+        float xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+        float yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+
+        while (xPos < 800)
+        {
+            currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos + swipeSpeed, yPos);
+            xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+            yield return null;
+        }
+
+        hand.NextCard();
+        currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(-800, yPos);
+
+        xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+        while (xPos < 0)
+        {
+            currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos + swipeSpeed, yPos);
+            xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+            yield return null;
+        }
+
+        currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, yPos);
     }
 }
