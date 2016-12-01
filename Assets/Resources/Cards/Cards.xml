@@ -1,24 +1,26 @@
 <CardCollection>
   <PlayerCards>
     <Card>
+      <Name>Harding Manor&apos;s Stables</Name>
+      <Description>The nobility of the manor are very rude about Lex being a wizard, so he settles for spending the night with their horses - without permission, of course. Since Lex has the Massive Metal Key, he finds gold hidden in a storage room. +6 Points</Description>
+      <Terrain>Hills</Terrain>
+      <Week>-1</Week>
+      <DayPhase>Night</DayPhase>
+      <RefName>hardingmanorsstables</RefName>
+      <Mechanics>Plus 6 Points. Week: Special(Massive Metal Key)</Mechanics>
+      <Points>6</Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
       <Name>A Strange Note</Name>
       <Description>A mysterious note floats down to Lex off of a chilling breeze. On it are the words scrawled: &quot;Curiosity killed the cat.&quot;</Description>
       <Terrain>Any</Terrain>
       <Week>1</Week>
       <DayPhase>Any</DayPhase>
-      <RefName></RefName>
+      <RefName>astrangenote</RefName>
       <Mechanics>Plus 5 Points</Mechanics>
       <Points>5</Points>
-    </Card>
-    <Card>
-      <Name>Abandoned Log Cabin</Name>
-      <Description>If Lex has 15 or more magic, he finds some tasty mushrooms that have grown overnight. +2 Magic</Description>
-      <Terrain>Forest</Terrain>
-      <Week>2</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>oldlogcabin</RefName>
-      <Mechanics>15&lt; +2 Magic</Mechanics>
-      <Points></Points>
+      <Repeatable>No</Repeatable>
     </Card>
     <Card>
       <Name>Clear The Path</Name>
@@ -29,6 +31,7 @@
       <RefName>clearthepath</RefName>
       <Mechanics>Random Terrain +2 Magic</Mechanics>
       <Points></Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Common Magical Plants</Name>
@@ -39,16 +42,7 @@
       <RefName>magicalplants</RefName>
       <Mechanics>Until moved terrain, +1 point per day phase</Mechanics>
       <Points></Points>
-    </Card>
-    <Card>
-      <Name>Concealed Cave Passage</Name>
-      <Description>The cave can be confusing, and Lex gets lost, eventually finding his way out of the caves. Lex moves to a random terrain, -4 Points.</Description>
-      <Terrain>Cave</Terrain>
-      <Week>4</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>concealedcave</RefName>
-      <Mechanics>Move to random terrain. -4 Points</Mechanics>
-      <Points>-10 /OR/ none</Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Esoteric Palmist</Name>
@@ -57,8 +51,9 @@
       <Week>1</Week>
       <DayPhase>Night</DayPhase>
       <RefName>esotericpalmist</RefName>
-      <Mechanics>View top 3 cards of deck</Mechanics>
+      <Mechanics>Move to random terrain, +4 Magic</Mechanics>
       <Points></Points>
+      <Repeatable>No</Repeatable>
     </Card>
     <Card>
       <Name>Everlasting Lantern</Name>
@@ -69,56 +64,7 @@
       <RefName>everlastinglantern</RefName>
       <Mechanics>Enables burning cards during the next night phase</Mechanics>
       <Points></Points>
-    </Card>
-    <Card>
-      <Name>Gaseous Release</Name>
-      <Description>Swamp gas is more flammable than Lex realized! His eyebrows may be gone, but at least he landed outside the Swamp.</Description>
-      <Terrain>Swamp</Terrain>
-      <Week>1</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName></RefName>
-      <Mechanics>Lose 2 Points, Plus 4 Magic, move to random terrain</Mechanics>
-      <Points>-2</Points>
-    </Card>
-    <Card>
-      <Name>Grandpa Bark</Name>
-      <Description>Lex encounters an old talking tree on a hill who asks him for a favor. </Description>
-      <Terrain>Forest</Terrain>
-      <Week>3</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>grandpabark</RefName>
-      <Mechanics>Trigger Dialogue Sequence, Plus 6 points</Mechanics>
-      <Points>6</Points>
-    </Card>
-    <Card>
-      <Name>Harding Manor&apos;s Stables</Name>
-      <Description>The nobility of the manor are very rude about Lex being a wizard, so he settles for spending the night with their horses - without permission, of course. Since Lex has the Massive Metal Key, he finds gold hidden in a storage room. +6 Points</Description>
-      <Terrain>Hills</Terrain>
-      <Week>-1</Week>
-      <DayPhase>Night</DayPhase>
-      <RefName></RefName>
-      <Mechanics>Plus 6 Points. Week: Special(Massive Metal Key)</Mechanics>
-      <Points>6</Points>
-    </Card>
-    <Card>
-      <Name>Hedge Witche&apos;s Hut</Name>
-      <Description>If Magic is less than 20, Lex draws 2 cards. If Magic is more than 20, Lex gains +5 Magic</Description>
-      <Terrain>Swamp</Terrain>
-      <Week>2</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName></RefName>
-      <Mechanics>20&gt; Draw 2 cards, 20&lt; +5 Magic</Mechanics>
-      <Points></Points>
-    </Card>
-    <Card>
-      <Name>Hidden Path</Name>
-      <Description>Poking around pays off when a small path reveals itself. +4 points Lex moves to a random terrain.</Description>
-      <Terrain>Any</Terrain>
-      <Week>3</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>hiddenpath</RefName>
-      <Mechanics>Move to random terrain, +4 Points</Mechanics>
-      <Points>4</Points>
+      <Repeatable>No</Repeatable>
     </Card>
     <Card>
       <Name>Knight&apos;s Regimen</Name>
@@ -129,6 +75,18 @@
       <RefName>knightsregimen</RefName>
       <Mechanics>Draw a card</Mechanics>
       <Points></Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Gaseous Release</Name>
+      <Description>Swamp gas is more flammable than Lex realized! His eyebrows may be gone, but at least he landed outside the Swamp.</Description>
+      <Terrain>Swamp</Terrain>
+      <Week>1</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>gaseousrelease</RefName>
+      <Mechanics>Lose 2 Points, Plus 4 Magic, move to random terrain</Mechanics>
+      <Points>-2</Points>
+      <Repeatable></Repeatable>
     </Card>
     <Card>
       <Name>Magic Broomstick</Name>
@@ -139,16 +97,7 @@
       <RefName>ornatebroomstick</RefName>
       <Mechanics>Can&apos;t lose points until next morning phase. 20&lt; Draw a card</Mechanics>
       <Points></Points>
-    </Card>
-    <Card>
-      <Name>Magic Chest</Name>
-      <Description>Lex draws until hand is full and gains 2 points for each card drawn this way. If lex has more than 30 magic, he gains 2 magic per card instead.</Description>
-      <Terrain>Swamp</Terrain>
-      <Week>3</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>magicalchest</RefName>
-      <Mechanics>Draw until full. 30 Magic&gt; +2 Points for each card drawn. 30 Magic&lt; +2 Magic for each card drawn.</Mechanics>
-      <Points></Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Massive Metal Key</Name>
@@ -159,36 +108,7 @@
       <RefName>bigmetalkey_ivy</RefName>
       <Mechanics>Plus 2 Points. Add &quot;Harding Manor Stables&quot; to Lex deck</Mechanics>
       <Points>2</Points>
-    </Card>
-    <Card>
-      <Name>Meatcleaver Moira&apos;s Moist Meat Market</Name>
-      <Description>A petite young woman greets Lex, grins wildly, and expertly stabs a knife into a red mass. &quot;The most moist meat around!&quot;</Description>
-      <Terrain>Any</Terrain>
-      <Week>3</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>meatcleavermoira</RefName>
-      <Mechanics>CHOOSE: -4 Points, Enables burning cards during next night phase /OR/ Draw 2 cards</Mechanics>
-      <Points>-4 /OR/ none</Points>
-    </Card>
-    <Card>
-      <Name>Morning Jog</Name>
-      <Description>Not only does jogging prepare Lex for a hard day of survival, but it&apos;s a great way of covering ground!</Description>
-      <Terrain>Hills, Forest</Terrain>
-      <Week>1</Week>
-      <DayPhase>Morning</DayPhase>
-      <RefName></RefName>
-      <Mechanics>Plus 3 Points</Mechanics>
-      <Points>3</Points>
-    </Card>
-    <Card>
-      <Name>Naughty Knickers</Name>
-      <Description>Lex finds, hidden away, something soft and lacy, and promptly faints of embarrassment.</Description>
-      <Terrain>Any</Terrain>
-      <Week>3</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>naughtyknickers</RefName>
-      <Mechanics>Skip a day phase, draw a card, +3 Magic</Mechanics>
-      <Points></Points>
+      <Repeatable>No</Repeatable>
     </Card>
     <Card>
       <Name>Path to the Cave</Name>
@@ -196,9 +116,10 @@
       <Terrain>Forest, Hills, Swamp</Terrain>
       <Week>1</Week>
       <DayPhase>Any</DayPhase>
-      <RefName></RefName>
+      <RefName>pathtocave</RefName>
       <Mechanics>Move to Cave. Do not move randomly at end of day.</Mechanics>
       <Points></Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Path to the Forest</Name>
@@ -206,9 +127,10 @@
       <Terrain>Hills, Cave, Swamp</Terrain>
       <Week>1</Week>
       <DayPhase>Any</DayPhase>
-      <RefName></RefName>
+      <RefName>pathtoforest</RefName>
       <Mechanics>Move to Forest. Do not move randomly at end of day.</Mechanics>
       <Points></Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Path to the Hills</Name>
@@ -216,9 +138,10 @@
       <Terrain>Cave, Swamp, Forest</Terrain>
       <Week>1</Week>
       <DayPhase>Any</DayPhase>
-      <RefName></RefName>
+      <RefName>pathtohills</RefName>
       <Mechanics>Move to Hills. Do not move randomly at end of day.</Mechanics>
       <Points></Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Path to the Swamp</Name>
@@ -226,9 +149,10 @@
       <Terrain>Cave, Forest, Hills</Terrain>
       <Week>1</Week>
       <DayPhase>Any</DayPhase>
-      <RefName></RefName>
+      <RefName>pathtoswamp</RefName>
       <Mechanics>Move to Swamp. Do not move randomly at end of day.</Mechanics>
       <Points></Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Polite Kettle</Name>
@@ -239,56 +163,7 @@
       <RefName>politekettle</RefName>
       <Mechanics>Plus 2 Points</Mechanics>
       <Points>2</Points>
-    </Card>
-    <Card>
-      <Name>Qilin Lake</Name>
-      <Description>Lex finds a beautiful lake guarded by a lone dragon. The dragon offers a drink in exchange for some gold. If Lex chooses to give a gift to Qilin, he loses 10 points and gains 10 magic. If not, nothing happens.</Description>
-      <Terrain>Cave</Terrain>
-      <Week>4</Week>
-      <DayPhase>Night</DayPhase>
-      <RefName>qilinlake</RefName>
-      <Mechanics>Trigger dialogue sequence, CHOOSE:-10 Points, +10 Magic /OR/ Nothing</Mechanics>
-      <Points></Points>
-    </Card>
-    <Card>
-      <Name>Sage Tree Ghost</Name>
-      <Description>The spirit takes pity on Lex&apos;s inexperience in magic. +3 Magic If magic is less than 25, +6 Magic instead</Description>
-      <Terrain>Forest</Terrain>
-      <Week>4</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName></RefName>
-      <Mechanics>25 Magic &gt; +6 Magic, 25 Magic &lt; +3 Magic</Mechanics>
-      <Points></Points>
-    </Card>
-    <Card>
-      <Name>Ser Ludlow&apos;s Introduction to Alchemy</Name>
-      <Description>The most streamlined introductory text to date, and a staple part of any alchemist’s education. Lex spends some time brushing up on the basics. Lex Discards his hand. +3 Magic.</Description>
-      <Terrain>Any</Terrain>
-      <Week>2</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>ludlowsalchemy</RefName>
-      <Mechanics>Discard hand, +3 Magic</Mechanics>
-      <Points></Points>
-    </Card>
-    <Card>
-      <Name>Shrouding Mists</Name>
-      <Description>Lex is overtaken by a heavy mist and finds he is missing something once out the other side. Lex discards one card and draws two cards.</Description>
-      <Terrain>Swamp, Cave</Terrain>
-      <Week>4</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>shroudingmists</RefName>
-      <Mechanics>Discard one card, draw two cards</Mechanics>
-      <Points></Points>
-    </Card>
-    <Card>
-      <Name>Target Practice</Name>
-      <Description>Out here, getting rusty isn&apos;t an option.</Description>
-      <Terrain>Any</Terrain>
-      <Week>1</Week>
-      <DayPhase>Afternoon</DayPhase>
-      <RefName></RefName>
-      <Mechanics>Plus 3 Magic</Mechanics>
-      <Points></Points>
+      <Repeatable>No</Repeatable>
     </Card>
     <Card>
       <Name>Tattered Tent</Name>
@@ -299,26 +174,7 @@
       <RefName>tatteredtent</RefName>
       <Mechanics>Skip the AI&apos;s turn this day phase</Mechanics>
       <Points></Points>
-    </Card>
-    <Card>
-      <Name>The Wily Merchant Gaspard</Name>
-      <Description>Lex is approached by a suspiciously eloquent merchant on his travels.</Description>
-      <Terrain>Swamp</Terrain>
-      <Week>2</Week>
-      <DayPhase>Night</DayPhase>
-      <RefName>gaspard</RefName>
-      <Mechanics>Trigger Dialogue Sequence. 50% Chance Draw two cards &amp; +1 Point // 50% -3 Points</Mechanics>
-      <Points></Points>
-    </Card>
-    <Card>
-      <Name>Unicorn Hair</Name>
-      <Description>The thin, silvery strand wraps around his wand and guides his way.</Description>
-      <Terrain>Any</Terrain>
-      <Week>2</Week>
-      <DayPhase>Any</DayPhase>
-      <RefName>unicornhair</RefName>
-      <Mechanics>Move to random terrain, draw up to full</Mechanics>
-      <Points></Points>
+      <Repeatable>No</Repeatable>
     </Card>
     <Card>
       <Name>Warding Spirits</Name>
@@ -326,9 +182,10 @@
       <Terrain>Any</Terrain>
       <Week>1</Week>
       <DayPhase>Night</DayPhase>
-      <RefName></RefName>
+      <RefName>wardingspirits</RefName>
       <Mechanics>Plus 2 Magic, plus 2 Points</Mechanics>
       <Points>2</Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Well-Kept House</Name>
@@ -339,6 +196,172 @@
       <RefName>wellkepthouse</RefName>
       <Mechanics>Cant be burned. +5 Points. Add &quot;Well Kept House Owner&apos;s Return&quot; to AI deck</Mechanics>
       <Points>7</Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Love Letter</Name>
+      <Description>Lex has found a note, hidden away in his pack- he wonder who it could be from?</Description>
+      <Terrain>Any</Terrain>
+      <Week>1</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>loveletter</RefName>
+      <Mechanics>Trigger Dialogue: The note is from Sis. She wishes him well, says she misses him, but also has written a poem: &quot;cryptic advice for a card choice&quot;, +2 Points</Mechanics>
+      <Points></Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Abandoned Log Cabin</Name>
+      <Description>If Lex has 15 or more magic, he finds some tasty mushrooms that have grown overnight. +2 Magic</Description>
+      <Terrain>Forest</Terrain>
+      <Week>2</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>oldlogcabin</RefName>
+      <Mechanics>15&lt; +2 Magic</Mechanics>
+      <Points></Points>
+      <Repeatable>2</Repeatable>
+    </Card>
+    <Card>
+      <Name>Hedge Witch&apos;s Hut</Name>
+      <Description>If Magic is less than 20, Lex draws 2 cards. If Magic is more than 20, Lex gains +5 Magic</Description>
+      <Terrain>Swamp</Terrain>
+      <Week>2</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>hedgewitchshut</RefName>
+      <Mechanics>20&gt; Draw 2 cards, 20&lt; +5 Magic</Mechanics>
+      <Points></Points>
+      <Repeatable>2</Repeatable>
+    </Card>
+    <Card>
+      <Name>Ser Ludlow&apos;s Introduction to Alchemy</Name>
+      <Description>The most streamlined introductory text to date, and a staple part of any alchemist’s education. Lex spends some time brushing up on the basics. Lex Discards his hand. +3 Magic.</Description>
+      <Terrain>Any</Terrain>
+      <Week>2</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>ludlowsalchemy</RefName>
+      <Mechanics>Discard hand, +3 Magic</Mechanics>
+      <Points></Points>
+      <Repeatable>2</Repeatable>
+    </Card>
+    <Card>
+      <Name>The Wily Merchant Gaspard</Name>
+      <Description>Lex is approached by a suspiciously eloquent merchant on his travels.</Description>
+      <Terrain>Swamp</Terrain>
+      <Week>2</Week>
+      <DayPhase>Night</DayPhase>
+      <RefName>gaspard</RefName>
+      <Mechanics>Trigger Dialogue Sequence. 50% Chance Draw two cards &amp; +1 Point // 50% -3 Points</Mechanics>
+      <Points></Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Unicorn Hair</Name>
+      <Description>The thin, silvery strand wraps around his wand and guides his way.</Description>
+      <Terrain>Any</Terrain>
+      <Week>2</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>unicornhair</RefName>
+      <Mechanics>Move to random terrain, draw up to full</Mechanics>
+      <Points></Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Grandpa Bark</Name>
+      <Description>Lex encounters an old talking tree on a hill who asks him for a favor. </Description>
+      <Terrain>Forest</Terrain>
+      <Week>3</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>grandpabark</RefName>
+      <Mechanics>Trigger Dialogue Sequence, Plus 6 points</Mechanics>
+      <Points>6</Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Hidden Path</Name>
+      <Description>Poking around pays off when a small path reveals itself. +4 points Lex moves to a random terrain.</Description>
+      <Terrain>Any</Terrain>
+      <Week>3</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>hiddenpath</RefName>
+      <Mechanics>Move to random terrain, +4 Points</Mechanics>
+      <Points>4</Points>
+      <Repeatable>3</Repeatable>
+    </Card>
+    <Card>
+      <Name>Magic Chest</Name>
+      <Description>Lex draws until hand is full and gains 2 points for each card drawn this way. If lex has more than 30 magic, he gains 2 magic per card instead.</Description>
+      <Terrain>Swamp</Terrain>
+      <Week>3</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>magicalchest</RefName>
+      <Mechanics>Draw until full. 30 Magic&gt; +2 Points for each card drawn. 30 Magic&lt; +2 Magic for each card drawn.</Mechanics>
+      <Points></Points>
+      <Repeatable>2</Repeatable>
+    </Card>
+    <Card>
+      <Name>Meatcleaver Moira&apos;s Moist Meat Market</Name>
+      <Description>A petite young woman greets Lex, grins dazzlingly, and expertly stabs a knife into a red mass. &quot;The most moist meat around!&quot;</Description>
+      <Terrain>Any</Terrain>
+      <Week>3</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>meatcleavermoira</RefName>
+      <Mechanics>CHOOSE: -4 Points, Enables burning cards during next night phase /OR/ Draw 2 cards</Mechanics>
+      <Points>-4 /OR/ none</Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Naughty Knickers</Name>
+      <Description>Lex finds, hidden away, something soft and lacy, and promptly faints of embarrassment.</Description>
+      <Terrain>Any</Terrain>
+      <Week>3</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>naughtyknickers</RefName>
+      <Mechanics>Skip a day phase, draw a card, +3 Magic</Mechanics>
+      <Points></Points>
+      <Repeatable>2</Repeatable>
+    </Card>
+    <Card>
+      <Name>Concealed Cave Passage</Name>
+      <Description>The cave can be confusing, and Lex gets lost, eventually finding his way out of the caves. Lex moves to a random terrain, -4 Points.</Description>
+      <Terrain>Cave</Terrain>
+      <Week>4</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>concealedcave</RefName>
+      <Mechanics>Move to random terrain. -4 Points</Mechanics>
+      <Points>-10 /OR/ none</Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Qilin Lake</Name>
+      <Description>Lex finds a beautiful lake guarded by a lone dragon. The dragon offers a drink in exchange for some gold. If Lex chooses to give a gift to Qilin, he loses 10 points and gains 10 magic. If not, nothing happens.</Description>
+      <Terrain>Cave</Terrain>
+      <Week>4</Week>
+      <DayPhase>Night</DayPhase>
+      <RefName>qilinlake</RefName>
+      <Mechanics>Trigger dialogue sequence, CHOOSE:-10 Points, +10 Magic /OR/ Nothing</Mechanics>
+      <Points></Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Sage Tree Ghost</Name>
+      <Description>The spirit takes pity on Lex&apos;s inexperience in magic. +3 Magic If magic is less than 25, +6 Magic instead</Description>
+      <Terrain>Forest</Terrain>
+      <Week>4</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>sagetreeghost</RefName>
+      <Mechanics>25 Magic &gt; +6 Magic, 25 Magic &lt; +3 Magic</Mechanics>
+      <Points></Points>
+      <Repeatable>No</Repeatable>
+    </Card>
+    <Card>
+      <Name>Shrouding Mists</Name>
+      <Description>Lex is overtaken by a heavy mist and finds he is missing something once out the other side. Lex discards one card and draws two cards.</Description>
+      <Terrain>Swamp, Cave</Terrain>
+      <Week>4</Week>
+      <DayPhase>Any</DayPhase>
+      <RefName>shroudingmists</RefName>
+      <Mechanics>Discard one card, draw two cards</Mechanics>
+      <Points></Points>
+      <Repeatable>2</Repeatable>
     </Card>
     <Card>
       <Name>Winding Tunnels</Name>
@@ -346,9 +369,10 @@
       <Terrain>Any</Terrain>
       <Week>4</Week>
       <DayPhase>Any</DayPhase>
-      <RefName></RefName>
+      <RefName>windingtunnels</RefName>
       <Mechanics>Cannot leave terrain until next morning phase. +3 Points</Mechanics>
       <Points>3</Points>
+      <Repeatable>2</Repeatable>
     </Card>
   </PlayerCards>
   <AICards>
@@ -506,7 +530,7 @@
       <Mechanics>Cannot move terrain, +2 Points</Mechanics>
     </Card>
     <Card>
-      <Name>Trouble in Trusian</Name>
+      <Name>Trouble in Trusian Cave</Name>
       <Description>As Lex is in the Trusian cave searching for crystals, he encounters an avalanche of rocks that block his path.The cave spirit Grateria appears to be displeased.</Description>
       <Terrain>Cave</Terrain>
       <Week>3</Week>

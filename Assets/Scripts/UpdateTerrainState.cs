@@ -10,28 +10,17 @@ public class UpdateTerrainState : MonoBehaviour{
         Fungus.Flowchart.BroadcastFungusMessage("UpdateTerrainStateStart");
     }
 
-    void Update()
-    {
-        int r = UnityEngine.Random.Range(1, 5);
-
-        switch (r)
-        {
-            case 1:
-                GameController.INSTANCE.currentTerrain = GameController.Terrain.Forests;
-                break;
-            case 2:
-                GameController.INSTANCE.currentTerrain = GameController.Terrain.Caves;
-                break;
-            case 3:
-                GameController.INSTANCE.currentTerrain = GameController.Terrain.Swamps;
-                break;
-            case 4:
-                GameController.INSTANCE.currentTerrain = GameController.Terrain.Hills;
-                break;
-            default:
-                break;
-        }
-
+    void Update() {
+        RandomTerrain();
         GameController.INSTANCE.NextState();
+    }
+
+    public static void RandomTerrain() {
+        GameController.Terrain terrain = (GameController.Terrain)UnityEngine.Random.Range(0, 4);
+        MoveToTerrain(terrain);
+    }
+
+    public static void MoveToTerrain(GameController.Terrain terrain) {
+        GameController.INSTANCE.currentTerrain = terrain;
     }
 }

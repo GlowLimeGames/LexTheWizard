@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class Hand : MonoBehaviour {
-    //public CardViewer cardShown;
-    public CardViewer[] cards = new CardViewer[3];
+    public const int HAND_SIZE = 3;
 
+    public CardViewer[] cards = new CardViewer[HAND_SIZE];
     public CardViewer shownCard;
 
     private int currentCardIndex = -1;
@@ -117,19 +117,25 @@ public class Hand : MonoBehaviour {
         }
     }
 
-    public void Draw() {
-        foreach (CardViewer card in cards) {
-            if (card.Card == null) {
-                card.Card = CardDatabase.DrawPlayer();
-
-                /*
-                GameObject g = CardDatabase.DrawPlayer();
-                if (g != null) {
-                    g = Instantiate(g);
-                    card.Card = g;
-                }
-                */
+    public int Draw(int numberOfCards = HAND_SIZE) {
+        int cardsDrawn = 0;
+        for (int j = 0; j < cards.Length && cardsDrawn < numberOfCards; j++) {
+            if (cards[j].Card == null) {
+                cards[j].Card = CardDatabase.DrawPlayer();
+                cardsDrawn++;
             }
         }
+        return cardsDrawn;
+    }
+
+    public int Discard(int numberOfCards = HAND_SIZE) {
+        int cardsDiscarded = 0;
+        for (int j = 0; j < cards.Length && cardsDiscarded < numberOfCards; j++) {
+            if (cards[j].Card != null) {
+                cards[j].Card = null;
+                cardsDiscarded++;
+            }
+        }
+        return cardsDiscarded;
     }
 }

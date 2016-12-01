@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11440950}
   - 114: {fileID: 114000012012312316}
   m_Layer: 0
-  m_Name: AddPoints
+  m_Name: politekettle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,4 +188,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 1
   key: Points
-  value: 0
+  value: 2
