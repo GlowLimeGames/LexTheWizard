@@ -4,6 +4,8 @@ using System.Collections;
 public class Hand : MonoBehaviour {
     public const int HAND_SIZE = 3;
 
+    public static Hand INSTANCE;
+
     public CardViewer[] cards = new CardViewer[HAND_SIZE];
     public CardViewer shownCard;
 
@@ -36,6 +38,12 @@ public class Hand : MonoBehaviour {
     }
 
     public AudioClip discardCardSound;
+
+    void Awake() {
+        if (INSTANCE == null) {
+            INSTANCE = this;
+        }
+    }
 
     public void ShowCard(int index) {
         CurrentCardIndex = index;

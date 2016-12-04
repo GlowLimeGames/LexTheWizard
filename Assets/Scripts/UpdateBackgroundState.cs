@@ -3,10 +3,16 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class UpdateBackgroundState : MonoBehaviour {
-
+    public static UpdateBackgroundState INSTANCE;
     public Image background;
 
     public Sprite[] terrainType;
+
+    void Awake() {
+        if (INSTANCE == null) {
+            INSTANCE = this;
+        }
+    }
 
     void OnEnable()
     {
@@ -15,7 +21,12 @@ public class UpdateBackgroundState : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        UpdateBackground();
+        GameController.INSTANCE.NextState();
+	}
 
+    public void UpdateBackground ()
+    {
         switch (GameController.INSTANCE.currentTerrain)
         {
             case GameController.Terrain.Caves:
@@ -33,7 +44,5 @@ public class UpdateBackgroundState : MonoBehaviour {
             default:
                 break;
         }
-
-        GameController.INSTANCE.NextState();
-	}
+    }
 }

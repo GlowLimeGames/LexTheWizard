@@ -4,20 +4,6 @@ using System.Collections;
 
 public class CardEffects : MonoBehaviour {
     /// <summary>
-    /// Access to the active Hand object so we
-    /// can draw & discard cards.
-    /// </summary>
-    private Hand hand {
-        get {
-            if (hand == null) {
-                hand = FindObjectOfType<Hand>();
-            }
-            return hand;
-        }
-        set { hand = value; }
-    }
-
-    /// <summary>
     /// Returns the amount of mana the player currently has.
     /// </summary>
     public int getCurrentMana () {
@@ -59,6 +45,7 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     public void RandomTerrain() {
         UpdateTerrainState.RandomTerrain();
+        UpdateBackgroundState.INSTANCE.UpdateBackground();
     }
 
     /// <summary>
@@ -66,13 +53,14 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     public void MoveToTerrain(GameController.Terrain terrain) {
         UpdateTerrainState.MoveToTerrain(terrain);
+        UpdateBackgroundState.INSTANCE.UpdateBackground();
     }
 
     /// <summary>
     /// Draws cards until the hand is full.
     /// </summary>
     /// <returns>The number of cards drawn</returns>
-    public int DrawCards() { return hand.Draw(); }
+    public int DrawCards() { return Hand.INSTANCE.Draw(); }
 
     /// <summary>
     /// Draws the specified number of cards, or until
@@ -80,14 +68,14 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     /// <returns>The number of cards drawn</returns>
     public int DrawCards(int numberOfCards) {
-        return hand.Draw(numberOfCards);
+        return Hand.INSTANCE.Draw(numberOfCards);
     }
 
     /// <summary>
     /// Discards cards until the hand is empty.
     /// </summary>
     /// <returns>The number of cards discarded</returns>
-    public int DiscardCards() { return hand.Discard(); }
+    public int DiscardCards() { return Hand.INSTANCE.Discard(); }
 
     /// <summary>
     /// Discards the specified number of cards, or until
@@ -95,7 +83,7 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     /// <returns>The number of cards discarded</returns>
     public int DiscardCards(int numberOfCards) {
-        return hand.Discard(numberOfCards);
+        return Hand.INSTANCE.Discard(numberOfCards);
     }
 
     /// <summary>
