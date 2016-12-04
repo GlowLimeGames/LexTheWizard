@@ -88,16 +88,15 @@ public class Hand : MonoBehaviour {
     }
     
     public void PlayCard() {
-        
-        if(CurrentCardIndex == -1)
-        {
-            return;
+        if (CurrentCardIndex >= 0) {
+            if (cards[CurrentCardIndex].Card.isCurrentlyPlayable()) {
+                cards[CurrentCardIndex].Card.OnPlay();
+                RemoveCard(CurrentCardIndex);
+            }
+            else {
+                Debug.Log("Card not playable in this terrain or day phase");
+            }
         }
-
-        cards[CurrentCardIndex].Card.OnPlay();
-
-        RemoveCard(CurrentCardIndex);
-        
     }
     
     public void SalvageCard() {
