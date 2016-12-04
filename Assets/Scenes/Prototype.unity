@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 11495292, guid: 7bde75ca76794d94c847718d7ba60485, type: 2}
+  selectedFlowchart: {fileID: 11426004, guid: 4008a7faa2750164986673efe9d7d388, type: 2}
 --- !u!4 &815083222
 Transform:
   m_ObjectHideFlags: 1
@@ -1203,6 +1203,8 @@ MonoBehaviour:
   hand: {fileID: 572685586}
   currentCard: {fileID: 1770336439}
   swipeSpeed: 200
+  button: {fileID: 1450719818}
+  r: {fileID: 1625803221}
 --- !u!4 &953449672
 Transform:
   m_ObjectHideFlags: 0
@@ -1711,6 +1713,7 @@ MonoBehaviour:
   currentTerrain: 0
   dayCount: 0
   currentDayTime: 2
+  hand: {fileID: 572685586}
   manaText: {fileID: 1612406820}
   pointsText: {fileID: 134384161}
 --- !u!4 &1435510254
@@ -1808,8 +1811,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1435510253}
-        m_MethodName: NextState
+      - m_Target: {fileID: 953449671}
+        m_MethodName: NextButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2374,7 +2377,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.31687504}
   m_AnchorMax: {x: 1, y: 0.84531254}
-  m_AnchoredPosition: {x: 0.0000019073486, y: 0.4250183}
+  m_AnchoredPosition: {x: -0.00064086914, y: 0.42868042}
   m_SizeDelta: {x: 0, y: 6.149994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1625803223

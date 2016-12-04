@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
@@ -9,21 +10,36 @@ public class PlayCardState : MonoBehaviour{
     float distsq = 4000f;
     public CardViewer currentCard;
     public int swipeSpeed = 200;
+    private bool isStartedTouchPanel = false;
+    public Button button;
+
+    private bool isPlaying;
+
+    public RectTransform r;
 
     void OnEnable()
     {
         Fungus.Flowchart.BroadcastFungusMessage("PlayCardStateStart");
+        isPlaying = true;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(isPlaying == false)
         {
-            startTouchPos = Input.mousePosition;
+            GameController.INSTANCE.NextState();
         }
 
-        if (Input.GetMouseButtonUp(0))
+        
+        if (Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(r, Input.mousePosition))
         {
+            startTouchPos = Input.mousePosition;
+            isStartedTouchPanel = true;
+        }
+
+        if (Input.GetMouseButtonUp(0) && isStartedTouchPanel)
+        {
+            isStartedTouchPanel = false;
             Vector3 d = Input.mousePosition - startTouchPos;
             if (d.sqrMagnitude > distsq)
             {
@@ -44,20 +60,24 @@ public class PlayCardState : MonoBehaviour{
                     //Vertical swipe
                     if (d.y < 0)
                     {
-                        hand.SalvageCard();
+                        StartCoroutine("ScrapCard");
                     }
                     else
                     {
-                        hand.PlayCard();
+                        StartCoroutine("PlayCard");
                     }
                 }
+            }
+            else if (d.sqrMagnitude == 0)
+            {
+                GameController.INSTANCE.hand.CurrentCardIndex = -1;
             }
         }
     }
 
     public void NextButton()
     {
-        GameController.INSTANCE.NextState();
+        isPlaying = false;
     }
 
     IEnumerator SwipeLeft()
@@ -72,7 +92,7 @@ public class PlayCardState : MonoBehaviour{
             yield return null;
         }
 
-        hand.PreviousCard();
+        hand.NextCard();
         currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(800, yPos);
 
         xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
@@ -98,7 +118,7 @@ public class PlayCardState : MonoBehaviour{
             yield return null;
         }
 
-        hand.NextCard();
+        hand.PreviousCard();
         currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(-800, yPos);
 
         xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
@@ -110,5 +130,37 @@ public class PlayCardState : MonoBehaviour{
         }
 
         currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, yPos);
+    }
+
+    IEnumerator PlayCard()
+    {
+        float xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+        float yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+
+        while (yPos < 800)
+        {
+            currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos + swipeSpeed);
+            yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+            yield return null;
+        }
+
+        hand.PlayCard();
+        currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+    }
+
+    IEnumerator ScrapCard()
+    {
+        float xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
+        float yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+
+        while (yPos > -800)
+        {
+            currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos - swipeSpeed);
+            yPos = currentCard.GetComponent<RectTransform>().anchoredPosition.y;
+            yield return null;
+        }
+
+        hand.SalvageCard();
+        currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
     }
 }
