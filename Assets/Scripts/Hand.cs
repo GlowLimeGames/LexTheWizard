@@ -88,7 +88,7 @@ public class Hand : MonoBehaviour {
     }
     
     public void PlayCard() {
-        if (CurrentCardIndex >= 0) {
+        if (CurrentCardIndex != -1) {
             if (cards[CurrentCardIndex].Card.isCurrentlyPlayable()) {
                 cards[CurrentCardIndex].Card.OnPlay();
                 RemoveCard(CurrentCardIndex);
@@ -100,26 +100,24 @@ public class Hand : MonoBehaviour {
     }
     
     public void SalvageCard() {
-        
-        if(CurrentCardIndex == -1 || GameController.INSTANCE.currentDayTime == GameController.DayTime.Night)
-        {
-            return;
+        if(CurrentCardIndex != -1) {
+            SalvageCard(CurrentCardIndex);
         }
+    }
 
-        SoundManager.instance.PlaySingle(discardCardSound);
-
-        GameController.INSTANCE.Mana++;
-        RemoveCard(CurrentCardIndex);
-
+    public void SalvageCard(int index) {
+        if (GameController.INSTANCE.currentDayTime != GameController.DayTime.Night) {
+            SoundManager.instance.PlaySingle(discardCardSound);
+            GameController.INSTANCE.Mana++;
+            RemoveCard(CurrentCardIndex);
+        }
     }
 
     private void RemoveCard(int index) {
-        
         cards[index].Card = null;
 
-        NextCard();
-        if(index == CurrentCardIndex)
-        {
+        if(index == CurrentCardIndex) {
+            NextCard();
             CurrentCardIndex = -1;
         }
     }
@@ -135,11 +133,12 @@ public class Hand : MonoBehaviour {
         return cardsDrawn;
     }
 
-    public int Discard(int numberOfCards = HAND_SIZE) {
+    public int Discard(int numberOfCards = HAND_SIZE, bool mana = true) {
         int cardsDiscarded = 0;
         for (int j = 0; j < cards.Length && cardsDiscarded < numberOfCards; j++) {
             if (cards[j].Card != null) {
-                cards[j].Card = null;
+                if (mana) { SalvageCard(j); }
+                else { RemoveCard(j); }
                 cardsDiscarded++;
             }
         }

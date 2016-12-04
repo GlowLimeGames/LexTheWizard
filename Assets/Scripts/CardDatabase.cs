@@ -15,7 +15,7 @@ public class CardDatabase {
 
     private static Card Draw(List<Card> deck, bool onlyPlayable, List<Card> subset = null) {
         Card card = null;
-        if (deck.Count == 0) {
+        if (deck.Count == 0 || (subset != null && subset.Count == 0)) {
             Debug.Log("Out of cards!");
         }
         else if (onlyPlayable) {

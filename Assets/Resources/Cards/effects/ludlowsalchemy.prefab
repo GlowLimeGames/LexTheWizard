@@ -193,7 +193,7 @@ MonoBehaviour:
   value: 3
 --- !u!114 &114000012626847030
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191228}
@@ -211,10 +211,10 @@ MonoBehaviour:
   targetComponentFullname: UnityEngine.Component[]
   targetComponentText: CardEffects
   targetMethod: DiscardCards
-  targetMethodText: 'DiscardCards (): Void'
+  targetMethodText: 'DiscardCards (): Int32'
   methodParameters: []
   saveReturnValue: 0
   returnValueVariableKey: 
-  returnValueType: System.Void
+  returnValueType: System.Int32
   showInherited: 0
   callMode: 0
