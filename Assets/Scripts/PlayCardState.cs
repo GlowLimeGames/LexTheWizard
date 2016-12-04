@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
@@ -9,21 +10,36 @@ public class PlayCardState : MonoBehaviour{
     float distsq = 4000f;
     public CardViewer currentCard;
     public int swipeSpeed = 200;
+    private bool isStartedTouchPanel = false;
+    public Button button;
+
+    private bool isPlaying;
+
+    public RectTransform r;
 
     void OnEnable()
     {
         Fungus.Flowchart.BroadcastFungusMessage("PlayCardStateStart");
+        isPlaying = true;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(isPlaying == false)
         {
-            startTouchPos = Input.mousePosition;
+            GameController.INSTANCE.NextState();
         }
 
-        if (Input.GetMouseButtonUp(0))
+        
+        if (Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(r, Input.mousePosition))
         {
+            startTouchPos = Input.mousePosition;
+            isStartedTouchPanel = true;
+        }
+
+        if (Input.GetMouseButtonUp(0) && isStartedTouchPanel)
+        {
+            isStartedTouchPanel = false;
             Vector3 d = Input.mousePosition - startTouchPos;
             if (d.sqrMagnitude > distsq)
             {
@@ -52,12 +68,16 @@ public class PlayCardState : MonoBehaviour{
                     }
                 }
             }
+            else if (d.sqrMagnitude == 0)
+            {
+                GameController.INSTANCE.hand.CurrentCardIndex = -1;
+            }
         }
     }
 
     public void NextButton()
     {
-        GameController.INSTANCE.NextState();
+        isPlaying = false;
     }
 
     IEnumerator SwipeLeft()
@@ -72,7 +92,7 @@ public class PlayCardState : MonoBehaviour{
             yield return null;
         }
 
-        hand.PreviousCard();
+        hand.NextCard();
         currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(800, yPos);
 
         xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;
@@ -98,7 +118,7 @@ public class PlayCardState : MonoBehaviour{
             yield return null;
         }
 
-        hand.NextCard();
+        hand.PreviousCard();
         currentCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(-800, yPos);
 
         xPos = currentCard.GetComponent<RectTransform>().anchoredPosition.x;

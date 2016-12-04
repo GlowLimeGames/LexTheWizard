@@ -72,6 +72,9 @@ public class GameController : MonoBehaviour {
         }
     }
 
+
+    public Hand hand;
+
     // UI stuff to be replaced////////////////////
     public Text manaText;
     public Text pointsText;
