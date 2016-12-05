@@ -7,28 +7,37 @@ public class AIPlayState : MonoBehaviour{
     public CardViewer shownCard;
     public GameObject AIcard;
     public AudioClip aiPlayCardSound;
-    private float timer = 2f;
+    public RectTransform r;
+    private bool isStartedTouchPanel = false;
+    Vector3 startTouchPos;
+
 
     void OnEnable() {
         Fungus.Flowchart.BroadcastFungusMessage("AIPlayStateStart");
+        shownCard.Card = CardDatabase.DrawAI();
+        SoundManager.instance.PlaySingle(aiPlayCardSound);
     }
 
     void Update() {
-        if (timer == 2f) {
-            //Play the AI card
-            shownCard.Card = CardDatabase.DrawAI();
-            SoundManager.instance.PlaySingle(aiPlayCardSound);
-        }
-        else if(timer < 0) {
-            //Wait 2 seconds before moving to the next state
-            timer = 2f;
-            if (shownCard.Card != null) { shownCard.Card.OnPlay(); }
-            shownCard.Card = null;
-            GameController.INSTANCE.NextState();
 
-            return;
+        if (Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(r, Input.mousePosition))
+        {
+            startTouchPos = Input.mousePosition;
+            isStartedTouchPanel = true;
         }
 
-        timer -= Time.deltaTime;
+        if (Input.GetMouseButtonUp(0) && isStartedTouchPanel)
+        {
+            isStartedTouchPanel = false;
+            Vector3 d = Input.mousePosition - startTouchPos;
+            if (d.sqrMagnitude == 0)
+            {
+                if (shownCard.Card != null) { shownCard.Card.OnPlay(); }
+                shownCard.Card = null;
+                GameController.INSTANCE.NextState();
+
+                return;
+            }
+        }
     }
 }
