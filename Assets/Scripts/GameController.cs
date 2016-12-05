@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour {
         }
         set
         {
-            mana = value;
+            mana = Mathf.Max(value, 0);
             manaText.text = "" + mana;
         }
     }
@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour {
         }
         set
         {
-            points = value;
+            points = Mathf.Max(value, 0);
             pointsText.text = "" + points;
         }
     }
