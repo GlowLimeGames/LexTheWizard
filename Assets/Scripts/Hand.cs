@@ -144,4 +144,12 @@ public class Hand : MonoBehaviour {
         }
         return cardsDiscarded;
     }
+
+    public int CountCards() {
+        int count = 0;
+        foreach (CardViewer c in cards) {
+            if (c.Card != null) { count++; }
+        }
+        return count;
+    }
 }

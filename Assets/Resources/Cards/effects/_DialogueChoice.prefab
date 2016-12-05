@@ -14,16 +14,21 @@ GameObject:
   - 114: {fileID: 11402930}
   - 114: {fileID: 11498096}
   - 114: {fileID: 11465102}
+  - 114: {fileID: 11473534}
+  - 114: {fileID: 11481398}
+  - 114: {fileID: 11489454}
+  - 114: {fileID: 11403742}
+  - 114: {fileID: 11413274}
+  - 114: {fileID: 11464292}
   - 114: {fileID: 11453724}
   - 114: {fileID: 11404024}
+  - 114: {fileID: 11432736}
   - 114: {fileID: 11463242}
   - 114: {fileID: 11403358}
   - 114: {fileID: 11475232}
   - 114: {fileID: 11473220}
-  - 114: {fileID: 114000010615199548}
-  - 114: {fileID: 114000010532854322}
   m_Layer: 0
-  m_Name: _Dialogue
+  m_Name: _DialogueChoice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +61,7 @@ MonoBehaviour:
   itemId: 2
   errorMessage: 
   indentLevel: 0
-  storyText: Wow it's a dialogue
+  storyText: Now make a choice
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -111,6 +116,31 @@ MonoBehaviour:
   returnValueType: System.Void
   showInherited: 0
   callMode: 0
+--- !u!114 &11403742
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 9
+  errorMessage: 
+  indentLevel: 0
+  storyText: You selected choice 1
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  setSayDialog: {fileID: 0}
 --- !u!114 &11404024
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -128,6 +158,31 @@ MonoBehaviour:
   targetFlowchart: {fileID: 0}
   targetBlock: {fileID: 11453724}
   callMode: 0
+--- !u!114 &11413274
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 10
+  errorMessage: 
+  indentLevel: 0
+  storyText: You selected the second choice
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  setSayDialog: {fileID: 0}
 --- !u!114 &11426004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,12 +204,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: -600.8196
     y: -579.5081
-    width: 1402.9133
+    width: 1401.3943
     height: 1426.885
-  selectedBlock: {fileID: 11450370}
+  selectedBlock: {fileID: 0}
   selectedCommands: []
-  variables:
-  - {fileID: 114000010532854322}
+  variables: []
   description: 
   stepPause: 0
   colorCommands: 1
@@ -162,6 +216,23 @@ MonoBehaviour:
   saveSelection: 1
   localizationId: 
   hideCommands: []
+--- !u!114 &11432736
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 14
+  errorMessage: 
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 11453724}
+  callMode: 0
 --- !u!114 &11446738
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -213,6 +284,7 @@ MonoBehaviour:
   - {fileID: 11446738}
   - {fileID: 11402930}
   - {fileID: 11498096}
+  - {fileID: 11481398}
 --- !u!114 &11453724
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -226,8 +298,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 68.406265
-    y: 300.05167
+    x: 69.67207
+    y: 370.9377
     width: 120
     height: 40
   itemId: 12
@@ -249,6 +321,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 11450370}
+--- !u!114 &11464292
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 11
+  errorMessage: 
+  indentLevel: 0
+  storyText: Try choosing the other one
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  setSayDialog: {fileID: 0}
 --- !u!114 &11465102
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -262,16 +359,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 64.87866
-    y: 191.93808
+    x: -93.34919
+    y: 166.62164
     width: 120
     height: 40
   itemId: 5
-  blockName: Effects
+  blockName: Choice1
   description: 
   eventHandler: {fileID: 0}
   commandList:
-  - {fileID: 114000010615199548}
+  - {fileID: 11403742}
+  - {fileID: 11489454}
   - {fileID: 11404024}
 --- !u!114 &11473220
 MonoBehaviour:
@@ -288,6 +386,31 @@ MonoBehaviour:
   errorMessage: 
   indentLevel: 0
   targetGameObject: {fileID: 155174}
+--- !u!114 &11473534
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 220.06848
+    y: 166.62161
+    width: 120
+    height: 40
+  itemId: 6
+  blockName: Choice2
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 11413274}
+  - {fileID: 11464292}
+  - {fileID: 11432736}
 --- !u!114 &11475232
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -332,6 +455,53 @@ MonoBehaviour:
   returnValueType: System.Void
   showInherited: 0
   callMode: 0
+--- !u!114 &11481398
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 7
+  errorMessage: 
+  indentLevel: 0
+  text: Choose 2
+  description: 
+  targetBlock: {fileID: 11473534}
+  hideIfVisited: 0
+  interactable:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  setMenuDialog: {fileID: 0}
+--- !u!114 &11489454
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 8
+  errorMessage: 
+  indentLevel: 0
+  storyText: Cool
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  setSayDialog: {fileID: 0}
 --- !u!114 &11498096
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -346,7 +516,7 @@ MonoBehaviour:
   itemId: 3
   errorMessage: 
   indentLevel: 0
-  text: OK
+  text: Choose 1
   description: 
   targetBlock: {fileID: 11465102}
   hideIfVisited: 0
@@ -365,61 +535,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 155174}
   m_IsPrefabParent: 1
---- !u!114 &114000010532854322
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 155174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scope: 0
-  key: Points
-  value: -4
---- !u!114 &114000010615199548
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 155174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 20
-  errorMessage: 
-  indentLevel: 0
-  targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
-  targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-    PublicKeyToken=null
-  targetComponentFullname: UnityEngine.Component[]
-  targetComponentText: CardEffects
-  targetMethod: ChangePoints
-  targetMethodText: 'ChangePoints (Int32): Void'
-  methodParameters:
-  - objValue:
-      typeAssemblyname: System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Int32
-      intValue: 0
-      boolValue: 0
-      floatValue: 0
-      stringValue: 
-      colorValue: {r: 0, g: 0, b: 0, a: 0}
-      gameObjectValue: {fileID: 0}
-      materialValue: {fileID: 0}
-      objectValue: {fileID: 0}
-      spriteValue: {fileID: 0}
-      textureValue: {fileID: 0}
-      vector2Value: {x: 0, y: 0}
-      vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: Points
-  saveReturnValue: 0
-  returnValueVariableKey: 
-  returnValueType: System.Void
-  showInherited: 0
-  callMode: 0

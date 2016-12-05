@@ -22,8 +22,10 @@ GameObject:
   - 114: {fileID: 11473220}
   - 114: {fileID: 114000010615199548}
   - 114: {fileID: 114000010532854322}
+  - 114: {fileID: 114000014281190444}
+  - 114: {fileID: 114000012374498354}
   m_Layer: 0
-  m_Name: _Dialogue
+  m_Name: ai_abandonedhouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +153,7 @@ MonoBehaviour:
     y: -579.5081
     width: 1402.9133
     height: 1426.885
-  selectedBlock: {fileID: 11450370}
+  selectedBlock: {fileID: 11465102}
   selectedCommands: []
   variables:
   - {fileID: 114000010532854322}
@@ -272,6 +274,8 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 114000010615199548}
+  - {fileID: 114000014281190444}
+  - {fileID: 114000012374498354}
   - {fileID: 11404024}
 --- !u!114 &11473220
 MonoBehaviour:
@@ -421,5 +425,59 @@ MonoBehaviour:
   saveReturnValue: 0
   returnValueVariableKey: 
   returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &114000012374498354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 22
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
+  targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: CardEffects
+  targetMethod: DrawCards
+  targetMethodText: 'DrawCards (): Int32'
+  methodParameters: []
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Int32
+  showInherited: 0
+  callMode: 0
+--- !u!114 &114000014281190444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 21
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
+  targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: CardEffects
+  targetMethod: DiscardCards
+  targetMethodText: 'DiscardCards (): Int32'
+  methodParameters: []
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Int32
   showInherited: 0
   callMode: 0

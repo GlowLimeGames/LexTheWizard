@@ -58,10 +58,10 @@ public class Card : LexCard {
     }
 
     private void ParseTerrain () {
-        string[] terrains = terrainString.Split(',', ' ');
+        string[] terrains = terrainString.Split(',');
 
         foreach (string t in terrains) {
-            switch (t) {
+            switch (t.Trim()) {
                 case "Any":
                     terrain.Add(GameController.Terrain.Forests);
                     terrain.Add(GameController.Terrain.Caves);
@@ -85,10 +85,10 @@ public class Card : LexCard {
     }
 
     private void ParseDayPhase () {
-        string[] times = dayPhaseString.Split(',', ' ');
+        string[] times = dayPhaseString.Split(',');
 
         foreach (string t in times) {
-            switch (t) {
+            switch (t.Trim()) {
                 case "Any":
                     dayPhase.Add(GameController.DayTime.Dawn);
                     dayPhase.Add(GameController.DayTime.Dusk);

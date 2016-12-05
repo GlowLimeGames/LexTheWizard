@@ -140,9 +140,8 @@ MonoBehaviour:
     y: -431.5909
     width: 1262.4088
     height: 950.59094
-  selectedBlock: {fileID: 11477914}
-  selectedCommands:
-  - {fileID: 11423624}
+  selectedBlock: {fileID: 0}
+  selectedCommands: []
   variables:
   - {fileID: 114000012012312316}
   description: 
@@ -186,6 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scope: 1
+  scope: 0
   key: Mana
-  value: 1
+  value: 0

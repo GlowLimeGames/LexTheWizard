@@ -17,11 +17,8 @@ public class CardEffects : MonoBehaviour {
         return GameController.INSTANCE.Points;
     }
 
-    /// <summary>
-    /// Returns a float value between 0 and 1.
-    /// </summary>
-    public float getRandomPercent () {
-        return Random.Range(0f, 1f);
+    public int getCardCount () {
+        return Hand.INSTANCE.CountCards();
     }
 
     /// <summary>
@@ -68,7 +65,7 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     /// <returns>The number of cards drawn</returns>
     public int DrawCards(int numberOfCards) {
-        return Hand.INSTANCE.Draw(numberOfCards);
+            return Hand.INSTANCE.Draw(numberOfCards);
     }
 
     /// <summary>
@@ -83,7 +80,7 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     /// <returns>The number of cards discarded</returns>
     public int DiscardCards(int numberOfCards) {
-        return Hand.INSTANCE.Discard(numberOfCards);
+            return Hand.INSTANCE.Discard(numberOfCards);
     }
 
     /// <summary>

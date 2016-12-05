@@ -10,15 +10,20 @@ GameObject:
   - 4: {fileID: 438680}
   - 114: {fileID: 11495292}
   - 114: {fileID: 11477914}
-  - 114: {fileID: 11423624}
-  - 114: {fileID: 11497458}
   - 114: {fileID: 11440950}
   - 114: {fileID: 114000012012312316}
-  - 114: {fileID: 114000013185759558}
-  - 114: {fileID: 114000010228522902}
-  - 114: {fileID: 114000013829381744}
+  - 114: {fileID: 114000013773050364}
+  - 114: {fileID: 114000010108970704}
+  - 114: {fileID: 114000011062730516}
+  - 114: {fileID: 114000013923039574}
+  - 114: {fileID: 114000012917984608}
+  - 114: {fileID: 114000013252729302}
+  - 114: {fileID: 114000012250619134}
+  - 114: {fileID: 114000013091652366}
+  - 114: {fileID: 114000013534624310}
+  - 114: {fileID: 114000011913680732}
   m_Layer: 0
-  m_Name: loveletter
+  m_Name: ai_ancientrustedsword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,50 +42,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11423624
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 1
-  errorMessage: 
-  indentLevel: 0
-  targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
-  targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-    PublicKeyToken=null
-  targetComponentFullname: UnityEngine.Component[]
-  targetComponentText: CardEffects
-  targetMethod: ChangePoints
-  targetMethodText: 'ChangePoints (Int32): Void'
-  methodParameters:
-  - objValue:
-      typeAssemblyname: System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Int32
-      intValue: 3
-      boolValue: 0
-      floatValue: 0
-      stringValue: 
-      colorValue: {r: 0, g: 0, b: 0, a: 0}
-      gameObjectValue: {fileID: 0}
-      materialValue: {fileID: 0}
-      objectValue: {fileID: 0}
-      spriteValue: {fileID: 0}
-      textureValue: {fileID: 0}
-      vector2Value: {x: 0, y: 0}
-      vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: Points
-  saveReturnValue: 0
-  returnValueVariableKey: 
-  returnValueType: System.Void
-  showInherited: 0
-  callMode: 0
 --- !u!114 &11440950
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -109,19 +70,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1.7727051
-    y: 9.318207
+    x: 5.8543396
+    y: 3.1957703
     width: 120
     height: 40
   itemId: 0
   blockName: New Block
   description: 
-  eventHandler: {fileID: 11497458}
+  eventHandler: {fileID: 114000013773050364}
   commandList:
-  - {fileID: 114000013185759558}
-  - {fileID: 114000010228522902}
-  - {fileID: 11423624}
-  - {fileID: 114000013829381744}
+  - {fileID: 114000013923039574}
+  - {fileID: 114000011062730516}
+  - {fileID: 114000013252729302}
+  - {fileID: 114000013534624310}
+  - {fileID: 114000011913680732}
+  - {fileID: 114000012250619134}
   - {fileID: 11440950}
 --- !u!114 &11495292
 MonoBehaviour:
@@ -139,20 +102,20 @@ MonoBehaviour:
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.49000052
+  zoom: 0.7671744
   scrollViewRect:
     serializedVersion: 2
-    x: -491.4091
-    y: -431.5909
-    width: 1262.4088
-    height: 950.59094
+    x: -677.95447
+    y: -586.3636
+    width: 1448.9542
+    height: 1150.2039
   selectedBlock: {fileID: 11477914}
   selectedCommands:
-  - {fileID: 114000013185759558}
-  - {fileID: 114000010228522902}
-  - {fileID: 114000013829381744}
+  - {fileID: 114000011913680732}
   variables:
   - {fileID: 114000012012312316}
+  - {fileID: 114000012917984608}
+  - {fileID: 114000013091652366}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -160,18 +123,6 @@ MonoBehaviour:
   saveSelection: 1
   localizationId: 
   hideCommands: []
---- !u!114 &11497458
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff5d850a887844fe87ae7d366d3ab5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 11477914}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -183,32 +134,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 191228}
   m_IsPrefabParent: 1
---- !u!114 &114000010228522902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 21
-  errorMessage: 
-  indentLevel: 0
-  storyText: Check out this awesome dialogue
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  setSayDialog: {fileID: 0}
---- !u!114 &114000012012312316
+--- !u!114 &114000010108970704
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
@@ -216,15 +142,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 191228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ff5d850a887844fe87ae7d366d3ab5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scope: 1
-  key: Points
-  value: 2
---- !u!114 &114000013185759558
+  parentBlock: {fileID: 0}
+--- !u!114 &114000011062730516
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c5622b8a80845c980954170295f292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 3
+  errorMessage: 
+  indentLevel: 0
+  compareOperator: 2
+  variable: {fileID: 114000012917984608}
+  booleanData:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  integerData:
+    integerRef: {fileID: 0}
+    integerVal: 25
+  floatData:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  stringData:
+    stringRef: {fileID: 0}
+    stringVal: 
+--- !u!114 &114000011913680732
+MonoBehaviour:
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191228}
@@ -233,21 +185,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 20
+  itemId: 8
   errorMessage: 
-  indentLevel: 0
+  indentLevel: 1
   targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
   targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   targetComponentFullname: UnityEngine.Component[]
   targetComponentText: CardEffects
-  targetMethod: ToggleCanvas
-  targetMethodText: 'ToggleCanvas (Boolean): Void'
+  targetMethod: ChangePoints
+  targetMethodText: 'ChangePoints (Int32): Void'
   methodParameters:
   - objValue:
-      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+      typeAssemblyname: System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Boolean
+      typeFullname: System.Int32
       intValue: 0
       boolValue: 0
       floatValue: 0
@@ -260,15 +212,71 @@ MonoBehaviour:
       textureValue: {fileID: 0}
       vector2Value: {x: 0, y: 0}
       vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: 
+    variableKey: Points
   saveReturnValue: 0
   returnValueVariableKey: 
   returnValueType: System.Void
   showInherited: 0
   callMode: 0
---- !u!114 &114000013829381744
+--- !u!114 &114000012012312316
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 0
+  key: Mana
+  value: 3
+--- !u!114 &114000012250619134
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cb9773f2ca04e2bbf7a68ccfc23267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 6
+  errorMessage: 
+  indentLevel: 0
+--- !u!114 &114000012917984608
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 0
+  key: PlayerMana
+  value: 0
+--- !u!114 &114000013091652366
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 0
+  key: Points
+  value: -3
+--- !u!114 &114000013252729302
+MonoBehaviour:
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191228}
@@ -277,23 +285,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 22
+  itemId: 5
   errorMessage: 
-  indentLevel: 0
+  indentLevel: 1
   targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
   targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   targetComponentFullname: UnityEngine.Component[]
   targetComponentText: CardEffects
-  targetMethod: ToggleCanvas
-  targetMethodText: 'ToggleCanvas (Boolean): Void'
+  targetMethod: ChangeMana
+  targetMethodText: 'ChangeMana (Int32): Void'
   methodParameters:
   - objValue:
-      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
+      typeAssemblyname: System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Boolean
+      typeFullname: System.Int32
       intValue: 0
-      boolValue: 1
+      boolValue: 0
       floatValue: 0
       stringValue: 
       colorValue: {r: 0, g: 0, b: 0, a: 0}
@@ -304,9 +312,62 @@ MonoBehaviour:
       textureValue: {fileID: 0}
       vector2Value: {x: 0, y: 0}
       vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: 
+    variableKey: Mana
   saveReturnValue: 0
   returnValueVariableKey: 
   returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &114000013534624310
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa968f01a7f9496bb50e13dfe16760d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 7
+  errorMessage: 
+  indentLevel: 0
+--- !u!114 &114000013773050364
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff5d850a887844fe87ae7d366d3ab5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 11477914}
+--- !u!114 &114000013923039574
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 4
+  errorMessage: 
+  indentLevel: 0
+  targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
+  targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: CardEffects
+  targetMethod: getCurrentMana
+  targetMethodText: 'getCurrentMana (): Int32'
+  methodParameters: []
+  saveReturnValue: 1
+  returnValueVariableKey: PlayerMana
+  returnValueType: System.Int32
   showInherited: 0
   callMode: 0

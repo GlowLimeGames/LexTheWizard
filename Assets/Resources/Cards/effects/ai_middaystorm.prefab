@@ -13,12 +13,9 @@ GameObject:
   - 114: {fileID: 11423624}
   - 114: {fileID: 11497458}
   - 114: {fileID: 11440950}
-  - 114: {fileID: 114000012012312316}
-  - 114: {fileID: 114000013185759558}
-  - 114: {fileID: 114000010228522902}
-  - 114: {fileID: 114000013829381744}
+  - 114: {fileID: 114000012784854488}
   m_Layer: 0
-  m_Name: loveletter
+  m_Name: ai_middaystorm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,14 +53,14 @@ MonoBehaviour:
     PublicKeyToken=null
   targetComponentFullname: UnityEngine.Component[]
   targetComponentText: CardEffects
-  targetMethod: ChangePoints
-  targetMethodText: 'ChangePoints (Int32): Void'
+  targetMethod: DiscardCards
+  targetMethodText: 'DiscardCards (Int32): Int32'
   methodParameters:
   - objValue:
       typeAssemblyname: System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       typeFullname: System.Int32
-      intValue: 3
+      intValue: 0
       boolValue: 0
       floatValue: 0
       stringValue: 
@@ -75,10 +72,10 @@ MonoBehaviour:
       textureValue: {fileID: 0}
       vector2Value: {x: 0, y: 0}
       vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: Points
+    variableKey: DiscardCards
   saveReturnValue: 0
   returnValueVariableKey: 
-  returnValueType: System.Void
+  returnValueType: System.Int32
   showInherited: 0
   callMode: 0
 --- !u!114 &11440950
@@ -118,10 +115,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 11497458}
   commandList:
-  - {fileID: 114000013185759558}
-  - {fileID: 114000010228522902}
   - {fileID: 11423624}
-  - {fileID: 114000013829381744}
   - {fileID: 11440950}
 --- !u!114 &11495292
 MonoBehaviour:
@@ -148,11 +142,9 @@ MonoBehaviour:
     height: 950.59094
   selectedBlock: {fileID: 11477914}
   selectedCommands:
-  - {fileID: 114000013185759558}
-  - {fileID: 114000010228522902}
-  - {fileID: 114000013829381744}
+  - {fileID: 11423624}
   variables:
-  - {fileID: 114000012012312316}
+  - {fileID: 114000012784854488}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -183,32 +175,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 191228}
   m_IsPrefabParent: 1
---- !u!114 &114000010228522902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 21
-  errorMessage: 
-  indentLevel: 0
-  storyText: Check out this awesome dialogue
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  setSayDialog: {fileID: 0}
---- !u!114 &114000012012312316
+--- !u!114 &114000012784854488
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
@@ -219,94 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scope: 1
-  key: Points
-  value: 2
---- !u!114 &114000013185759558
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 20
-  errorMessage: 
-  indentLevel: 0
-  targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
-  targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-    PublicKeyToken=null
-  targetComponentFullname: UnityEngine.Component[]
-  targetComponentText: CardEffects
-  targetMethod: ToggleCanvas
-  targetMethodText: 'ToggleCanvas (Boolean): Void'
-  methodParameters:
-  - objValue:
-      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Boolean
-      intValue: 0
-      boolValue: 0
-      floatValue: 0
-      stringValue: 
-      colorValue: {r: 0, g: 0, b: 0, a: 0}
-      gameObjectValue: {fileID: 0}
-      materialValue: {fileID: 0}
-      objectValue: {fileID: 0}
-      spriteValue: {fileID: 0}
-      textureValue: {fileID: 0}
-      vector2Value: {x: 0, y: 0}
-      vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: 
-  saveReturnValue: 0
-  returnValueVariableKey: 
-  returnValueType: System.Void
-  showInherited: 0
-  callMode: 0
---- !u!114 &114000013829381744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 22
-  errorMessage: 
-  indentLevel: 0
-  targetObject: {fileID: 105184, guid: 23e05584f18857145ab20905b8bdece4, type: 2}
-  targetComponentAssemblyName: CardEffects, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-    PublicKeyToken=null
-  targetComponentFullname: UnityEngine.Component[]
-  targetComponentText: CardEffects
-  targetMethod: ToggleCanvas
-  targetMethodText: 'ToggleCanvas (Boolean): Void'
-  methodParameters:
-  - objValue:
-      typeAssemblyname: System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      typeFullname: System.Boolean
-      intValue: 0
-      boolValue: 1
-      floatValue: 0
-      stringValue: 
-      colorValue: {r: 0, g: 0, b: 0, a: 0}
-      gameObjectValue: {fileID: 0}
-      materialValue: {fileID: 0}
-      objectValue: {fileID: 0}
-      spriteValue: {fileID: 0}
-      textureValue: {fileID: 0}
-      vector2Value: {x: 0, y: 0}
-      vector3Value: {x: 0, y: 0, z: 0}
-    variableKey: 
-  saveReturnValue: 0
-  returnValueVariableKey: 
-  returnValueType: System.Void
-  showInherited: 0
-  callMode: 0
+  scope: 0
+  key: DiscardCards
+  value: 1
