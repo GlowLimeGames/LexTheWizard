@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 11426004, guid: 4008a7faa2750164986673efe9d7d388, type: 2}
+  selectedFlowchart: {fileID: 11495292, guid: cd9d34cdfeb697544919942465d1ebcc, type: 2}
 --- !u!4 &815083222
 Transform:
   m_ObjectHideFlags: 1
@@ -2338,6 +2338,7 @@ MonoBehaviour:
   shownCard: {fileID: 1410888453}
   AIcard: {fileID: 120836, guid: 35b6b51c29bfcd44881a15653dde681f, type: 2}
   aiPlayCardSound: {fileID: 8300000, guid: fceb620b1f67bb248b2845765d2443bf, type: 3}
+  r: {fileID: 1625803221}
 --- !u!4 &1481855712
 Transform:
   m_ObjectHideFlags: 0
