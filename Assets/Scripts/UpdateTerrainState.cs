@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 
@@ -11,12 +11,20 @@ public class UpdateTerrainState : MonoBehaviour{
     }
 
     void Update() {
-        RandomTerrain();
+        if (GameController.INSTANCE.currentDayTime == GameController.DayTime.Dawn) {
+            RandomTerrain();
+        }
         GameController.INSTANCE.NextState();
     }
 
     public static void RandomTerrain() {
-        GameController.Terrain terrain = (GameController.Terrain)UnityEngine.Random.Range(0, 4);
+        List<GameController.Terrain> newTerrains = new List<GameController.Terrain>();
+        foreach (GameController.Terrain t in Enum.GetValues(typeof(GameController.Terrain))) {
+            if (GameController.INSTANCE.currentTerrain != t) {
+                newTerrains.Add(t);
+            }
+        }
+        GameController.Terrain terrain = newTerrains[UnityEngine.Random.Range(0, newTerrains.Count)];
         MoveToTerrain(terrain);
     }
 
