@@ -30,6 +30,9 @@ public class LexCard {
     [XmlElement("Count")]
     public int count { get; private set; }
 
+    [XmlElement("Info")]
+    public string info { get; private set; }
+
     public void Copy (LexCard card) {
         Name = card.Name;
         Description = card.Description;
@@ -38,6 +41,7 @@ public class LexCard {
         terrainString = card.terrainString;
         dayPhaseString = card.dayPhaseString;
         count = card.count;
+        info = card.info;
     }
 }
 

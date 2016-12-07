@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Hand : MonoBehaviour {
@@ -8,6 +9,8 @@ public class Hand : MonoBehaviour {
 
     public CardViewer[] cards = new CardViewer[HAND_SIZE];
     public CardViewer shownCard;
+
+    public GameObject infoPanel;
 
     private int currentCardIndex = -1;
     public int CurrentCardIndex {
@@ -47,6 +50,7 @@ public class Hand : MonoBehaviour {
 
     public void ShowCard(int index) {
         CurrentCardIndex = index;
+        ShowInfo(false);
     }
 
     public void NextCard () {
@@ -151,5 +155,9 @@ public class Hand : MonoBehaviour {
             if (c.Card != null) { count++; }
         }
         return count;
+    }
+
+    public void ShowInfo(bool show) {
+        infoPanel.SetActive(show);
     }
 }
