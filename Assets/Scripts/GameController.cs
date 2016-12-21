@@ -23,7 +23,17 @@ public class GameController : MonoBehaviour {
         Caves
     }
 
-    public Terrain currentTerrain = Terrain.Swamps;
+	// Uses a backing var to broadcast an event whenever value is changed
+	Terrain _currentTerrain = Terrain.Swamps;
+	public Terrain currentTerrain {
+		get {
+			return _currentTerrain;
+		}
+		set {
+			_currentTerrain = value;
+			EventController.Event(Event.TERRAIN_CHANGE);
+		}
+	}
 
     public int dayCount = 0;
 
@@ -40,7 +50,17 @@ public class GameController : MonoBehaviour {
         Night
     }
 
-    public DayTime currentDayTime = DayTime.Dawn;
+	// Uses a backing var to broadcast an event whenever value is changed
+	DayTime _currentDayTime = DayTime.Dawn;
+	public DayTime currentDayTime {
+		get {
+			return _currentDayTime;
+		}
+		set {
+			_currentDayTime = value;
+			EventController.Event(Event.TIME_OF_DAY_CHANGE);
+		}
+	}
 
     private int mana;
 

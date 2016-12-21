@@ -6,43 +6,69 @@ public class UpdateBackgroundState : MonoBehaviour {
     public static UpdateBackgroundState INSTANCE;
     public Image background;
 
-    public Sprite[] terrainType;
+	[SerializeField]
+	Sprite[] caveBackgrounds;
+	[SerializeField]
+	Sprite[] forestBackgrounds;
+	[SerializeField]
+	Sprite[] hillBackgrounds;
+	[SerializeField]
+	Sprite[] swampBackgrounds;
 
-    void Awake() {
+	Sprite[][] terrainBackgrounds;
+
+	void Awake() {
         if (INSTANCE == null) {
             INSTANCE = this;
+			InitBackgrounds();
+			SubscribeEvents();
         }
     }
 
-    void OnEnable()
-    {
+
+	void OnDestroy () {
+		if (INSTANCE == this) {
+			UnsubscribeEvents();
+		}
+	}
+
+	void InitBackgrounds () {
+		// Arrays are organized based on the GameController.Terrain enum
+		terrainBackgrounds = new Sprite[][]{
+			swampBackgrounds,
+			hillBackgrounds,
+			forestBackgrounds,
+			caveBackgrounds
+		};
+	}
+
+    void OnEnable() {
         Fungus.Flowchart.BroadcastFungusMessage("UpdateBackgroundStateStart");
     }
 
-    // Update is called once per frame
-    void Update () {
-        UpdateBackground();
-        GameController.INSTANCE.NextState();
-	}
-
     public void UpdateBackground ()
     {
-        switch (GameController.INSTANCE.currentTerrain)
-        {
-            case GameController.Terrain.Caves:
-                background.sprite = terrainType[0];
-                break;
-            case GameController.Terrain.Forests:
-                background.sprite = terrainType[1];
-                break;
-            case GameController.Terrain.Hills:
-                background.sprite = terrainType[2];
-                break;
-            case GameController.Terrain.Swamps:
-                background.sprite = terrainType[3];
-                break;
-            default:
-                break;
-        }
-    }
+		int terrainIndex = (int) GameController.INSTANCE.currentTerrain;
+		int timeOfDayIndex = (int) GameController.INSTANCE.currentDayTime;
+		try {
+			background.sprite = terrainBackgrounds[terrainIndex][timeOfDayIndex];
+		} catch (System.Exception e) {
+			Debug.LogErrorFormat("Error: {0}, [{1}, {2}] is not a valid index", e, terrainIndex, timeOfDayIndex);
+		}
+	}
+
+	void SubscribeEvents () {
+		EventController.OnNamedEvent += HandleNamedEvent;
+	}
+
+	void UnsubscribeEvents () {
+		EventController.OnNamedEvent -= HandleNamedEvent;
+	}
+
+	void HandleNamedEvent (string eventName) {
+		if (StringUtil.OrEquals(eventName, Event.TERRAIN_CHANGE, Event.TIME_OF_DAY_CHANGE)) {
+			UpdateBackground();
+			GameController.INSTANCE.NextState();
+		}
+	}
 }
