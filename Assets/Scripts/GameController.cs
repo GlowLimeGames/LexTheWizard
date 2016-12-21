@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Sets isNextState to true to let the GameController know to move onto the next state durring the LateUpdate
+    /// Sets isNextState to true to let the GameController know to move onto the next state during the LateUpdate
     /// </summary>
     public void NextState()
     {
