@@ -2082,9 +2082,7 @@ MonoBehaviour:
   - {fileID: 953449671}
   - {fileID: 1481855711}
   canvas: {fileID: 1888211103}
-  currentTerrain: 0
   dayCount: 0
-  currentDayTime: 2
   hand: {fileID: 572685586}
   manaText: {fileID: 1612406820}
   pointsText: {fileID: 134384161}
@@ -3264,11 +3262,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 389279171}
-  terrainType:
-  - {fileID: 21300000, guid: 31d36466d2bf30041b4ed0da1e7b09e4, type: 3}
-  - {fileID: 21300000, guid: a0f80c99c2c1f054dabd30120270854f, type: 3}
-  - {fileID: 21300000, guid: d38563480beff4344b1d8f497ced690b, type: 3}
-  - {fileID: 21300000, guid: 194bbc4e03c1b54419773fc30c2dce9a, type: 3}
+  caveBackgrounds:
+  - {fileID: 21300000, guid: a292e9cf00e2f4da29e16085caaeeefe, type: 3}
+  - {fileID: 21300000, guid: 893425ae767a84daf9d7d27e9009075a, type: 3}
+  - {fileID: 21300000, guid: d7f38d36ae92541d88d8c21b085723d8, type: 3}
+  forestBackgrounds:
+  - {fileID: 21300000, guid: 4c12a274fc6374ca68e69fd41dd8703b, type: 3}
+  - {fileID: 21300000, guid: 586bf9c913053485eb84d8d16584fd76, type: 3}
+  - {fileID: 21300000, guid: fceae238e101a4fe19d04c58da1ffc6d, type: 3}
+  hillBackgrounds:
+  - {fileID: 21300000, guid: 0a7c7257e1f5e4514bf1bb393ca24272, type: 3}
+  - {fileID: 21300000, guid: 51bd2a5b14ccb46c488c10a4b11b2885, type: 3}
+  - {fileID: 21300000, guid: 9b856ed2e204648528022dda4a0e6d55, type: 3}
+  swampBackgrounds:
+  - {fileID: 21300000, guid: ce1457affdbbe486080ffe27223e3cf9, type: 3}
+  - {fileID: 21300000, guid: 18a29e5551e5f4063b3b8335f1831989, type: 3}
+  - {fileID: 21300000, guid: 0b3cd55e136e84840a305ad6d18e15b6, type: 3}
 --- !u!4 &1984633411
 Transform:
   m_ObjectHideFlags: 0
