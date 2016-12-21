@@ -51,7 +51,8 @@ public class GameController : MonoBehaviour {
     }
 
 	// Uses a backing var to broadcast an event whenever value is changed
-	DayTime _currentDayTime = DayTime.Dawn;
+	// Var must be set to night to start (so that it increments to dawn for the first phase)
+	DayTime _currentDayTime = DayTime.Night;
 	public DayTime currentDayTime {
 		get {
 			return _currentDayTime;
