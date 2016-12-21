@@ -133,6 +133,7 @@ public class Card : LexCard {
     /// </summary>
     public void OnPlay() {
         if (cardEffectsOnPlay != null) {
+			EventController.Event(Event.DIALOGUE_CARD_SHOWN);
             Object.Instantiate(cardEffectsOnPlay);
         }
     } 
