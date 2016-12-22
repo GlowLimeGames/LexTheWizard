@@ -898,7 +898,7 @@ GameObject:
   - 222: {fileID: 389279172}
   - 114: {fileID: 389279171}
   m_Layer: 5
-  m_Name: Background
+  m_Name: TerrainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1037,13 +1037,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handlers:
-  - action: {fileID: 11400000, guid: a46e1506eda524629ba557acd08b8ae6, type: 2}
-    triggers:
-    - Dialoge Card Dismissed
-  - action: {fileID: 11400000, guid: dbabb8c9c674a40adbd5185ad40e4442, type: 2}
-    triggers:
-    - Dialoge Card Shown
-  - action: {fileID: 11400000, guid: 88cc1d3cc81914ac487666bb331596d8, type: 2}
+  - action: {fileID: 11400000, guid: 9deea47db4cc94f4c8ff7bde967d4113, type: 2}
+    triggers: []
+  - action: {fileID: 11400000, guid: 1d9bf9bb3c5b143a2b4575d40a4b0c5e, type: 2}
+    triggers: []
+  - action: {fileID: 11400000, guid: a1768fc6728e94c618a1841afaea76e7, type: 2}
     triggers:
     - Terrain Change
     - Time of Day Change
@@ -2531,7 +2529,7 @@ GameObject:
   - 114: {fileID: 1597918908}
   - 114: {fileID: 1597918907}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Overworld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
