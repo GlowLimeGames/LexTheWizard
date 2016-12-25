@@ -50,7 +50,7 @@ public class Hand : MonoBehaviour {
 
     public void ShowCard(int index) {
         CurrentCardIndex = index;
-        ShowInfo(false);
+        infoPanel.SetActive(false);
     }
 
     public void NextCard () {
@@ -155,9 +155,5 @@ public class Hand : MonoBehaviour {
             if (c.Card != null) { count++; }
         }
         return count;
-    }
-
-    public void ShowInfo(bool show) {
-        infoPanel.SetActive(show);
     }
 }
