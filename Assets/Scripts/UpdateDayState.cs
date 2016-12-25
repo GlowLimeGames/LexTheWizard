@@ -23,6 +23,8 @@ public class UpdateDayState : MonoBehaviour{
 
     void Update()
     {
+		// Assume that any dialogue card shown in the previous turn is now dismissed
+		EventController.Event(Event.DIALOGUE_CARD_DISMISSED);
         GameController.INSTANCE.currentDayTime++;
         if ((int)GameController.INSTANCE.currentDayTime >= System.Enum.GetValues(typeof(GameController.DayTime)).Length)
         {
