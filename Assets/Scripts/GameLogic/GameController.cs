@@ -143,6 +143,15 @@ public class GameController : MonoBehaviour {
         }
     }
 
+	public void AddCard (Card card) {
+		CardDatabase.AddCard(card);
+	}
 
+	public Card DrawAICard () {
+		return CardDatabase.DrawAI();
+	}
 
+	public Card DrawPlayerCard () {
+		return CardDatabase.DrawPlayer();
+	}
 }

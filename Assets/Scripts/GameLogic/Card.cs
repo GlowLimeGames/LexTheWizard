@@ -33,6 +33,13 @@ public class LexCard {
     [XmlElement("Info")]
     public string info { get; private set; }
 
+	List<CardModifier> _functions = new List<CardModifier>();
+	public List<CardModifier> functions {
+		get {
+			return _functions;
+		}
+	}
+
     public void Copy (LexCard card) {
         Name = card.Name;
         Description = card.Description;
@@ -42,6 +49,7 @@ public class LexCard {
         dayPhaseString = card.dayPhaseString;
         count = card.count;
         info = card.info;
+		_functions = card.functions;
     }
 }
 
