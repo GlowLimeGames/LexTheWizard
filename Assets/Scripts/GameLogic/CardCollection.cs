@@ -52,25 +52,3 @@ public class CardParsing {
         }
 	}
 }
-
-/*
-public class LexCard {
-    [XmlElement("Name")]
-    public string Name;
-
-    [XmlElement("Description")]
-    public string Description;
-
-    [XmlElement("RefName")]
-    public string RefName;
-
-    [XmlElement("Terrain")]
-    public string Terrain;
-
-    [XmlElement("DayPhase")]
-    public string DayPhase;
-
-    [XmlElement("Week")]
-    public int Week;
-}
-*/

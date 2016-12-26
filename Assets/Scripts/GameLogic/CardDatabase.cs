@@ -10,7 +10,10 @@ public class CardDatabase {
     public static void AddCard (Card card) {
         List<Card> deck = (card.Type == LexCard.Type.AI) ? AICardPool : PlayerCardPool;
         if (deck.Contains(card)) { Debug.Log("Re-added " + card.Name); }
-        deck.Add(card);
+
+        for (int i = 0; i < card.count; i++) {
+            deck.Add(card);
+        }
     }
 
     private static Card Draw(List<Card> deck, bool onlyPlayable, List<Card> subset = null) {
@@ -42,7 +45,6 @@ public class CardDatabase {
         List<Card> remove = new List<Card>();
         foreach (Card card in cardPool) {
             if (card.isInPlay()) {
-                if (deck.Contains(card)) { Debug.Log("Re-added " + card.Name); }
                 deck.Add(card);
                 remove.Add(card);
             }

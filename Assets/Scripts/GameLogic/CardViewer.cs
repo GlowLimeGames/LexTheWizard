@@ -5,6 +5,7 @@ using System.Collections;
 public class CardViewer : MonoBehaviour {
     public Text cardName;
     public Text description;
+    public Text info;
     public Image image;
     public Image background;
     
@@ -38,6 +39,7 @@ public class CardViewer : MonoBehaviour {
     private void UpdateCard() {
         cardName.text = card.Name;
         description.text = card.Description;
+        if (info != null) { info.text = card.info; }
         if (image != null) { image.sprite = card.Image; }
         background.sprite = card.Background;
     }

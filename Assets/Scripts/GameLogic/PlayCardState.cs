@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
-public class PlayCardState : MonoBehaviour{
-
+public class PlayCardState : MonoBehaviourExtended {
+	InputController input;
     Vector3 startTouchPos;
     public Hand hand;
     float distsq = 4000f;
@@ -16,6 +16,22 @@ public class PlayCardState : MonoBehaviour{
     private bool isPlaying;
 
     public RectTransform r;
+
+	protected override void SetReferences () {
+		// NOTHING
+	}
+
+	protected override void FetchReferences () {
+		input = InputController.Instance;
+	}
+
+	protected override void CleanupReferences () {
+		// NOTHING
+	}
+
+	protected override void HandleNamedEvent (string eventName) {
+		// NOTHING
+	}
 
     void OnEnable()
     {
@@ -31,7 +47,7 @@ public class PlayCardState : MonoBehaviour{
         }
 
         
-        if (Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(r, Input.mousePosition))
+		if (!input.IsUIInputBlocked && Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(r, Input.mousePosition))
         {
             startTouchPos = Input.mousePosition;
             isStartedTouchPanel = true;

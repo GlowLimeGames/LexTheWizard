@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-public class UIElement : MonoBehaviour {
+public class UIElement : MonoBehaviourExtended, IPointerDownHandler, IPointerUpHandler {
+	protected InputController input;
 	Image image;
 	Text text;
-
+	[SerializeField]
+	protected bool blocksUIInput = false;
 	[SerializeField]
 	Sprite[] alternateSprites;
 	public bool hasImage {
@@ -24,14 +27,21 @@ public class UIElement : MonoBehaviour {
 		}
 	}
 
-
-	void Awake () {
-		AssignReferences();
-	}
-
-	void AssignReferences () {
+	protected override void SetReferences () {
 		image = GetComponentInChildren<Image>();
 		text = GetComponentInChildren<Text>();
+	}
+
+	protected override void FetchReferences () {
+		input = InputController.Instance;
+	}
+
+	protected override void CleanupReferences () {
+		// NOTHING
+	}
+
+	protected override void HandleNamedEvent (string eventName) {
+		// NOTHING
 	}
 
 	public void Show () {
@@ -51,6 +61,18 @@ public class UIElement : MonoBehaviour {
 	public void SetText (string text) {
 		if (hasText) {
 			this.text.text = text;
+		}
+	}
+		
+	public virtual void OnPointerDown (PointerEventData pointerEvent) {
+		if (blocksUIInput) {
+			input.BlockUIInput();
+		}
+	}
+
+	public virtual void OnPointerUp (PointerEventData pointerEvent) {
+		if (blocksUIInput) {
+			input.UnblockUIInput();
 		}
 	}
 }

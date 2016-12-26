@@ -33,22 +33,30 @@ public static class EventController {
 	public delegate void NamedFloatAction (string valueKey, float key);
 	public static event NamedFloatAction OnNamedFloatEvent;
 
+    public delegate void AudioEventAction(AudioActionType actionType, AudioType audioType);
+    public static event AudioEventAction OnAudioEvent;
+
 	#endregion
 
 	#region Event Calls
-
 	public static void Event (string eventName) {
 		if (OnNamedEvent != null) {
 			OnNamedEvent(eventName);
 		}
 	}
 		
+
 	public static void Event (string valueKey, float value) {
 		if (OnNamedFloatEvent != null) {
 			OnNamedFloatEvent(valueKey, value);
 		}
 	}
 
+    public static void Event(AudioActionType actionType, AudioType audioType) {
+        if (OnAudioEvent != null) {
+            OnAudioEvent(actionType, audioType);
+        }
+    }
 
 	#endregion
 }
