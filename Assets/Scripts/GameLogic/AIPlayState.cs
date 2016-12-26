@@ -34,7 +34,7 @@ public class AIPlayState : MonoBehaviour{
             {
                 if (shownCard.Card != null) { shownCard.Card.OnPlay(); }
                 shownCard.Card = null;
-                GameController.INSTANCE.NextState();
+                GameController.instance.NextState();
 
                 return;
             }

@@ -5,8 +5,10 @@ using Fungus;
 
 public class GameController : MonoBehaviour {
 
-    public static GameController INSTANCE;
-    private int currentState = 0;
+    public static GameController instance;
+    
+	private int currentState = 0;
+	private bool salvageAllowedAtNight = false;
 
     [SerializeField]
     private MonoBehaviour[] gameStates;
@@ -45,8 +47,8 @@ public class GameController : MonoBehaviour {
 
     public enum DayTime
     {
-        Dawn,
-        Dusk,
+        Morning,
+        Afternoon,
         Night
     }
 
@@ -103,9 +105,9 @@ public class GameController : MonoBehaviour {
 
     void Awake()
     {
-        if (INSTANCE == null)
+        if (instance == null)
         {
-            INSTANCE = this;
+            instance = this;
             DontDestroyOnLoad(this);
         }
         else
@@ -153,5 +155,14 @@ public class GameController : MonoBehaviour {
 
 	public Card DrawPlayerCard () {
 		return CardDatabase.DrawPlayer();
+	}
+
+	// Currently ignores card index but may be relevant in future
+	public bool CanSalvage (int cardIndex) {
+		return currentDayTime != DayTime.Night || salvageAllowedAtNight;
+	}
+
+	public void AllowSalvageAtNight () {
+		salvageAllowedAtNight = true;
 	}
 }

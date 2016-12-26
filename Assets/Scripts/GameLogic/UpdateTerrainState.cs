@@ -11,16 +11,16 @@ public class UpdateTerrainState : MonoBehaviour{
     }
 
     void Update() {
-        if (GameController.INSTANCE.currentDayTime == GameController.DayTime.Dawn) {
+        if (GameController.instance.currentDayTime == GameController.DayTime.Morning) {
             RandomTerrain();
         }
-        GameController.INSTANCE.NextState();
+        GameController.instance.NextState();
     }
 
     public static void RandomTerrain() {
         List<GameController.Terrain> newTerrains = new List<GameController.Terrain>();
         foreach (GameController.Terrain t in Enum.GetValues(typeof(GameController.Terrain))) {
-            if (GameController.INSTANCE.currentTerrain != t) {
+            if (GameController.instance.currentTerrain != t) {
                 newTerrains.Add(t);
             }
         }
@@ -29,6 +29,6 @@ public class UpdateTerrainState : MonoBehaviour{
     }
 
     public static void MoveToTerrain(GameController.Terrain terrain) {
-        GameController.INSTANCE.currentTerrain = terrain;
+        GameController.instance.currentTerrain = terrain;
     }
 }

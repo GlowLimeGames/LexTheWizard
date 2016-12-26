@@ -33,8 +33,8 @@ public class LexCard {
     [XmlElement("Info")]
     public string info { get; private set; }
 
-	List<CardModifier> _functions = new List<CardModifier>();
-	public List<CardModifier> functions {
+	List<CardMechanic> _functions = new List<CardMechanic>();
+	public List<CardMechanic> functions {
 		get {
 			return _functions;
 		}
@@ -106,15 +106,15 @@ public class Card : LexCard {
         foreach (string t in times) {
             switch (t.Trim()) {
                 case "Any":
-                    dayPhase.Add(GameController.DayTime.Dawn);
-                    dayPhase.Add(GameController.DayTime.Dusk);
+                    dayPhase.Add(GameController.DayTime.Morning);
+                    dayPhase.Add(GameController.DayTime.Afternoon);
                     dayPhase.Add(GameController.DayTime.Night);
                     break;
                 case "Morning":
-                    dayPhase.Add(GameController.DayTime.Dawn);
+                    dayPhase.Add(GameController.DayTime.Morning);
                     break;
                 case "Afternoon":
-                    dayPhase.Add(GameController.DayTime.Dusk);
+                    dayPhase.Add(GameController.DayTime.Afternoon);
                     break;
                 case "Night":
                     dayPhase.Add(GameController.DayTime.Night);
@@ -158,14 +158,14 @@ public class Card : LexCard {
     /// Return true if the card can be played on the current turn.
     /// </summary>
     public bool isCurrentlyPlayable() {
-         return (terrain.Contains(GameController.INSTANCE.currentTerrain)
-                 && dayPhase.Contains(GameController.INSTANCE.currentDayTime));
+         return (terrain.Contains(GameController.instance.currentTerrain)
+                 && dayPhase.Contains(GameController.instance.currentDayTime));
     }
 
     /// <summary>
     /// Check whether this card should be in the deck at this point in the game.
     /// </summary>
     public bool isInPlay() {
-        return (GameController.INSTANCE.week >= week && week > -1);
+        return (GameController.instance.week >= week && week > -1);
     }
 }

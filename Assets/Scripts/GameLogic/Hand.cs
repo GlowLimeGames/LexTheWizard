@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Hand : MonoBehaviour {
+public class Hand : MonoBehaviourExtended {
     public const int HAND_SIZE = 3;
 
     public static Hand INSTANCE;
@@ -110,9 +110,9 @@ public class Hand : MonoBehaviour {
     }
 
     public void SalvageCard(int index) {
-        if (GameController.INSTANCE.currentDayTime != GameController.DayTime.Night) {
+		if (game.CanSalvage(index)) {
             SoundManager.instance.PlaySingle(discardCardSound);
-            GameController.INSTANCE.Mana++;
+			game.Mana++;
             RemoveCard(CurrentCardIndex);
         }
     }

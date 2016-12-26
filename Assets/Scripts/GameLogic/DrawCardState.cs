@@ -16,6 +16,6 @@ public class DrawCardState : MonoBehaviour{
 
         hand.Draw();
         SoundManager.instance.PlaySingle(drawCardSound);
-        GameController.INSTANCE.NextState();
+        GameController.instance.NextState();
     }
 }

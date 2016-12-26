@@ -7,14 +7,14 @@ public class CardEffects : MonoBehaviour {
     /// Returns the amount of mana the player currently has.
     /// </summary>
     public int getCurrentMana () {
-        return GameController.INSTANCE.Mana;
+        return GameController.instance.Mana;
     }
 
     /// <summary>
     /// Returns the number of points the player currently has.
     /// </summary>
     public int getCurrentPoints () {
-        return GameController.INSTANCE.Points;
+        return GameController.instance.Points;
     }
 
     public int getCardCount () {
@@ -26,7 +26,7 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     /// <param name="i">How many points are given, negative numbers subtract points</param>
 	public void ChangePoints(int points) {
-        GameController.INSTANCE.Points += points;
+        GameController.instance.Points += points;
 	}
 
     /// <summary>
@@ -34,7 +34,7 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     /// <param name="i">How much mana is given, negative numbers subtract mana</param>
     public void ChangeMana(int mana) {
-        GameController.INSTANCE.Mana += mana;
+        GameController.instance.Mana += mana;
     }
 
     /// <summary>
@@ -89,6 +89,6 @@ public class CardEffects : MonoBehaviour {
     /// </summary>
     public void ToggleCanvas(bool isOn)
     {
-        GameController.INSTANCE.canvas.SetActive(isOn);
+        GameController.instance.canvas.SetActive(isOn);
     }
 }

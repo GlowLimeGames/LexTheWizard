@@ -25,20 +25,20 @@ public class UpdateDayState : MonoBehaviour{
     {
 		// Assume that any dialogue card shown in the previous turn is now dismissed
 		EventController.Event(Event.DIALOGUE_CARD_DISMISSED);
-        GameController.INSTANCE.currentDayTime++;
-        if ((int)GameController.INSTANCE.currentDayTime >= System.Enum.GetValues(typeof(GameController.DayTime)).Length)
+        GameController.instance.currentDayTime++;
+        if ((int)GameController.instance.currentDayTime >= System.Enum.GetValues(typeof(GameController.DayTime)).Length)
         {
-            GameController.INSTANCE.currentDayTime = 0;
-            GameController.INSTANCE.dayCount++;
+            GameController.instance.currentDayTime = 0;
+            GameController.instance.dayCount++;
 
         }
 
-        switch (GameController.INSTANCE.currentDayTime)
+        switch (GameController.instance.currentDayTime)
         {
-            case GameController.DayTime.Dawn:
+            case GameController.DayTime.Morning:
                 dayIcon.sprite = daySprite;
                 break;
-            case GameController.DayTime.Dusk:
+            case GameController.DayTime.Afternoon:
                 dayIcon.sprite = afternoonSprite;
                 break;
             case GameController.DayTime.Night:
@@ -48,8 +48,8 @@ public class UpdateDayState : MonoBehaviour{
                 break;
         }
 
-        dayCount.text = "" + GameController.INSTANCE.dayCount;
-        GameController.INSTANCE.NextState();
+        dayCount.text = "" + GameController.instance.dayCount;
+        GameController.instance.NextState();
 
         CardDatabase.UpdateDecks();
     }

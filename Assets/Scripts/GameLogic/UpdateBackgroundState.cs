@@ -54,13 +54,13 @@ public class UpdateBackgroundState : MonoBehaviour {
 	void Update () {
 		UpdateBackground();
 		// Necessary for game logic
-		GameController.INSTANCE.NextState();
+		GameController.instance.NextState();
 	}
 
     public void UpdateBackground () {
 		// Casting enum values to integers for direct indexing into the array
-		int terrainIndex = (int) GameController.INSTANCE.currentTerrain;
-		int timeOfDayIndex = (int) GameController.INSTANCE.currentDayTime;
+		int terrainIndex = (int) GameController.instance.currentTerrain;
+		int timeOfDayIndex = (int) GameController.instance.currentDayTime;
 		try {
 			background.sprite = terrainBackgrounds[terrainIndex][timeOfDayIndex];
 		} catch (System.Exception e) {

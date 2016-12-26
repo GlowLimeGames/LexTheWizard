@@ -7,6 +7,9 @@ using UnityEngine;
 using System.Collections;
 
 public abstract class MonoBehaviourExtended : MonoBehaviour, System.IComparable {
+	protected GameController game;
+	protected SoundManager sound;
+
 	IEnumerator moveCoroutine;
 	public delegate void MonoAction();
 	public delegate void MonoActionf(float value);
@@ -73,13 +76,16 @@ public abstract class MonoBehaviourExtended : MonoBehaviour, System.IComparable 
 		EventController.OnNamedEvent -= HandleNamedEvent;
 	}
 
-	protected abstract void SetReferences ();
+	protected virtual void SetReferences (){}
 
-	protected abstract void FetchReferences ();
+	protected virtual void FetchReferences () {
+		game = GameController.instance;
+		sound = SoundManager.instance;
+	}
 
-	protected abstract void CleanupReferences ();
+	protected virtual void CleanupReferences (){}
 
-	protected abstract void HandleNamedEvent (string eventName);
+	protected virtual void HandleNamedEvent (string eventName){}
 
 	public int CompareTo (object other) {
 		if (other is MonoBehaviourExtended) {

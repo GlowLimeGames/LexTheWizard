@@ -43,7 +43,7 @@ public class PlayCardState : MonoBehaviourExtended {
     {
         if(isPlaying == false)
         {
-            GameController.INSTANCE.NextState();
+            GameController.instance.NextState();
         }
 
         
@@ -86,7 +86,7 @@ public class PlayCardState : MonoBehaviourExtended {
             }
             else if (d.sqrMagnitude == 0)
             {
-                GameController.INSTANCE.hand.CurrentCardIndex = -1;
+                GameController.instance.hand.CurrentCardIndex = -1;
             }
         }
     }
