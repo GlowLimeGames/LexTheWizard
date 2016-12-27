@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using Fungus;
 
@@ -13,6 +14,7 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     private MonoBehaviour[] gameStates;
 
+	private List<CardMechanic> currentCardMechanics = new List<CardMechanic>();
     private bool isNextState = false;
 
     public GameObject canvas;
@@ -155,6 +157,37 @@ public class GameController : MonoBehaviour {
 
 	public Card DrawPlayerCard () {
 		return CardDatabase.DrawPlayer();
+	}
+
+	public void AddCurrentCardMechanic (CardMechanic mechanic) {
+		currentCardMechanics.Add(mechanic);
+	}
+
+	public void RemoveCurrentCardMechanic (CardMechanic mechanic) {
+		currentCardMechanics.Remove(mechanic);
+	}
+
+	public void TickDownCurrentMechanics () {
+		foreach (CardMechanic mechanic in currentCardMechanics) {
+			if (mechanic.hasEffectDelay) {
+				mechanic.TickDownEffectDelay();
+			}
+		}
+	}
+		
+	public void ApplyCardEffects () {
+		for (int i = 0; i < currentCardMechanics.Count; i++) {
+			CardMechanic mechanic = currentCardMechanics[i];
+			if (mechanic.hasEffectDelay) {
+				continue;
+			} else {
+				mechanic.ApplyEffect(this);
+				// Active mechanics can ony be used once before they're discarded
+				if (mechanic.type == CardMechanicType.Active) {
+					RemoveCurrentCardMechanic(mechanic);
+				}
+			}
+		}
 	}
 
 	// Currently ignores card index but may be relevant in future
