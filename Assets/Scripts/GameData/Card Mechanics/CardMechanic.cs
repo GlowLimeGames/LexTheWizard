@@ -24,9 +24,11 @@ public abstract class CardMechanic : CardData {
 	public string id;
 	public CardMechanicType type {get; private set;}
 	public CardMechanicVariant variant {get; private set;}
-	// Measured in day phas es:
-	public int effectDelay;
+	// Measured in day phases:
+	public int effectDelay = 0;
+	public int effectDuration = 1;
 	int remainingEffectDelay;
+	int remainingEffectDuration;
 	public bool hasEffectDelay {
 		get {
 			return remainingEffectDelay > 0;
@@ -52,5 +54,26 @@ public abstract class CardMechanic : CardData {
 			remainingEffectDelay--;
 		}
 	}
-	public abstract void ApplyEffect (GameController game);
+
+	public virtual bool ApplyEffect (GameController game) {
+		if (!CanUse()) {
+			return false;
+		} else {
+			if (type == CardMechanicType.Active) {
+				remainingEffectDuration--;
+			}
+			return true;
+		}
+	}
+
+	public virtual bool CanUse () {
+		if (type == CardMechanicType.Active && remainingEffectDuration > 0) {
+			return true;
+		} else if (type == CardMechanicType.Passive) {
+			return true;
+		} else {
+			return false;
+		}
+			
+	}
 }

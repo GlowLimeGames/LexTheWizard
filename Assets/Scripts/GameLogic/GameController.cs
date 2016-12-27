@@ -167,7 +167,7 @@ public class GameController : MonoBehaviour {
 		currentCardMechanics.Remove(mechanic);
 	}
 
-	public void TickDownCurrentMechanics () {
+	public void TickDownCurrentMechanicsDelay () {
 		foreach (CardMechanic mechanic in currentCardMechanics) {
 			if (mechanic.hasEffectDelay) {
 				mechanic.TickDownEffectDelay();
@@ -182,8 +182,8 @@ public class GameController : MonoBehaviour {
 				continue;
 			} else {
 				mechanic.ApplyEffect(this);
-				// Active mechanics can ony be used once before they're discarded
-				if (mechanic.type == CardMechanicType.Active) {
+				// Active mechanics can ony be used once a certain amount of times before they're discarded
+				if (!mechanic.CanUse()) {
 					RemoveCurrentCardMechanic(mechanic);
 				}
 			}

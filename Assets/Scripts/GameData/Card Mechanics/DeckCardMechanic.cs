@@ -16,7 +16,11 @@ public class DeckCardMechanic : CardMechanic {
 
 	}
 
-	public override void ApplyEffect (GameController game) {
-
+	public override bool ApplyEffect (GameController game) {
+		if (base.ApplyEffect(game)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

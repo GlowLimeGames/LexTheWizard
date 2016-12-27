@@ -17,9 +17,14 @@ public class SalvageCardMechanic : CardMechanic {
 
 	}
 
-	public override void ApplyEffect (GameController game) {
-		if (allowsSalvageAtNight) {
-			game.AllowSalvageAtNight();
+	public override bool ApplyEffect (GameController game) {
+		if (base.ApplyEffect(game)) {
+			if (allowsSalvageAtNight) {
+				game.AllowSalvageAtNight();
+			}
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

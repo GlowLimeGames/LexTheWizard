@@ -8,7 +8,7 @@ public class CardDatabase {
     private static List<Card> AIDeck = new List<Card>();
 
     public static void AddCard (Card card) {
-        List<Card> deck = (card.Type == LexCard.Type.AI) ? AICardPool : PlayerCardPool;
+		List<Card> deck = (card.Type == LexCard.Type.AI) ? AICardPool : PlayerCardPool;
         if (deck.Contains(card)) { Debug.Log("Re-added " + card.Name); }
 
         for (int i = 0; i < card.count; i++) {
