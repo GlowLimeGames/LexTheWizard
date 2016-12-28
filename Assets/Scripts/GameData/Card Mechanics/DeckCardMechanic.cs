@@ -6,13 +6,12 @@
 [System.Serializable]
 public class DeckCardMechanic : CardMechanic {
 
-	public DeckCardMechanic (CardMechanicType type, LexCard owner) : 
-	base (type, CardMechanicVariant.Deck, owner) {
+	public DeckCardMechanic (MechanicStats stats, LexCard owner) :
+	base (MechanicVariant.Deck, stats, owner) {
 
 	}
 
-	public DeckCardMechanic (CardMechanicType type) : 
-	base (type, CardMechanicVariant.Deck) {
+	public DeckCardMechanic (MechanicStats stats) : base (MechanicVariant.Deck, stats) {
 
 	}
 

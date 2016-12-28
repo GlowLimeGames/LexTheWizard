@@ -4,12 +4,12 @@
  */
 
 
-public enum CardMechanicType {
+public enum MechanicType {
 	Active,
 	Passive,
 }
 
-public enum CardMechanicVariant {
+public enum MechanicVariant {
 	Salvage,
 	Decay,
 	Mana,
@@ -17,16 +17,66 @@ public enum CardMechanicVariant {
 	AI,
 	Deck,
 	Travel,
+	Day,
+	Dialogue,
+	Choice,
 }
 
 [System.Serializable]
-public abstract class CardMechanic : CardData {
+public struct MechanicStats { 
 	public string id;
-	public CardMechanicType type {get; private set;}
-	public CardMechanicVariant variant {get; private set;}
-	// Measured in day phases:
-	public int effectDelay = 0;
-	public int effectDuration = 1;
+	public MechanicType type;
+	public int effectDelay;
+	public int effectDuration;
+	public int effectPower;
+	public string[] delegates;
+
+	public MechanicStats (string id, MechanicType type, int delay, int duration, int power, string[] delegates) { 
+		this.id = id;
+		this.type = type;
+		this.effectDelay = delay;
+		this.effectDuration = duration;
+		this.effectPower = power;
+		this.delegates = delegates;
+	}
+}
+
+[System.Serializable]public abstract class CardMechanic : CardData {
+	protected MechanicStats stats;
+	public string id {
+		get {
+			return stats.id;
+		}
+		protected set {
+			stats.id = value;
+		}
+	}
+	public MechanicVariant variant {get; private set;}
+	public MechanicType type {
+		get {
+			return stats.type;
+		}
+		protected set {
+			stats.type = value;
+		}
+	}
+	protected int effectDelay {
+		get {
+			return stats.effectDelay;
+		}
+		set {
+			stats.effectDelay = value;
+		}
+	}
+	protected int effectDuration {
+		get {
+			return stats.effectDuration;
+		}
+		set {
+			stats.effectDuration = value;
+		}
+	}
+	protected int effectPower = 1;
 	int remainingEffectDelay;
 	int remainingEffectDuration;
 	public bool hasEffectDelay {
@@ -35,18 +85,15 @@ public abstract class CardMechanic : CardData {
 		}
 	}
 
-	public CardMechanic (CardMechanicType type, CardMechanicVariant variant, LexCard owner) : base (owner) {
-		Setup(type, variant);
-	}
-
-	public CardMechanic (CardMechanicType type, CardMechanicVariant variant) {
-		Setup(type, variant);
-	}
-
-	protected void Setup (CardMechanicType type, CardMechanicVariant variant) {
-		this.type = type;
+	public CardMechanic (MechanicVariant variant,
+		MechanicStats stats, LexCard owner) : base (owner) {
 		this.variant = variant;
-		remainingEffectDelay = effectDelay;
+		this.stats = stats;
+	}
+
+	public CardMechanic (MechanicVariant variant,
+		MechanicStats stats) {
+		this.stats = stats;
 	}
 
 	public void TickDownEffectDelay () {
@@ -59,7 +106,7 @@ public abstract class CardMechanic : CardData {
 		if (!CanUse()) {
 			return false;
 		} else {
-			if (type == CardMechanicType.Active) {
+			if (type == MechanicType.Active) {
 				remainingEffectDuration--;
 			}
 			return true;
@@ -67,9 +114,9 @@ public abstract class CardMechanic : CardData {
 	}
 
 	public virtual bool CanUse () {
-		if (type == CardMechanicType.Active && remainingEffectDuration > 0) {
+		if (type == MechanicType.Active && remainingEffectDuration > 0) {
 			return true;
-		} else if (type == CardMechanicType.Passive) {
+		} else if (type == MechanicType.Passive) {
 			return true;
 		} else {
 			return false;

@@ -6,13 +6,12 @@
 [System.Serializable]
 public class PointCardMechanic : CardMechanic {
 
-	public PointCardMechanic (CardMechanicType type, LexCard owner) : 
-	base (type, CardMechanicVariant.Point, owner) {
+	public PointCardMechanic (MechanicStats stats, LexCard owner) :
+	base (MechanicVariant.Point, stats, owner) {
 
 	}
 
-	public PointCardMechanic (CardMechanicType type) : 
-	base (type, CardMechanicVariant.Point) {
+	public PointCardMechanic (MechanicStats stats) : base (MechanicVariant.Point, stats) {
 
 	}
 

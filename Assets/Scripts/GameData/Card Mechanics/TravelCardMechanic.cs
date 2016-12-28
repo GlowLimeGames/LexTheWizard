@@ -6,13 +6,12 @@
 [System.Serializable]
 public class TravelCardMechanic : CardMechanic {
 
-	public TravelCardMechanic (CardMechanicType type, LexCard owner) : 
-	base (type, CardMechanicVariant.Travel, owner) {
+	public TravelCardMechanic (MechanicStats stats, LexCard owner) :
+	base (MechanicVariant.Travel, stats, owner) {
 
 	}
 
-	public TravelCardMechanic (CardMechanicType type) : 
-	base (type, CardMechanicVariant.Travel) {
+	public TravelCardMechanic (MechanicStats stats) : base (MechanicVariant.Travel, stats) {
 
 	}
 

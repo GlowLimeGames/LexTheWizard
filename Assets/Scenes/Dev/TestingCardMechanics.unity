@@ -152,6 +152,7 @@ MonoBehaviour:
   hand: {fileID: 0}
   manaText: {fileID: 0}
   pointsText: {fileID: 0}
+  mechanicsJSON: {fileID: 4900000, guid: b3a25860e782a47ecb4114eee3ee2005, type: 3}
 --- !u!1 &1461099417
 GameObject:
   m_ObjectHideFlags: 0

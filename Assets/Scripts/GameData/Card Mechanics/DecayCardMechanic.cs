@@ -5,14 +5,13 @@
 
 [System.Serializable]
 public class DecayCardMechanic : CardMechanic {
-
-	public DecayCardMechanic (CardMechanicType type, LexCard owner) : 
-	base (type, CardMechanicVariant.Decay, owner) {
+	
+	public DecayCardMechanic (MechanicStats stats, LexCard owner) :
+	base (MechanicVariant.Decay, stats, owner) {
 
 	}
 
-	public DecayCardMechanic (CardMechanicType type) : 
-	base (type, CardMechanicVariant.Decay) {
+	public DecayCardMechanic (MechanicStats stats) : base (MechanicVariant.Decay, stats) {
 
 	}
 

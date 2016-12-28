@@ -1,0 +1,63 @@
+{
+  "Mechanics" : [
+    {
+      "ID" : "ModMana",
+      "Type" : "Active",
+      "Variant" : "Mana",
+      "Effect Delay" : 0,
+      "Effect Duration" : 0,
+      "Effect Power" : 0,
+      "Delegates" : [
+        0,
+        0
+      ]
+    },
+    {
+      "ID" : "ModPoints",
+      "Type" : "Active",
+      "Variant" : "Point",
+      "Effect Delay" : 0,
+      "Effect Duration" : 0,
+      "Effect Power" : 0,
+      "Delegates" : [
+        0,
+        0
+      ]
+    },
+    {
+      "ID" : "Discard",
+      "Type" : "Active",
+      "Variant" : "Deck",
+      "Effect Delay" : 0,
+      "Effect Duration" : 0,
+      "Effect Power" : 0,
+      "Delegates" : [
+        0,
+        0
+      ]
+    },
+    {
+      "ID" : "ModDay",
+      "Type" : "Active",
+      "Variant" : "Day",
+      "Effect Delay" : 0,
+      "Effect Duration" : 0,
+      "Effect Power" : 0,
+      "Delegates" : [
+        0,
+        0
+      ]
+    },
+    {
+      "ID" : "ModTerrain",
+      "Type" : "Active",
+      "Variant" : "Travel",
+      "Effect Delay" : 0,
+      "Effect Duration" : 0,
+      "Effect Power" : 0,
+      "Delegates" : [
+        0,
+        0
+      ]
+    }
+  ]}

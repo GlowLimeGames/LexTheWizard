@@ -54,8 +54,8 @@ public class LexCard {
 }
 
 public class Card : LexCard {
-	public const CardMechanicType ACTIVE = CardMechanicType.Active;
-	public const CardMechanicType PASSIVE = CardMechanicType.Passive;
+	public const MechanicType ACTIVE = MechanicType.Active;
+	public const MechanicType PASSIVE = MechanicType.Passive;
 
     private List<GameController.Terrain> terrain = new List<GameController.Terrain>();
     private List<GameController.DayTime> dayPhase = new List<GameController.DayTime>();

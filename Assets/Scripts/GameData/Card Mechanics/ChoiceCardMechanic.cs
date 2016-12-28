@@ -4,14 +4,14 @@
  */
 
 [System.Serializable]
-public class AICardMechanic : CardMechanic {
+public class ChoiceCardMechanic : CardMechanic {
 
-	public AICardMechanic (MechanicStats stats, LexCard owner) :
+	public ChoiceCardMechanic (MechanicStats stats, LexCard owner) :
 	base (MechanicVariant.AI, stats, owner) {
 
 	}
 
-	public AICardMechanic (MechanicStats stats) : base (MechanicVariant.AI, stats) {
+	public ChoiceCardMechanic (MechanicStats stats) : base (MechanicVariant.AI, stats) {
 
 	}
 

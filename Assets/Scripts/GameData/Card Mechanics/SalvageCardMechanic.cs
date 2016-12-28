@@ -7,13 +7,12 @@
 public class SalvageCardMechanic : CardMechanic {
 	public bool allowsSalvageAtNight;
 
-	public SalvageCardMechanic (CardMechanicType type, LexCard owner) : 
-	base (type, CardMechanicVariant.Salvage, owner) {
+	public SalvageCardMechanic (MechanicStats stats, LexCard owner) :
+	base (MechanicVariant.Salvage, stats, owner) {
 
 	}
 
-	public SalvageCardMechanic (CardMechanicType type) : 
-	base (type, CardMechanicVariant.Salvage) {
+	public SalvageCardMechanic (MechanicStats stats) : base (MechanicVariant.Salvage, stats) {
 
 	}
 
