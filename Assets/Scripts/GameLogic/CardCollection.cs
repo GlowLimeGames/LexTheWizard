@@ -17,11 +17,11 @@ using System.IO;
 public class CardCollection {
 	[XmlArray("PlayerCards")]
 	[XmlArrayItem("Card")]
-	public List<Card> PlayerCards = new List<Card>();
+	public List<LexCard> PlayerCards = new List<LexCard>();
 
     [XmlArray("AICards")]
     [XmlArrayItem("Card")]
-    public List<Card> AICards = new List<Card>();
+	public List<LexCard> AICards = new List<LexCard>();
 
 	public static CardCollection Load(string path){
 		TextAsset _xml = Resources.Load<TextAsset> (path);
@@ -43,11 +43,11 @@ public class CardParsing {
 	public static void ResetCardList () {
         CardCollection cards = CardCollection.Load(XMLPath);
 
-        foreach (Card card in cards.AICards) {
+		foreach (LexCard card in cards.AICards) {
 			CardDatabase.AddCard(new Card(card, LexCard.Type.AI));
         }
 
-        foreach (Card card in cards.PlayerCards) {
+		foreach (LexCard card in cards.PlayerCards) {
 			CardDatabase.AddCard(new Card(card, LexCard.Type.PLAYER));
         }
 	}
