@@ -26,8 +26,14 @@ public class CardMechanicFactory : LTWData {
 		int duration = node[DURATION].AsInt;
 		int power = node[POWER].AsInt;
 		string[] delegates = JSONToStringArray(node[DELEGATES].AsArray);
-		MechanicStats stats = new MechanicStats(id, type, delay, duration, power, delegates);
+		MechanicStats stats = new MechanicStats(id, type, delegates);
 		Type classType = Type.GetType(getClassName(variantType));
+		ConstructorInfo constructor = classType.GetConstructor(new Type[]{typeof(MechanicStats)});
+		return constructor.Invoke(new object[]{stats}) as CardMechanic;
+	}
+
+	public CardMechanic GetMechanic (MechanicVariant variant, MechanicStats stats) {
+		Type classType = Type.GetType(getClassName(variant.ToString()));
 		ConstructorInfo constructor = classType.GetConstructor(new Type[]{typeof(MechanicStats)});
 		return constructor.Invoke(new object[]{stats}) as CardMechanic;
 	}

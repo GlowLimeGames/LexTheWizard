@@ -3,6 +3,8 @@
  * Description: Describes a functionality of a card
  */
 
+using System.Collections;
+using System.Collections.Generic;
 
 public enum MechanicType {
 	Active,
@@ -20,28 +22,83 @@ public enum MechanicVariant {
 	Day,
 	Dialogue,
 	Choice,
+	Probability,
+	Conditional,
+}
+
+[System.Serializable]
+public struct MechanicDelegates {
+	const int DEFAULT_VALUE = 0;
+
+	private string[] delegateKeys;
+	private Dictionary<string, object> delegates;
+
+	public MechanicDelegates (string[] delegateKeys) {
+		this.delegateKeys = delegateKeys;
+		delegates = new Dictionary<string, object>();
+		foreach (string key in delegateKeys) {
+			delegates.Add(key, DEFAULT_VALUE);
+		}
+	}
+
+	public T GetDelegate<T> (string delegateKey) {
+		try {	
+			return (T) delegates[delegateKey];
+		} catch {
+			return default(T);
+		}
+	}
+
+	public void SetDelegate<T> (string delegateKey, T value) {
+		if (delegates.ContainsKey(delegateKey)) {
+			delegates[delegateKey] = value;
+		}
+	}
+
+	// Values and delegates should map by index
+	public void MapDelegates (object[] delegateValues) {
+		if (delegateKeys.Length == delegateValues.Length) {
+			for (int i = 0; i < delegateKeys.Length; i++) {
+				delegates[delegateKeys[i]] = delegateValues[i];
+			}
+		} else {
+			throw new System.ArgumentException(
+				string.Format("Key list of size {0} does not match value list of size {1}", delegateKeys.Length, delegateValues.Length));
+		}
+	}
 }
 
 [System.Serializable]
 public struct MechanicStats { 
 	public string id;
 	public MechanicType type;
-	public int effectDelay;
-	public int effectDuration;
-	public int effectPower;
-	public string[] delegates;
+	private MechanicDelegates delegates;
 
-	public MechanicStats (string id, MechanicType type, int delay, int duration, int power, string[] delegates) { 
+	public MechanicStats (string id, MechanicType type, string[] delegateKeys) { 
 		this.id = id;
 		this.type = type;
-		this.effectDelay = delay;
-		this.effectDuration = duration;
-		this.effectPower = power;
-		this.delegates = delegates;
+		delegates = new MechanicDelegates(delegateKeys);
+	}
+
+	public T GetDelegate<T> (string delegateKey) {
+		return delegates.GetDelegate<T>(delegateKey);
+	}
+
+	public void SetDelegate<T> (string delegateKey, T value) {
+		delegates.SetDelegate(delegateKey, value);
+	}
+
+	public void MapDelegates (object[] delegateValues) {
+		delegates.MapDelegates(delegateValues);
 	}
 }
 
-[System.Serializable]public abstract class CardMechanic : CardData {
+[System.Serializable]
+public abstract class CardMechanic : CardData {
+	const string DELAY = "Delay";
+	const string DURATION = "Duration";
+	const string AMOUNT = "Amount";
+
 	protected MechanicStats stats;
 	public string id {
 		get {
@@ -62,27 +119,38 @@ public struct MechanicStats {
 	}
 	protected int effectDelay {
 		get {
-			return stats.effectDelay;
+			return stats.GetDelegate<int>(DELAY);
 		}
 		set {
-			stats.effectDelay = value;
+			stats.SetDelegate<int>(DELAY, value);
 		}
 	}
 	protected int effectDuration {
 		get {
-			return stats.effectDuration;
+			return stats.GetDelegate<int>(DURATION);
 		}
 		set {
-			stats.effectDuration = value;
+			stats.SetDelegate<int>(DURATION, value);
 		}
 	}
-	protected int effectPower = 1;
+	protected int effectAmount {
+		get {
+			return stats.GetDelegate<int>(AMOUNT);
+		}
+		set {
+			stats.SetDelegate<int>(AMOUNT, value);
+		}
+	}
 	int remainingEffectDelay;
 	int remainingEffectDuration;
 	public bool hasEffectDelay {
 		get {
 			return remainingEffectDelay > 0;
 		}
+	}
+
+	public void MapDelegates (object[] delegateValues) {
+		stats.MapDelegates(delegateValues);
 	}
 
 	public CardMechanic (MechanicVariant variant,
@@ -122,5 +190,10 @@ public struct MechanicStats {
 			return false;
 		}
 			
+	}
+
+	public CardMechanic Clone () {
+		CardMechanicFactory factory = new CardMechanicFactory();
+		return factory.GetMechanic(this.variant, this.stats);
 	}
 }
