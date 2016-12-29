@@ -41,6 +41,10 @@ public struct MechanicDelegates {
 		}
 	}
 
+	public bool HasDelegate (string key) {
+		return ArrayUtil.Contains(delegateKeys, key);
+	}
+
 	public T GetDelegate<T> (string delegateKey) {
 		try {	
 			return (T) delegates[delegateKey];
@@ -80,6 +84,10 @@ public struct MechanicStats {
 		delegates = new MechanicDelegates(delegateKeys);
 	}
 
+	public bool HasDelegate (string key) {
+		return delegates.HasDelegate(key);
+	}
+
 	public T GetDelegate<T> (string delegateKey) {
 		return delegates.GetDelegate<T>(delegateKey);
 	}
@@ -95,9 +103,16 @@ public struct MechanicStats {
 
 [System.Serializable]
 public abstract class CardMechanic : CardData {
-	const string DELAY = "Delay";
-	const string DURATION = "Duration";
-	const string AMOUNT = "Amount";
+
+	#region Keys 
+
+	protected const string DELAY = "Delay";
+	protected const string DURATION = "Duration";
+	protected const string AMOUNT = "Amount";
+	protected const string SKIPS_TURNS = "SkipsTurns";
+	protected const string DISCARDS = "Discards";
+
+	#endregion
 
 	protected MechanicStats stats;
 	public string id {
@@ -195,5 +210,9 @@ public abstract class CardMechanic : CardData {
 	public CardMechanic Clone () {
 		CardMechanicFactory factory = new CardMechanicFactory();
 		return factory.GetMechanic(this.variant, this.stats);
+	}
+
+	protected virtual void setup () {
+		// NOTHING
 	}
 }

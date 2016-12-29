@@ -8,6 +8,12 @@ using SimpleJSON;
 [System.Serializable]
 public abstract class LTWData {
 
+	#region Keywords
+
+	protected const string SKIP = "Skip";
+
+	#endregion
+
 	protected string[] JSONToStringArray (JSONArray json) {
 		string[] result = new string[json.Count];
 		for (int i = 0; i < result.Length; i++) {

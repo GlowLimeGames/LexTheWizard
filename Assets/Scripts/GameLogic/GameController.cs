@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour {
 
     public static GameController instance;
     
+	LTWPlayer player;
+	LTWEnemyAI ai;
+
 	private int currentState = 0;
 	private bool salvageAllowedAtNight = false;
 
@@ -111,6 +114,7 @@ public class GameController : MonoBehaviour {
         {
             instance = this;
             DontDestroyOnLoad(this);
+			init();
         }
         else
         {
@@ -147,8 +151,28 @@ public class GameController : MonoBehaviour {
         }
     }
 
+	void init () {
+		this.player = new LTWPlayer(this);
+		this.ai = new LTWEnemyAI(this);
+	}
+
 	public void AddCard (Card card) {
 		CardDatabase.AddCard(card);
+	}
+
+	public void DiscardCard (AgentType agent) {
+		switch (agent) {
+		case AgentType.All:
+			DiscardCard(AgentType.AI);
+			DiscardCard(AgentType.Player);
+			break;
+		case AgentType.AI:
+			ai.Discard();
+			break;
+		case AgentType.Player:
+			player.Discard();
+			break;
+		}
 	}
 
 	public Card DrawAICard () {
@@ -198,4 +222,25 @@ public class GameController : MonoBehaviour {
 	public void AllowSalvageAtNight () {
 		salvageAllowedAtNight = true;
 	}
+
+	public void SkipTurn (AgentType agent, int numTurns = 1) {
+		switch (agent) {
+		case AgentType.All:
+			SkipTurn(AgentType.Player, numTurns);
+			SkipTurn(AgentType.AI, numTurns);
+			break;
+		case AgentType.AI:
+			ai.SkipTurn(numTurns);
+			break;
+		case AgentType.Player:
+			player.SkipTurn(numTurns);
+			break;
+		}
+	}
+}
+
+public enum AgentType {
+	Player,
+	AI,
+	All,
 }

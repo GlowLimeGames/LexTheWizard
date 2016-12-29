@@ -3,6 +3,7 @@
  * Description: Modifies the deck
  */
 
+// NOTES: Should probably be able to target either player or AI: makes it more flexible
 [System.Serializable]
 public class DeckCardMechanic : CardMechanic {
 
