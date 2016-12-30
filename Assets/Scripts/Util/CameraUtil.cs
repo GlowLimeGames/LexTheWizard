@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/*
+ * Author: Isaiah Mann
+ * Description: Camera utility scripts
+ */
+
+using UnityEngine;
 
 public static class CameraUtil {
 

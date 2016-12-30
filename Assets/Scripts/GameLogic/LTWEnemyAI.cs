@@ -4,5 +4,5 @@
  */
 
 public class LTWEnemyAI : LTWAgent {
-	public LTWEnemyAI (GameController game) : base (game, new LTWAgentStats(AgentType.AI)) {}
+	public LTWEnemyAI (GameController game, Deck deck) : base (game, deck, new LTWAgentStats(AgentType.AI)) {}
 }

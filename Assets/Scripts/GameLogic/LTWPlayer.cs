@@ -4,5 +4,5 @@
  */
 
 public class LTWPlayer : LTWAgent {
-	public LTWPlayer (GameController game) : base (game, new LTWAgentStats(AgentType.Player)) {}
+	public LTWPlayer (GameController game, Deck deck) : base (game, deck, new LTWAgentStats(AgentType.Player)) {}
 }

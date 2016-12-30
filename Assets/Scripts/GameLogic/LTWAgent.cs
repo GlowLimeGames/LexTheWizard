@@ -15,9 +15,11 @@ public class LTWAgent {
 	protected LTWAgentStats stats;
 	protected int turnsToSkip = 0;
 	protected GameController game;
+	protected Deck deck;
 
-	public LTWAgent (GameController game, LTWAgentStats stats) {
+	public LTWAgent (GameController game, Deck deck, LTWAgentStats stats) {
 		this.game = game;
+		this.deck = deck;
 		this.stats = stats;
 	}
 

@@ -152,8 +152,11 @@ public class GameController : MonoBehaviour {
     }
 
 	void init () {
-		this.player = new LTWPlayer(this);
-		this.ai = new LTWEnemyAI(this);
+		Deck playerDeck = new Deck(new Card[0]);
+		this.player = new LTWPlayer(this, playerDeck);
+
+		Deck aiDeck = new Deck(new Card[0]);
+		this.ai = new LTWEnemyAI(this, aiDeck);
 	}
 
 	public void AddCard (Card card) {
